@@ -1,11 +1,12 @@
 3D Modelling
-Sculpting
-Texturing
-High Poly Modelling
-UV-Unwrapping
-Retopology
-Hand-painted Texturing
-Weapon Modelling
-Environment Art
-Tileable Materials
-punching faces
+User Experience
+User Interface
+Visual Design
+Data Visualization
+Wireframing
+Prototyping
+Interaction Design
+Low & High-Fidelity Mockups
+Design System, Storyboarding
+Iconography
+Information Architecture

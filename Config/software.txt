@@ -1,10 +1,9 @@
-Blender
-3ds Max
-Unity
-Zbrush
+Figma
 Adobe Photoshop
-Topogun
-Substance 3d Painter
-Marvelous Designer
-Maya
-Marmoset Toolbag
+Adobe Illustrator
+Da Vinci Resolve
+Sketchbook Pro
+Blender
+Autodesk Maya
+Autodesk Alias
+Substance 3D Painter
