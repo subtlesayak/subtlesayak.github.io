@@ -1,0 +1,9 @@
+AyuRest | Mental Health Companion App
+---
+AyuRest | Mental Health Companion App is a selected UI/UX and visual design project from my Behance portfolio. View the full case study here: https://www.behance.net/gallery/226347039/AyuRest-Mental-Health-Companion-App
+---
+Interaction Design, Figma, FigJam
+---
+https://mir-s3-cdn-cf.behance.net/project_modules/1400/581243226347039.682ce29bdce86.png
+---
+ayurest-mental-health-companion-app.html

@@ -1,0 +1,9 @@
+Google Pay Homepage Redesign
+---
+Google Pay Homepage Redesign is a selected UI/UX and visual design project from my Behance portfolio. View the full case study here: https://www.behance.net/gallery/194883711/Google-Pay-Homepage-Redesign
+---
+Interaction Design, Figma
+---
+https://mir-s3-cdn-cf.behance.net/project_modules/1400/80548b194883711.6603d3433eb12.png
+---
+google-pay-homepage-redesign.html

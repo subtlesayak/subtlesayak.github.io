@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const fetchProjects = async () => {
         try {
-            const response = await fetch('../../Config/projects.txt');
+            const response = await fetch('../../Config/projects.txt?v=1.2');
             const text = await response.text();
             return text.split('\n').map(line => line.trim()).filter(line => line);
         } catch (error) {
@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const fetchDescription = async () => {
         try {
-            const response = await fetch('description.txt');
+            const response = await fetch('description.txt?v=1.2');
             const text = await response.text();
             const [title, description, tags] = text.split('---').map(line => line.trim());
             document.getElementById('project-title').textContent = title;
@@ -67,7 +67,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const loadMedia = async () => {
         try {
-            const response = await fetch('media.txt');
+            const response = await fetch('media.txt?v=1.2');
             const text = await response.text();
             const mediaContainer = document.getElementById('project-media');
             const lines = text.split('\n').map(line => line.trim()).filter(line => line && !line.startsWith('#'));
@@ -92,7 +92,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
 
                 // Adjust URLs for relative paths
-                urls = urls.map(url => (url.startsWith('http') ? url : basePath + url));
+                urls = urls.map(url => {
+                    const cleanUrl = url.replace(/\*$/, '').trim();
+                    return cleanUrl.startsWith('http') ? cleanUrl : basePath + cleanUrl;
+                });
 
                 if (description.includes('(marmoset viewer)')) {
                     urls = [`${urls[0]}.mview`];
@@ -246,7 +249,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const fetchStats = async () => {
         try {
-            const response = await fetch('stats.txt');
+            const response = await fetch('stats.txt?v=1.2');
             const text = await response.text();
             const lines = text.split('\n').map(line => line.trim()).filter(line => line);
             const statsContainer = document.getElementById('project-stats');
@@ -361,7 +364,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const newProject = projects[newIndex];
             try {
-                const response = await fetch(`../${newProject}/description.txt`);
+                const response = await fetch(`../${newProject}/description.txt?v=1.2`);
                 const text = await response.text();
                 const htmlFileName = text.split('---')[4].trim(); // Extract the HTML filename from the description.txt
                 window.location.href = `../${newProject}/${htmlFileName}`;

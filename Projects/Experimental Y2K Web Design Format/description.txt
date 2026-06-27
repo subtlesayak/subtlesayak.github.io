@@ -1,0 +1,9 @@
+Experimental Y2K Web Design Format
+---
+Experimental Y2K Web Design Format is a selected UI/UX and visual design project from my Behance portfolio. View the full case study here: https://www.behance.net/gallery/194923697/Experimental-Y2K-Web-Design-Format
+---
+Web Design, Figma, Adobe Illustrator, Dall-E
+---
+https://mir-s3-cdn-cf.behance.net/project_modules/1400/457a0f194923697.660454b645649.png
+---
+experimental-y2k-web-design-format.html
