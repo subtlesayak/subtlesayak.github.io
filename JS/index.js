@@ -96,6 +96,18 @@ function fetchProjects() {
 
 // Fetch projects and create thumbnails
 fetchProjects().then(projects => {
+    if (projects.length === 0) {
+        const emptyState = document.createElement("div");
+        emptyState.className = "portfolio-empty";
+        emptyState.innerHTML = `
+            <h1>Selected work coming soon</h1>
+            <p>Portfolio case studies are being curated. In the meantime, view current work and visual explorations on Behance.</p>
+            <a href="https://www.behance.net/sayaksajith" target="_blank" rel="noopener noreferrer">Open Behance</a>
+        `;
+        thumbnailContainer.appendChild(emptyState);
+        return;
+    }
+
     let bannerImageSet = false;
     const fragment = document.createDocumentFragment(); // Create a document fragment
 

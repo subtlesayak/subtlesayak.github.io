@@ -7,6 +7,7 @@ Wireframing
 Prototyping
 Interaction Design
 Low & High-Fidelity Mockups
-Design System, Storyboarding
+Design System
+Storyboarding
 Iconography
 Information Architecture

@@ -15,6 +15,18 @@ document.addEventListener("DOMContentLoaded", async () => {
         const text = await response.text();
         const recommendations = text.split('---').map(rec => rec.trim()).filter(rec => rec);
 
+        if (recommendations.length === 0) {
+            const panel = document.querySelector('.recommendations-panel');
+            const title = panel?.previousElementSibling;
+            if (title?.classList.contains('panel-title')) {
+                title.style.display = 'none';
+            }
+            if (panel) {
+                panel.style.display = 'none';
+            }
+            return;
+        }
+
         const recommendationFragment = document.createDocumentFragment();
         const dotsFragment = document.createDocumentFragment();
 

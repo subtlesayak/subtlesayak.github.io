@@ -62,6 +62,14 @@ document.addEventListener("DOMContentLoaded", async () => {
         const text = await response.text();
         const productions = text.split('---').map(prod => prod.trim()).filter(prod => prod);
 
+        if (productions.length === 0) {
+            const panel = document.querySelector(".productions-panel");
+            if (panel) {
+                panel.style.display = "none";
+            }
+            return;
+        }
+
         const fragment = document.createDocumentFragment();
 
         productions.forEach((prod, index) => {
