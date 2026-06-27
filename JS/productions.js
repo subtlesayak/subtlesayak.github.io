@@ -55,7 +55,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
 
     try {
-        const response = await fetch('../Config/productions.txt');
+        const response = await fetch('../Config/productions.txt?v=1.1');
         if (!response.ok) {
             throw new Error(`Network response was not ok: ${response.statusText}`);
         }
