@@ -1,10 +1,10 @@
-﻿# Subtle Sayak Portfolio
+# Subtle Sayak Portfolio
 
 ## What This Is
 
-Subtle Sayak Portfolio is an existing static GitHub Pages portfolio that showcases UI/UX, branding, visual design, web experiments, and future photography work. The project should become a more polished personal portfolio while staying simple enough for other people to reuse as a beginner-editable template.
+Subtle Sayak Portfolio is an existing static GitHub Pages portfolio that showcases UI/UX, branding, visual design, web experiments, and future photography work. The project is becoming a more polished personal portfolio while staying simple enough for other people to reuse as a beginner-editable template.
 
-The site should keep its current low-friction model: plain HTML, CSS, JavaScript, and text-file content instead of a heavy framework or build pipeline.
+The site keeps its current low-friction model: plain HTML, CSS, JavaScript, and text-file content instead of a heavy framework or build pipeline.
 
 ## Core Value
 
@@ -22,10 +22,11 @@ A visitor can quickly understand the designer, browse work by meaningful categor
 - [x] Local profile image and favicon assets are served from `Resources/` - existing
 - [x] Codebase map exists under `.planning/codebase/` for brownfield planning - existing
 - [x] Homepage layout, profile spacing, project card readability, image fit, and mobile presentation polished - validated in Phase 1
+- [x] Category sections let visitors browse All Work, UI/UX, Branding, Web, Visual Design, and Photography - validated in Phase 2
+- [x] Category labels/order and per-project category assignments are editable through text files - validated in Phase 2
 
 ### Active
 
-- [ ] Add category sections so work can be browsed as dedicated groups such as UI/UX, Branding, Web, Visual Design, and Photography.
 - [ ] Preserve beginner-editable content authoring through simple text files and clear folder conventions.
 - [ ] Make adding a project easier and less error-prone through documentation, templates, and/or lightweight validation.
 - [ ] Support photography entries that can contain multiple images for an event, shoot, or collection.
@@ -43,14 +44,15 @@ A visitor can quickly understand the designer, browse work by meaningful categor
 
 This is a brownfield static portfolio derived from a portfolio template. It currently uses plain browser JavaScript to fetch content from `Config/*.txt` and `Projects/*/*.txt`, then renders pages client-side. The codebase map identifies the architecture as a static page shell plus text-file content database.
 
+The homepage now groups projects into editable category sections while preserving a complete All Work section. Category order and labels are configured in `Config/categories.txt`; each project can opt into one or more categories through its own `categories.txt` file. Photography is already visible as a homepage section, ready for Phase 3 to add richer multi-image entries.
+
 The user wants the site to improve in two directions at once: it should become a better personal portfolio and remain reusable for other people. Improvements should therefore favor small, teachable conventions over hidden complexity. The current project system already supports multiple media entries on detail pages, which can be adapted into photography/event galleries.
 
 Important current concerns from the codebase map:
 
-- Project data formats are implicit and can break if `description.txt`, `media.txt`, or `stats.txt` are malformed.
+- Project data formats are implicit and can break if `description.txt`, `media.txt`, `stats.txt`, or `categories.txt` are malformed.
 - Project page shells are duplicated across project folders.
 - Cache-busting query strings are manual and scattered.
-- Homepage project titles are weak on hover/touch experiences.
 - The site relies on external Behance images and CDN-hosted fonts/icons.
 
 ## Constraints
@@ -67,28 +69,30 @@ Important current concerns from the codebase map:
 
 | Decision | Rationale | Outcome |
 |----------|-----------|---------|
-| Keep the static text-file architecture | Simplicity and beginner editability are explicit goals | Preserved in Phase 1 |
-| Improve both personal portfolio and reusable template value | User wants options 1 and 2, not one at the expense of the other | Pending |
-| Categories should have their own homepage sections | User preferred dedicated sections over only filtering | Pending |
-| Prioritize visual polish, category filtering/sections, and easier project adding for v1 | These were named as the most important v1 outcomes | Pending |
-| Treat photography as multi-image entries | User wants event-style or collection-style photo entries | Pending |
+| Keep the static text-file architecture | Simplicity and beginner editability are explicit goals | Preserved in Phases 1-2 |
+| Improve both personal portfolio and reusable template value | User wants options 1 and 2, not one at the expense of the other | In progress |
+| Categories should have their own homepage sections | User preferred dedicated sections over only filtering | Implemented in Phase 2 |
+| Category labels/order belong in `Config/categories.txt` | Keeps section editing beginner-friendly and avoids JavaScript edits | Implemented in Phase 2 |
+| Per-project category assignment belongs in `Projects/*/categories.txt` | Keeps adding/editing a project folder-local and copyable | Implemented in Phase 2 |
+| Prioritize visual polish, category filtering/sections, and easier project adding for v1 | These were named as the most important v1 outcomes | Visual polish and categories complete; easier project adding remains Phase 4 |
+| Treat photography as multi-image entries | User wants event-style or collection-style photo entries | Category path exists; gallery entries pending Phase 3 |
 
 ## Evolution
 
 This document evolves at phase transitions and milestone boundaries.
 
-**After each phase transition** (via `$gsd-transition`):
+**After each phase transition**:
 1. Requirements invalidated? Move to Out of Scope with reason
 2. Requirements validated? Move to Validated with phase reference
 3. New requirements emerged? Add to Active
 4. Decisions to log? Add to Key Decisions
 5. "What This Is" still accurate? Update if drifted
 
-**After each milestone** (via `$gsd-complete-milestone`):
+**After each milestone**:
 1. Full review of all sections
 2. Core Value check - still the right priority?
 3. Audit Out of Scope - reasons still valid?
 4. Update Context with current state
 
 ---
-*Last updated: 2026-06-30 after Phase 1 completion*
+*Last updated: 2026-06-30 after Phase 2 completion*
