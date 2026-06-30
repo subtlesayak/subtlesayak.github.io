@@ -344,6 +344,10 @@ function renderCategorySections(categories, projects) {
         .filter(category => category.slug !== "all")
         .forEach(category => {
             const categoryProjects = projectsByCategory.get(category.slug) || [];
+            if (category.slug === fallbackCategory.slug && categoryProjects.length === 0) {
+                return;
+            }
+
             fragment.appendChild(createCategorySection(category, categoryProjects));
         });
 

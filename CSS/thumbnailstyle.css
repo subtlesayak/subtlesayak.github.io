@@ -1,11 +1,19 @@
 #thumbnail-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
-  gap: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
   width: 100%;
   align-content: start;
 }
 
+.category-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+  gap: 24px;
+  width: 100%;
+}
+
+.thumbnail-link,
 #thumbnail-container > a {
   display: block;
   min-width: 0;
@@ -66,6 +74,9 @@
   overflow: hidden;
 }
 
+.thumbnail-link:hover .thumbnail,
+.thumbnail-link:focus-visible .thumbnail,
+.thumbnail-link:focus-within .thumbnail,
 #thumbnail-container > a:hover .thumbnail,
 #thumbnail-container > a:focus-visible .thumbnail,
 #thumbnail-container > a:focus-within .thumbnail {
@@ -73,6 +84,15 @@
   transform: translateY(-2px);
 }
 
+.thumbnail-link:hover .thumbnail::before,
+.thumbnail-link:focus-visible .thumbnail::before,
+.thumbnail-link:focus-within .thumbnail::before,
+.thumbnail-link:hover .thumbnail-title,
+.thumbnail-link:focus-visible .thumbnail-title,
+.thumbnail-link:focus-within .thumbnail-title,
+.thumbnail-link:hover .overlay-icon,
+.thumbnail-link:focus-visible .overlay-icon,
+.thumbnail-link:focus-within .overlay-icon,
 #thumbnail-container > a:hover .thumbnail::before,
 #thumbnail-container > a:focus-visible .thumbnail::before,
 #thumbnail-container > a:focus-within .thumbnail::before,
@@ -86,6 +106,7 @@
   transform: translateY(0);
 }
 
+.thumbnail-link:focus-visible,
 #thumbnail-container > a:focus-visible {
   outline: 2px solid #edb049;
   outline-offset: 4px;
@@ -119,10 +140,15 @@
 
 @media (max-width: 700px) {
   #thumbnail-container {
+    gap: 32px;
+  }
+
+  .category-grid {
     grid-template-columns: 1fr;
     gap: 20px;
   }
 
+  .thumbnail-link,
   #thumbnail-container > a {
     background: #171717;
     border: 1px solid rgba(255, 255, 255, 0.08);
@@ -163,6 +189,9 @@
     opacity: 1;
   }
 
+  .thumbnail-link:hover .thumbnail,
+  .thumbnail-link:focus-visible .thumbnail,
+  .thumbnail-link:focus-within .thumbnail,
   #thumbnail-container > a:hover .thumbnail,
   #thumbnail-container > a:focus-visible .thumbnail,
   #thumbnail-container > a:focus-within .thumbnail {
