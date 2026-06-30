@@ -2,11 +2,11 @@ function addUserInformation() {
     // Determine the base path dynamically
     let basePath = '';
     if (window.location.pathname.includes('/Projects/')) {
-        basePath = '../../Config/userinformation.txt?v=1.2';
+        basePath = '../../Config/userinformation.txt?v=1.3';
     } else if (window.location.pathname.includes('/HTML/')) {
-        basePath = '../Config/userinformation.txt?v=1.2';
+        basePath = '../Config/userinformation.txt?v=1.3';
     } else {
-        basePath = 'Config/userinformation.txt?v=1.2'; // Default case if in root or unexpected location
+        basePath = 'Config/userinformation.txt?v=1.3'; // Default case if in root or unexpected location
     }
 
     fetch(basePath)
