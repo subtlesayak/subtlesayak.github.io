@@ -80,36 +80,35 @@ Which phases cover which requirements. Updated during roadmap creation.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| HOME-01 | Phase TBD | Pending |
-| HOME-02 | Phase TBD | Pending |
-| HOME-03 | Phase TBD | Pending |
-| HOME-04 | Phase TBD | Pending |
-| CAT-01 | Phase TBD | Pending |
-| CAT-02 | Phase TBD | Pending |
-| CAT-03 | Phase TBD | Pending |
-| CAT-04 | Phase TBD | Pending |
-| AUTHR-01 | Phase TBD | Pending |
-| AUTHR-02 | Phase TBD | Pending |
-| AUTHR-03 | Phase TBD | Pending |
-| AUTHR-04 | Phase TBD | Pending |
-| PHOTO-01 | Phase TBD | Pending |
-| PHOTO-02 | Phase TBD | Pending |
-| PHOTO-03 | Phase TBD | Pending |
-| PHOTO-04 | Phase TBD | Pending |
-| TEMP-01 | Phase TBD | Pending |
-| TEMP-02 | Phase TBD | Pending |
-| TEMP-03 | Phase TBD | Pending |
-| TEMP-04 | Phase TBD | Pending |
-| QUAL-01 | Phase TBD | Pending |
-| QUAL-02 | Phase TBD | Pending |
-| QUAL-03 | Phase TBD | Pending |
-| QUAL-04 | Phase TBD | Pending |
-
+| HOME-01 | Phase 1 | Pending |
+| HOME-02 | Phase 1 | Pending |
+| HOME-03 | Phase 1 | Pending |
+| HOME-04 | Phase 1 | Pending |
+| CAT-01 | Phase 2 | Pending |
+| CAT-02 | Phase 2 | Pending |
+| CAT-03 | Phase 2 | Pending |
+| CAT-04 | Phase 2 | Pending |
+| AUTHR-01 | Phase 4 | Pending |
+| AUTHR-02 | Phase 4 | Pending |
+| AUTHR-03 | Phase 4 | Pending |
+| AUTHR-04 | Phase 4 | Pending |
+| PHOTO-01 | Phase 2 | Pending |
+| PHOTO-02 | Phase 3 | Pending |
+| PHOTO-03 | Phase 3 | Pending |
+| PHOTO-04 | Phase 3 | Pending |
+| TEMP-01 | Phase 4 | Pending |
+| TEMP-02 | Phase 4 | Pending |
+| TEMP-03 | Phase 4 | Pending |
+| TEMP-04 | Phase 4 | Pending |
+| QUAL-01 | Phase 4 | Pending |
+| QUAL-02 | Phase 4 | Pending |
+| QUAL-03 | Phase 4 | Pending |
+| QUAL-04 | Phase 4 | Pending |
 **Coverage:**
 - v1 requirements: 24 total
-- Mapped to phases: 0
-- Unmapped: 24 pending roadmap
+- Mapped to phases: 24
+- Unmapped: 0
 
 ---
 *Requirements defined: 2026-06-30*
-*Last updated: 2026-06-30 after initial definition*
+*Last updated: 2026-06-30 after roadmap creation*
