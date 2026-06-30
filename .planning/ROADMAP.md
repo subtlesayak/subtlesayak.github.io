@@ -96,6 +96,6 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Homepage Presentation Baseline | 1/1 | Complete    | 2026-06-30 |
-| 2. Category-Based Browsing | 1/1 | Complete   | 2026-06-30 |
+| 2. Category-Based Browsing | 1/1 | Complete    | 2026-06-30 |
 | 3. Photography Gallery Entries | 0/TBD | Not started | - |
 | 4. Template Authoring & Publish Safety | 0/TBD | Not started | - |
