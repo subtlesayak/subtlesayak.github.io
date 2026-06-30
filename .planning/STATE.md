@@ -2,19 +2,19 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-current_phase: 1
-current_phase_name: Homepage Presentation Baseline
+current_phase: 2
+current_phase_name: Category-Based Browsing
 status: executing
-stopped_at: Phase 1 UI-SPEC approved
-last_updated: "2026-06-30T13:08:10.255Z"
+stopped_at: Phase 1 complete; ready for Phase 2 category browsing
+last_updated: "2026-06-30T17:38:06.041Z"
 last_activity: 2026-06-30
-last_activity_desc: Roadmap created from approved v1 requirements
+last_activity_desc: Phase 01 complete, transitioned to Phase 2
 progress:
   total_phases: 4
-  completed_phases: 0
-  total_plans: 0
-  completed_plans: 0
-  percent: 0
+  completed_phases: 1
+  total_plans: 1
+  completed_plans: 1
+  percent: 25
 ---
 
 # Project State
@@ -24,22 +24,22 @@ progress:
 See: .planning/PROJECT.md (updated 2026-06-30)
 
 **Core value:** A visitor can quickly understand the designer, browse work by meaningful category sections, and open rich project/gallery entries without the website losing its simple editable structure.
-**Current focus:** Phase 1: Homepage Presentation Baseline
+**Current focus:** Phase 2: Category-Based Browsing
 
 ## Current Position
 
-Phase: 1 of 4 (Homepage Presentation Baseline)
-Plan: 0 of TBD in current phase
+Phase: 2 of 4 (Category-Based Browsing)
+Plan: Not started
 Status: Ready to execute
-Last activity: 2026-06-30 - Roadmap created from approved v1 requirements
+Last activity: 2026-06-30 — Phase 01 complete, transitioned to Phase 2
 
-Progress: [----------] 0%
+Progress: [##--------] 25%
 
 ## Performance Metrics
 
 **Velocity:**
 
-- Total plans completed: 0
+- Total plans completed: 1
 - Average duration: -
 - Total execution time: 0.0 hours
 
@@ -47,7 +47,7 @@ Progress: [----------] 0%
 
 | Phase | Plans | Total | Avg/Plan |
 |-------|-------|-------|----------|
-| 1. Homepage Presentation Baseline | 0 | TBD | - |
+| 1. Homepage Presentation Baseline | 1 | 1 | - |
 | 2. Category-Based Browsing | 0 | TBD | - |
 | 3. Photography Gallery Entries | 0 | TBD | - |
 | 4. Template Authoring & Publish Safety | 0 | TBD | - |
@@ -88,6 +88,6 @@ Items acknowledged and carried forward from previous milestone close:
 
 ## Session Continuity
 
-Last session: 2026-06-30T13:03:37.673Z
-Stopped at: Phase 1 UI-SPEC approved
-Resume file: .planning/phases/01-homepage-presentation-baseline/01-UI-SPEC.md
+Last session: 2026-06-30T17:38:06.028Z
+Stopped at: Phase 1 complete; ready for Phase 2 category browsing
+Resume file: None

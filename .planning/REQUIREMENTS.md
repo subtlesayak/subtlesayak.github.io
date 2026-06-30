@@ -7,10 +7,10 @@
 
 ### Homepage Polish
 
-- [ ] **HOME-01**: Visitor can see a clean profile/header area with comfortable spacing on desktop and mobile.
-- [ ] **HOME-02**: Visitor can read each project title without relying on hover-only behavior.
-- [ ] **HOME-03**: Visitor can browse project cards in a visually consistent grid where images fit cleanly inside their placeholders.
-- [ ] **HOME-04**: Visitor can use the homepage on mobile without overlapping text, crowded controls, or hidden essential information.
+- [x] **HOME-01**: Visitor can see a clean profile/header area with comfortable spacing on desktop and mobile.
+- [x] **HOME-02**: Visitor can read each project title without relying on hover-only behavior.
+- [x] **HOME-03**: Visitor can browse project cards in a visually consistent grid where images fit cleanly inside their placeholders.
+- [x] **HOME-04**: Visitor can use the homepage on mobile without overlapping text, crowded controls, or hidden essential information.
 
 ### Categories
 
@@ -80,10 +80,10 @@ Which phases cover which requirements. Updated during roadmap creation.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| HOME-01 | Phase 1 | Pending |
-| HOME-02 | Phase 1 | Pending |
-| HOME-03 | Phase 1 | Pending |
-| HOME-04 | Phase 1 | Pending |
+| HOME-01 | Phase 1 | Complete |
+| HOME-02 | Phase 1 | Complete |
+| HOME-03 | Phase 1 | Complete |
+| HOME-04 | Phase 1 | Complete |
 | CAT-01 | Phase 2 | Pending |
 | CAT-02 | Phase 2 | Pending |
 | CAT-03 | Phase 2 | Pending |
@@ -105,6 +105,7 @@ Which phases cover which requirements. Updated during roadmap creation.
 | QUAL-03 | Phase 4 | Pending |
 | QUAL-04 | Phase 4 | Pending |
 **Coverage:**
+
 - v1 requirements: 24 total
 - Mapped to phases: 24
 - Unmapped: 0
