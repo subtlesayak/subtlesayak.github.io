@@ -2,11 +2,11 @@ function addUserInformation() {
     // Determine the base path dynamically
     let basePath = '';
     if (window.location.pathname.includes('/Projects/')) {
-        basePath = '../../Config/userinformation.txt?v=1.3';
+        basePath = '../../Config/userinformation.txt?v=1.4';
     } else if (window.location.pathname.includes('/HTML/')) {
-        basePath = '../Config/userinformation.txt?v=1.3';
+        basePath = '../Config/userinformation.txt?v=1.4';
     } else {
-        basePath = 'Config/userinformation.txt?v=1.3'; // Default case if in root or unexpected location
+        basePath = 'Config/userinformation.txt?v=1.4'; // Default case if in root or unexpected location
     }
 
     fetch(basePath)
@@ -102,13 +102,15 @@ function addUserInformation() {
                 let iconClass;
                 let url = social;
 
+                if (!social) return;
+
                 // Detect the type of social link
-                const socialType = Object.keys(socialIconMap).find(key => social.includes(key)) || 'email';
-                iconClass = socialIconMap[socialType];
-                if (socialType === 'email') {
+                const socialType = Object.keys(socialIconMap).find(key => social.includes(key));
+                const isEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(social);
+                iconClass = socialType ? socialIconMap[socialType] : (isEmail ? socialIconMap.email : null);
+                if (isEmail && !socialType) {
                     url = `mailto:${social}`;
                 }
-
                 if (iconClass) {
                     const a = document.createElement("a");
                     a.href = url;
