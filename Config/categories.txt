@@ -1,0 +1,7 @@
+all | All Work | Complete project overview.
+uiux | UI/UX | Product thinking, interfaces, flows, and case studies.
+branding | Branding | Identity systems, brand language, and presentation design.
+web | Web | Website concepts, redesigns, and browser-based experiments.
+visual-design | Visual Design | Posters, graphic systems, and visual explorations.
+photography | Photography | Event and shoot collections.
+other | Other Work | Projects without a category yet.
