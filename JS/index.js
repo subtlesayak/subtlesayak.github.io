@@ -2,6 +2,8 @@
 function createThumbnail(src, alt, galleryPageUrl, hasMultipleImages, hasVideo, hasYouTube, hasSketchfab) {
     const thumbnailLink = document.createElement("a");
     thumbnailLink.href = galleryPageUrl;
+    thumbnailLink.classList.add("thumbnail-link");
+    thumbnailLink.setAttribute("aria-label", "Open " + alt);
 
     const thumbnailDiv = document.createElement("div");
     thumbnailDiv.classList.add("thumbnail");
@@ -12,7 +14,7 @@ function createThumbnail(src, alt, galleryPageUrl, hasMultipleImages, hasVideo, 
 
     const thumbnailTitle = document.createElement("div");
     thumbnailTitle.classList.add("thumbnail-title");
-    thumbnailTitle.innerText = alt;
+    thumbnailTitle.textContent = alt;
 
     let iconIndex = 0;
 
@@ -64,8 +66,8 @@ function fetchProjectData(projectName) {
     const mediaPath = `../Projects/${projectName}/media.txt`;
 
     return Promise.all([
-        fetch(`${descriptionPath}?v=1.2`).then(response => response.text()),
-        fetch(`${mediaPath}?v=1.2`).then(response => response.text())
+        fetch(`${descriptionPath}?v=1.5`).then(response => response.text()),
+        fetch(`${mediaPath}?v=1.5`).then(response => response.text())
     ])
     .then(([descriptionText, mediaText]) => {
         const [title, description, tags, thumbnailUrl, htmlFileName] = descriptionText.split('---').map(line => line.trim());
@@ -88,7 +90,7 @@ function fetchProjectData(projectName) {
 
 // Function to fetch the projects.txt file
 function fetchProjects() {
-    return fetch('../Config/projects.txt?v=1.2')
+    return fetch('../Config/projects.txt?v=1.5')
         .then(response => response.text())
         .then(text => text.split('\n').map(line => line.trim()).filter(line => line))
         .catch(error => console.error('Error loading projects:', error));
