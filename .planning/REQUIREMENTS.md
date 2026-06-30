@@ -14,10 +14,10 @@
 
 ### Categories
 
-- [ ] **CAT-01**: Visitor can browse work grouped into dedicated homepage sections such as UI/UX, Branding, Web, Visual Design, and Photography.
-- [ ] **CAT-02**: Visitor can still access an All view or equivalent complete project list without losing the simple portfolio overview.
-- [ ] **CAT-03**: Project metadata can assign each project to one or more categories using beginner-editable text-file fields.
-- [ ] **CAT-04**: Category section ordering and labels can be edited without changing JavaScript logic.
+- [x] **CAT-01**: Visitor can browse work grouped into dedicated homepage sections such as UI/UX, Branding, Web, Visual Design, and Photography.
+- [x] **CAT-02**: Visitor can still access an All view or equivalent complete project list without losing the simple portfolio overview.
+- [x] **CAT-03**: Project metadata can assign each project to one or more categories using beginner-editable text-file fields.
+- [x] **CAT-04**: Category section ordering and labels can be edited without changing JavaScript logic.
 
 ### Project Authoring
 
@@ -28,7 +28,7 @@
 
 ### Photography
 
-- [ ] **PHOTO-01**: Visitor can browse Photography as its own homepage category section.
+- [x] **PHOTO-01**: Visitor can browse Photography as its own homepage category section.
 - [ ] **PHOTO-02**: Visitor can open a photography entry representing an event, shoot, or collection.
 - [ ] **PHOTO-03**: Photography entries can display multiple images in one entry without needing a separate app or backend.
 - [ ] **PHOTO-04**: Photography entries can include a title, short context, optional date/location text, and captions using beginner-editable files.
@@ -84,15 +84,15 @@ Which phases cover which requirements. Updated during roadmap creation.
 | HOME-02 | Phase 1 | Complete |
 | HOME-03 | Phase 1 | Complete |
 | HOME-04 | Phase 1 | Complete |
-| CAT-01 | Phase 2 | Pending |
-| CAT-02 | Phase 2 | Pending |
-| CAT-03 | Phase 2 | Pending |
-| CAT-04 | Phase 2 | Pending |
+| CAT-01 | Phase 2 | Complete |
+| CAT-02 | Phase 2 | Complete |
+| CAT-03 | Phase 2 | Complete |
+| CAT-04 | Phase 2 | Complete |
 | AUTHR-01 | Phase 4 | Pending |
 | AUTHR-02 | Phase 4 | Pending |
 | AUTHR-03 | Phase 4 | Pending |
 | AUTHR-04 | Phase 4 | Pending |
-| PHOTO-01 | Phase 2 | Pending |
+| PHOTO-01 | Phase 2 | Complete |
 | PHOTO-02 | Phase 3 | Pending |
 | PHOTO-03 | Phase 3 | Pending |
 | PHOTO-04 | Phase 3 | Pending |

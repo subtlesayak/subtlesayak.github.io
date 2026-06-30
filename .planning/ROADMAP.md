@@ -14,7 +14,7 @@ This MVP improves the existing static portfolio in vertical slices that remain u
 Decimal phases appear between their surrounding integers in numeric order.
 
 - [x] **Phase 1: Homepage Presentation Baseline** - Visitors can understand the portfolio and browse readable project cards on desktop and mobile. (completed 2026-06-30)
-- [ ] **Phase 2: Category-Based Browsing** - Visitors can browse work through dedicated editable category sections while retaining a complete project overview.
+- [x] **Phase 2: Category-Based Browsing** - Visitors can browse work through dedicated editable category sections while retaining a complete project overview. (completed 2026-06-30)
 - [ ] **Phase 3: Photography Gallery Entries** - Visitors can open photography entries that present multi-image shoots or collections inside the existing portfolio model.
 - [ ] **Phase 4: Template Authoring & Publish Safety** - Template users can add and validate content safely while preserving the no-build, text-file workflow.
 
@@ -50,7 +50,10 @@ Decimal phases appear between their surrounding integers in numeric order.
   4. Template user can edit category labels and ordering without changing JavaScript logic.
   5. Visitor can find Photography as its own homepage category section.
 
-**Plans**: TBD
+**Plans**: 1/1 plans complete
+
+- [x] 02-01-PLAN.md
+
 **UI hint**: yes
 
 ### Phase 3: Photography Gallery Entries
@@ -93,6 +96,6 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Homepage Presentation Baseline | 1/1 | Complete    | 2026-06-30 |
-| 2. Category-Based Browsing | 0/TBD | Not started | - |
+| 2. Category-Based Browsing | 1/1 | Complete   | 2026-06-30 |
 | 3. Photography Gallery Entries | 0/TBD | Not started | - |
 | 4. Template Authoring & Publish Safety | 0/TBD | Not started | - |
