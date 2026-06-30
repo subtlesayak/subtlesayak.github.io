@@ -21,10 +21,10 @@ A visitor can quickly understand the designer, browse work by meaningful categor
 - [x] Shared profile block renders profile image, role, location, social links, GitHub, and email - existing
 - [x] Local profile image and favicon assets are served from `Resources/` - existing
 - [x] Codebase map exists under `.planning/codebase/` for brownfield planning - existing
+- [x] Homepage layout, profile spacing, project card readability, image fit, and mobile presentation polished - validated in Phase 1
 
 ### Active
 
-- [ ] Polish homepage layout, profile spacing, project card readability, and mobile presentation without making the site feel complex.
 - [ ] Add category sections so work can be browsed as dedicated groups such as UI/UX, Branding, Web, Visual Design, and Photography.
 - [ ] Preserve beginner-editable content authoring through simple text files and clear folder conventions.
 - [ ] Make adding a project easier and less error-prone through documentation, templates, and/or lightweight validation.
@@ -67,7 +67,7 @@ Important current concerns from the codebase map:
 
 | Decision | Rationale | Outcome |
 |----------|-----------|---------|
-| Keep the static text-file architecture | Simplicity and beginner editability are explicit goals | Pending |
+| Keep the static text-file architecture | Simplicity and beginner editability are explicit goals | Preserved in Phase 1 |
 | Improve both personal portfolio and reusable template value | User wants options 1 and 2, not one at the expense of the other | Pending |
 | Categories should have their own homepage sections | User preferred dedicated sections over only filtering | Pending |
 | Prioritize visual polish, category filtering/sections, and easier project adding for v1 | These were named as the most important v1 outcomes | Pending |
@@ -91,4 +91,4 @@ This document evolves at phase transitions and milestone boundaries.
 4. Update Context with current state
 
 ---
-*Last updated: 2026-06-30 after initialization*
+*Last updated: 2026-06-30 after Phase 1 completion*
