@@ -95,6 +95,8 @@ Important current concerns from the codebase map:
 | Match About top area to Portfolio header | User noticed the About top information looked different from the index page | Completed in quick task 260701-gad |
 | Add resume access from profile links | User wants the uploaded resume PDF reachable from the social link area | Completed in quick task 260701-gad |
 | Keep About readable on narrow widths | User screenshot showed About content alignment and long skill rows needed correction | Completed in quick task 260701-gad |
+| Split About resume content into clear sections | User wants Projects and Certificates to be sections like Education instead of mixed into one block | Completed in quick task 260701-gas |
+| Keep skills as simple chips | User found grouped skill sentences too jargon-heavy and preferred the previous visual style | Completed in quick task 260701-gas |
 
 ## Evolution
 
@@ -114,4 +116,4 @@ This document evolves at phase transitions and milestone boundaries.
 4. Update Context with current state
 
 ---
-*Last updated: 2026-07-01 after quick task 260701-gad*
+*Last updated: 2026-07-01 after quick task 260701-gas*
