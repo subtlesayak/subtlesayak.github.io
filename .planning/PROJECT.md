@@ -75,8 +75,11 @@ Important current concerns from the codebase map:
 | Category labels/order belong in `Config/categories.txt` | Keeps section editing beginner-friendly and avoids JavaScript edits | Preserved as inactive metadata after quick task 260701-g1m |
 | Per-project category assignment belongs in `Projects/*/categories.txt` | Keeps adding/editing a project folder-local and copyable | Implemented in Phase 2 |
 | Prioritize visual polish, category filtering/sections, and easier project adding for v1 | These were named as the most important v1 outcomes | Visual polish and categories complete; easier project adding remains Phase 4 |
-| Treat photography as multi-image entries | User wants event-style or collection-style photo entries | Photography tab renders a multi-image folder gallery; event-level grouping can still be extended later |`r`n| Incorporate user-added project folders as normal projects | User added folders and asked for them to appear among the project grid with their respective images | Completed in quick task 260701-gai |`r`n| Keep Photography editable through a folder and text list | User added `Projects/Photography` and wants photos from there to feed the Photography tab | Completed in quick task 260701-gph |`r`n| Keep homepage grid controls close to live reference | User explicitly pointed to `artofpilgrim.github.io/index.html` for thumbnail resize design, position, spacing, and radius | Completed in quick task 260701-grd |
-
+| Treat photography as multi-image entries | User wants event-style or collection-style photo entries | Photography tab renders a multi-image folder gallery; event-level grouping can still be extended later |
+| Incorporate user-added project folders as normal projects | User added folders and asked for them to appear among the project grid with their respective images | Completed in quick task 260701-gai |
+| Keep Photography editable through a folder and text list | User added `Projects/Photography` and wants photos from there to feed the Photography tab | Completed in quick task 260701-gph |
+| Keep homepage grid controls close to live reference | User explicitly pointed to `artofpilgrim.github.io/index.html` for thumbnail resize design, position, spacing, and radius | Completed in quick task 260701-grd |
+| Use optimized photography thumbnails | Full-size photo files made gallery loading slow | Completed in quick task 260701-gdt |
 ## Evolution
 
 This document evolves at phase transitions and milestone boundaries.
@@ -95,6 +98,8 @@ This document evolves at phase transitions and milestone boundaries.
 4. Update Context with current state
 
 ---
-*Last updated: 2026-07-01 after quick task 260701-grd*
+*Last updated: 2026-07-01 after quick task 260701-gdt*
+
+
 
 
