@@ -8,7 +8,7 @@ status: ready
 stopped_at: Phase 2 complete; Phase 3 ready to discuss
 last_updated: "2026-06-30T18:11:46.373Z"
 last_activity: 2026-07-02
-last_activity_desc: Quick task 260702-gaf added editable article folders
+last_activity_desc: Quick task 260702-gap published the first article
 progress:
   total_phases: 4
   completed_phases: 2
@@ -31,7 +31,7 @@ See: .planning/PROJECT.md (updated 2026-06-30)
 Phase: 3 of 4 (Photography Gallery Entries)
 Plan: Not started
 Status: Ready to discuss and plan
-Last activity: 2026-07-02 - Quick task 260702-gaf added editable article folders
+Last activity: 2026-07-02 - Quick task 260702-gap published the first article
 
 Progress: [#####-----] 50%
 
@@ -97,6 +97,7 @@ Recent decisions affecting current work:
 | 260701-geb | Make e-ink refresh temporarily black-and-white and longer | 2026-07-01 | 0fbd0fb | [260701-geb-visible-eink-refresh](./quick/260701-geb-visible-eink-refresh/) |
 | 260702-ges | Add randomized staggered e-ink flashes to visible elements | 2026-07-02 | ed362d3 | [260702-ges-staggered-eink-elements](./quick/260702-ges-staggered-eink-elements/) |
 | 260702-gaf | Add editable article folders and Articles tab renderer | 2026-07-02 | 9b03c4e | [260702-gaf-editable-article-folders](./quick/260702-gaf-editable-article-folders/) |
+| 260702-gap | Publish first article content with article renderer polish | 2026-07-02 | c45b3f5 | [260702-gap-publish-first-article](./quick/260702-gap-publish-first-article/) |
 
 ### Pending Todos
 
@@ -117,5 +118,5 @@ Items acknowledged and carried forward from previous milestone close:
 ## Session Continuity
 
 Last session: 2026-06-30T18:11:46.373Z
-Stopped at: Quick task 260702-gaf complete
+Stopped at: Quick task 260702-gap complete
 Resume file: None
