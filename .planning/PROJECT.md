@@ -98,6 +98,7 @@ Important current concerns from the codebase map:
 | Split About resume content into clear sections | User wants Projects and Certificates to be sections like Education instead of mixed into one block | Completed in quick task 260701-gas |
 | Keep skills as simple chips | User found grouped skill sentences too jargon-heavy and preferred the previous visual style | Completed in quick task 260701-gas |
 | Keep profile header consistent across tabs | User noted Resume missing and About top spacing differed from other tabs | Completed in quick task 260701-gpc |
+| Add optional e-ink refresh overlay | User wants page refresh to feel like an e-reader with one on/off control beside theme and resize controls | Completed in quick task 260701-ger |
 
 ## Evolution
 
@@ -117,4 +118,4 @@ This document evolves at phase transitions and milestone boundaries.
 4. Update Context with current state
 
 ---
-*Last updated: 2026-07-01 after quick task 260701-gpc*
+*Last updated: 2026-07-01 after quick task 260701-ger*
