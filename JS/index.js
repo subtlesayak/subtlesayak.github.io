@@ -1,4 +1,4 @@
-const CACHE_VERSION = "1.8";
+const CACHE_VERSION = "1.9";
 
 // Function to create a thumbnail with overlay icons
 function createThumbnail(src, alt, galleryPageUrl, hasMultipleImages, hasVideo, hasYouTube, hasSketchfab) {
@@ -61,9 +61,9 @@ function createThumbnail(src, alt, galleryPageUrl, hasMultipleImages, hasVideo, 
 
 // Get the thumbnail container element
 const thumbnailContainer = document.getElementById("thumbnail-container");
-const thumbnailSizes = [220, 280, 340, 420];
+const thumbnailSizes = [150, 200, 250, 300, 350, 400];
 const savedThumbnailSize = Number(localStorage.getItem("portfolioThumbnailSize"));
-let thumbnailSizeIndex = thumbnailSizes.includes(savedThumbnailSize) ? thumbnailSizes.indexOf(savedThumbnailSize) : 1;
+let thumbnailSizeIndex = thumbnailSizes.includes(savedThumbnailSize) ? thumbnailSizes.indexOf(savedThumbnailSize) : 2;
 
 function applyThumbnailSize() {
     thumbnailContainer.style.setProperty("--thumbnail-min", `${thumbnailSizes[thumbnailSizeIndex]}px`);
@@ -76,11 +76,13 @@ function createResizeControls() {
 
     const decrease = document.createElement("button");
     decrease.type = "button";
+    decrease.className = "resize-button";
     decrease.textContent = "-";
     decrease.setAttribute("aria-label", "Decrease thumbnail size");
 
     const increase = document.createElement("button");
     increase.type = "button";
+    increase.className = "resize-button";
     increase.textContent = "+";
     increase.setAttribute("aria-label", "Increase thumbnail size");
 
@@ -217,3 +219,5 @@ fetchProjects().then(projectNames => {
         thumbnailContainer.appendChild(fragment);
     });
 });
+
+

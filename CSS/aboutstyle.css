@@ -59,7 +59,7 @@ h2 {
 .top-container {
     flex: 0 0 auto; /* Adjust the height as needed */
     display: flex;
-    flex-direction: column-reverse;
+    flex-direction: column;
     justify-content: flex-end;
     align-items: center;
     padding-top: 10px;
@@ -182,3 +182,4 @@ p {
         border-radius: .5em .5em 0 0; /* Adjust border radius for better look on mobile */
     }
 }
+
