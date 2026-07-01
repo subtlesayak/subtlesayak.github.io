@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const fetchProjects = async () => {
         try {
-            const response = await fetch('../../Config/projects.txt?v=1.8');
+            const response = await fetch('../../Config/projects.txt?v=1.9');
             const text = await response.text();
             return text.split('\n').map(line => line.trim()).filter(line => line);
         } catch (error) {
@@ -354,7 +354,7 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     const navigateProjects = async (direction) => {
-        const currentProject = window.location.pathname.split('/').slice(-2, -1)[0];
+        const currentProject = decodeURIComponent(window.location.pathname.split('/').slice(-2, -1)[0]);
         const currentIndex = projects.indexOf(currentProject);
 
         if (currentIndex !== -1) {

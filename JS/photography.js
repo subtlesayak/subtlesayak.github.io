@@ -1,4 +1,4 @@
-const PHOTOGRAPHY_CACHE_VERSION = "1.4";
+const PHOTOGRAPHY_CACHE_VERSION = "1.5";
 const PHOTOGRAPHY_MEDIA_PATH = "../Projects/Photography/media.txt";
 const PHOTOGRAPHY_METADATA_PATH = "../Projects/Photography/metadata.json";
 const PHOTOGRAPHY_BASE_PATH = "../Projects/Photography/";
@@ -76,6 +76,19 @@ function createDetailLink(label, fileName, className) {
     return link;
 }
 
+
+function createPhotoNavButton(label, iconClass, className, onClick) {
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = className;
+    button.setAttribute("aria-label", label);
+
+    const icon = document.createElement("i");
+    icon.className = iconClass;
+    button.appendChild(icon);
+    button.addEventListener("click", onClick);
+    return button;
+}
 function formatExifDate(value) {
     if (!value) return "";
 
@@ -138,6 +151,16 @@ function renderPhotoDetail(container, photoFiles, selectedIndex, metadataByFile)
     image.src = PHOTOGRAPHY_BASE_PATH + encodeURI(fileName);
     image.alt = "Photography work " + (selectedIndex + 1);
     mediaPanel.appendChild(image);
+
+    const goToPhoto = fileNameToOpen => {
+        window.location.href = `photography.html?photo=${encodeURIComponent(fileNameToOpen)}`;
+    };
+
+    mediaPanel.appendChild(createPhotoNavButton("Previous photo", "fa fa-chevron-left", "photo-nav-button photo-nav-prev", () => goToPhoto(previousPhoto)));
+    mediaPanel.appendChild(createPhotoNavButton("Next photo", "fa fa-chevron-right", "photo-nav-button photo-nav-next", () => goToPhoto(nextPhoto)));
+    mediaPanel.appendChild(createPhotoNavButton("Back to photography", "fa fa-arrow-left", "photo-nav-button photo-nav-back", () => {
+        window.location.href = "photography.html";
+    }));
 
     const infoPanel = document.createElement("aside");
     infoPanel.className = "photo-detail-info";
@@ -210,6 +233,16 @@ function renderPhotoDetail(container, photoFiles, selectedIndex, metadataByFile)
     detail.appendChild(mediaPanel);
     detail.appendChild(infoPanel);
     container.appendChild(detail);
+
+    document.addEventListener("keydown", event => {
+        if (event.key === "Escape") {
+            window.location.href = "photography.html";
+        } else if (event.key === "ArrowLeft") {
+            window.location.href = `photography.html?photo=${encodeURIComponent(previousPhoto)}`;
+        } else if (event.key === "ArrowRight") {
+            window.location.href = `photography.html?photo=${encodeURIComponent(nextPhoto)}`;
+        }
+    });
 }
 
 async function loadPhotography() {
@@ -228,11 +261,19 @@ async function loadPhotography() {
 
         const selectedIndex = getSelectedPhotoIndex(photoFiles);
         if (selectedIndex !== -1) {
+            if (window.PortfolioControls) window.PortfolioControls.initViewControls({ showResize: false });
             const metadataByFile = await fetchPhotoMetadata();
             gallery.classList.remove("photography-grid");
             gallery.classList.add("photography-detail-shell");
             renderPhotoDetail(gallery, photoFiles, selectedIndex, metadataByFile);
             return;
+        }
+
+        if (window.PortfolioControls) {
+            window.PortfolioControls.initViewControls({
+                thumbnailContainer: gallery,
+                storageKey: "photographyThumbnailColumns"
+            });
         }
 
         const fragment = document.createDocumentFragment();

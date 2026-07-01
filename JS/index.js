@@ -1,4 +1,4 @@
-const CACHE_VERSION = "2.2";
+const CACHE_VERSION = "2.3";
 
 // Function to create a thumbnail with overlay icons
 function createThumbnail(src, alt, galleryPageUrl, hasMultipleImages, hasVideo, hasYouTube, hasSketchfab) {
@@ -61,48 +61,13 @@ function createThumbnail(src, alt, galleryPageUrl, hasMultipleImages, hasVideo, 
 
 // Get the thumbnail container element
 const thumbnailContainer = document.getElementById("thumbnail-container");
-const thumbnailColumns = [26, 23, 20, 17, 14, 11, 8, 6, 5, 4];
-const savedThumbnailColumns = Number(localStorage.getItem("portfolioThumbnailColumns"));
-let thumbnailSizeIndex = thumbnailColumns.includes(savedThumbnailColumns) ? thumbnailColumns.indexOf(savedThumbnailColumns) : 4;
 
-function applyThumbnailSize() {
-    thumbnailContainer.style.setProperty("--thumbnail-columns", String(thumbnailColumns[thumbnailSizeIndex]));
-    localStorage.setItem("portfolioThumbnailColumns", String(thumbnailColumns[thumbnailSizeIndex]));
-}
-
-function createResizeControls() {
-    const controls = document.createElement("div");
-    controls.className = "resize-buttons";
-
-    const decrease = document.createElement("button");
-    decrease.type = "button";
-    decrease.className = "resize-button";
-    decrease.textContent = "-";
-    decrease.setAttribute("aria-label", "Decrease thumbnail size");
-
-    const increase = document.createElement("button");
-    increase.type = "button";
-    increase.className = "resize-button";
-    increase.textContent = "+";
-    increase.setAttribute("aria-label", "Increase thumbnail size");
-
-    decrease.addEventListener("click", () => {
-        thumbnailSizeIndex = Math.max(0, thumbnailSizeIndex - 1);
-        applyThumbnailSize();
+if (window.PortfolioControls) {
+    window.PortfolioControls.initViewControls({
+        thumbnailContainer,
+        storageKey: "portfolioThumbnailColumns"
     });
-
-    increase.addEventListener("click", () => {
-        thumbnailSizeIndex = Math.min(thumbnailColumns.length - 1, thumbnailSizeIndex + 1);
-        applyThumbnailSize();
-    });
-
-    controls.appendChild(increase);
-    controls.appendChild(decrease);
-    thumbnailContainer.before(controls);
-    applyThumbnailSize();
 }
-
-createResizeControls();
 
 function fetchText(path) {
     return fetch(`${path}?v=${CACHE_VERSION}`).then(response => {
@@ -219,8 +184,3 @@ fetchProjects().then(projectNames => {
         thumbnailContainer.appendChild(fragment);
     });
 });
-
-
-
-
-
