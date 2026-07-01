@@ -16,6 +16,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         const recommendations = text.split('---').map(rec => rec.trim()).filter(rec => rec);
 
         if (recommendations.length === 0) {
+            document.body.classList.add('no-recommendations');
             const panel = document.querySelector('.recommendations-panel');
             const title = panel?.previousElementSibling;
             if (title?.classList.contains('panel-title')) {

@@ -85,7 +85,6 @@ body.theme-light .container,
 body.theme-light .main-container,
 body.theme-light .top-container,
 body.theme-light .info-container,
-body.theme-light .horizontal-container,
 body.theme-light .productions-panel,
 body.theme-light .photo-detail-info,
 body.theme-light.photography-project-mode,
@@ -163,7 +162,6 @@ body.theme-light h1,
 body.theme-light h3,
 body.theme-light .panel-title,
 body.theme-light .production-subpanel h2,
-body.theme-light .thumbnail-title,
 body.theme-light .photography-heading h1,
 body.theme-light .project-description-container h1,
 body.theme-light.photography-project-mode .project-description-container h1,
@@ -233,4 +231,17 @@ body.theme-light .tooltip {
 
 body.theme-light .tooltip::after {
   border-color: #ffffff transparent transparent transparent;
+}
+body.theme-light .thumbnail::before {
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.02), rgba(0, 0, 0, 0.62));
+}
+
+body.theme-light .thumbnail-title,
+body.theme-light .overlay-icon {
+  color: #ffffff;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.55);
+}
+
+body.theme-light .horizontal-container {
+  background: transparent;
 }

@@ -1,4 +1,4 @@
-const PHOTOGRAPHY_CACHE_VERSION = "1.6";
+const PHOTOGRAPHY_CACHE_VERSION = "1.7";
 const PHOTOGRAPHY_MEDIA_PATH = "../Projects/Photography/media.txt";
 const PHOTOGRAPHY_METADATA_PATH = "../Projects/Photography/metadata.json";
 const PHOTOGRAPHY_BASE_PATH = "../Projects/Photography/";
@@ -67,6 +67,11 @@ function getSelectedPhotoIndex(photoFiles) {
 
     return photoFiles.findIndex(fileName => fileName === selectedPhoto);
 }
+function preloadPhoto(fileName) {
+    const image = new Image();
+    image.decoding = "async";
+    image.src = PHOTOGRAPHY_BASE_PATH + encodeURI(fileName);
+}
 
 
 
@@ -127,6 +132,8 @@ function renderPhotoDetail(container, photoFiles, selectedIndex, metadataByFile)
     const metadata = metadataByFile.get(fileName) || {};
     const previousPhoto = photoFiles[(selectedIndex - 1 + photoFiles.length) % photoFiles.length];
     const nextPhoto = photoFiles[(selectedIndex + 1) % photoFiles.length];
+    preloadPhoto(previousPhoto);
+    preloadPhoto(nextPhoto);
     const camera = [metadata.Make, metadata.Model].filter(Boolean).join(" ");
     const settings = [metadata.ExposureTime, formatFNumber(metadata.FNumber), metadata.ISO ? `ISO ${metadata.ISO}` : ""].filter(Boolean).join("  ");
     const dimensions = metadata.ImageWidth && metadata.ImageHeight ? `${metadata.ImageWidth} x ${metadata.ImageHeight}` : "";
