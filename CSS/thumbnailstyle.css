@@ -1,16 +1,9 @@
 #thumbnail-container {
-  display: flex;
-  flex-direction: column;
-  gap: 48px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, var(--thumbnail-min, 280px)), 1fr));
+  gap: 8px;
   width: 100%;
   align-content: start;
-}
-
-.category-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
-  gap: 24px;
-  width: 100%;
 }
 
 .thumbnail-link,
@@ -135,17 +128,43 @@
 }
 
 .resize-buttons {
-  display: none;
+  display: flex;
+  justify-content: flex-end;
+  gap: 6px;
+  margin-bottom: 8px;
+}
+
+.resize-buttons button {
+  width: 32px;
+  height: 32px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  background: #171717;
+  color: #f2f2f2;
+  font-family: 'Poppins', sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.resize-buttons button:hover,
+.resize-buttons button:focus-visible {
+  border-color: rgba(237, 176, 73, 0.42);
+  color: #edb049;
+  outline: none;
 }
 
 @media (max-width: 700px) {
   #thumbnail-container {
-    gap: 32px;
+    grid-template-columns: 1fr;
+    gap: 10px;
   }
 
-  .category-grid {
-    grid-template-columns: 1fr;
-    gap: 20px;
+  .resize-buttons {
+    display: none;
   }
 
   .thumbnail-link,

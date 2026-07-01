@@ -27,7 +27,7 @@
 
 .user-info-panel h1 {
   max-width: 100%;
-  color: #f2f2f2;
+  color: #edb049;
   font-family: 'Poppins', sans-serif;
   font-size: clamp(32px, 5vw, 48px);
   font-weight: 700;
@@ -79,7 +79,7 @@
   color: #a9a9a9 !important;
   font-size: 17px;
   text-decoration: none;
-  transition: color 180ms ease, background-color 180ms ease, transform 180ms ease;
+  transition: color 180ms ease, background-color 180ms ease;
 }
 
 .social-icons a:hover,
@@ -87,7 +87,6 @@
   background: rgba(237, 176, 73, 0.1);
   color: #edb049 !important;
   outline: none;
-  transform: translateY(-1px);
 }
 
 .user-location-container {
