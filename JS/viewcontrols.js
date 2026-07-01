@@ -1,5 +1,8 @@
 (function () {
     const thumbnailColumns = [24, 21, 18, 15, 12, 10, 8, 6, 5, 4];
+    const thumbnailTitleSizes = [8, 9, 10, 11, 12, 13, 14, 16, 18, 20];
+    const thumbnailIconSizes = [8, 9, 10, 11, 12, 13, 14, 15, 16, 18];
+    const thumbnailInsets = [3, 3, 4, 4, 5, 6, 7, 8, 9, 10];
     const themeModes = ["auto", "dark", "light"];
     const themeLabels = {
         auto: "Auto",
@@ -93,6 +96,10 @@
 
             const applyThumbnailColumns = () => {
                 thumbnailContainer.style.setProperty("--thumbnail-columns", String(thumbnailColumns[sizeIndex]));
+                thumbnailContainer.style.setProperty("--thumbnail-title-size", `${thumbnailTitleSizes[sizeIndex]}px`);
+                thumbnailContainer.style.setProperty("--thumbnail-icon-size", `${thumbnailIconSizes[sizeIndex]}px`);
+                thumbnailContainer.style.setProperty("--thumbnail-inset", `${thumbnailInsets[sizeIndex]}px`);
+                thumbnailContainer.dataset.thumbnailStep = String(sizeIndex);
                 localStorage.setItem(storageKey, String(thumbnailColumns[sizeIndex]));
             };
 
