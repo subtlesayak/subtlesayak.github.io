@@ -6,6 +6,7 @@
     const themeModes = ["auto", "dark", "light"];
     const einkRefreshDuration = 960;
     const einkNavigationDelay = 360;
+    const einkElementSelector = "body *:not(script):not(style):not(link):not(meta):not(title)";
     const themeLabels = {
         auto: "Auto",
         dark: "Dark",
@@ -72,6 +73,30 @@
         einkButton.setAttribute("aria-label", enabled ? "E-ink refresh on. Turn off" : "E-ink refresh off. Turn on");
         einkButton.title = enabled ? "E-ink refresh on" : "E-ink refresh off";
         einkIcon.className = enabled ? "fa-solid fa-book-open-reader" : "fa-regular fa-bookmark";
+    }
+
+    function clearEinkElementFlashes() {
+        document.querySelectorAll(".eink-flash-target").forEach(element => {
+            element.classList.remove("eink-flash-target");
+            element.style.removeProperty("--eink-element-delay");
+            element.style.removeProperty("--eink-element-duration");
+        });
+    }
+
+    function prepareEinkElementFlashes() {
+        clearEinkElementFlashes();
+
+        document.querySelectorAll(einkElementSelector).forEach(element => {
+            const rect = element.getBoundingClientRect();
+            const isVisible = rect.width > 0 && rect.height > 0 && rect.bottom >= 0 && rect.top <= window.innerHeight;
+            if (!isVisible) return;
+
+            const delay = Math.round(Math.random() * 520);
+            const duration = Math.round(160 + Math.random() * 420);
+            element.style.setProperty("--eink-element-delay", `${delay}ms`);
+            element.style.setProperty("--eink-element-duration", `${duration}ms`);
+            element.classList.add("eink-flash-target");
+        });
     }
 
     function triggerEinkRefresh() {

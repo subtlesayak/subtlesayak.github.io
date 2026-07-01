@@ -291,9 +291,39 @@ body.eink-refreshing::after {
   }
 }
 
+body.eink-refreshing .eink-flash-target {
+  animation: eink-element-flash var(--eink-element-duration, 360ms) steps(2, end) var(--eink-element-delay, 0ms) both;
+  will-change: filter, opacity;
+}
+
+@keyframes eink-element-flash {
+  0% {
+    filter: grayscale(1) contrast(1.6) brightness(1.28);
+    opacity: 0.92;
+  }
+  38% {
+    filter: grayscale(1) contrast(2.1) brightness(0.76);
+    opacity: 0.78;
+  }
+  62% {
+    filter: grayscale(1) contrast(1.85) brightness(1.42);
+    opacity: 1;
+  }
+  100% {
+    filter: grayscale(1) contrast(1.08) brightness(1);
+    opacity: 1;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   body.eink-refreshing {
     filter: none;
+  }
+
+  body.eink-refreshing .eink-flash-target {
+    animation: none;
+    filter: none;
+    opacity: 1;
   }
 
   body.eink-refreshing::after {
