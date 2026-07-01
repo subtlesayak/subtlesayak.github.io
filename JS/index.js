@@ -1,4 +1,4 @@
-const CACHE_VERSION = "1.7";
+const CACHE_VERSION = "1.8";
 
 // Function to create a thumbnail with overlay icons
 function createThumbnail(src, alt, galleryPageUrl, hasMultipleImages, hasVideo, hasYouTube, hasSketchfab) {

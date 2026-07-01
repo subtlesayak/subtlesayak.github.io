@@ -1,0 +1,9 @@
+Digital Rendering
+---
+Digital rendering and composition work exploring product presentation, lighting, surfaces, and final image treatment.
+---
+Digital Rendering, Composition, Product Visualization
+---
+Projects/Digital Rendering/drycomp.jpg
+---
+digital-rendering.html

@@ -1,0 +1,9 @@
+3D Modeling
+---
+A collection of 3D modeling and product visualization explorations, including objects, lighting studies, furniture forms, speakers, perfume bottles, and material/render tests.
+---
+3D Modeling, Product Visualization, Rendering
+---
+Projects/3D Modeling/12thangle.jpg
+---
+3d-modeling.html

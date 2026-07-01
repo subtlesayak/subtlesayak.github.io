@@ -1,0 +1,9 @@
+drycomp.jpg*
+Project cover image.
+drycomp1.jpg
+drycomp2.jpg
+drycomp3.jpg
+drycomp4.jpg
+Screenshot 2022-07-09 042059.jpg
+shake.jpg
+shakecomp3.jpg
