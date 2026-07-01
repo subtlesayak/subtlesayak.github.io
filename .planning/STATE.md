@@ -8,7 +8,7 @@ status: ready
 stopped_at: Phase 2 complete; Phase 3 ready to discuss
 last_updated: "2026-06-30T18:11:46.373Z"
 last_activity: 2026-07-01
-last_activity_desc: Quick task 260701-gex added ExifTool photo metadata
+last_activity_desc: Quick task 260701-gvc added shared controls and photo navigation
 progress:
   total_phases: 4
   completed_phases: 2
@@ -31,7 +31,7 @@ See: .planning/PROJECT.md (updated 2026-06-30)
 Phase: 3 of 4 (Photography Gallery Entries)
 Plan: Not started
 Status: Ready to discuss and plan
-Last activity: 2026-07-01 - Quick task 260701-gex added ExifTool photo metadata
+Last activity: 2026-07-01 - Quick task 260701-gvc added shared controls and photo navigation
 
 Progress: [#####-----] 50%
 
@@ -85,6 +85,8 @@ Recent decisions affecting current work:
 | 260701-gdt | Add photo detail view and optimized gallery thumbnails | 2026-07-01 | e219443 | [260701-gdt-photo-detail-and-gallery-thumbnails](./quick/260701-gdt-photo-detail-and-gallery-thumbnails/) |
 | 260701-gcs | Set exact thumbnail resize column scale | 2026-07-01 | 87747b5 | [260701-gcs-thumbnail-column-scale](./quick/260701-gcs-thumbnail-column-scale/) |
 | 260701-gex | Add ExifTool photo detail metadata | 2026-07-01 | 58b43a8 | [260701-gex-exif-photo-detail-metadata](./quick/260701-gex-exif-photo-detail-metadata/) |
+| 260701-gvc | Add shared controls, fixed navigation, and viewport-fit photo detail | 2026-07-01 | 1a7c9be | [260701-gvc-shared-controls-and-photo-navigation](./quick/260701-gvc-shared-controls-and-photo-navigation/) |
+
 ### Pending Todos
 
 None yet.
@@ -104,15 +106,5 @@ Items acknowledged and carried forward from previous milestone close:
 ## Session Continuity
 
 Last session: 2026-06-30T18:11:46.373Z
-Stopped at: Quick task 260701-gex complete
+Stopped at: Quick task 260701-gvc complete
 Resume file: None
-
-
-
-
-
-
-
-
-
-
