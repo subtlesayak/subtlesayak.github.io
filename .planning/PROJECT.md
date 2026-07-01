@@ -99,6 +99,7 @@ Important current concerns from the codebase map:
 | Keep skills as simple chips | User found grouped skill sentences too jargon-heavy and preferred the previous visual style | Completed in quick task 260701-gas |
 | Keep profile header consistent across tabs | User noted Resume missing and About top spacing differed from other tabs | Completed in quick task 260701-gpc |
 | Add optional e-ink refresh overlay | User wants page refresh to feel like an e-reader with one on/off control beside theme and resize controls | Completed in quick task 260701-ger |
+| Make e-ink refresh visibly monochrome | User found the first e-ink refresh too subtle and asked for black-and-white plus double timing | Completed in quick task 260701-geb |
 
 ## Evolution
 
@@ -118,4 +119,4 @@ This document evolves at phase transitions and milestone boundaries.
 4. Update Context with current state
 
 ---
-*Last updated: 2026-07-01 after quick task 260701-ger*
+*Last updated: 2026-07-01 after quick task 260701-geb*
