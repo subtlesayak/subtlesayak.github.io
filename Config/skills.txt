@@ -1,4 +1,35 @@
-Research: Personas, User Journeys, Surveys, A/B Testing, User Interviews, User Testing, Journey Mapping, Competitor Analysis, Design Strategy, Heuristic Evaluation, Cognitive Walkthrough, Qualitative Analysis, Quantitative Analysis, Participatory Design.
-Design: User Experience, User Interface, Visual Design, Data Visualization, Wireframing, Prototyping, Interaction Design, Low & High-Fidelity Mockups, Design System, Storyboarding, Iconography, Information Architecture.
-Design Tools: Figma, FigJam, Framer, Adobe XD, Adobe Photoshop, Adobe Illustrator, After Effects, Sketchbook Pro.
-Other Skills: Empathy, Problem-Solving, Attention to Detail, Adaptability, Rapid Iteration, Human centric approach, Cross-functional collaboration and communication, Provide and solicit feedback.
+Personas
+User Journeys
+Surveys
+A/B Testing
+User Interviews
+User Testing
+Journey Mapping
+Competitor Analysis
+Design Strategy
+Heuristic Evaluation
+Cognitive Walkthrough
+Qualitative Analysis
+Quantitative Analysis
+Participatory Design
+User Experience
+User Interface
+Visual Design
+Data Visualization
+Wireframing
+Prototyping
+Interaction Design
+Low & High-Fidelity Mockups
+Design System
+Storyboarding
+Iconography
+Information Architecture
+Empathy
+Problem-Solving
+Attention to Detail
+Adaptability
+Rapid Iteration
+Human centric approach
+Cross-functional Collaboration
+Communication
+Provide and solicit feedback

@@ -1,38 +1,48 @@
 .productions-subpanels {
+    width: min(980px, calc(100% - 32px));
     display: flex;
-    flex-direction: column; /* Stacks children vertically */
-    align-items: center; /* Align items to the start (left) */
-    width: 100%; /* Uses the full width of its parent container */
-    gap: 5px; /* Space between each card */
+    flex-direction: column;
+    align-items: stretch;
+    gap: 22px;
+    margin: 0 auto;
+}
+
+.production-section {
+    width: 100%;
+}
+
+.production-section-title {
+    margin-bottom: 10px;
 }
 
 .production-subpanel {
-    padding: 10px;
+    width: 100%;
+    padding: 12px;
     background-color: #121212;
     border-radius: 5px;
-    width: 65%; /* Adjusts the width to be 80% of the parent container */
-    height: auto; /* Adjusts height based on content */
-    margin-bottom: 20px; /* Space between each card */
-    display: flex; /* Enables flexbox layout */
-    align-items: flex-start; /* Aligns items to the start vertically */
+    height: auto;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: flex-start;
 }
 
 .production-subpanel img {
-    width: 200px; /* Width of the thumbnail */
-    height: auto; /* Height adjusts based on aspect ratio */
-    object-fit: cover; /* Ensures cover fit for the image */
-    border-radius: 5px; /* Rounded corners */
-    margin-right: 20px; /* Space between image and text */
+    width: 160px;
+    height: 110px;
+    object-fit: cover;
+    border-radius: 5px;
+    margin-right: 18px;
+    background: #171717;
 }
 
 .production-details {
     display: flex;
-    flex-direction: column; /* Stacks title, company, and time vertically */
-    align-items: flex-start; /* Aligns items to the start */
+    flex-direction: column;
+    align-items: flex-start;
 }
 
 .production-description {
-    margin-top: 10px; /* Add space between details and description */
+    margin-top: 10px;
 }
 
 .production-description p {
@@ -41,98 +51,101 @@
 }
 
 .production-content {
-    flex-grow: 1; /* Allows the description to take remaining space */
+    min-width: 0;
+    flex-grow: 1;
     display: flex;
-    flex-direction: column; /* Optionally control layout of the description */
-    justify-content: flex-start; /* Aligns description to the start */
+    flex-direction: column;
+    justify-content: flex-start;
 }
 
 .productions-panel {
-    border-radius: 5px;
-    padding: 10px;
+    border-radius: 0;
+    padding: 18px 10px 24px;
     flex: 1;
     display: flex;
     flex-direction: column;
-    align-items: flex-start; /* Align items to the start (left) */
-    text-align: left; /* Align text to the left */
+    align-items: stretch;
+    text-align: left;
     margin-bottom: 20px;
     background-color: #151515;
     width: 100%;
 }
 
-.productions-panel h1 {
-    margin-bottom: 20px;
-}
-
 .production-subpanel h2 {
-    font-size: 20px; /* Font size for the title */
-    margin: 5px 0; /* Margins for spacing */
-    color: #d7d7d7; /* Text color */
-    text-align: left; /* Aligns text to the left */
+    font-size: 20px;
+    margin: 5px 0;
+    color: #d7d7d7;
+    text-align: left;
 }
 
 .production-subpanel p {
-    margin: 5px 0; /* Margins for spacing */
-    color: grey; /* Text color */
-    text-align: left; /* Aligns text to the left */
-}
-
-.production-subpanel p {
-    font-size: 16px; /* Font size for the paragraphs */
+    margin: 5px 0;
+    color: grey;
+    text-align: left;
+    font-size: 16px;
 }
 
 @media (max-width: 600px) {
+    .productions-subpanels {
+        width: calc(100% - 20px);
+        gap: 18px;
+    }
+
+    .production-section-title {
+        text-align: center;
+    }
+
     .production-subpanel {
-        width: 90%; /* Increase width to better fit mobile screens */
-        margin-bottom: 15px; /* Adjust margin for better spacing on mobile */
-        display: grid; /* Use grid layout */
-        grid-template-columns: auto 1fr; /* Two columns: one for image, one for details */
-        grid-template-rows: auto auto; /* Two rows: one for image/details, one for description */
-        gap: 10px; /* Space between grid items */
-        align-items: start; /* Align items to the start */
-        padding: 10px; /* Add padding to ensure content has space */
-        background-color: #121212; /* Background color */
-        border-radius: 5px; /* Border radius for rounded corners */
+        width: 100%;
+        margin-bottom: 12px;
+        display: grid;
+        grid-template-columns: auto 1fr;
+        grid-template-rows: auto auto;
+        gap: 10px;
+        align-items: start;
+        padding: 10px;
+        background-color: #121212;
+        border-radius: 5px;
     }
 
     .production-subpanel img {
-        width: 100px; /* Adjust the image width for mobile */
-        height: auto; /* Maintain aspect ratio */
-        grid-column: 1; /* Image in the first column */
-        grid-row: 1; /* Image in the first row */
-        align-self: start; /* Align image to the start of the cell */
+        width: 86px;
+        height: 86px;
+        grid-column: 1;
+        grid-row: 1;
+        margin-right: 0;
+        align-self: start;
     }
 
     .production-details {
-        align-items: flex-start; /* Align text to the start */
-        text-align: left; /* Ensure text is aligned to the left */
-        grid-column: 2; /* Details in the second column */
-        grid-row: 1; /* Details in the first row */
-        margin-left: -15px;
+        align-items: flex-start;
+        text-align: left;
+        grid-column: 2;
+        grid-row: 1;
     }
 
     .production-description {
-        align-items: flex-start; /* Align content to the start */
-        text-align: left; /* Ensure text is aligned to the left */
-        margin-top: 10px; /* Add space between details and description */
-        grid-column: 1 / 3; /* Description spans both columns */
-        grid-row: 2; /* Description in the second row */
+        align-items: flex-start;
+        text-align: left;
+        margin-top: 8px;
+        grid-column: 1 / 3;
+        grid-row: 2;
     }
 
     .production-content {
-        display: contents; /* Allow direct child elements to follow the grid */
+        display: contents;
     }
 
     .productions-panel {
-        padding: 8px; /* Adjust padding for mobile */
-        margin-bottom: 15px; /* Adjust margin for better spacing on mobile */
+        padding: 12px 0 18px;
+        margin-bottom: 15px;
     }
 
     .production-subpanel h2 {
-        font-size: 18px; /* Adjust font size for mobile */
+        font-size: 18px;
     }
 
     .production-subpanel p {
-        font-size: 14px; /* Adjust font size for mobile */
+        font-size: 14px;
     }
 }

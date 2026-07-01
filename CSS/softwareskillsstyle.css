@@ -48,7 +48,3 @@
 hr {
     opacity: .05;
 }
-
-.skills-panel .software-tag-container:last-of-type .software-tag {
-    width: 100%;
-}
