@@ -1,8 +1,8 @@
+Figma
+FigJam
+Framer
+Adobe XD
 Adobe Photoshop
 Adobe Illustrator
-Da Vinci Resolve
+After Effects
 Sketchbook Pro
-Blender
-Autodesk Maya
-Autodesk Alias
-Substance 3D Painter

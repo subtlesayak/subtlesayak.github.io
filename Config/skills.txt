@@ -1,4 +1,3 @@
-3D Modelling
 User Experience
 User Interface
 Visual Design
@@ -7,7 +6,28 @@ Wireframing
 Prototyping
 Interaction Design
 Low & High-Fidelity Mockups
-Design System
+Design Systems
 Storyboarding
 Iconography
 Information Architecture
+Personas
+User Journeys
+Surveys
+A/B Testing
+User Interviews
+User Testing
+Journey Mapping
+Competitor Analysis
+Design Strategy
+Heuristic Evaluation
+Cognitive Walkthrough
+Qualitative Analysis
+Quantitative Analysis
+Participatory Design
+Empathy
+Problem-Solving
+Attention to Detail
+Adaptability
+Rapid Iteration
+Cross-functional Collaboration
+Feedback and Communication

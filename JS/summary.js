@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 
     try {
-        const response = await fetch('../Config/summary.txt?v=1.2');
+        const response = await fetch('../Config/summary.txt?v=1.3');
         if (!response.ok) {
             throw new Error(`Network response was not ok: ${response.statusText}`);
         }
