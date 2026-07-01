@@ -118,7 +118,7 @@ hr {
 }
 
 .horizontal-container {
-    width: 65%;
+    width: min(980px, calc(100% - 32px));
     margin: 0 auto;
 }
 

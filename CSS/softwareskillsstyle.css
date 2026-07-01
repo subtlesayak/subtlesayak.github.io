@@ -40,9 +40,15 @@
     padding: 5px 10px;
     border-radius: .25em;
     font-size: 14px;
-    white-space: nowrap; /* Prevent tags from breaking into multiple lines */
+    max-width: 100%;
+    white-space: normal;
+    overflow-wrap: anywhere;
 }
 
 hr {
     opacity: .05;
+}
+
+.skills-panel .software-tag-container:last-of-type .software-tag {
+    width: 100%;
 }

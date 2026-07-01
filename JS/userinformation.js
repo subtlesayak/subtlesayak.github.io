@@ -1,11 +1,11 @@
 function addUserInformation() {
     let basePath = '';
     if (window.location.pathname.includes('/Projects/')) {
-        basePath = '../../Config/userinformation.txt?v=1.5';
+        basePath = '../../Config/userinformation.txt?v=1.6';
     } else if (window.location.pathname.includes('/HTML/')) {
-        basePath = '../Config/userinformation.txt?v=1.5';
+        basePath = '../Config/userinformation.txt?v=1.6';
     } else {
-        basePath = 'Config/userinformation.txt?v=1.5';
+        basePath = 'Config/userinformation.txt?v=1.6';
     }
 
     fetch(basePath)
@@ -40,11 +40,13 @@ function addUserInformation() {
                 'mixer.com': 'fab fa-mixer',
                 'mastodon.social': 'fab fa-mastodon',
                 'mailchimp.com': 'fab fa-mailchimp',
-                'email': 'fas fa-envelope'
+                'email': 'fas fa-envelope',
+                'resume': 'fa-solid fa-file-lines'
             };
 
             const isEmailAddress = value => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
-            const isKnownSocial = value => Object.keys(socialIconMap).some(key => value.includes(key)) || isEmailAddress(value);
+            const isResumeLink = value => value.toLowerCase().endsWith('.pdf') || value.toLowerCase().startsWith('resume:');
+            const isKnownSocial = value => Object.keys(socialIconMap).some(key => value.includes(key)) || isEmailAddress(value) || isResumeLink(value);
             const hasCustomIntro = rawSocials.length > 0 && !isKnownSocial(rawSocials[0]);
             const introText = hasCustomIntro ? rawSocials[0] : defaultIntro;
             const socials = hasCustomIntro ? rawSocials.slice(1) : rawSocials;
@@ -106,20 +108,30 @@ function addUserInformation() {
             socials.forEach(social => {
                 if (!social) return;
 
-                const socialType = Object.keys(socialIconMap).find(key => social.includes(key));
                 const isEmail = isEmailAddress(social);
-                const iconClass = socialType ? socialIconMap[socialType] : (isEmail ? socialIconMap.email : null);
+                const isResume = isResumeLink(social);
+                const socialUrl = social.toLowerCase().startsWith('resume:') ? social.slice(7).trim() : social;
+                const socialType = Object.keys(socialIconMap).find(key => !isResume && social.includes(key));
+                const iconClass = isResume ? socialIconMap.resume : (socialType ? socialIconMap[socialType] : (isEmail ? socialIconMap.email : null));
                 if (!iconClass) return;
 
                 const a = document.createElement('a');
-                a.href = isEmail && !socialType ? `mailto:${social}` : social;
+                a.href = isEmail && !socialType ? `mailto:${social}` : socialUrl;
                 a.target = '_blank';
                 a.rel = 'noopener noreferrer';
-                a.setAttribute('aria-label', isEmail ? 'Email' : socialType.replace('.com', '').replace('.net', ''));
+                a.setAttribute('aria-label', isResume ? 'Resume' : (isEmail ? 'Email' : socialType.replace('.com', '').replace('.net', '')));
+                if (isResume) a.className = 'resume-button';
 
                 const icon = document.createElement('i');
                 icon.className = iconClass;
                 a.appendChild(icon);
+
+                if (isResume) {
+                    const label = document.createElement('span');
+                    label.textContent = 'Resume';
+                    a.appendChild(label);
+                }
+
                 socialIcons.appendChild(a);
             });
         })
