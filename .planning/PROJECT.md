@@ -101,6 +101,7 @@ Important current concerns from the codebase map:
 | Add optional e-ink refresh overlay | User wants page refresh to feel like an e-reader with one on/off control beside theme and resize controls | Completed in quick task 260701-ger |
 | Make e-ink refresh visibly monochrome | User found the first e-ink refresh too subtle and asked for black-and-white plus double timing | Completed in quick task 260701-geb |
 | Stagger e-ink redraw across visible elements | User wants each element to flash with random timing to sell the e-reader effect | Completed in quick task 260702-ges |
+| Use editable article folders | User wants to add the first article through a text file | Completed in quick task 260702-gaf |
 
 ## Evolution
 
@@ -120,4 +121,4 @@ This document evolves at phase transitions and milestone boundaries.
 4. Update Context with current state
 
 ---
-*Last updated: 2026-07-02 after quick task 260702-ges*
+*Last updated: 2026-07-02 after quick task 260702-gaf*
