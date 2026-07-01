@@ -1,13 +1,42 @@
 (function () {
     const thumbnailColumns = [24, 21, 18, 15, 12, 10, 8, 6, 5, 4];
     const themeModes = ["auto", "dark", "light"];
-    let themeButtons = [];
+    const themeLabels = {
+        auto: "Auto",
+        dark: "Dark",
+        light: "Light"
+    };
+    const themeIcons = {
+        auto: "fa-solid fa-circle-half-stroke",
+        dark: "fa-solid fa-moon",
+        light: "fa-solid fa-sun"
+    };
+    let themeButton = null;
+    let themeIcon = null;
 
     function resolveTheme(mode) {
         if (mode === "light" || mode === "dark") return mode;
 
         const hour = new Date().getHours();
         return hour >= 6 && hour < 18 ? "light" : "dark";
+    }
+
+    function getNextThemeMode(mode) {
+        const currentIndex = themeModes.indexOf(mode);
+        return themeModes[(currentIndex + 1) % themeModes.length] || "auto";
+    }
+
+    function updateThemeButton(mode) {
+        if (!themeButton || !themeIcon) return;
+
+        const nextMode = getNextThemeMode(mode);
+        const label = themeLabels[mode] || themeLabels.auto;
+        const nextLabel = themeLabels[nextMode] || themeLabels.auto;
+
+        themeButton.dataset.themeMode = mode;
+        themeButton.setAttribute("aria-label", `${label} theme. Switch to ${nextLabel} theme`);
+        themeButton.title = `${label} theme`;
+        themeIcon.className = themeIcons[mode] || themeIcons.auto;
     }
 
     function applyTheme(mode) {
@@ -18,23 +47,24 @@
         document.body.classList.toggle("theme-dark", resolvedTheme === "dark");
         document.body.dataset.themeMode = selectedMode;
         localStorage.setItem("portfolioThemeMode", selectedMode);
-
-        themeButtons.forEach(button => {
-            const isActive = button.dataset.themeMode === selectedMode;
-            button.classList.toggle("active", isActive);
-            button.setAttribute("aria-pressed", String(isActive));
-        });
+        updateThemeButton(selectedMode);
     }
 
-    function createThemeButton(mode, label) {
+    function createThemeButton() {
         const button = document.createElement("button");
         button.type = "button";
         button.className = "theme-button view-control-button";
-        button.dataset.themeMode = mode;
-        button.textContent = label;
-        button.setAttribute("aria-label", `${label} theme`);
-        button.addEventListener("click", () => applyTheme(mode));
-        themeButtons.push(button);
+
+        const icon = document.createElement("i");
+        icon.setAttribute("aria-hidden", "true");
+        button.appendChild(icon);
+
+        button.addEventListener("click", () => {
+            applyTheme(getNextThemeMode(document.body.dataset.themeMode || "auto"));
+        });
+
+        themeButton = button;
+        themeIcon = icon;
         return button;
     }
 
@@ -46,16 +76,15 @@
 
         const existingControls = document.querySelector(".view-controls");
         if (existingControls) existingControls.remove();
-        themeButtons = [];
+        themeButton = null;
+        themeIcon = null;
 
         const controls = document.createElement("div");
         controls.className = "view-controls";
 
         const themeGroup = document.createElement("div");
         themeGroup.className = "theme-buttons control-group";
-        themeGroup.appendChild(createThemeButton("auto", "Auto"));
-        themeGroup.appendChild(createThemeButton("dark", "Dark"));
-        themeGroup.appendChild(createThemeButton("light", "Light"));
+        themeGroup.appendChild(createThemeButton());
         controls.appendChild(themeGroup);
 
         if (showResize) {

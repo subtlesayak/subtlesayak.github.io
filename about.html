@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="../CSS/softwareskillsstyle.css?v=1.2" />
     <link rel="stylesheet" href="../CSS/recommendationsstyle.css?v=1.2" />
     <link rel="stylesheet" href="../CSS/productionsstyle.css?v=1.2" />
+    <link rel="stylesheet" href="../CSS/viewcontrols.css?v=1.1" />
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
@@ -79,10 +80,12 @@
     <script src="../JS/userinformation.js?v=1.4"></script>
     <script src="../JS/recommendations.js?v=1.2"></script>
     <script src="../JS/productions.js?v=1.2"></script>
+    <script src="../JS/viewcontrols.js?v=1.1"></script>
     <script>
       // JavaScript to add 'active' class to the current page's navigation button
       document.addEventListener("DOMContentLoaded", function () {
         const currentPath = window.location.pathname.split("/").pop();
+        if (window.PortfolioControls) window.PortfolioControls.initViewControls({ showResize: false });
         const navButtons = document.querySelectorAll(".nav-button");
         navButtons.forEach((button) => {
           if (button.getAttribute("href") === currentPath) {
@@ -93,4 +96,3 @@
     </script>
   </body>
 </html>
-

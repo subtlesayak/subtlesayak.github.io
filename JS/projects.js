@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const fetchProjects = async () => {
         try {
-            const response = await fetch('../../Config/projects.txt?v=1.9');
+            const response = await fetch('../../Config/projects.txt?v=2.0');
             const text = await response.text();
             return text.split('\n').map(line => line.trim()).filter(line => line);
         } catch (error) {
@@ -353,6 +353,27 @@ document.addEventListener('DOMContentLoaded', () => {
         tooltip.style.left = `${left}px`;
     };
 
+    const goBackToPortfolio = () => {
+        window.location.href = '../../index.html';
+    };
+
+    const createProjectBackButton = () => {
+        if (document.querySelector('.project-back-button')) return;
+
+        const button = document.createElement('button');
+        button.type = 'button';
+        button.className = 'project-back-button';
+        button.setAttribute('aria-label', 'Back to portfolio');
+        button.title = 'Back to portfolio';
+
+        const icon = document.createElement('i');
+        icon.className = 'fa fa-arrow-left';
+        icon.setAttribute('aria-hidden', 'true');
+        button.appendChild(icon);
+        button.addEventListener('click', goBackToPortfolio);
+
+        document.body.appendChild(button);
+    };
     const navigateProjects = async (direction) => {
         const currentProject = decodeURIComponent(window.location.pathname.split('/').slice(-2, -1)[0]);
         const currentIndex = projects.indexOf(currentProject);
@@ -389,7 +410,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Keyboard navigation
     document.addEventListener('keydown', (event) => {
         if (event.key === 'Escape') {
-            window.location.href = '../../index.html';
+            goBackToPortfolio();
         } else if (event.key === 'ArrowLeft') {
             navigateProjects(-1);
         } else if (event.key === 'ArrowRight') {
@@ -403,6 +424,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Initialize the app
     const init = async () => {
+        if (window.PortfolioControls) window.PortfolioControls.initViewControls({ showResize: false });
+        createProjectBackButton();
         projects = await fetchProjects();
         document.getElementById('prev-project').addEventListener('click', () => navigateProjects(-1));
         document.getElementById('next-project').addEventListener('click', () => navigateProjects(1));

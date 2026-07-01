@@ -56,8 +56,9 @@
 }
 
 .theme-button {
-  width: 54px;
-  padding: 0 10px;
+  width: 40px;
+  padding: 0;
+  font-size: 16px;
 }
 
 .view-control-button:hover,
@@ -80,8 +81,12 @@ body.theme-light {
   color: var(--text);
 }
 
+body.theme-light .container,
 body.theme-light .main-container,
 body.theme-light .top-container,
+body.theme-light .info-container,
+body.theme-light .horizontal-container,
+body.theme-light .productions-panel,
 body.theme-light .photo-detail-info,
 body.theme-light.photography-project-mode,
 body.theme-light.photography-project-mode .main-container,
@@ -93,6 +98,11 @@ body.theme-light.photography-project-mode .photo-detail-info {
 }
 
 body.theme-light .bottom-container,
+body.theme-light .media-container,
+body.theme-light #project-media,
+body.theme-light .recommendations-panel,
+body.theme-light .production-subpanel,
+body.theme-light .skills-panel,
 body.theme-light .thumbnail,
 body.theme-light .thumbnail img,
 body.theme-light .photo-card,
@@ -113,11 +123,18 @@ body.theme-light .view-control-button {
 }
 
 body.theme-light .nav-button,
+body.theme-light h2,
 body.theme-light .user-info-panel h2,
 body.theme-light .user-intro,
 body.theme-light .user-location-container,
 body.theme-light .material-symbols-outlined,
 body.theme-light .photography-count,
+body.theme-light p,
+body.theme-light .media-description,
+body.theme-light .recommendation h3,
+body.theme-light .recommendation-date,
+body.theme-light .recommendation-quote,
+body.theme-light .production-subpanel p,
 body.theme-light .project-description-container p,
 body.theme-light .stat,
 body.theme-light.photography-project-mode .project-description-container p,
@@ -126,6 +143,7 @@ body.theme-light.photography-project-mode .stat {
 }
 
 body.theme-light .user-info-panel h1,
+body.theme-light .recommendation h2,
 body.theme-light .user-name-link:hover,
 body.theme-light .user-name-link:focus-visible,
 body.theme-light .photo-back-link,
@@ -141,6 +159,10 @@ body.theme-light .photo-detail-media {
   border-color: var(--line);
 }
 
+body.theme-light h1,
+body.theme-light h3,
+body.theme-light .panel-title,
+body.theme-light .production-subpanel h2,
 body.theme-light .thumbnail-title,
 body.theme-light .photography-heading h1,
 body.theme-light .project-description-container h1,
@@ -162,13 +184,53 @@ body.theme-light .photo-action-secondary {
   }
 
   .theme-button {
-    width: 48px;
+    width: 34px;
     height: 34px;
-    font-size: 11px;
+    font-size: 14px;
   }
 
   .resize-button {
     width: 34px;
     height: 34px;
   }
+}
+body.theme-light .project-back-button,
+body.theme-light .back-to-top-button,
+body.theme-light #prev-project,
+body.theme-light #next-project {
+  background: #ffffff;
+  color: #171717;
+}
+
+body.theme-light .project-back-button:hover,
+body.theme-light .project-back-button:focus-visible,
+body.theme-light #prev-project:hover,
+body.theme-light #next-project:hover,
+body.theme-light #prev-project:focus-visible,
+body.theme-light #next-project:focus-visible {
+  color: var(--accent);
+}
+body.theme-light .social-icons a {
+  color: var(--muted) !important;
+}
+
+body.theme-light .link-button {
+  background: rgba(164, 99, 18, 0.12);
+  color: var(--accent);
+}
+
+body.theme-light .stat-icon,
+body.theme-light .stat-info-icon {
+  color: var(--muted);
+}
+
+body.theme-light .tooltip {
+  background: #ffffff;
+  color: var(--text);
+  border: 1px solid var(--line);
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.12);
+}
+
+body.theme-light .tooltip::after {
+  border-color: #ffffff transparent transparent transparent;
 }

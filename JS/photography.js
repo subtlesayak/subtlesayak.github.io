@@ -1,4 +1,4 @@
-const PHOTOGRAPHY_CACHE_VERSION = "1.5";
+const PHOTOGRAPHY_CACHE_VERSION = "1.6";
 const PHOTOGRAPHY_MEDIA_PATH = "../Projects/Photography/media.txt";
 const PHOTOGRAPHY_METADATA_PATH = "../Projects/Photography/metadata.json";
 const PHOTOGRAPHY_BASE_PATH = "../Projects/Photography/";
@@ -68,13 +68,6 @@ function getSelectedPhotoIndex(photoFiles) {
     return photoFiles.findIndex(fileName => fileName === selectedPhoto);
 }
 
-function createDetailLink(label, fileName, className) {
-    const link = document.createElement("a");
-    link.className = className;
-    link.href = `photography.html?photo=${encodeURIComponent(fileName)}`;
-    link.textContent = label;
-    return link;
-}
 
 
 function createPhotoNavButton(label, iconClass, className, onClick) {
@@ -165,10 +158,6 @@ function renderPhotoDetail(container, photoFiles, selectedIndex, metadataByFile)
     const infoPanel = document.createElement("aside");
     infoPanel.className = "photo-detail-info";
 
-    const backLink = document.createElement("a");
-    backLink.className = "photo-back-link";
-    backLink.href = "photography.html";
-    backLink.textContent = "Back to Photography";
 
     const descriptionPanel = document.createElement("div");
     descriptionPanel.className = "project-description-container";
@@ -208,10 +197,6 @@ function renderPhotoDetail(container, photoFiles, selectedIndex, metadataByFile)
         createStat("File", fileName)
     ].filter(Boolean).forEach(stat => statsContainer.appendChild(stat));
 
-    const actions = document.createElement("div");
-    actions.className = "photo-detail-actions";
-    actions.appendChild(createDetailLink("Previous", previousPhoto, "photo-action"));
-    actions.appendChild(createDetailLink("Next", nextPhoto, "photo-action"));
 
     const fullImageLink = document.createElement("a");
     fullImageLink.className = "photo-action photo-action-secondary";
@@ -220,14 +205,12 @@ function renderPhotoDetail(container, photoFiles, selectedIndex, metadataByFile)
     fullImageLink.rel = "noopener noreferrer";
     fullImageLink.textContent = "Open Full Image";
 
-    infoPanel.appendChild(backLink);
     infoPanel.appendChild(descriptionPanel);
     infoPanel.appendChild(document.createElement("hr"));
     infoPanel.appendChild(sectionLabel);
     infoPanel.appendChild(tagContainer);
     infoPanel.appendChild(document.createElement("hr"));
     infoPanel.appendChild(statsContainer);
-    infoPanel.appendChild(actions);
     infoPanel.appendChild(fullImageLink);
 
     detail.appendChild(mediaPanel);

@@ -42,3 +42,29 @@
       right: 10px; /* Keep the button at the center */
   }
 }
+.project-back-button {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  z-index: 1400;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border: 0;
+  border-radius: 0.1em;
+  background-color: #121212;
+  color: white;
+  font-size: 22px;
+  cursor: pointer;
+  opacity: 0.5;
+  transition: opacity 180ms ease, color 180ms ease, background-color 180ms ease;
+}
+
+.project-back-button:hover,
+.project-back-button:focus-visible {
+  opacity: 1;
+  color: #edb049;
+  outline: none;
+}
