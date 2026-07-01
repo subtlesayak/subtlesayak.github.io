@@ -27,8 +27,8 @@ function addSkillsAndSoftware() {
     };
 
     // Fetch and populate software and skills data
-    fetchAndPopulate('../Config/software.txt?v=1.3', softwareContainer);
-    fetchAndPopulate('../Config/skills.txt?v=1.3', skillsContainer);
+    fetchAndPopulate('../Config/software.txt?v=1.4', softwareContainer);
+    fetchAndPopulate('../Config/skills.txt?v=1.4', skillsContainer);
 }
 
 document.addEventListener("DOMContentLoaded", addSkillsAndSoftware);

@@ -55,7 +55,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
 
     try {
-        const response = await fetch('../Config/productions.txt?v=1.3');
+        const response = await fetch('../Config/productions.txt?v=1.4');
         if (!response.ok) {
             throw new Error(`Network response was not ok: ${response.statusText}`);
         }
@@ -74,8 +74,9 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         productions.forEach((prod, index) => {
             const lines = prod.split('\n').map(line => line.trim()).filter(line => line && !line.startsWith('#'));
-            if (lines.length === 5) {
-                const card = createProductionCard(lines[0], lines[1], lines[2], lines[3], lines[4]);
+            if (lines.length >= 5) {
+                const description = lines.slice(4).join('\n');
+                const card = createProductionCard(lines[0], lines[1], lines[2], lines[3], description);
                 fragment.appendChild(card);
             } else {
                 console.error(`Invalid production data format at index ${index}:`, lines);

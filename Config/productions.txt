@@ -1,29 +1,59 @@
 UI/UX Designer
 Red Productions Pvt Ltd
-Dec 2025 - Present
+Dec 2025 - Present | Bengaluru, Karnataka
 Resources/favicon/pilfav.png
-Collaborated with stakeholders and the founder to define a unified visual strategy, design a responsive website layout, develop a brand identity and logo, create social media graphics, and establish accessible colors, iconography, and design-system consistency.
+- Collaborated with stakeholders and the founder to define a unified visual strategy for the company's new digital presence.
+- Designed a responsive website layout from the ground up, optimizing visual hierarchy and readability.
+- Developed a cohesive brand identity and a new logo, then translated the aesthetic into engaging graphics for social media platforms.
+- Established a consistent design system with accessible color palettes and iconography for website and social channels.
+- Developed a social media strategy to increase consistency for the company.
 ---
 UI/UX Design Intern
 More Than Red Pvt Ltd
-Jun 2024 - Aug 2024
+Jun 2024 - Aug 2024 | Bengaluru, Karnataka
 Resources/favicon/pilfav.png
-Worked with the company head and creative team to redesign the official website layout, improve emphasis and readability, design a new logo and typeface, and apply color, typography, and iconography for better usability.
+- Collaborated with the company head and fellow creatives.
+- Redesigned the official website layout to increase emphasis and readability.
+- Designed a new logo and typeface for the corporate company in line with their vision.
+- Used proper color palettes, typography, and iconography for usability.
+- Designed website and branding directions for the new company.
+---
+Projects
+RV University
+Aug 2023 - Jun 2025 | Bengaluru, Karnataka
+Resources/favicon/pilfav.png
+Redesign of the Namma Metro Bangalore Metro App - 2024 (February)
+- Primary and secondary research, information architecture.
+- Ideations, wireframes, redesign, and prototype of the application.
+Developing an app as Service Design for Accident care and First responders - 2025 (February)
+- Primary and secondary research, information architecture.
+- Ideations, wireframes, redesign, and prototype of the application.
+---
+Projects
+M.S. Ramaiah University of Applied Sciences
+Aug 2019 - Jun 2023 | Bengaluru, Karnataka
+Resources/favicon/pilfav.png
+Design of a Backpack (Working Model) - 2022
+- Designed a backpack for designers and travelers after thorough research.
 ---
 Master of Design in Interactive Design (UI/UX)
 RV University
-Aug 2023 - Jul 2025
+Aug 2023 - Jul 2025 | Bengaluru, Karnataka
 Resources/favicon/pilfav.png
-Completed postgraduate study focused on interactive design and UI/UX in Bengaluru. Project work included the Namma Metro Bangalore app redesign and a service design app for accident care and first responders.
+Completed postgraduate study focused on interactive design and UI/UX.
 ---
 Bachelor of Design in Product Design
 M.S. Ramaiah University of Applied Sciences
-Aug 2019 - Jun 2023
+Aug 2019 - Jun 2023 | Bengaluru, Karnataka
 Resources/favicon/pilfav.png
-Completed undergraduate product design study in Bengaluru. Project work included designing a working backpack model for designers and travelers after research and development.
+Completed undergraduate study in product design.
 ---
 Certificates & Activities
 Coursera, Photography, Volunteering
 Ongoing
 Resources/favicon/pilfav.png
-Completed courses in Quantitative Methods, Fundamentals of Graphic Design, and Learning Experience Design. Participated in photography competitions and volunteered as a photographer and designer for community and event organizations.
+- Coursera: Quantitative Methods by University of Amsterdam, Fundamentals of Graphic Design from CALARTS, and Learning Experience Design from the University of Michigan.
+- Designed and developed a backpack for designers and travelers.
+- Participated in and won several photography competitions.
+- Volunteered for St. Broseph as their photographer and designer.
+- Volunteered for PetFed Annual Pet Event as photographer.
