@@ -82,8 +82,9 @@ Important current concerns from the codebase map:
 | Use optimized photography thumbnails | Full-size photo files made gallery loading slow | Completed in quick task 260701-gdt |
 | Set exact thumbnail resize scale | User corrected the smallest view to 24 columns, largest to 4, with 8 intermediate steps | Completed in quick task 260701-gcs; corrected in 260701-gvc |
 | Generate photo detail metadata with ExifTool | User asked to use ExifTool for image details | Completed in quick task 260701-gex |
-| Keep gallery controls shared across Portfolio and Photography | User wants the resize controls available on Photography too, plus simple Auto/Dark/Light theme modes | Completed in quick task 260701-gvc |
+| Keep gallery controls shared across Portfolio and Photography | User wants resize controls on Photography and one simple cycling Auto/Dark/Light theme control | Completed in quick task 260701-gvc; refined in 260701-gtc |
 | Use project-style navigation for photography detail views | User wants photos to open like projects, with previous/next/back controls and viewport-fitted media | Completed in quick task 260701-gvc |
+| Keep project/detail navigation controls minimal | User wants project pages to have a back button and no duplicate Previous/Next text buttons on photo detail | Completed in quick task 260701-gtc |
 
 ## Evolution
 
@@ -103,4 +104,4 @@ This document evolves at phase transitions and milestone boundaries.
 4. Update Context with current state
 
 ---
-*Last updated: 2026-07-01 after quick task 260701-gvc*
+*Last updated: 2026-07-01 after quick task 260701-gtc*
