@@ -1,9 +1,380 @@
-First Article
+I Never Intended to Build an App Used Around the World
 ---
 2026
 ---
-Short summary goes here. Replace this line after you add the article.
+How a small Royal Enfield Himalayan 450 dashboard experiment became OpenDash, an app used by riders around the world.
 ---
-Paste the full article text here.
 
-Use a blank line to start a new paragraph.
+Sometimes projects begin because you have an idea.
+
+Sometimes they begin because something quietly bothers you for long enough.
+
+OpenDash belonged to the second category.
+
+Like most riders, I was perfectly content with my Royal Enfield Himalayan 450. The motorcycle never felt incomplete. The dashboard, however, always did.
+
+It could do navigation.
+
+It could show ride information.
+
+But every time I looked at that screen, I kept wondering—
+
+*"Surely it can do more than this."*
+
+That question stayed with me far longer than I expected.
+
+## The rabbit hole began with another project
+
+One evening I came across a Reddit post about **Northstar**.
+
+It was an open-source project that streamed navigation from a phone directly to the Tripper Dash over Wi-Fi. Watching it work felt like discovering a hidden door inside a motorcycle I already owned.
+
+Naturally, my designer brain began asking questions.
+
+What if it could display photographs?
+
+What if riders could personalise their dashboards?
+
+What if the interface felt less like an engineering prototype and more like something people would actually enjoy looking at every day?
+
+I reached out to the developer hoping some of those ideas were already planned.
+
+After waiting for a while, I realised they probably weren't.
+
+So I did what most curious people eventually end up doing.
+
+I forked the project.
+
+At first it was only meant to be a redesign.
+
+Then another feature appeared.
+
+Then another.
+
+Eventually I looked at the repository and realised...
+
+This wasn't really Northstar anymore.
+
+The direction had become entirely my own.
+
+So I started again.
+
+From zero.
+
+That became OpenDash.
+
+---
+
+## The first feature wasn't meant for riders
+
+Ironically, the feature most people know OpenDash for today wasn't even built for motorcycle customisation.
+
+It started because I was driving Rapido.
+
+After every ride, passengers needed to scan my Google Pay QR code.
+
+I wondered...
+
+*"Wouldn't it be easier if I could simply display the QR code on my motorcycle dashboard?"*
+
+So I tried.
+
+It almost worked.
+
+The Tripper Dash cropped the image.
+
+Half the QR code disappeared.
+
+Nobody could scan it.
+
+A small problem.
+
+But sometimes the smallest problems teach you the most.
+
+Instead of cropping images, I wrote a **Fit Height** mode that preserved the entire image inside the display.
+
+The QR code worked.
+
+Then photographs worked.
+
+Then wallpapers worked.
+
+Looking back, it's funny.
+
+The feature born out of a payment problem eventually became the soul of OpenDash.
+
+---
+
+## The project solved another frustration I had never spoken about
+
+I've always disliked applications that pretend your own data belongs to them.
+
+Fuel logs.
+
+Maintenance history.
+
+Expenses.
+
+Travel records.
+
+Every application wanted me to subscribe.
+
+Almost none wanted me to leave.
+
+No proper exports.
+
+No imports.
+
+No ownership.
+
+That never sat right with me.
+
+If someone records years of memories inside an application...
+
+Those memories should remain theirs.
+
+That philosophy quietly found its way into OpenDash.
+
+I didn't want riders to feel trapped.
+
+I wanted them to feel like they owned their information.
+
+---
+
+## I wasn't supposed to be writing code
+
+The funny part?
+
+I'm not a software engineer.
+
+I'm a UI/UX designer.
+
+I think in wireframes.
+
+User journeys.
+
+Interfaces.
+
+Products.
+
+Not backend architecture.
+
+Most of the code came together with the help of ChatGPT.
+
+People assume that made development easy.
+
+It didn't.
+
+Writing code was often the easy part.
+
+Understanding why something broke at two in the morning...
+
+That was the real challenge.
+
+Every bug felt like another language I needed to learn.
+
+Some nights the application barely opened.
+
+Other nights one small change would unexpectedly fix three unrelated problems.
+
+Somehow...
+
+it all slowly came together.
+
+---
+
+## The idea that changed everything wasn't mine
+
+There's one feature people associate with OpenDash more than anything else.
+
+Wallpapers.
+
+Ironically...
+
+That wasn't my idea.
+
+It was my father's.
+
+He simply said,
+
+*"People love their motorcycles. Let them make it feel like theirs."*
+
+That's all.
+
+One sentence.
+
+Today, whenever I see riders placing photographs of their parents...
+
+their pets...
+
+their favourite rides...
+
+or even their partners...
+
+on the dashboard...
+
+I realise he was right.
+
+It stopped becoming software.
+
+It became personal.
+
+---
+
+## The moment I realised strangers cared
+
+One memory still makes me smile.
+
+It was World Motorcycle Day.
+
+I'd created a special wallpaper wishing everyone a Happy Motorcycle Day.
+
+Nothing elaborate.
+
+Just something fun.
+
+At a traffic signal, I noticed another rider staring through my mirrors.
+
+He kept leaning forward.
+
+Trying to understand what he was looking at.
+
+When the signal stayed red, I showed him the dashboard.
+
+Without missing a beat he smiled and asked,
+
+*"How did you do that?"*
+
+When I told him it was my own application...
+
+his reaction reminded me why building things is so addictive.
+
+You never really know which small idea is going to make someone else's day.
+
+---
+
+## Then things became... strange
+
+Initially only friends downloaded OpenDash.
+
+Then their friends did.
+
+Then motorcycle groups.
+
+Then Instagram pages.
+
+I uploaded one APK to GitHub.
+
+Within roughly thirty-six hours it had spread across Himalayan 450 and Guerrilla 450 communities throughout India.
+
+Friends started sending me reels.
+
+Some were already using OpenDash without realising I had built it.
+
+Then messages started arriving from Brazil.
+
+Germany.
+
+Portugal.
+
+Australia.
+
+People asked whether there would be an iPhone version.
+
+Whether it would come to the Play Store.
+
+Whether it supported their motorcycle.
+
+That was surreal.
+
+A project that began because I wanted a better dashboard...
+
+was suddenly travelling much farther than I ever had.
+
+---
+
+## The lesson I learnt the hard way
+
+There is one thing I wish I had handled better.
+
+As OpenDash became more popular, I noticed many people had forgotten where the journey actually began.
+
+Northstar deserved recognition.
+
+Without it, OpenDash probably wouldn't exist.
+
+Although both projects eventually became very different, inspiration deserves acknowledgment.
+
+So I made sure to credit the original developer publicly.
+
+Ideas grow because someone else plants the first seed.
+
+There's nothing lost in admitting that.
+
+---
+
+## A phone call I'll never forget
+
+There were many moments that made OpenDash feel real.
+
+Friends telling me,
+
+*"You're everywhere."*
+
+People recognising the app at ride meets.
+
+Watching customised dashboards appear on my Instagram feed.
+
+But one moment quietly stood above everything else.
+
+Royal Enfield reached out.
+
+Not to complain.
+
+To appreciate.
+
+They even sent me gift hampers recognising the work behind the project.
+
+That was probably the first time I stopped thinking,
+
+*"Maybe this is just a side project."*
+
+And started believing...
+
+*"Maybe I'm capable of building things people genuinely care about."*
+
+---
+
+## This is only the first chapter
+
+OpenDash gave me something much bigger than an application.
+
+It gave me confidence.
+
+Confidence that ideas don't need permission.
+
+That you don't need to come from Computer Science to build software.
+
+That good design can be just as important as good engineering.
+
+Most importantly...
+
+it reminded me that you don't have to build something for everyone.
+
+You only have to solve one problem honestly.
+
+If enough people share that problem...
+
+they'll eventually find you.
+
+And perhaps that's my biggest takeaway from this entire journey.
+
+Keep building.
+
+Keep learning.
+
+Keep sharing your work.
+
+You never really know which small idea will quietly change your life.
+
+---

@@ -2,25 +2,78 @@
     const articlesContainer = document.getElementById("articles-container");
     const articlesConfigPath = "Config/articles.txt?v=1.0";
 
-    function parseArticle(rawText) {
-        const parts = rawText.split("---").map(part => part.trim());
+    function splitArticleSections(rawText) {
+        const lines = rawText.replace(/\r\n/g, "\n").split("\n");
+        const delimiters = [];
+
+        lines.forEach((line, index) => {
+            if (line.trim() === "---" && delimiters.length < 3) {
+                delimiters.push(index);
+            }
+        });
+
+        if (delimiters.length < 3) {
+            const fallback = rawText.split("---").map(part => part.trim());
+            return {
+                title: fallback[0] || "Untitled Article",
+                date: fallback[1] || "",
+                summary: fallback[2] || "",
+                body: fallback.slice(3).join("\n\n").trim()
+            };
+        }
+
         return {
-            title: parts[0] || "Untitled Article",
-            date: parts[1] || "",
-            summary: parts[2] || "",
-            body: parts.slice(3).join("\n\n").trim()
+            title: lines.slice(0, delimiters[0]).join("\n").trim() || "Untitled Article",
+            date: lines.slice(delimiters[0] + 1, delimiters[1]).join("\n").trim(),
+            summary: lines.slice(delimiters[1] + 1, delimiters[2]).join("\n").trim(),
+            body: lines.slice(delimiters[2] + 1).join("\n").trim()
         };
     }
 
-    function createParagraphs(text) {
+    function parseArticle(rawText) {
+        return splitArticleSections(rawText);
+    }
+
+    function appendInlineText(element, text) {
+        const pattern = /(\*\*[^*]+\*\*|\*[^*]+\*)/g;
+        let cursor = 0;
+        let match = pattern.exec(text);
+
+        while (match) {
+            if (match.index > cursor) {
+                element.appendChild(document.createTextNode(text.slice(cursor, match.index)));
+            }
+
+            const token = match[0];
+            const child = document.createElement(token.startsWith("**") ? "strong" : "em");
+            child.textContent = token.startsWith("**") ? token.slice(2, -2) : token.slice(1, -1);
+            element.appendChild(child);
+            cursor = match.index + token.length;
+            match = pattern.exec(text);
+        }
+
+        if (cursor < text.length) {
+            element.appendChild(document.createTextNode(text.slice(cursor)));
+        }
+    }
+
+    function createTextElement(tagName, text) {
+        const element = document.createElement(tagName);
+        appendInlineText(element, text.replace(/\s*\n\s*/g, " "));
+        return element;
+    }
+
+    function createArticleBlocks(text) {
         return text
             .split(/\n\s*\n/)
             .map(part => part.trim())
             .filter(Boolean)
             .map(part => {
-                const paragraph = document.createElement("p");
-                paragraph.textContent = part.replace(/\s*\n\s*/g, " ");
-                return paragraph;
+                if (part === "---") return document.createElement("hr");
+                if (part.startsWith("### ")) return createTextElement("h3", part.slice(4));
+                if (part.startsWith("## ")) return createTextElement("h2", part.slice(3));
+                if (part.startsWith("# ")) return createTextElement("h2", part.slice(2));
+                return createTextElement("p", part);
             });
     }
 
@@ -101,8 +154,8 @@
 
         const body = document.createElement("div");
         body.className = "article-body";
-        const paragraphs = createParagraphs(article.body || "Add the article body in Articles/First Article/article.txt.");
-        paragraphs.forEach(paragraph => body.appendChild(paragraph));
+        const blocks = createArticleBlocks(article.body || "Add the article body in Articles/First Article/article.txt.");
+        blocks.forEach(block => body.appendChild(block));
         detail.appendChild(body);
 
         articlesContainer.replaceChildren(detail);
@@ -133,7 +186,7 @@
             if (!folders.length) throw new Error("No articles configured");
 
             const articles = await Promise.all(folders.map(async folder => {
-                const response = await fetch(`Articles/${encodeURIComponent(folder)}/article.txt?v=1.0`);
+                const response = await fetch(`Articles/${encodeURIComponent(folder)}/article.txt?v=1.1`);
                 if (!response.ok) throw new Error(`Could not load article: ${folder}`);
                 return { folder, ...parseArticle(await response.text()) };
             }));
