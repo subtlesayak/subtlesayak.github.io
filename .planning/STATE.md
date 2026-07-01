@@ -8,7 +8,7 @@ status: ready
 stopped_at: Phase 2 complete; Phase 3 ready to discuss
 last_updated: "2026-06-30T18:11:46.373Z"
 last_activity: 2026-06-30
-last_activity_desc: Phase 02 complete, transitioned to Phase 3
+last_activity_desc: Quick task 260701-g1m restored flat grid and added Photography tab
 progress:
   total_phases: 4
   completed_phases: 2
@@ -31,7 +31,7 @@ See: .planning/PROJECT.md (updated 2026-06-30)
 Phase: 3 of 4 (Photography Gallery Entries)
 Plan: Not started
 Status: Ready to discuss and plan
-Last activity: 2026-06-30 - Phase 02 complete, transitioned to Phase 3
+Last activity: 2026-07-01 - Quick task 260701-g1m restored flat grid and added Photography tab
 
 Progress: [#####-----] 50%
 
@@ -74,6 +74,11 @@ Recent decisions affecting current work:
 - Each project can list one or more category slugs in its own `categories.txt` file.
 - Empty fallback `Other Work` is hidden unless uncategorized projects exist; Photography remains visible even when empty.
 
+### Quick Tasks Completed
+
+| # | Description | Date | Commit | Directory |
+|---|-------------|------|--------|-----------|
+| 260701-g1m | Undo homepage category sections and add a Photography navigation tab | 2026-07-01 | 39fcbf5 | [260701-g1m-undo-homepage-category-sections-and-add-](./quick/260701-g1m-undo-homepage-category-sections-and-add-/) |
 ### Pending Todos
 
 None yet.
@@ -93,5 +98,5 @@ Items acknowledged and carried forward from previous milestone close:
 ## Session Continuity
 
 Last session: 2026-06-30T18:11:46.373Z
-Stopped at: Phase 2 complete; Phase 3 ready to discuss
+Stopped at: Quick task 260701-g1m complete
 Resume file: None

@@ -44,7 +44,7 @@ A visitor can quickly understand the designer, browse work by meaningful categor
 
 This is a brownfield static portfolio derived from a portfolio template. It currently uses plain browser JavaScript to fetch content from `Config/*.txt` and `Projects/*/*.txt`, then renders pages client-side. The codebase map identifies the architecture as a static page shell plus text-file content database.
 
-The homepage now groups projects into editable category sections while preserving a complete All Work section. Category order and labels are configured in `Config/categories.txt`; each project can opt into one or more categories through its own `categories.txt` file. Photography is already visible as a homepage section, ready for Phase 3 to add richer multi-image entries.
+The homepage now uses a single simple project grid again, with Photography available as its own top navigation tab beside Portfolio and About. Category metadata files from Phase 2 remain in the repo for possible future use, but the active homepage renderer no longer shows category sections.
 
 The user wants the site to improve in two directions at once: it should become a better personal portfolio and remain reusable for other people. Improvements should therefore favor small, teachable conventions over hidden complexity. The current project system already supports multiple media entries on detail pages, which can be adapted into photography/event galleries.
 
@@ -71,11 +71,11 @@ Important current concerns from the codebase map:
 |----------|-----------|---------|
 | Keep the static text-file architecture | Simplicity and beginner editability are explicit goals | Preserved in Phases 1-2 |
 | Improve both personal portfolio and reusable template value | User wants options 1 and 2, not one at the expense of the other | In progress |
-| Categories should have their own homepage sections | User preferred dedicated sections over only filtering | Implemented in Phase 2 |
-| Category labels/order belong in `Config/categories.txt` | Keeps section editing beginner-friendly and avoids JavaScript edits | Implemented in Phase 2 |
+| Categories should have their own homepage sections | Earlier preference, later superseded by a simpler tab request | Superseded by quick task 260701-g1m |
+| Category labels/order belong in `Config/categories.txt` | Keeps section editing beginner-friendly and avoids JavaScript edits | Preserved as inactive metadata after quick task 260701-g1m |
 | Per-project category assignment belongs in `Projects/*/categories.txt` | Keeps adding/editing a project folder-local and copyable | Implemented in Phase 2 |
 | Prioritize visual polish, category filtering/sections, and easier project adding for v1 | These were named as the most important v1 outcomes | Visual polish and categories complete; easier project adding remains Phase 4 |
-| Treat photography as multi-image entries | User wants event-style or collection-style photo entries | Category path exists; gallery entries pending Phase 3 |
+| Treat photography as multi-image entries | User wants event-style or collection-style photo entries | Photography tab exists; gallery entries pending Phase 3 |
 
 ## Evolution
 
@@ -95,4 +95,4 @@ This document evolves at phase transitions and milestone boundaries.
 4. Update Context with current state
 
 ---
-*Last updated: 2026-06-30 after Phase 2 completion*
+*Last updated: 2026-07-01 after quick task 260701-g1m*
