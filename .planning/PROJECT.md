@@ -80,6 +80,8 @@ Important current concerns from the codebase map:
 | Keep Photography editable through a folder and text list | User added `Projects/Photography` and wants photos from there to feed the Photography tab | Completed in quick task 260701-gph |
 | Keep homepage grid controls close to live reference | User explicitly pointed to `artofpilgrim.github.io/index.html` for thumbnail resize design, position, spacing, and radius | Completed in quick task 260701-grd |
 | Use optimized photography thumbnails | Full-size photo files made gallery loading slow | Completed in quick task 260701-gdt |
+| Set exact thumbnail resize scale | User wants the smallest view to fit 26 columns, largest to fit 4, with 8 intermediate steps | Completed in quick task 260701-gcs |
+| Generate photo detail metadata with ExifTool | User asked to use ExifTool for image details | Completed in quick task 260701-gex |
 ## Evolution
 
 This document evolves at phase transitions and milestone boundaries.
@@ -98,7 +100,12 @@ This document evolves at phase transitions and milestone boundaries.
 4. Update Context with current state
 
 ---
-*Last updated: 2026-07-01 after quick task 260701-gdt*
+*Last updated: 2026-07-01 after quick task 260701-gex*
+
+
+
+
+
 
 
 
