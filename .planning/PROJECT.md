@@ -87,6 +87,7 @@ Important current concerns from the codebase map:
 | Keep project/detail navigation controls minimal | User wants project pages to have a back button and no duplicate Previous/Next text buttons on photo detail | Completed in quick task 260701-gtc |
 | Keep light-theme polish readable and lightweight | User screenshots showed card overlays and About spacing needed refinement without a redesign | Completed in quick task 260701-gpl |
 | Preload adjacent Photography detail images | User wants next/previous photo navigation to feel ready before opening | Completed in quick task 260701-gpl |
+| Scale thumbnail text with resize steps | User wants title text to fit while increasing or decreasing grid size | Completed in quick task 260701-gfs |
 
 ## Evolution
 
@@ -106,4 +107,4 @@ This document evolves at phase transitions and milestone boundaries.
 4. Update Context with current state
 
 ---
-*Last updated: 2026-07-01 after quick task 260701-gpl*
+*Last updated: 2026-07-01 after quick task 260701-gfs*
