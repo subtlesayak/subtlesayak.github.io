@@ -85,6 +85,8 @@ Important current concerns from the codebase map:
 | Keep gallery controls shared across Portfolio and Photography | User wants resize controls on Photography and one simple cycling Auto/Dark/Light theme control | Completed in quick task 260701-gvc; refined in 260701-gtc |
 | Use project-style navigation for photography detail views | User wants photos to open like projects, with previous/next/back controls and viewport-fitted media | Completed in quick task 260701-gvc |
 | Keep project/detail navigation controls minimal | User wants project pages to have a back button and no duplicate Previous/Next text buttons on photo detail | Completed in quick task 260701-gtc |
+| Keep light-theme polish readable and lightweight | User screenshots showed card overlays and About spacing needed refinement without a redesign | Completed in quick task 260701-gpl |
+| Preload adjacent Photography detail images | User wants next/previous photo navigation to feel ready before opening | Completed in quick task 260701-gpl |
 
 ## Evolution
 
@@ -104,4 +106,4 @@ This document evolves at phase transitions and milestone boundaries.
 4. Update Context with current state
 
 ---
-*Last updated: 2026-07-01 after quick task 260701-gtc*
+*Last updated: 2026-07-01 after quick task 260701-gpl*
