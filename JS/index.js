@@ -1,4 +1,4 @@
-const CACHE_VERSION = "1.9";
+const CACHE_VERSION = "2.0";
 
 // Function to create a thumbnail with overlay icons
 function createThumbnail(src, alt, galleryPageUrl, hasMultipleImages, hasVideo, hasYouTube, hasSketchfab) {
@@ -96,8 +96,8 @@ function createResizeControls() {
         applyThumbnailSize();
     });
 
-    controls.appendChild(decrease);
     controls.appendChild(increase);
+    controls.appendChild(decrease);
     thumbnailContainer.before(controls);
     applyThumbnailSize();
 }
@@ -219,5 +219,6 @@ fetchProjects().then(projectNames => {
         thumbnailContainer.appendChild(fragment);
     });
 });
+
 
 
