@@ -1,5 +1,6 @@
-const PHOTOGRAPHY_CACHE_VERSION = "1.2";
+const PHOTOGRAPHY_CACHE_VERSION = "1.4";
 const PHOTOGRAPHY_MEDIA_PATH = "../Projects/Photography/media.txt";
+const PHOTOGRAPHY_METADATA_PATH = "../Projects/Photography/metadata.json";
 const PHOTOGRAPHY_BASE_PATH = "../Projects/Photography/";
 const PHOTOGRAPHY_THUMB_PATH = "../Projects/Photography/thumbs/";
 
@@ -47,6 +48,19 @@ function showPhotographyEmptyState(container) {
     container.appendChild(emptyState);
 }
 
+async function fetchPhotoMetadata() {
+    try {
+        const response = await fetch(`${PHOTOGRAPHY_METADATA_PATH}?v=${PHOTOGRAPHY_CACHE_VERSION}`);
+        if (!response.ok) throw new Error("Unable to load photography metadata");
+
+        const records = await response.json();
+        return new Map(records.map(record => [record.FileName, record]));
+    } catch (error) {
+        console.error("Error loading photography metadata:", error);
+        return new Map();
+    }
+}
+
 function getSelectedPhotoIndex(photoFiles) {
     const selectedPhoto = new URLSearchParams(window.location.search).get("photo");
     if (!selectedPhoto) return -1;
@@ -62,10 +76,56 @@ function createDetailLink(label, fileName, className) {
     return link;
 }
 
-function renderPhotoDetail(container, photoFiles, selectedIndex) {
+function formatExifDate(value) {
+    if (!value) return "";
+
+    const normalized = value.replace(/^(\d{4}):(\d{2}):(\d{2})/, "$1-$2-$3");
+    const date = new Date(normalized);
+    if (Number.isNaN(date.getTime())) return value;
+
+    return date.toLocaleString(undefined, {
+        year: "numeric",
+        month: "short",
+        day: "numeric",
+        hour: "2-digit",
+        minute: "2-digit"
+    });
+}
+
+function formatFNumber(value) {
+    if (!value) return "";
+    return `f/${Number(value).toString()}`;
+}
+
+function createStat(label, value) {
+    if (!value) return null;
+
+    const stat = document.createElement("div");
+    stat.className = "stat";
+
+    const strong = document.createElement("strong");
+    strong.textContent = `${label}: `;
+
+    const span = document.createElement("span");
+    span.textContent = value;
+
+    stat.appendChild(strong);
+    stat.appendChild(span);
+    return stat;
+}
+
+function renderPhotoDetail(container, photoFiles, selectedIndex, metadataByFile) {
+    document.body.classList.add("photography-project-mode");
+
     const fileName = photoFiles[selectedIndex];
+    const metadata = metadataByFile.get(fileName) || {};
     const previousPhoto = photoFiles[(selectedIndex - 1 + photoFiles.length) % photoFiles.length];
     const nextPhoto = photoFiles[(selectedIndex + 1) % photoFiles.length];
+    const camera = [metadata.Make, metadata.Model].filter(Boolean).join(" ");
+    const settings = [metadata.ExposureTime, formatFNumber(metadata.FNumber), metadata.ISO ? `ISO ${metadata.ISO}` : ""].filter(Boolean).join("  ");
+    const dimensions = metadata.ImageWidth && metadata.ImageHeight ? `${metadata.ImageWidth} x ${metadata.ImageHeight}` : "";
+
+    document.title = `Photography - ${fileName}`;
 
     const detail = document.createElement("section");
     detail.className = "photo-detail";
@@ -87,16 +147,43 @@ function renderPhotoDetail(container, photoFiles, selectedIndex) {
     backLink.href = "photography.html";
     backLink.textContent = "Back to Photography";
 
+    const descriptionPanel = document.createElement("div");
+    descriptionPanel.className = "project-description-container";
+
     const title = document.createElement("h1");
     title.textContent = "Photography";
 
-    const counter = document.createElement("p");
-    counter.className = "photo-counter";
-    counter.textContent = `Photo ${selectedIndex + 1} of ${photoFiles.length}`;
+    const description = document.createElement("p");
+    description.textContent = `Photo ${selectedIndex + 1} of ${photoFiles.length}`;
 
-    const fileLabel = document.createElement("p");
-    fileLabel.className = "photo-file-name";
-    fileLabel.textContent = fileName;
+    descriptionPanel.appendChild(title);
+    descriptionPanel.appendChild(description);
+
+    const sectionLabel = document.createElement("h3");
+    sectionLabel.textContent = "Collection";
+
+    const tagContainer = document.createElement("div");
+    tagContainer.className = "project-tags-container";
+
+    const tag = document.createElement("div");
+    tag.className = "software-tag";
+    tag.textContent = "Photography";
+    tagContainer.appendChild(tag);
+
+    const statsContainer = document.createElement("div");
+    statsContainer.className = "project-stats-container";
+
+    [
+        createStat("Image", `${selectedIndex + 1} / ${photoFiles.length}`),
+        createStat("Camera", camera),
+        createStat("Lens", metadata.LensModel),
+        createStat("Settings", settings),
+        createStat("Focal Length", metadata.FocalLength),
+        createStat("Taken", formatExifDate(metadata.DateTimeOriginal || metadata.CreateDate)),
+        createStat("Dimensions", dimensions),
+        createStat("Orientation", metadata.Orientation),
+        createStat("File", fileName)
+    ].filter(Boolean).forEach(stat => statsContainer.appendChild(stat));
 
     const actions = document.createElement("div");
     actions.className = "photo-detail-actions";
@@ -111,9 +198,12 @@ function renderPhotoDetail(container, photoFiles, selectedIndex) {
     fullImageLink.textContent = "Open Full Image";
 
     infoPanel.appendChild(backLink);
-    infoPanel.appendChild(title);
-    infoPanel.appendChild(counter);
-    infoPanel.appendChild(fileLabel);
+    infoPanel.appendChild(descriptionPanel);
+    infoPanel.appendChild(document.createElement("hr"));
+    infoPanel.appendChild(sectionLabel);
+    infoPanel.appendChild(tagContainer);
+    infoPanel.appendChild(document.createElement("hr"));
+    infoPanel.appendChild(statsContainer);
     infoPanel.appendChild(actions);
     infoPanel.appendChild(fullImageLink);
 
@@ -138,9 +228,10 @@ async function loadPhotography() {
 
         const selectedIndex = getSelectedPhotoIndex(photoFiles);
         if (selectedIndex !== -1) {
+            const metadataByFile = await fetchPhotoMetadata();
             gallery.classList.remove("photography-grid");
             gallery.classList.add("photography-detail-shell");
-            renderPhotoDetail(gallery, photoFiles, selectedIndex);
+            renderPhotoDetail(gallery, photoFiles, selectedIndex, metadataByFile);
             return;
         }
 
@@ -156,5 +247,3 @@ async function loadPhotography() {
 }
 
 document.addEventListener("DOMContentLoaded", loadPhotography);
-
-
