@@ -88,6 +88,8 @@ Important current concerns from the codebase map:
 | Keep light-theme polish readable and lightweight | User screenshots showed card overlays and About spacing needed refinement without a redesign | Completed in quick task 260701-gpl |
 | Preload adjacent Photography detail images | User wants next/previous photo navigation to feel ready before opening | Completed in quick task 260701-gpl |
 | Scale thumbnail text with resize steps | User wants title text to fit while increasing or decreasing grid size | Completed in quick task 260701-gfs |
+| Keep About content sourced from editable text files | Resume information should fill the template without changing the simple authoring model | Completed in quick task 260701-gra |
+| Add Articles as a simple coming-soon tab | User wants an Articles tab now without building article content yet | Completed in quick task 260701-gra |
 
 ## Evolution
 
@@ -107,4 +109,4 @@ This document evolves at phase transitions and milestone boundaries.
 4. Update Context with current state
 
 ---
-*Last updated: 2026-07-01 after quick task 260701-gfs*
+*Last updated: 2026-07-01 after quick task 260701-gra*

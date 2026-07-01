@@ -8,7 +8,7 @@ status: ready
 stopped_at: Phase 2 complete; Phase 3 ready to discuss
 last_updated: "2026-06-30T18:11:46.373Z"
 last_activity: 2026-07-01
-last_activity_desc: Quick task 260701-gfs scaled thumbnail text with resize steps
+last_activity_desc: Quick task 260701-gra filled About from resume and added Articles tab
 progress:
   total_phases: 4
   completed_phases: 2
@@ -31,7 +31,7 @@ See: .planning/PROJECT.md (updated 2026-06-30)
 Phase: 3 of 4 (Photography Gallery Entries)
 Plan: Not started
 Status: Ready to discuss and plan
-Last activity: 2026-07-01 - Quick task 260701-gfs scaled thumbnail text with resize steps
+Last activity: 2026-07-01 - Quick task 260701-gra filled About from resume and added Articles tab
 
 Progress: [#####-----] 50%
 
@@ -89,6 +89,7 @@ Recent decisions affecting current work:
 | 260701-gtc | Clean up theme controls and detail navigation buttons | 2026-07-01 | 8255f15 | [260701-gtc-theme-controls-cleanup](./quick/260701-gtc-theme-controls-cleanup/) |
 | 260701-gpl | Polish light theme, social icons, and adjacent photo preloading | 2026-07-01 | fef093d | [260701-gpl-light-theme-polish-photo-preload](./quick/260701-gpl-light-theme-polish-photo-preload/) |
 | 260701-gfs | Scale thumbnail title font with resize steps | 2026-07-01 | 2ba5797 | [260701-gfs-thumbnail-font-scale](./quick/260701-gfs-thumbnail-font-scale/) |
+| 260701-gra | Fill About from resume, regularize name weight, and add Articles tab | 2026-07-01 | 2290ef4 | [260701-gra-resume-about-and-articles-tab](./quick/260701-gra-resume-about-and-articles-tab/) |
 
 ### Pending Todos
 
@@ -109,5 +110,5 @@ Items acknowledged and carried forward from previous milestone close:
 ## Session Continuity
 
 Last session: 2026-06-30T18:11:46.373Z
-Stopped at: Quick task 260701-gfs complete
+Stopped at: Quick task 260701-gra complete
 Resume file: None
