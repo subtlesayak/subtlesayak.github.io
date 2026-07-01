@@ -4,6 +4,8 @@
     const thumbnailIconSizes = [8, 9, 10, 11, 12, 13, 14, 15, 16, 18];
     const thumbnailInsets = [3, 3, 4, 4, 5, 6, 7, 8, 9, 10];
     const themeModes = ["auto", "dark", "light"];
+    const einkRefreshDuration = 960;
+    const einkNavigationDelay = 360;
     const themeLabels = {
         auto: "Auto",
         dark: "Dark",
@@ -81,7 +83,7 @@
             document.body.classList.add("eink-refreshing");
             einkRefreshTimer = window.setTimeout(() => {
                 document.body.classList.remove("eink-refreshing");
-            }, 480);
+            }, einkRefreshDuration);
         });
     }
 
@@ -128,7 +130,7 @@
             triggerEinkRefresh();
             window.setTimeout(() => {
                 window.location.href = link.href;
-            }, 180);
+            }, einkNavigationDelay);
         }, true);
     }
 

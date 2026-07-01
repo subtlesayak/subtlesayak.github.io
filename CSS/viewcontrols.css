@@ -253,6 +253,10 @@ body.theme-light .horizontal-container {
   font-size: 15px;
 }
 
+body.eink-refreshing {
+  filter: grayscale(1) contrast(1.08);
+}
+
 body.eink-refreshing::after {
   content: "";
   position: fixed;
@@ -260,10 +264,10 @@ body.eink-refreshing::after {
   z-index: 3000;
   pointer-events: none;
   background:
-    repeating-linear-gradient(0deg, rgba(20, 20, 20, 0.06) 0 1px, transparent 1px 4px),
-    linear-gradient(180deg, rgba(250, 248, 238, 0.72), rgba(28, 28, 24, 0.12), rgba(250, 248, 238, 0.48));
-  mix-blend-mode: soft-light;
-  animation: eink-refresh 420ms steps(5, end);
+    repeating-linear-gradient(0deg, rgba(20, 20, 20, 0.14) 0 1px, transparent 1px 4px),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.78), rgba(0, 0, 0, 0.24), rgba(255, 255, 255, 0.58));
+  mix-blend-mode: saturation;
+  animation: eink-refresh 900ms steps(6, end);
 }
 
 @keyframes eink-refresh {
@@ -272,14 +276,14 @@ body.eink-refreshing::after {
     transform: translateY(-8%);
   }
   18% {
-    opacity: 0.92;
+    opacity: 1;
   }
   48% {
-    opacity: 0.62;
+    opacity: 0.82;
     transform: translateY(0);
   }
   72% {
-    opacity: 0.36;
+    opacity: 0.48;
   }
   100% {
     opacity: 0;
@@ -288,6 +292,10 @@ body.eink-refreshing::after {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  body.eink-refreshing {
+    filter: none;
+  }
+
   body.eink-refreshing::after {
     animation: none;
     opacity: 0;
