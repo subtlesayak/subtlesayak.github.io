@@ -16,6 +16,9 @@
     };
     let themeButton = null;
     let themeIcon = null;
+    let einkButton = null;
+    let einkIcon = null;
+    let einkRefreshTimer = null;
 
     function resolveTheme(mode) {
         if (mode === "light" || mode === "dark") return mode;
@@ -53,6 +56,82 @@
         updateThemeButton(selectedMode);
     }
 
+
+    function isEinkRefreshEnabled() {
+        return localStorage.getItem("portfolioEinkRefresh") !== "off";
+    }
+
+    function updateEinkButton() {
+        if (!einkButton || !einkIcon) return;
+
+        const enabled = isEinkRefreshEnabled();
+        einkButton.classList.toggle("active", enabled);
+        einkButton.setAttribute("aria-pressed", String(enabled));
+        einkButton.setAttribute("aria-label", enabled ? "E-ink refresh on. Turn off" : "E-ink refresh off. Turn on");
+        einkButton.title = enabled ? "E-ink refresh on" : "E-ink refresh off";
+        einkIcon.className = enabled ? "fa-solid fa-book-open-reader" : "fa-regular fa-bookmark";
+    }
+
+    function triggerEinkRefresh() {
+        if (!isEinkRefreshEnabled() || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+        document.body.classList.remove("eink-refreshing");
+        window.clearTimeout(einkRefreshTimer);
+        window.requestAnimationFrame(() => {
+            document.body.classList.add("eink-refreshing");
+            einkRefreshTimer = window.setTimeout(() => {
+                document.body.classList.remove("eink-refreshing");
+            }, 480);
+        });
+    }
+
+    function createEinkButton() {
+        const button = document.createElement("button");
+        button.type = "button";
+        button.className = "eink-button view-control-button";
+        button.setAttribute("aria-pressed", String(isEinkRefreshEnabled()));
+
+        const icon = document.createElement("i");
+        icon.setAttribute("aria-hidden", "true");
+        button.appendChild(icon);
+
+        button.addEventListener("click", () => {
+            const enabled = !isEinkRefreshEnabled();
+            localStorage.setItem("portfolioEinkRefresh", enabled ? "on" : "off");
+            updateEinkButton();
+            if (enabled) triggerEinkRefresh();
+        });
+
+        einkButton = button;
+        einkIcon = icon;
+        updateEinkButton();
+        return button;
+    }
+
+    function shouldRefreshBeforeNavigation(link) {
+        if (!link || link.target === "_blank" || link.hasAttribute("download")) return false;
+        if (link.origin !== window.location.origin) return false;
+        if (link.pathname === window.location.pathname && link.hash) return false;
+        return true;
+    }
+
+    function bindEinkNavigationRefresh() {
+        if (document.body.dataset.einkNavigationBound === "true") return;
+        document.body.dataset.einkNavigationBound = "true";
+
+        document.addEventListener("click", event => {
+            const link = event.target.closest("a[href]");
+            if (!shouldRefreshBeforeNavigation(link) || !isEinkRefreshEnabled()) return;
+            if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || event.defaultPrevented) return;
+
+            event.preventDefault();
+            triggerEinkRefresh();
+            window.setTimeout(() => {
+                window.location.href = link.href;
+            }, 180);
+        }, true);
+    }
+
     function createThemeButton() {
         const button = document.createElement("button");
         button.type = "button";
@@ -81,6 +160,8 @@
         if (existingControls) existingControls.remove();
         themeButton = null;
         themeIcon = null;
+        einkButton = null;
+        einkIcon = null;
 
         const controls = document.createElement("div");
         controls.className = "view-controls";
@@ -88,6 +169,7 @@
         const themeGroup = document.createElement("div");
         themeGroup.className = "theme-buttons control-group";
         themeGroup.appendChild(createThemeButton());
+        themeGroup.appendChild(createEinkButton());
         controls.appendChild(themeGroup);
 
         if (showResize) {
@@ -134,12 +216,16 @@
 
         document.body.appendChild(controls);
         applyTheme(localStorage.getItem("portfolioThemeMode") || "auto");
+        updateEinkButton();
+        bindEinkNavigationRefresh();
+        triggerEinkRefresh();
     }
 
     window.PortfolioControls = {
         initViewControls,
         applyTheme,
         resolveTheme,
+        triggerEinkRefresh,
         thumbnailColumns
     };
 

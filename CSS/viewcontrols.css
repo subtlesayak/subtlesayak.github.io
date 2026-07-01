@@ -181,7 +181,8 @@ body.theme-light .photo-action-secondary {
     bottom: 12px;
   }
 
-  .theme-button {
+  .theme-button,
+  .eink-button {
     width: 34px;
     height: 34px;
     font-size: 14px;
@@ -244,4 +245,51 @@ body.theme-light .overlay-icon {
 
 body.theme-light .horizontal-container {
   background: transparent;
+}
+
+.eink-button {
+  width: 40px;
+  padding: 0;
+  font-size: 15px;
+}
+
+body.eink-refreshing::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 3000;
+  pointer-events: none;
+  background:
+    repeating-linear-gradient(0deg, rgba(20, 20, 20, 0.06) 0 1px, transparent 1px 4px),
+    linear-gradient(180deg, rgba(250, 248, 238, 0.72), rgba(28, 28, 24, 0.12), rgba(250, 248, 238, 0.48));
+  mix-blend-mode: soft-light;
+  animation: eink-refresh 420ms steps(5, end);
+}
+
+@keyframes eink-refresh {
+  0% {
+    opacity: 0;
+    transform: translateY(-8%);
+  }
+  18% {
+    opacity: 0.92;
+  }
+  48% {
+    opacity: 0.62;
+    transform: translateY(0);
+  }
+  72% {
+    opacity: 0.36;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(8%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body.eink-refreshing::after {
+    animation: none;
+    opacity: 0;
+  }
 }
