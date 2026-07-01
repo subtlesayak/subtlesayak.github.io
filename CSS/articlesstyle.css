@@ -1,0 +1,124 @@
+.articles-panel {
+  width: 100%;
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 34px 28px 56px;
+  box-sizing: border-box;
+}
+
+.articles-heading h1,
+.article-detail h1 {
+  margin: 0 0 18px;
+  color: #f5f5f5;
+  font-size: 30px;
+  font-weight: 400;
+}
+
+.articles-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 10px;
+}
+
+.article-card {
+  display: flex;
+  min-height: 170px;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 8px;
+  padding: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 4px;
+  background: #171717;
+  color: #d7d7d7;
+  text-decoration: none;
+  transition: border-color 160ms ease, color 160ms ease, transform 160ms ease;
+}
+
+.article-card:hover,
+.article-card:focus-visible {
+  border-color: #edb049;
+  color: #ffffff;
+  outline: none;
+  transform: translateY(-1px);
+}
+
+.article-card h2 {
+  margin: 0;
+  color: inherit;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 1.25;
+}
+
+.article-card p,
+.article-body p,
+.article-summary {
+  margin: 0;
+  color: #b8b8b8;
+  font-size: 14px;
+  line-height: 1.75;
+}
+
+.article-date {
+  color: #edb049;
+  font-size: 12px;
+}
+
+.article-detail {
+  width: min(760px, 100%);
+  margin: 0 auto;
+}
+
+.article-back {
+  display: inline-flex;
+  margin-bottom: 20px;
+  color: #edb049;
+  font-size: 13px;
+  text-decoration: none;
+}
+
+.article-back:hover,
+.article-back:focus-visible {
+  color: #ffffff;
+  outline: none;
+}
+
+.article-summary {
+  margin-bottom: 24px;
+  color: #d7d7d7;
+  font-size: 16px;
+}
+
+.article-body {
+  display: grid;
+  gap: 18px;
+}
+
+body.theme-light .article-card {
+  border-color: var(--line);
+  background: var(--surface-raised);
+  color: var(--text);
+}
+
+body.theme-light .article-card p,
+body.theme-light .article-body p,
+body.theme-light .article-summary {
+  color: var(--muted) !important;
+}
+
+body.theme-light .articles-heading h1,
+body.theme-light .article-detail h1 {
+  color: var(--text);
+}
+
+@media (max-width: 700px) {
+  .articles-panel {
+    padding: 26px 14px 44px;
+  }
+
+  .articles-heading h1,
+  .article-detail h1 {
+    font-size: 25px;
+  }
+}

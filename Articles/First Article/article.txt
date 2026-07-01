@@ -1,0 +1,9 @@
+First Article
+---
+2026
+---
+Short summary goes here. Replace this line after you add the article.
+---
+Paste the full article text here.
+
+Use a blank line to start a new paragraph.
