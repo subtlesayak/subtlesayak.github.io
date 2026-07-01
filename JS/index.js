@@ -1,4 +1,4 @@
-const CACHE_VERSION = "2.0";
+const CACHE_VERSION = "2.2";
 
 // Function to create a thumbnail with overlay icons
 function createThumbnail(src, alt, galleryPageUrl, hasMultipleImages, hasVideo, hasYouTube, hasSketchfab) {
@@ -61,13 +61,13 @@ function createThumbnail(src, alt, galleryPageUrl, hasMultipleImages, hasVideo, 
 
 // Get the thumbnail container element
 const thumbnailContainer = document.getElementById("thumbnail-container");
-const thumbnailSizes = [150, 200, 250, 300, 350, 400];
-const savedThumbnailSize = Number(localStorage.getItem("portfolioThumbnailSize"));
-let thumbnailSizeIndex = thumbnailSizes.includes(savedThumbnailSize) ? thumbnailSizes.indexOf(savedThumbnailSize) : 2;
+const thumbnailColumns = [26, 23, 20, 17, 14, 11, 8, 6, 5, 4];
+const savedThumbnailColumns = Number(localStorage.getItem("portfolioThumbnailColumns"));
+let thumbnailSizeIndex = thumbnailColumns.includes(savedThumbnailColumns) ? thumbnailColumns.indexOf(savedThumbnailColumns) : 4;
 
 function applyThumbnailSize() {
-    thumbnailContainer.style.setProperty("--thumbnail-min", `${thumbnailSizes[thumbnailSizeIndex]}px`);
-    localStorage.setItem("portfolioThumbnailSize", String(thumbnailSizes[thumbnailSizeIndex]));
+    thumbnailContainer.style.setProperty("--thumbnail-columns", String(thumbnailColumns[thumbnailSizeIndex]));
+    localStorage.setItem("portfolioThumbnailColumns", String(thumbnailColumns[thumbnailSizeIndex]));
 }
 
 function createResizeControls() {
@@ -92,7 +92,7 @@ function createResizeControls() {
     });
 
     increase.addEventListener("click", () => {
-        thumbnailSizeIndex = Math.min(thumbnailSizes.length - 1, thumbnailSizeIndex + 1);
+        thumbnailSizeIndex = Math.min(thumbnailColumns.length - 1, thumbnailSizeIndex + 1);
         applyThumbnailSize();
     });
 
@@ -219,6 +219,8 @@ fetchProjects().then(projectNames => {
         thumbnailContainer.appendChild(fragment);
     });
 });
+
+
 
 
 
