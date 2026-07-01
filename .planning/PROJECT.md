@@ -90,6 +90,11 @@ Important current concerns from the codebase map:
 | Scale thumbnail text with resize steps | User wants title text to fit while increasing or decreasing grid size | Completed in quick task 260701-gfs |
 | Keep About content sourced from editable text files | Resume information should fill the template without changing the simple authoring model | Completed in quick task 260701-gra |
 | Add Articles as a simple coming-soon tab | User wants an Articles tab now without building article content yet | Completed in quick task 260701-gra |
+| Support detailed About entries with multi-line text | Resume project and activity details need more than one description line | Completed in quick task 260701-gad |
+| Keep work/education image uploads in dedicated folders | User wants places to upload company/work-experience images | Completed in quick task 260701-gad |
+| Match About top area to Portfolio header | User noticed the About top information looked different from the index page | Completed in quick task 260701-gad |
+| Add resume access from profile links | User wants the uploaded resume PDF reachable from the social link area | Completed in quick task 260701-gad |
+| Keep About readable on narrow widths | User screenshot showed About content alignment and long skill rows needed correction | Completed in quick task 260701-gad |
 
 ## Evolution
 
@@ -109,4 +114,4 @@ This document evolves at phase transitions and milestone boundaries.
 4. Update Context with current state
 
 ---
-*Last updated: 2026-07-01 after quick task 260701-gra*
+*Last updated: 2026-07-01 after quick task 260701-gad*
