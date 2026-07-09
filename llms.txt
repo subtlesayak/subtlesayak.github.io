@@ -1,0 +1,41 @@
+# Subtle Sayak
+
+> Subtle Sayak is a UI/UX designer and interaction design graduate based in Bengaluru, India. This portfolio presents UI/UX, branding, visual design, research, prototyping, data visualization, 3D, rendering, photography, and product storytelling work.
+
+Public profile context: UI/UX Designer and interaction design graduate based in Bengaluru, India, focused on user experience, interface design, visual systems, branding, prototyping, photography, and product storytelling.
+
+Last updated: July 2026.
+
+## Main Pages
+- [Portfolio](https://subtlesayak.github.io/): Main project grid and category browsing.
+- [Photography](https://subtlesayak.github.io/photography.html): Photography collections and visual galleries.
+- [Articles](https://subtlesayak.github.io/articles.html): Articles, notes, and process writing.
+- [About](https://subtlesayak.github.io/about.html): Profile, skills, software, education, projects, certificates, and contact links.
+- [Sitemap](https://subtlesayak.github.io/sitemap.html): Human-readable site map.
+
+## Portfolio Projects
+- [Branding and UI/UX - RED PRODUCTIONS](https://subtlesayak.github.io/Projects/Branding%20and%20UIUX%20RED%20PRODUCTIONS/branding-red-productions.html): Branding and UI/UX - RED PRODUCTIONS is a selected UI/UX and visual design project from my Behance portfolio. View the full case study here: https://www.behance.net/gallery/213828487/Branding-and-UIUX-RED-PRODUCTIONS Tags/tools: Branding, Adobe Illustrator, Figma, Framer.
+- [Namma Metro App Case Study](https://subtlesayak.github.io/Projects/Namma%20Metro%20App%20Case%20Study/namma-metro-app-case-study.html): Namma Metro App Case Study is a selected UI/UX and visual design project from my Behance portfolio. View the full case study here: https://www.behance.net/gallery/194922225/Namma-Metro-App-Case-Study Tags/tools: Interaction Design, Figma, Adobe Illustrator.
+- [AyuRest | Mental Health Companion App](https://subtlesayak.github.io/Projects/AyuRest%20Mental%20Health%20Companion%20App/ayurest-mental-health-companion-app.html): AyuRest | Mental Health Companion App is a selected UI/UX and visual design project from my Behance portfolio. View the full case study here: https://www.behance.net/gallery/226347039/AyuRest-Mental-Health-Companion-App Tags/tools: Interaction Design, Figma, FigJam.
+- [University Website Analysis | Mock Redesign](https://subtlesayak.github.io/Projects/University%20Website%20Analysis%20Mock%20Redesign/university-website-analysis-mock-redesign.html): University Website Analysis | Mock Redesign is a selected UI/UX and visual design project from my Behance portfolio. View the full case study here: https://www.behance.net/gallery/226351535/University-Website-Analysis-Mock-Redesign Tags/tools: Interaction Design, Figma.
+- [Google Pay Homepage Redesign](https://subtlesayak.github.io/Projects/Google%20Pay%20Homepage%20Redesign/google-pay-homepage-redesign.html): Google Pay Homepage Redesign is a selected UI/UX and visual design project from my Behance portfolio. View the full case study here: https://www.behance.net/gallery/194883711/Google-Pay-Homepage-Redesign Tags/tools: Interaction Design, Figma.
+- [Visual Design Diary](https://subtlesayak.github.io/Projects/Visual%20Design%20Diary/visual-design-diary.html): Visual Design Diary is a selected UI/UX and visual design project from my Behance portfolio. View the full case study here: https://www.behance.net/gallery/226344969/Visual-Design-Diary Tags/tools: Interaction Design, Figma, Adobe Photoshop.
+- [Experimental Y2K Web Design Format](https://subtlesayak.github.io/Projects/Experimental%20Y2K%20Web%20Design%20Format/experimental-y2k-web-design-format.html): Experimental Y2K Web Design Format is a selected UI/UX and visual design project from my Behance portfolio. View the full case study here: https://www.behance.net/gallery/194923697/Experimental-Y2K-Web-Design-Format Tags/tools: Web Design, Figma, Adobe Illustrator, Dall-E.
+- [Exploring Color Harmony with Posters](https://subtlesayak.github.io/Projects/Exploring%20Color%20Harmony%20with%20Posters/exploring-color-harmony-with-posters.html): Exploring Color Harmony with Posters is a selected UI/UX and visual design project from my Behance portfolio. View the full case study here: https://www.behance.net/gallery/194889185/Exploring-Color-Harmony-with-Posters Tags/tools: Graphic Design, Interaction Design, Illustration, Figma, Adobe Illustrator.
+- [3D Modeling](https://subtlesayak.github.io/Projects/3D%20Modeling/3d-modeling.html): A collection of 3D modeling and product visualization explorations, including objects, lighting studies, furniture forms, speakers, perfume bottles, and material/render tests. Tags/tools: 3D Modeling, Product Visualization, Rendering.
+- [Alias Modeling](https://subtlesayak.github.io/Projects/Alias%20Modeling/alias-modeling.html): Alias modeling studies focused on surface form, product shape exploration, and clean digital model presentation. Tags/tools: Alias, Surface Modeling, Product Design.
+- [Digital Rendering](https://subtlesayak.github.io/Projects/Digital%20Rendering/digital-rendering.html): Digital rendering and composition work exploring product presentation, lighting, surfaces, and final image treatment. Tags/tools: Digital Rendering, Composition, Product Visualization.
+- [Rendering](https://subtlesayak.github.io/Projects/Rendering/rendering.html): Rendering studies and visual compositions spanning product, object, and presentation-focused image work. Tags/tools: Rendering, Product Visualization, Composition.
+- [Workshop Design](https://subtlesayak.github.io/Projects/Workshop%20Design/workshop-design.html): Workshop design and model-making documentation, showing physical build process, workshop outcomes, and object studies. Tags/tools: Workshop Design, Model Making, Product Design.
+
+## Photography Collections
+- Photography Collection (2026, Bengaluru, Karnataka, India): A multi-image photography collection from the Photography folder. Edit this file to add the collection title, date, location, context, and captions.
+
+## Articles
+- I Never Intended to Build an App Used Around the World (2026): How a small Royal Enfield Himalayan 450 dashboard experiment became OpenDash, an app used by riders around the world.
+
+## Public Profile Links
+- [GitHub](https://github.com/subtlesayak/): Code and public repositories.
+- [LinkedIn](https://www.linkedin.com/in/sayaksajith/): Professional profile.
+- [Behance](https://www.behance.net/sayaksajith): Visual and design work.
+- [YouTube](http://youtube.com/@subtlesayak): Video channel.
