@@ -1,6 +1,7 @@
-const PHOTOGRAPHY_CACHE_VERSION = "1.7";
+const PHOTOGRAPHY_CACHE_VERSION = "1.8";
 const PHOTOGRAPHY_MEDIA_PATH = "../Projects/Photography/media.txt";
 const PHOTOGRAPHY_METADATA_PATH = "../Projects/Photography/metadata.json";
+const PHOTOGRAPHY_ENTRY_PATH = "../Projects/Photography/entry.txt";
 const PHOTOGRAPHY_BASE_PATH = "../Projects/Photography/";
 const PHOTOGRAPHY_THUMB_PATH = "../Projects/Photography/thumbs/";
 
@@ -11,6 +12,44 @@ function parsePhotoLines(text) {
         .filter(line => line && !line.startsWith("#"));
 }
 
+function parsePhotographyEntry(text) {
+    const parts = text.split("---").map(part => part.trim());
+    const captionMap = new Map();
+
+    (parts[4] || "").split("\n").forEach(line => {
+        const trimmed = line.trim();
+        if (!trimmed || trimmed.startsWith("#") || !trimmed.includes(":")) return;
+        const separatorIndex = trimmed.indexOf(":");
+        const fileName = trimmed.slice(0, separatorIndex).trim();
+        const caption = trimmed.slice(separatorIndex + 1).trim();
+        if (fileName && caption) captionMap.set(fileName, caption);
+    });
+
+    return {
+        title: parts[0] || "Photography Collection",
+        date: parts[1] || "",
+        location: parts[2] || "",
+        context: parts[3] || "",
+        captions: captionMap
+    };
+}
+
+async function fetchPhotographyEntry() {
+    try {
+        const response = await fetch(`${PHOTOGRAPHY_ENTRY_PATH}?v=${PHOTOGRAPHY_CACHE_VERSION}`);
+        if (!response.ok) throw new Error("Unable to load photography entry metadata");
+        return parsePhotographyEntry(await response.text());
+    } catch (error) {
+        console.error("Error loading photography entry:", error);
+        return {
+            title: "Photography Collection",
+            date: "",
+            location: "",
+            context: "",
+            captions: new Map()
+        };
+    }
+}
 function createPhotoCard(fileName, index) {
     const link = document.createElement("a");
     link.className = "photo-card";
@@ -125,7 +164,7 @@ function createStat(label, value) {
     return stat;
 }
 
-function renderPhotoDetail(container, photoFiles, selectedIndex, metadataByFile) {
+function renderPhotoDetail(container, photoFiles, selectedIndex, metadataByFile, entry) {
     document.body.classList.add("photography-project-mode");
 
     const fileName = photoFiles[selectedIndex];
@@ -138,7 +177,8 @@ function renderPhotoDetail(container, photoFiles, selectedIndex, metadataByFile)
     const settings = [metadata.ExposureTime, formatFNumber(metadata.FNumber), metadata.ISO ? `ISO ${metadata.ISO}` : ""].filter(Boolean).join("  ");
     const dimensions = metadata.ImageWidth && metadata.ImageHeight ? `${metadata.ImageWidth} x ${metadata.ImageHeight}` : "";
 
-    document.title = `Photography - ${fileName}`;
+    const caption = entry.captions.get(fileName) || "";
+    document.title = `${entry.title} - ${fileName}`;
 
     const detail = document.createElement("section");
     detail.className = "photo-detail";
@@ -170,16 +210,20 @@ function renderPhotoDetail(container, photoFiles, selectedIndex, metadataByFile)
     descriptionPanel.className = "project-description-container";
 
     const title = document.createElement("h1");
-    title.textContent = "Photography";
+    title.textContent = entry.title;
 
     const description = document.createElement("p");
-    description.textContent = `Photo ${selectedIndex + 1} of ${photoFiles.length}`;
+    description.textContent = entry.context || `Photo ${selectedIndex + 1} of ${photoFiles.length}`;
 
     descriptionPanel.appendChild(title);
     descriptionPanel.appendChild(description);
 
     const sectionLabel = document.createElement("h3");
-    sectionLabel.textContent = "Collection";
+    sectionLabel.textContent = caption ? "Caption" : "Collection";
+
+    const captionText = document.createElement("p");
+    captionText.className = "photo-caption";
+    captionText.textContent = caption || `Photo ${selectedIndex + 1} of ${photoFiles.length}`;
 
     const tagContainer = document.createElement("div");
     tagContainer.className = "project-tags-container";
@@ -194,6 +238,8 @@ function renderPhotoDetail(container, photoFiles, selectedIndex, metadataByFile)
 
     [
         createStat("Image", `${selectedIndex + 1} / ${photoFiles.length}`),
+        createStat("Date", entry.date),
+        createStat("Location", entry.location),
         createStat("Camera", camera),
         createStat("Lens", metadata.LensModel),
         createStat("Settings", settings),
@@ -253,9 +299,10 @@ async function loadPhotography() {
         if (selectedIndex !== -1) {
             if (window.PortfolioControls) window.PortfolioControls.initViewControls({ showResize: false });
             const metadataByFile = await fetchPhotoMetadata();
+            const entry = await fetchPhotographyEntry();
             gallery.classList.remove("photography-grid");
             gallery.classList.add("photography-detail-shell");
-            renderPhotoDetail(gallery, photoFiles, selectedIndex, metadataByFile);
+            renderPhotoDetail(gallery, photoFiles, selectedIndex, metadataByFile, entry);
             return;
         }
 

@@ -403,3 +403,15 @@ body.theme-light .photo-nav-button:focus-visible {
     right: 10px;
   }
 }
+
+
+.photo-caption {
+  margin: 0 0 12px;
+  color: #d7d7d7;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+body.theme-light .photo-caption {
+  color: var(--muted);
+}

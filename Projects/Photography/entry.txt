@@ -1,0 +1,12 @@
+Photography Collection
+---
+2026
+---
+Bengaluru, Karnataka, India
+---
+A multi-image photography collection from the Photography folder. Edit this file to add the collection title, date, location, context, and captions.
+---
+# Captions use: filename: caption text
+DSC02270.JPG: Photography collection image 1.
+DSC02271.JPG: Photography collection image 2.
+DSC02272.JPG: Photography collection image 3.
