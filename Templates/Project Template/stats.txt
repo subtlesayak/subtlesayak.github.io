@@ -1,0 +1,3 @@
+Role: Designer
+Timeline: 2026
+Tools: Figma, Photoshop

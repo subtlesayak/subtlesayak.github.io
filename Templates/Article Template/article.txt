@@ -1,0 +1,9 @@
+Article Title
+---
+Month Year
+---
+Short summary shown on the article card.
+---
+Write the article body here.
+
+Use `# Heading`, `## Subheading`, `**bold**`, and `*italic*` when helpful.

@@ -1,9 +1,9 @@
-const PHOTOGRAPHY_CACHE_VERSION = "1.8";
-const PHOTOGRAPHY_MEDIA_PATH = "../Projects/Photography/media.txt";
-const PHOTOGRAPHY_METADATA_PATH = "../Projects/Photography/metadata.json";
-const PHOTOGRAPHY_ENTRY_PATH = "../Projects/Photography/entry.txt";
+const PHOTOGRAPHY_CACHE_VERSION = "1.9";
+const PHOTOGRAPHY_COLLECTIONS_PATH = "../Projects/Photography/collections.txt";
+const PHOTOGRAPHY_ROOT_ID = ".";
 const PHOTOGRAPHY_BASE_PATH = "../Projects/Photography/";
-const PHOTOGRAPHY_THUMB_PATH = "../Projects/Photography/thumbs/";
+const PHOTOGRAPHY_COLLECTIONS_BASE_PATH = "../Projects/Photography/Collections/";
+const PHOTOGRAPHY_METADATA_PATH = "../Projects/Photography/metadata.json";
 
 function parsePhotoLines(text) {
     return text
@@ -34,57 +34,80 @@ function parsePhotographyEntry(text) {
     };
 }
 
-async function fetchPhotographyEntry() {
+function getCollectionBasePath(collectionId) {
+    return collectionId === PHOTOGRAPHY_ROOT_ID
+        ? PHOTOGRAPHY_BASE_PATH
+        : `${PHOTOGRAPHY_COLLECTIONS_BASE_PATH}${encodeURI(collectionId)}/`;
+}
+
+function getCollectionMediaPath(collectionId) {
+    return `${getCollectionBasePath(collectionId)}media.txt`;
+}
+
+function getCollectionEntryPath(collectionId) {
+    return `${getCollectionBasePath(collectionId)}entry.txt`;
+}
+
+function getImagePath(collectionId, fileName) {
+    return `${getCollectionBasePath(collectionId)}${encodeURI(fileName)}`;
+}
+
+function getThumbPath(collectionId, fileName) {
+    return `${getCollectionBasePath(collectionId)}thumbs/${encodeURI(fileName)}`;
+}
+
+function collectionUrl(collectionId) {
+    return `photography.html?collection=${encodeURIComponent(collectionId)}`;
+}
+
+function photoUrl(collectionId, fileName) {
+    return `photography.html?collection=${encodeURIComponent(collectionId)}&photo=${encodeURIComponent(fileName)}`;
+}
+
+function getSelectedCollectionId(collections) {
+    const params = new URLSearchParams(window.location.search);
+    const collection = params.get("collection") || (params.get("photo") ? PHOTOGRAPHY_ROOT_ID : "");
+    if (!collection) return "";
+    return collections.some(item => item.id === collection) ? collection : "";
+}
+
+function getSelectedPhotoIndex(photoFiles) {
+    const selectedPhoto = new URLSearchParams(window.location.search).get("photo");
+    if (!selectedPhoto) return -1;
+    return photoFiles.findIndex(fileName => fileName === selectedPhoto);
+}
+
+async function fetchText(path, fallback) {
+    const response = await fetch(`${path}?v=${PHOTOGRAPHY_CACHE_VERSION}`);
+    if (!response.ok) {
+        if (fallback !== undefined) return fallback;
+        throw new Error(`Unable to load ${path}`);
+    }
+    return response.text();
+}
+
+async function fetchCollectionIds() {
     try {
-        const response = await fetch(`${PHOTOGRAPHY_ENTRY_PATH}?v=${PHOTOGRAPHY_CACHE_VERSION}`);
-        if (!response.ok) throw new Error("Unable to load photography entry metadata");
-        return parsePhotographyEntry(await response.text());
+        const text = await fetchText(PHOTOGRAPHY_COLLECTIONS_PATH, PHOTOGRAPHY_ROOT_ID);
+        const ids = parsePhotoLines(text);
+        return ids.length ? ids : [PHOTOGRAPHY_ROOT_ID];
     } catch (error) {
-        console.error("Error loading photography entry:", error);
-        return {
-            title: "Photography Collection",
-            date: "",
-            location: "",
-            context: "",
-            captions: new Map()
-        };
+        console.error("Error loading photography collections:", error);
+        return [PHOTOGRAPHY_ROOT_ID];
     }
 }
-function createPhotoCard(fileName, index) {
-    const link = document.createElement("a");
-    link.className = "photo-card";
-    link.href = `photography.html?photo=${encodeURIComponent(fileName)}`;
-    link.setAttribute("aria-label", "Open photo " + (index + 1));
 
-    const image = document.createElement("img");
-    const fullImageUrl = PHOTOGRAPHY_BASE_PATH + encodeURI(fileName);
-    image.src = PHOTOGRAPHY_THUMB_PATH + encodeURI(fileName);
-    image.alt = "Photography work " + (index + 1);
-    image.loading = index < 6 ? "eager" : "lazy";
-    image.decoding = "async";
-    image.fetchPriority = index < 6 ? "high" : "auto";
-    image.onerror = () => {
-        image.onerror = null;
-        image.src = fullImageUrl;
+async function fetchCollection(collectionId) {
+    const [entryText, mediaText] = await Promise.all([
+        fetchText(getCollectionEntryPath(collectionId), "Photography Collection\n---\n\n---\n\n---\n\n---\n"),
+        fetchText(getCollectionMediaPath(collectionId), "")
+    ]);
+
+    return {
+        id: collectionId,
+        entry: parsePhotographyEntry(entryText),
+        photos: parsePhotoLines(mediaText)
     };
-
-    link.appendChild(image);
-    return link;
-}
-
-function showPhotographyEmptyState(container) {
-    const emptyState = document.createElement("div");
-    emptyState.className = "portfolio-empty";
-
-    const heading = document.createElement("h1");
-    heading.textContent = "Photography";
-
-    const body = document.createElement("p");
-    body.textContent = "Add image filenames to Projects/Photography/media.txt to show photos here.";
-
-    emptyState.appendChild(heading);
-    emptyState.appendChild(body);
-    container.appendChild(emptyState);
 }
 
 async function fetchPhotoMetadata() {
@@ -100,19 +123,145 @@ async function fetchPhotoMetadata() {
     }
 }
 
-function getSelectedPhotoIndex(photoFiles) {
-    const selectedPhoto = new URLSearchParams(window.location.search).get("photo");
-    if (!selectedPhoto) return -1;
+function showPhotographyEmptyState(container) {
+    const emptyState = document.createElement("div");
+    emptyState.className = "portfolio-empty";
 
-    return photoFiles.findIndex(fileName => fileName === selectedPhoto);
+    const heading = document.createElement("h1");
+    heading.textContent = "Photography";
+
+    const body = document.createElement("p");
+    body.textContent = "Add collections to Projects/Photography/collections.txt to show photos here.";
+
+    emptyState.appendChild(heading);
+    emptyState.appendChild(body);
+    container.appendChild(emptyState);
 }
-function preloadPhoto(fileName) {
+
+function createCollectionCard(collection) {
+    const link = document.createElement("a");
+    link.className = "photo-collection-card";
+    link.href = collectionUrl(collection.id);
+
+    const coverName = collection.photos[0];
+    const imageWrap = document.createElement("div");
+    imageWrap.className = "photo-collection-cover";
+
+    if (coverName) {
+        const image = document.createElement("img");
+        const fullImageUrl = getImagePath(collection.id, coverName);
+        image.src = getThumbPath(collection.id, coverName);
+        image.alt = collection.entry.title;
+        image.loading = "lazy";
+        image.decoding = "async";
+        image.onerror = () => {
+            image.onerror = null;
+            image.src = fullImageUrl;
+        };
+        imageWrap.appendChild(image);
+    }
+
+    const body = document.createElement("div");
+    body.className = "photo-collection-body";
+
+    const meta = document.createElement("span");
+    meta.className = "photo-collection-meta";
+    meta.textContent = [collection.entry.date, collection.entry.location].filter(Boolean).join(" | ") || `${collection.photos.length} photos`;
+
+    const title = document.createElement("h2");
+    title.textContent = collection.entry.title;
+
+    const description = document.createElement("p");
+    description.textContent = collection.entry.context || `${collection.photos.length} photos`;
+
+    body.appendChild(meta);
+    body.appendChild(title);
+    body.appendChild(description);
+    link.appendChild(imageWrap);
+    link.appendChild(body);
+    return link;
+}
+
+function renderCollectionList(container, collections) {
+    document.body.classList.remove("photography-project-mode");
+    container.className = "photography-collections";
+
+    const fragment = document.createDocumentFragment();
+    collections.forEach(collection => fragment.appendChild(createCollectionCard(collection)));
+    container.replaceChildren(fragment);
+
+    if (window.PortfolioControls) window.PortfolioControls.initViewControls({ showResize: false });
+}
+
+function createPhotoCard(collection, fileName, index) {
+    const link = document.createElement("a");
+    link.className = "photo-card";
+    link.href = photoUrl(collection.id, fileName);
+    link.setAttribute("aria-label", `Open ${collection.entry.title} photo ${index + 1}`);
+
+    const image = document.createElement("img");
+    const fullImageUrl = getImagePath(collection.id, fileName);
+    image.src = getThumbPath(collection.id, fileName);
+    image.alt = collection.entry.captions.get(fileName) || `${collection.entry.title} ${index + 1}`;
+    image.loading = index < 6 ? "eager" : "lazy";
+    image.decoding = "async";
+    image.fetchPriority = index < 6 ? "high" : "auto";
+    image.onerror = () => {
+        image.onerror = null;
+        image.src = fullImageUrl;
+    };
+
+    link.appendChild(image);
+    return link;
+}
+
+function renderCollectionGallery(container, collection) {
+    document.body.classList.remove("photography-project-mode");
+    container.className = "photography-collection-view";
+
+    const intro = document.createElement("section");
+    intro.className = "photography-entry-intro";
+
+    const back = document.createElement("a");
+    back.className = "photography-collection-back";
+    back.href = "photography.html";
+    back.textContent = "Back to collections";
+
+    const title = document.createElement("h1");
+    title.textContent = collection.entry.title;
+
+    const meta = document.createElement("p");
+    meta.className = "photography-entry-meta";
+    meta.textContent = [collection.entry.date, collection.entry.location].filter(Boolean).join(" | ");
+
+    const context = document.createElement("p");
+    context.className = "photography-entry-context";
+    context.textContent = collection.entry.context || `${collection.photos.length} photos`;
+
+    intro.appendChild(back);
+    intro.appendChild(title);
+    if (meta.textContent) intro.appendChild(meta);
+    intro.appendChild(context);
+
+    const grid = document.createElement("div");
+    grid.className = "photography-grid";
+    collection.photos.forEach((fileName, index) => grid.appendChild(createPhotoCard(collection, fileName, index)));
+
+    container.replaceChildren(intro, grid);
+
+    if (window.PortfolioControls) {
+        window.PortfolioControls.initViewControls({
+            thumbnailContainer: grid,
+            storageKey: "photographyThumbnailColumns"
+        });
+    }
+}
+
+function preloadPhoto(collectionId, fileName) {
     const image = new Image();
     image.decoding = "async";
-    image.src = PHOTOGRAPHY_BASE_PATH + encodeURI(fileName);
+    image.src = getImagePath(collectionId, fileName);
 }
-
-
 
 function createPhotoNavButton(label, iconClass, className, onClick) {
     const button = document.createElement("button");
@@ -126,6 +275,7 @@ function createPhotoNavButton(label, iconClass, className, onClick) {
     button.addEventListener("click", onClick);
     return button;
 }
+
 function formatExifDate(value) {
     if (!value) return "";
 
@@ -164,21 +314,22 @@ function createStat(label, value) {
     return stat;
 }
 
-function renderPhotoDetail(container, photoFiles, selectedIndex, metadataByFile, entry) {
+function renderPhotoDetail(container, collection, selectedIndex, metadataByFile) {
     document.body.classList.add("photography-project-mode");
 
-    const fileName = photoFiles[selectedIndex];
+    const fileName = collection.photos[selectedIndex];
     const metadata = metadataByFile.get(fileName) || {};
-    const previousPhoto = photoFiles[(selectedIndex - 1 + photoFiles.length) % photoFiles.length];
-    const nextPhoto = photoFiles[(selectedIndex + 1) % photoFiles.length];
-    preloadPhoto(previousPhoto);
-    preloadPhoto(nextPhoto);
+    const previousPhoto = collection.photos[(selectedIndex - 1 + collection.photos.length) % collection.photos.length];
+    const nextPhoto = collection.photos[(selectedIndex + 1) % collection.photos.length];
+    preloadPhoto(collection.id, previousPhoto);
+    preloadPhoto(collection.id, nextPhoto);
+
     const camera = [metadata.Make, metadata.Model].filter(Boolean).join(" ");
     const settings = [metadata.ExposureTime, formatFNumber(metadata.FNumber), metadata.ISO ? `ISO ${metadata.ISO}` : ""].filter(Boolean).join("  ");
     const dimensions = metadata.ImageWidth && metadata.ImageHeight ? `${metadata.ImageWidth} x ${metadata.ImageHeight}` : "";
+    const caption = collection.entry.captions.get(fileName) || "";
 
-    const caption = entry.captions.get(fileName) || "";
-    document.title = `${entry.title} - ${fileName}`;
+    document.title = `${collection.entry.title} - ${fileName}`;
 
     const detail = document.createElement("section");
     detail.className = "photo-detail";
@@ -188,32 +339,31 @@ function renderPhotoDetail(container, photoFiles, selectedIndex, metadataByFile,
     mediaPanel.className = "photo-detail-media";
 
     const image = document.createElement("img");
-    image.src = PHOTOGRAPHY_BASE_PATH + encodeURI(fileName);
-    image.alt = "Photography work " + (selectedIndex + 1);
+    image.src = getImagePath(collection.id, fileName);
+    image.alt = caption || `${collection.entry.title} ${selectedIndex + 1}`;
     mediaPanel.appendChild(image);
 
     const goToPhoto = fileNameToOpen => {
-        window.location.href = `photography.html?photo=${encodeURIComponent(fileNameToOpen)}`;
+        window.location.href = photoUrl(collection.id, fileNameToOpen);
     };
 
     mediaPanel.appendChild(createPhotoNavButton("Previous photo", "fa fa-chevron-left", "photo-nav-button photo-nav-prev", () => goToPhoto(previousPhoto)));
     mediaPanel.appendChild(createPhotoNavButton("Next photo", "fa fa-chevron-right", "photo-nav-button photo-nav-next", () => goToPhoto(nextPhoto)));
-    mediaPanel.appendChild(createPhotoNavButton("Back to photography", "fa fa-arrow-left", "photo-nav-button photo-nav-back", () => {
-        window.location.href = "photography.html";
+    mediaPanel.appendChild(createPhotoNavButton("Back to collection", "fa fa-arrow-left", "photo-nav-button photo-nav-back", () => {
+        window.location.href = collectionUrl(collection.id);
     }));
 
     const infoPanel = document.createElement("aside");
     infoPanel.className = "photo-detail-info";
 
-
     const descriptionPanel = document.createElement("div");
     descriptionPanel.className = "project-description-container";
 
     const title = document.createElement("h1");
-    title.textContent = entry.title;
+    title.textContent = collection.entry.title;
 
     const description = document.createElement("p");
-    description.textContent = entry.context || `Photo ${selectedIndex + 1} of ${photoFiles.length}`;
+    description.textContent = collection.entry.context || `Photo ${selectedIndex + 1} of ${collection.photos.length}`;
 
     descriptionPanel.appendChild(title);
     descriptionPanel.appendChild(description);
@@ -223,7 +373,7 @@ function renderPhotoDetail(container, photoFiles, selectedIndex, metadataByFile,
 
     const captionText = document.createElement("p");
     captionText.className = "photo-caption";
-    captionText.textContent = caption || `Photo ${selectedIndex + 1} of ${photoFiles.length}`;
+    captionText.textContent = caption || `Photo ${selectedIndex + 1} of ${collection.photos.length}`;
 
     const tagContainer = document.createElement("div");
     tagContainer.className = "project-tags-container";
@@ -237,9 +387,9 @@ function renderPhotoDetail(container, photoFiles, selectedIndex, metadataByFile,
     statsContainer.className = "project-stats-container";
 
     [
-        createStat("Image", `${selectedIndex + 1} / ${photoFiles.length}`),
-        createStat("Date", entry.date),
-        createStat("Location", entry.location),
+        createStat("Image", `${selectedIndex + 1} / ${collection.photos.length}`),
+        createStat("Date", collection.entry.date),
+        createStat("Location", collection.entry.location),
         createStat("Camera", camera),
         createStat("Lens", metadata.LensModel),
         createStat("Settings", settings),
@@ -250,10 +400,9 @@ function renderPhotoDetail(container, photoFiles, selectedIndex, metadataByFile,
         createStat("File", fileName)
     ].filter(Boolean).forEach(stat => statsContainer.appendChild(stat));
 
-
     const fullImageLink = document.createElement("a");
     fullImageLink.className = "photo-action photo-action-secondary";
-    fullImageLink.href = PHOTOGRAPHY_BASE_PATH + encodeURI(fileName);
+    fullImageLink.href = getImagePath(collection.id, fileName);
     fullImageLink.target = "_blank";
     fullImageLink.rel = "noopener noreferrer";
     fullImageLink.textContent = "Open Full Image";
@@ -261,6 +410,7 @@ function renderPhotoDetail(container, photoFiles, selectedIndex, metadataByFile,
     infoPanel.appendChild(descriptionPanel);
     infoPanel.appendChild(document.createElement("hr"));
     infoPanel.appendChild(sectionLabel);
+    infoPanel.appendChild(captionText);
     infoPanel.appendChild(tagContainer);
     infoPanel.appendChild(document.createElement("hr"));
     infoPanel.appendChild(statsContainer);
@@ -268,15 +418,15 @@ function renderPhotoDetail(container, photoFiles, selectedIndex, metadataByFile,
 
     detail.appendChild(mediaPanel);
     detail.appendChild(infoPanel);
-    container.appendChild(detail);
+    container.replaceChildren(detail);
 
     document.addEventListener("keydown", event => {
         if (event.key === "Escape") {
-            window.location.href = "photography.html";
+            window.location.href = collectionUrl(collection.id);
         } else if (event.key === "ArrowLeft") {
-            window.location.href = `photography.html?photo=${encodeURIComponent(previousPhoto)}`;
+            window.location.href = photoUrl(collection.id, previousPhoto);
         } else if (event.key === "ArrowRight") {
-            window.location.href = `photography.html?photo=${encodeURIComponent(nextPhoto)}`;
+            window.location.href = photoUrl(collection.id, nextPhoto);
         }
     });
 }
@@ -286,38 +436,31 @@ async function loadPhotography() {
     if (!gallery) return;
 
     try {
-        const response = await fetch(`${PHOTOGRAPHY_MEDIA_PATH}?v=${PHOTOGRAPHY_CACHE_VERSION}`);
-        if (!response.ok) throw new Error("Unable to load photography media list");
-
-        const photoFiles = parsePhotoLines(await response.text());
-        if (photoFiles.length === 0) {
+        const collectionIds = await fetchCollectionIds();
+        const collections = (await Promise.all(collectionIds.map(fetchCollection))).filter(collection => collection.photos.length);
+        if (!collections.length) {
             showPhotographyEmptyState(gallery);
             return;
         }
 
-        const selectedIndex = getSelectedPhotoIndex(photoFiles);
-        if (selectedIndex !== -1) {
-            if (window.PortfolioControls) window.PortfolioControls.initViewControls({ showResize: false });
-            const metadataByFile = await fetchPhotoMetadata();
-            const entry = await fetchPhotographyEntry();
-            gallery.classList.remove("photography-grid");
-            gallery.classList.add("photography-detail-shell");
-            renderPhotoDetail(gallery, photoFiles, selectedIndex, metadataByFile, entry);
+        const selectedCollectionId = getSelectedCollectionId(collections);
+        if (!selectedCollectionId) {
+            renderCollectionList(gallery, collections);
             return;
         }
 
-        if (window.PortfolioControls) {
-            window.PortfolioControls.initViewControls({
-                thumbnailContainer: gallery,
-                storageKey: "photographyThumbnailColumns"
-            });
+        const collection = collections.find(item => item.id === selectedCollectionId);
+        const selectedIndex = getSelectedPhotoIndex(collection.photos);
+        if (selectedIndex !== -1) {
+            if (window.PortfolioControls) window.PortfolioControls.initViewControls({ showResize: false });
+            const metadataByFile = collection.id === PHOTOGRAPHY_ROOT_ID ? await fetchPhotoMetadata() : new Map();
+            gallery.classList.remove("photography-grid");
+            gallery.classList.add("photography-detail-shell");
+            renderPhotoDetail(gallery, collection, selectedIndex, metadataByFile);
+            return;
         }
 
-        const fragment = document.createDocumentFragment();
-        photoFiles.forEach((fileName, index) => {
-            fragment.appendChild(createPhotoCard(fileName, index));
-        });
-        gallery.appendChild(fragment);
+        renderCollectionGallery(gallery, collection);
     } catch (error) {
         console.error("Error loading photography:", error);
         showPhotographyEmptyState(gallery);

@@ -1,0 +1,6 @@
+# Known legacy project folders with imported media references that are not shipped in this repo.
+Projects/3D Modeling/media.txt
+Projects/Alias Modeling/media.txt
+Projects/Digital Rendering/media.txt
+Projects/Rendering/media.txt
+Projects/Workshop Design/media.txt

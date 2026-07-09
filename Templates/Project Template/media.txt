@@ -1,0 +1,5 @@
+thumbnail.jpg
+Add a caption on the line after any media file if you want one.
+
+process-image.jpg
+Optional caption for the process image.

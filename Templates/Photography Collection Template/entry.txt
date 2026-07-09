@@ -1,0 +1,10 @@
+Collection Title
+---
+Month Year
+---
+Location
+---
+A short note about the event, walk, shoot, or theme.
+---
+photo-one.jpg: Optional caption for the first photo.
+photo-two.jpg: Optional caption for the second photo.

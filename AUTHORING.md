@@ -6,14 +6,15 @@ This site is intentionally editable without a build step. Most content lives in 
 
 To add a portfolio project:
 
-1. Copy an existing folder inside `Projects/`.
-2. Rename the folder.
+1. Copy `Templates/Project Template/` into `Projects/`.
+2. Rename the copied folder.
 3. Edit these required files:
    - `description.txt`
    - `media.txt`
    - `stats.txt`
    - `categories.txt`
-4. Add the folder name to `Config/projects.txt`.
+4. Copy an existing project HTML page, rename it, and put that filename in `description.txt`.
+5. Add the folder name to `Config/projects.txt`.
 
 ### `description.txt`
 
@@ -51,11 +52,23 @@ Use category slugs, one per line. Category labels and order live in `Config/cate
 
 ## Photography
 
-Photography lives in `Projects/Photography/`.
+Photography is collection-based. The existing root collection lives in `Projects/Photography/`, and future collections can live in `Projects/Photography/Collections/`.
+
+### Root Collection
 
 - Add image files to `Projects/Photography/`.
 - Add image filenames to `Projects/Photography/media.txt`.
 - Edit `Projects/Photography/entry.txt` for the collection title, date, location, context, and captions.
+- Keep `.` in `Projects/Photography/collections.txt` to show this root collection.
+
+### New Photography Collection
+
+1. Copy `Templates/Photography Collection Template/` into `Projects/Photography/Collections/`.
+2. Rename the copied folder, for example `Campus Walk`.
+3. Add full-size photos inside the copied folder.
+4. Add optional thumbnail files with the same filenames inside `thumbs/`.
+5. Edit `entry.txt` and `media.txt`.
+6. Add the folder name to `Projects/Photography/collections.txt`.
 
 `entry.txt` format:
 
@@ -72,15 +85,21 @@ filename.jpg: Caption text
 another-file.jpg: Another caption
 ```
 
-Thumbnails can live in `Projects/Photography/thumbs/` with the same filenames as the full images.
+`media.txt` format:
+
+```txt
+filename.jpg
+another-file.jpg
+```
 
 ## Articles
 
 Articles live in `Articles/`.
 
-- Create one folder per article.
-- Add `article.txt` inside that folder.
-- Add the folder name to `Config/articles.txt`.
+1. Copy `Templates/Article Template/` into `Articles/`.
+2. Rename the copied folder.
+3. Edit `article.txt`.
+4. Add the folder name to `Config/articles.txt`.
 
 `article.txt` format:
 
@@ -96,6 +115,16 @@ Article body text
 
 The article renderer supports simple text, `#` / `##` headings, `---` dividers, `**bold**`, and `*italic*`.
 
+## Site Info
+
+The quiet footer line comes from `Config/site.txt`. Keep it short, for example:
+
+```txt
+Last updated: July 2026
+```
+
+The sitemap page is `sitemap.html`; it reads the same project, photography, and article config files as the rest of the site.
+
 ## About/Profile
 
 Profile, summary, skills, software, and work/education content live in `Config/*.txt` files.
@@ -107,6 +136,8 @@ Before publishing, run:
 ```bash
 node tools/validate-content.js
 ```
+
+Known legacy missing-media warnings can be documented in `Config/validation-ignore.txt`.
 
 The site still works without running this script; it is only a safety helper.
 

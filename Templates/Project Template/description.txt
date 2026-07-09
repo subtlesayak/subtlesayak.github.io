@@ -1,0 +1,9 @@
+Project Title
+---
+Short project description. Keep it direct: what it is, why it exists, and your role.
+---
+Tag One, Tag Two, Tool Name
+---
+thumbnail.jpg
+---
+project-template.html
