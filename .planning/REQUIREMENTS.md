@@ -21,31 +21,31 @@
 
 ### Project Authoring
 
-- [ ] **AUTHR-01**: Template user can add a new project by copying a documented folder/template and editing text files.
-- [ ] **AUTHR-02**: Template user can understand required `description.txt`, `media.txt`, and `stats.txt` formats from in-repo documentation.
-- [ ] **AUTHR-03**: Template user can validate that every project listed in `Config/projects.txt` has required files before publishing.
-- [ ] **AUTHR-04**: Template user can update profile/social/about content through `Config/*.txt` without editing JavaScript.
+- [x] **AUTHR-01**: Template user can add a new project by copying a documented folder/template and editing text files.
+- [x] **AUTHR-02**: Template user can understand required `description.txt`, `media.txt`, and `stats.txt` formats from in-repo documentation.
+- [x] **AUTHR-03**: Template user can validate that every project listed in `Config/projects.txt` has required files before publishing.
+- [x] **AUTHR-04**: Template user can update profile/social/about content through `Config/*.txt` without editing JavaScript.
 
 ### Photography
 
 - [x] **PHOTO-01**: Visitor can browse Photography as its own homepage category section.
-- [ ] **PHOTO-02**: Visitor can open a photography entry representing an event, shoot, or collection.
-- [ ] **PHOTO-03**: Photography entries can display multiple images in one entry without needing a separate app or backend.
-- [ ] **PHOTO-04**: Photography entries can include a title, short context, optional date/location text, and captions using beginner-editable files.
+- [x] **PHOTO-02**: Visitor can open a photography entry representing an event, shoot, or collection.
+- [x] **PHOTO-03**: Photography entries can display multiple images in one entry without needing a separate app or backend.
+- [x] **PHOTO-04**: Photography entries can include a title, short context, optional date/location text, and captions using beginner-editable files.
 
 ### Simplicity And Template Fit
 
-- [ ] **TEMP-01**: Site remains deployable on GitHub Pages without a required build step.
-- [ ] **TEMP-02**: Core content remains editable through plain text files and folders.
-- [ ] **TEMP-03**: Any helper scripts are optional and do not prevent manual editing.
-- [ ] **TEMP-04**: Template/example content is clearly separated from Sayak's live portfolio content.
+- [x] **TEMP-01**: Site remains deployable on GitHub Pages without a required build step.
+- [x] **TEMP-02**: Core content remains editable through plain text files and folders.
+- [x] **TEMP-03**: Any helper scripts are optional and do not prevent manual editing.
+- [x] **TEMP-04**: Template/example content is clearly separated from Sayak's live portfolio content.
 
 ### Quality And Safety
 
-- [ ] **QUAL-01**: Project/config text-file validation catches missing files, malformed sections, and broken local asset references.
-- [ ] **QUAL-02**: Generated external links opened in new tabs include safe `rel` attributes where applicable.
-- [ ] **QUAL-03**: Content rendered from text files avoids unsafe `innerHTML` where simple text rendering is sufficient.
-- [ ] **QUAL-04**: Cache-busting guidance or tooling reduces the chance of stale CSS/JS/config after publishing.
+- [x] **QUAL-01**: Project/config text-file validation catches missing files, malformed sections, and broken local asset references.
+- [x] **QUAL-02**: Generated external links opened in new tabs include safe `rel` attributes where applicable.
+- [x] **QUAL-03**: Content rendered from text files avoids unsafe `innerHTML` where simple text rendering is sufficient.
+- [x] **QUAL-04**: Cache-busting guidance or tooling reduces the chance of stale CSS/JS/config after publishing.
 
 ## v2 Requirements
 
@@ -88,22 +88,22 @@ Which phases cover which requirements. Updated during roadmap creation.
 | CAT-02 | Phase 2 | Complete |
 | CAT-03 | Phase 2 | Complete |
 | CAT-04 | Phase 2 | Complete |
-| AUTHR-01 | Phase 4 | Pending |
-| AUTHR-02 | Phase 4 | Pending |
-| AUTHR-03 | Phase 4 | Pending |
-| AUTHR-04 | Phase 4 | Pending |
+| AUTHR-01 | Phase 4 | Complete |
+| AUTHR-02 | Phase 4 | Complete |
+| AUTHR-03 | Phase 4 | Complete |
+| AUTHR-04 | Phase 4 | Complete |
 | PHOTO-01 | Phase 2 | Complete |
-| PHOTO-02 | Phase 3 | Pending |
-| PHOTO-03 | Phase 3 | Pending |
-| PHOTO-04 | Phase 3 | Pending |
-| TEMP-01 | Phase 4 | Pending |
-| TEMP-02 | Phase 4 | Pending |
-| TEMP-03 | Phase 4 | Pending |
-| TEMP-04 | Phase 4 | Pending |
-| QUAL-01 | Phase 4 | Pending |
-| QUAL-02 | Phase 4 | Pending |
-| QUAL-03 | Phase 4 | Pending |
-| QUAL-04 | Phase 4 | Pending |
+| PHOTO-02 | Phase 3 | Complete |
+| PHOTO-03 | Phase 3 | Complete |
+| PHOTO-04 | Phase 3 | Complete |
+| TEMP-01 | Phase 4 | Complete |
+| TEMP-02 | Phase 4 | Complete |
+| TEMP-03 | Phase 4 | Complete |
+| TEMP-04 | Phase 4 | Complete |
+| QUAL-01 | Phase 4 | Complete |
+| QUAL-02 | Phase 4 | Complete |
+| QUAL-03 | Phase 4 | Complete |
+| QUAL-04 | Phase 4 | Complete |
 **Coverage:**
 
 - v1 requirements: 24 total
@@ -112,4 +112,4 @@ Which phases cover which requirements. Updated during roadmap creation.
 
 ---
 *Requirements defined: 2026-06-30*
-*Last updated: 2026-06-30 after roadmap creation*
+*Last updated: 2026-07-09 after Phase 3 and Phase 4 closeout*

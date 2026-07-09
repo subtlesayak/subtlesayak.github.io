@@ -2,7 +2,7 @@
 
 ## What This Is
 
-Subtle Sayak Portfolio is an existing static GitHub Pages portfolio that showcases UI/UX, branding, visual design, web experiments, and future photography work. The project is becoming a more polished personal portfolio while staying simple enough for other people to reuse as a beginner-editable template.
+Subtle Sayak Portfolio is an existing static GitHub Pages portfolio that showcases UI/UX, branding, visual design, web experiments, and future photography work. The project has become a more polished personal portfolio while staying simple enough for other people to reuse as a beginner-editable template.
 
 The site keeps its current low-friction model: plain HTML, CSS, JavaScript, and text-file content instead of a heavy framework or build pipeline.
 
@@ -24,13 +24,15 @@ A visitor can quickly understand the designer, browse work by meaningful categor
 - [x] Homepage layout, profile spacing, project card readability, image fit, and mobile presentation polished - validated in Phase 1
 - [x] Category sections let visitors browse All Work, UI/UX, Branding, Web, Visual Design, and Photography - validated in Phase 2
 - [x] Category labels/order and per-project category assignments are editable through text files - validated in Phase 2
+- [x] Photography collection entries support title, context, date/location, captions, multi-image viewing, and editable text files - validated in Phase 3
+- [x] Authoring guide and optional content validator support safer beginner editing and publish checks - validated in Phase 4
 
 ### Active
 
-- [ ] Preserve beginner-editable content authoring through simple text files and clear folder conventions.
-- [ ] Make adding a project easier and less error-prone through documentation, templates, and/or lightweight validation.
-- [ ] Support photography entries that can contain multiple images for an event, shoot, or collection.
-- [ ] Keep the site reusable as a portfolio template without stripping away Sayak's personal portfolio use case.
+- [x] Preserve beginner-editable content authoring through simple text files and clear folder conventions - validated in Phase 4.
+- [x] Make adding a project easier and less error-prone through documentation and lightweight validation - validated in Phase 4.
+- [x] Support photography entries that can contain multiple images for an event, shoot, or collection - validated in Phase 3.
+- [x] Keep the site reusable as a portfolio template without stripping away Sayak's personal portfolio use case - validated in Phase 4.
 
 ### Out of Scope
 
@@ -44,9 +46,9 @@ A visitor can quickly understand the designer, browse work by meaningful categor
 
 This is a brownfield static portfolio derived from a portfolio template. It currently uses plain browser JavaScript to fetch content from `Config/*.txt` and `Projects/*/*.txt`, then renders pages client-side. The codebase map identifies the architecture as a static page shell plus text-file content database.
 
-The homepage now uses a single simple project grid again, with Photography available as its own top navigation tab beside Portfolio and About. Category metadata files from Phase 2 remain in the repo for possible future use, but the active homepage renderer no longer shows category sections.
+The homepage now uses a single simple project grid again, with Photography and Articles available as top navigation tabs beside Portfolio and About. Category metadata files from Phase 2 remain in the repo for possible future use, while the active homepage renderer keeps the simpler grid requested later.
 
-The user wants the site to improve in two directions at once: it should become a better personal portfolio and remain reusable for other people. Improvements should therefore favor small, teachable conventions over hidden complexity. The current project system already supports multiple media entries on detail pages, which can be adapted into photography/event galleries.
+The user wants the site to improve in two directions at once: it should become a better personal portfolio and remain reusable for other people. Improvements should therefore favor small, teachable conventions over hidden complexity. The current project system supports multiple media entries, Photography has a folder-backed multi-image collection, Articles use editable text folders, and template users have an authoring guide plus optional validation script.
 
 Important current concerns from the codebase map:
 
@@ -74,8 +76,8 @@ Important current concerns from the codebase map:
 | Categories should have their own homepage sections | Earlier preference, later superseded by a simpler tab request | Superseded by quick task 260701-g1m |
 | Category labels/order belong in `Config/categories.txt` | Keeps section editing beginner-friendly and avoids JavaScript edits | Preserved as inactive metadata after quick task 260701-g1m |
 | Per-project category assignment belongs in `Projects/*/categories.txt` | Keeps adding/editing a project folder-local and copyable | Implemented in Phase 2 |
-| Prioritize visual polish, category filtering/sections, and easier project adding for v1 | These were named as the most important v1 outcomes | Visual polish and categories complete; easier project adding remains Phase 4 |
-| Treat photography as multi-image entries | User wants event-style or collection-style photo entries | Photography tab renders a multi-image folder gallery; event-level grouping can still be extended later |
+| Prioritize visual polish, category filtering/sections, and easier project adding for v1 | These were named as the most important v1 outcomes | Visual polish, categories, photography entries, and authoring safety complete |
+| Treat photography as multi-image entries | User wants event-style or collection-style photo entries | Photography tab renders a folder-backed multi-image collection with editable entry metadata |
 | Incorporate user-added project folders as normal projects | User added folders and asked for them to appear among the project grid with their respective images | Completed in quick task 260701-gai |
 | Keep Photography editable through a folder and text list | User added `Projects/Photography` and wants photos from there to feed the Photography tab | Completed in quick task 260701-gph |
 | Keep homepage grid controls close to live reference | User explicitly pointed to `artofpilgrim.github.io/index.html` for thumbnail resize design, position, spacing, and radius | Completed in quick task 260701-grd |
@@ -103,6 +105,7 @@ Important current concerns from the codebase map:
 | Stagger e-ink redraw across visible elements | User wants each element to flash with random timing to sell the e-reader effect | Completed in quick task 260702-ges |
 | Use editable article folders | User wants to add the first article through a text file | Completed in quick task 260702-gaf |
 | Publish article text through the Articles tab | User added the first article and expects it to appear on the site | Completed in quick task 260702-gap |
+| Close v1 roadmap phases | Phase 3 photography entry support and Phase 4 authoring/publish safety are now implemented and verified | Completed in Phase 3/4 closeout |
 
 ## Evolution
 
@@ -122,4 +125,4 @@ This document evolves at phase transitions and milestone boundaries.
 4. Update Context with current state
 
 ---
-*Last updated: 2026-07-02 after quick task 260702-gap*
+*Last updated: 2026-07-09 after Phase 3 and Phase 4 closeout*

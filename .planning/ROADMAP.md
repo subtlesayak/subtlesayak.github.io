@@ -15,8 +15,8 @@ Decimal phases appear between their surrounding integers in numeric order.
 
 - [x] **Phase 1: Homepage Presentation Baseline** - Visitors can understand the portfolio and browse readable project cards on desktop and mobile. (completed 2026-06-30)
 - [x] **Phase 2: Category-Based Browsing** - Visitors can browse work through dedicated editable category sections while retaining a complete project overview. (completed 2026-06-30)
-- [ ] **Phase 3: Photography Gallery Entries** - Visitors can open photography entries that present multi-image shoots or collections inside the existing portfolio model.
-- [ ] **Phase 4: Template Authoring & Publish Safety** - Template users can add and validate content safely while preserving the no-build, text-file workflow.
+- [x] **Phase 3: Photography Gallery Entries** - Visitors can open photography entries that present multi-image shoots or collections inside the existing portfolio model. (completed 2026-07-09)
+- [x] **Phase 4: Template Authoring & Publish Safety** - Template users can add and validate content safely while preserving the no-build, text-file workflow. (completed 2026-07-09)
 
 ## Phase Details
 
@@ -33,7 +33,10 @@ Decimal phases appear between their surrounding integers in numeric order.
   3. Visitor can browse project cards in a consistent grid with images fitting cleanly inside their placeholders.
   4. Visitor can use the homepage on mobile without overlapping text, crowded controls, or hidden essential information.
 
-**Plans**: TBD
+**Plans**: 1/1 plans complete
+
+- [x] 01-01-PLAN.md
+
 **UI hint**: yes
 
 ### Phase 2: Category-Based Browsing
@@ -69,7 +72,10 @@ Decimal phases appear between their surrounding integers in numeric order.
   3. Visitor can see photography title, short context, optional date/location text, and captions.
   4. Template user can author photography entry content through beginner-editable files.
 
-**Plans**: TBD
+**Plans**: 1/1 plans complete
+
+- [x] 03-VERIFICATION.md
+
 **UI hint**: yes
 
 ### Phase 4: Template Authoring & Publish Safety
@@ -86,7 +92,9 @@ Decimal phases appear between their surrounding integers in numeric order.
   4. Site remains deployable on GitHub Pages without a required build step, and any helper scripts remain optional.
   5. External-link safety, safer text rendering, cache-busting guidance, and template/example separation are visible in the finished template workflow.
 
-**Plans**: TBD
+**Plans**: 1/1 plans complete
+
+- [x] 04-VERIFICATION.md
 
 ## Progress
 
@@ -97,5 +105,5 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4
 |-------|----------------|--------|-----------|
 | 1. Homepage Presentation Baseline | 1/1 | Complete    | 2026-06-30 |
 | 2. Category-Based Browsing | 1/1 | Complete    | 2026-06-30 |
-| 3. Photography Gallery Entries | 0/TBD | Not started | - |
-| 4. Template Authoring & Publish Safety | 0/TBD | Not started | - |
+| 3. Photography Gallery Entries | 1/1 | Complete    | 2026-07-09 |
+| 4. Template Authoring & Publish Safety | 1/1 | Complete    | 2026-07-09 |
