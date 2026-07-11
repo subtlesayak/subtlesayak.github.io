@@ -126,24 +126,38 @@
         articlesContainer.replaceChildren(fragment);
     }
 
+    function getArticleAuthor() {
+        const author = document.querySelector('meta[name="author"]');
+        return author ? author.content.trim() : "";
+    }
+
     function renderArticleDetail(article) {
         const detail = document.createElement("article");
         detail.className = "article-detail";
 
-        const back = document.createElement("a");
-        back.className = "article-back";
-        back.href = "articles.html";
-        back.textContent = "Back to articles";
-        detail.appendChild(back);
-
-        const meta = document.createElement("span");
-        meta.className = "article-date";
-        meta.textContent = article.date || "Article";
-        detail.appendChild(meta);
-
         const title = document.createElement("h1");
         title.textContent = article.title;
         detail.appendChild(title);
+
+        const meta = document.createElement("div");
+        meta.className = "article-meta";
+
+        if (article.date) {
+            const date = document.createElement("span");
+            date.className = "article-date";
+            date.textContent = article.date;
+            meta.appendChild(date);
+        }
+
+        const authorName = getArticleAuthor();
+        if (authorName) {
+            const author = document.createElement("span");
+            author.className = "article-author";
+            author.textContent = authorName;
+            meta.appendChild(author);
+        }
+
+        if (meta.children.length) detail.appendChild(meta);
 
         if (article.summary) {
             const summary = document.createElement("p");
@@ -157,6 +171,12 @@
         const blocks = createArticleBlocks(article.body || "Add the article body in Articles/First Article/article.txt.");
         blocks.forEach(block => body.appendChild(block));
         detail.appendChild(body);
+
+        const back = document.createElement("a");
+        back.className = "article-back";
+        back.href = "articles.html";
+        back.textContent = "Back to all posts";
+        detail.appendChild(back);
 
         articlesContainer.replaceChildren(detail);
     }
