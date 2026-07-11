@@ -16,7 +16,9 @@ Last updated: July 2026.
 
 ## Public Projects
 - [SayaQR](https://subtlesayak.github.io/SayaQR/): Privacy-first browser QR code generator with multiple QR modes, export options, design controls, scannability checks, batch CSV mode, and offline PWA support. Source: https://github.com/subtlesayak/SayaQR.
-
+- [OpenDash](https://github.com/subtlesayak/open-dash): Open-source Android companion for bike dash navigation, garage, expenses, wallpapers, and ride history.
+- [AgeLapse Material](http://agelapse.com): Web experiment that aligns face pictures and creates stabilized aging time-lapses. Source: https://github.com/subtlesayak/agelapse-Material.
+- [Portfolio Template](https://github.com/subtlesayak/portfolio-template): Beginner-editable plain HTML, CSS, JavaScript, and text-file portfolio template.
 ## Portfolio Projects
 - [Branding and UI/UX - RED PRODUCTIONS](https://subtlesayak.github.io/Projects/Branding%20and%20UIUX%20RED%20PRODUCTIONS/branding-red-productions.html): Branding and UI/UX - RED PRODUCTIONS is a selected UI/UX and visual design project from my Behance portfolio. View the full case study here: https://www.behance.net/gallery/213828487/Branding-and-UIUX-RED-PRODUCTIONS Tags/tools: Branding, Adobe Illustrator, Figma, Framer.
 - [Namma Metro App Case Study](https://subtlesayak.github.io/Projects/Namma%20Metro%20App%20Case%20Study/namma-metro-app-case-study.html): Namma Metro App Case Study is a selected UI/UX and visual design project from my Behance portfolio. View the full case study here: https://www.behance.net/gallery/194922225/Namma-Metro-App-Case-Study Tags/tools: Interaction Design, Figma, Adobe Illustrator.

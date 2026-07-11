@@ -158,8 +158,7 @@ function checkCodeProjects() {
   const parts = read(codeProjectsPath)
     .replace(/\r\n/g, "\n")
     .split(/\n---\n/)
-    .map(part => part.trim())
-    .filter(Boolean);
+    .map(part => part.trim());
 
   if (parts.length % 6 !== 0) {
     errors.push(`${normalizeRel(codeProjectsPath)} must use 6 sections per project separated by ---`);
@@ -170,7 +169,8 @@ function checkCodeProjects() {
     const title = parts[index] || "Untitled project";
     const liveUrl = parts[index + 3] || "";
     const sourceUrl = parts[index + 4] || "";
-    if (!/^https?:\/\//i.test(liveUrl)) errors.push(`${normalizeRel(codeProjectsPath)} project "${title}" needs a public live URL`);
+    if (!liveUrl && !sourceUrl) errors.push(`${normalizeRel(codeProjectsPath)} project "${title}" needs a live URL or source URL`);
+    if (liveUrl && !/^https?:\/\//i.test(liveUrl)) errors.push(`${normalizeRel(codeProjectsPath)} project "${title}" has an invalid live URL`);
     if (sourceUrl && !/^https?:\/\//i.test(sourceUrl)) errors.push(`${normalizeRel(codeProjectsPath)} project "${title}" has an invalid source URL`);
   }
 }

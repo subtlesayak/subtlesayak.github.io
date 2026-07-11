@@ -1,3 +1,33 @@
+
+function ensureGlobalNavigation(container) {
+    if (!container || container.querySelector('.navigation-buttons')) return;
+
+    const isProjectPage = window.location.pathname.includes('/Projects/');
+    const prefix = isProjectPage ? '../../' : '';
+    const currentPath = window.location.pathname.split('/').pop() || 'index.html';
+    const activeHref = isProjectPage ? 'index.html' : currentPath;
+    const links = [
+        ['index.html', 'Portfolio'],
+        ['photography.html', 'Photography'],
+        ['articles.html', 'Articles'],
+        ['projects.html', 'Projects'],
+        ['about.html', 'About']
+    ];
+
+    const navigation = document.createElement('div');
+    navigation.className = 'navigation-buttons';
+
+    links.forEach(([href, label]) => {
+        const link = document.createElement('a');
+        link.href = `${prefix}${href}`;
+        link.className = 'nav-button';
+        link.textContent = label;
+        if (href === activeHref) link.classList.add('active');
+        navigation.appendChild(link);
+    });
+
+    container.appendChild(navigation);
+}
 function addUserInformation() {
     let basePath = '';
     if (window.location.pathname.includes('/Projects/')) {
@@ -61,6 +91,7 @@ function addUserInformation() {
                 container.prepend(userInfoPanel);
             }
             userInfoPanel.textContent = '';
+            ensureGlobalNavigation(container);
 
             const img = document.createElement('img');
             img.src = profilePicUrl;

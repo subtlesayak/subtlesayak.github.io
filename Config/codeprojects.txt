@@ -9,3 +9,39 @@ https://subtlesayak.github.io/SayaQR/
 https://github.com/subtlesayak/SayaQR
 ---
 TypeScript, Vite, PWA, QR Code
+---
+OpenDash
+---
+Android Companion App
+---
+Open-source Android companion for bike dash navigation, garage, expenses, wallpapers, and ride history.
+---
+
+---
+https://github.com/subtlesayak/open-dash
+---
+Android, Kotlin, Navigation, Ride Tools
+---
+AgeLapse Material
+---
+Web Experiment
+---
+AgeLapse automatically aligns face pictures and creates stabilized aging time-lapses for photo-a-day videos.
+---
+http://agelapse.com
+---
+https://github.com/subtlesayak/agelapse-Material
+---
+Web, Image Alignment, Time-lapse
+---
+Portfolio Template
+---
+Beginner Portfolio Template
+---
+Reusable plain HTML, CSS, JavaScript, and text-file portfolio template based on this site's simple editing model.
+---
+
+---
+https://github.com/subtlesayak/portfolio-template
+---
+HTML, CSS, JavaScript, GitHub Pages

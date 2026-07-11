@@ -86,8 +86,7 @@
         const parts = (await fetchText("Config/codeprojects.txt", ""))
             .replace(/\r\n/g, "\n")
             .split(/\n---\n/)
-            .map(part => part.trim())
-            .filter(Boolean);
+            .map(part => part.trim());
 
         const links = [];
         for (let index = 0; index < parts.length; index += 6) {

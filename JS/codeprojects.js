@@ -7,7 +7,6 @@
             .replace(/\r\n/g, "\n")
             .split(/\n---\n/)
             .map(part => part.trim())
-            .filter(Boolean)
             .reduce((projects, _part, index, parts) => {
                 if (index % 6 !== 0) return projects;
                 projects.push({
@@ -72,7 +71,7 @@
         const actions = document.createElement("div");
         actions.className = "code-project-actions";
         appendAction(actions, project.liveUrl, "Open", "fa-solid fa-arrow-up-right-from-square");
-        appendAction(actions, project.sourceUrl, "GitHub", "fa-brands fa-github");
+        if (project.sourceUrl !== project.liveUrl) appendAction(actions, project.sourceUrl, "GitHub", "fa-brands fa-github");
         card.appendChild(actions);
 
         return card;
