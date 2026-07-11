@@ -10,8 +10,12 @@ Last updated: July 2026.
 - [Portfolio](https://subtlesayak.github.io/): Main project grid and category browsing.
 - [Photography](https://subtlesayak.github.io/photography.html): Photography collections and visual galleries.
 - [Articles](https://subtlesayak.github.io/articles.html): Articles, notes, and process writing.
+- [Projects](https://subtlesayak.github.io/projects.html): Public web projects, tools, and GitHub Pages apps.
 - [About](https://subtlesayak.github.io/about.html): Profile, skills, software, education, projects, certificates, and contact links.
 - [Sitemap](https://subtlesayak.github.io/sitemap.html): Human-readable site map.
+
+## Public Projects
+- [SayaQR](https://subtlesayak.github.io/SayaQR/): Privacy-first browser QR code generator with multiple QR modes, export options, design controls, scannability checks, batch CSV mode, and offline PWA support. Source: https://github.com/subtlesayak/SayaQR.
 
 ## Portfolio Projects
 - [Branding and UI/UX - RED PRODUCTIONS](https://subtlesayak.github.io/Projects/Branding%20and%20UIUX%20RED%20PRODUCTIONS/branding-red-productions.html): Branding and UI/UX - RED PRODUCTIONS is a selected UI/UX and visual design project from my Behance portfolio. View the full case study here: https://www.behance.net/gallery/213828487/Branding-and-UIUX-RED-PRODUCTIONS Tags/tools: Branding, Adobe Illustrator, Figma, Framer.

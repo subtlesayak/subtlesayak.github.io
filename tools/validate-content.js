@@ -149,6 +149,31 @@ function checkPhotography() {
   configuredCollections.forEach(checkPhotographyCollection);
 }
 
+
+function checkCodeProjects() {
+  const codeProjectsPath = "Config/codeprojects.txt";
+  requireFile(codeProjectsPath);
+  if (!exists(codeProjectsPath)) return;
+
+  const parts = read(codeProjectsPath)
+    .replace(/\r\n/g, "\n")
+    .split(/\n---\n/)
+    .map(part => part.trim())
+    .filter(Boolean);
+
+  if (parts.length % 6 !== 0) {
+    errors.push(`${normalizeRel(codeProjectsPath)} must use 6 sections per project separated by ---`);
+    return;
+  }
+
+  for (let index = 0; index < parts.length; index += 6) {
+    const title = parts[index] || "Untitled project";
+    const liveUrl = parts[index + 3] || "";
+    const sourceUrl = parts[index + 4] || "";
+    if (!/^https?:\/\//i.test(liveUrl)) errors.push(`${normalizeRel(codeProjectsPath)} project "${title}" needs a public live URL`);
+    if (sourceUrl && !/^https?:\/\//i.test(sourceUrl)) errors.push(`${normalizeRel(codeProjectsPath)} project "${title}" has an invalid source URL`);
+  }
+}
 function checkArticles() {
   if (!exists("Config/articles.txt")) return;
 
@@ -168,13 +193,15 @@ function checkConfig() {
     "Config/summary.txt",
     "Config/software.txt",
     "Config/skills.txt",
-    "Config/site.txt"
+    "Config/site.txt",
+    "Config/codeprojects.txt"
   ].forEach(requireFile);
 }
 
 checkConfig();
 checkProjects();
 checkPhotography();
+checkCodeProjects();
 checkArticles();
 
 if (warnings.length) {

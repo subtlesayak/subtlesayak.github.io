@@ -3,29 +3,30 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sitemap - Subtle Sayak</title>
+    <title>Projects - Subtle Sayak</title>
     <!-- GEO: start - update these public discovery tags when site identity or URL changes. -->
-    <meta name="description" content="A simple sitemap for Subtle Sayak's portfolio, public projects, photography, and articles." />
+    <meta name="description" content="Public web projects, tools, and GitHub Pages apps by Subtle Sayak." />
     <meta name="author" content="Subtle Sayak" />
     <meta name="robots" content="index, follow" />
-    <link rel="canonical" href="https://subtlesayak.github.io/sitemap.html" />
+    <link rel="canonical" href="https://subtlesayak.github.io/projects.html" />
     <link rel="sitemap" type="application/xml" href="https://subtlesayak.github.io/sitemap.xml" />
     <link rel="alternate" type="text/plain" href="https://subtlesayak.github.io/llms.txt" title="LLM-readable site overview" />
     <meta property="og:site_name" content="Subtle Sayak Portfolio" />
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="Sitemap - Subtle Sayak" />
-    <meta property="og:description" content="A simple sitemap for Subtle Sayak's portfolio, public projects, photography, and articles." />
-    <meta property="og:url" content="https://subtlesayak.github.io/sitemap.html" />
+    <meta property="og:title" content="Projects - Subtle Sayak" />
+    <meta property="og:description" content="Public web projects, tools, and GitHub Pages apps by Subtle Sayak." />
+    <meta property="og:url" content="https://subtlesayak.github.io/projects.html" />
     <meta property="og:image" content="https://subtlesayak.github.io/Resources/profile/sayak-profile.jpg" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Sitemap - Subtle Sayak" />
-    <meta name="twitter:description" content="A simple sitemap for Subtle Sayak's portfolio, public projects, photography, and articles." />
+    <meta name="twitter:title" content="Projects - Subtle Sayak" />
+    <meta name="twitter:description" content="Public web projects, tools, and GitHub Pages apps by Subtle Sayak." />
     <meta name="twitter:image" content="https://subtlesayak.github.io/Resources/profile/sayak-profile.jpg" />
     <!-- GEO: end -->
     <link rel="stylesheet" href="../CSS/indexstyle.css?v=1.8" />
     <link rel="stylesheet" href="../CSS/userinformationstyle.css?v=2.0" />
     <link rel="stylesheet" href="../CSS/viewcontrols.css?v=1.5" />
     <link rel="stylesheet" href="../CSS/siteextras.css?v=1.0" />
+    <link rel="stylesheet" href="../CSS/codeprojectsstyle.css?v=1.0" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&display=swap" />
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css?v=1.0" />
@@ -46,16 +47,28 @@
             </div>
         </div>
         <div class="bottom-container">
-            <main class="sitemap-shell" id="sitemap-container" aria-label="Sitemap"></main>
+            <main class="code-projects-panel" id="code-projects-container" aria-label="Projects">
+                <div class="portfolio-empty">
+                    <h1>Projects</h1>
+                    <p>Loading projects.</p>
+                </div>
+            </main>
         </div>
     </div>
     <script src="../JS/userinformation.js?v=1.7"></script>
     <script src="../JS/viewcontrols.js?v=1.5"></script>
-    <script src="../JS/sitemap.js?v=1.0"></script>
+    <script src="../JS/codeprojects.js?v=1.0"></script>
     <script src="../JS/siteinfo.js?v=1.0"></script>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             if (window.PortfolioControls) window.PortfolioControls.initViewControls({ showResize: false });
+            const currentPath = window.location.pathname.split('/').pop();
+            const navButtons = document.querySelectorAll('.nav-button');
+            navButtons.forEach(button => {
+                if (button.getAttribute('href') === currentPath) {
+                    button.classList.add('active');
+                }
+            });
         });
     </script>
 </body>

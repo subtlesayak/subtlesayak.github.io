@@ -1,0 +1,11 @@
+SayaQR
+---
+Browser QR Code Generator
+---
+Privacy-first QR code generator that runs fully in the browser, with QR modes, export options, design controls, scannability checks, batch CSV mode, and offline PWA support.
+---
+https://subtlesayak.github.io/SayaQR/
+---
+https://github.com/subtlesayak/SayaQR
+---
+TypeScript, Vite, PWA, QR Code

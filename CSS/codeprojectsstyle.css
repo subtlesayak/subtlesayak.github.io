@@ -1,0 +1,125 @@
+.code-projects-panel {
+  width: 100%;
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 34px 28px 56px;
+  box-sizing: border-box;
+}
+
+.code-projects-heading h1 {
+  margin: 0 0 18px;
+  color: #f5f5f5;
+  font-size: 30px;
+  font-weight: 400;
+}
+
+.code-projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 10px;
+}
+
+.code-project-card {
+  display: flex;
+  min-height: 210px;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 10px;
+  padding: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 4px;
+  background: #171717;
+  color: #d7d7d7;
+}
+
+.code-project-card h2 {
+  margin: 0;
+  color: inherit;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 1.25;
+}
+
+.code-project-card p {
+  margin: 0;
+  color: #b8b8b8;
+  font-size: 14px;
+  line-height: 1.75;
+}
+
+.code-project-kind {
+  color: #edb049;
+  font-size: 12px;
+}
+
+.code-project-tags {
+  color: #8f8f8f;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.code-project-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 2px;
+}
+
+.code-project-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  width: fit-content;
+  min-height: 32px;
+  padding: 0 11px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 4px;
+  color: #f5f5f5;
+  font-size: 13px;
+  text-decoration: none;
+}
+
+.code-project-action:hover,
+.code-project-action:focus-visible {
+  border-color: #edb049;
+  color: #edb049;
+  outline: none;
+}
+
+body.theme-light .code-projects-heading h1 {
+  color: var(--text);
+}
+
+body.theme-light .code-project-card {
+  border-color: var(--line);
+  background: var(--surface-raised);
+  color: var(--text);
+}
+
+body.theme-light .code-project-card p {
+  color: var(--muted);
+}
+
+body.theme-light .code-project-tags {
+  color: var(--muted);
+}
+
+body.theme-light .code-project-action {
+  border-color: var(--line);
+  color: var(--text);
+}
+
+body.theme-light .code-project-action:hover,
+body.theme-light .code-project-action:focus-visible {
+  color: var(--accent);
+}
+
+@media (max-width: 700px) {
+  .code-projects-panel {
+    padding: 26px 14px 44px;
+  }
+
+  .code-projects-heading h1 {
+    font-size: 25px;
+  }
+}
