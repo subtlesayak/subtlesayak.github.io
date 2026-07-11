@@ -1,6 +1,6 @@
 (function () {
     const container = document.getElementById("sitemap-container");
-    const cacheVersion = "1.0";
+    const cacheVersion = "1.1";
 
     function parseLines(text) {
         return text
