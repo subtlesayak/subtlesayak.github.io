@@ -24,7 +24,7 @@
     <!-- GEO: end -->
     <link rel="stylesheet" href="../CSS/aboutstyle.css?v=1.6" />
     <link rel="stylesheet" href="../CSS/userinformationstyle.css?v=2.4" />
-    <link rel="stylesheet" href="../CSS/softwareskillsstyle.css?v=1.4" />
+    <link rel="stylesheet" href="../CSS/softwareskillsstyle.css?v=1.5" />
     <link rel="stylesheet" href="../CSS/recommendationsstyle.css?v=1.2" />
     <link rel="stylesheet" href="../CSS/productionsstyle.css?v=1.5" />
     <link rel="stylesheet" href="../CSS/viewcontrols.css?v=1.7" />
@@ -74,17 +74,19 @@
         </div>
         <hr class="recommendations-separator" />
         <span class="recommendations-spacer">&nbsp; &nbsp; &nbsp;</span>
-        <h1 class="panel-title">Software Knowledge</h1>
         <div class="skills-panel">
-          <div class="software-tag-container">
-            <!-- Software tags will be dynamically inserted here -->
-          </div>
-
-          &nbsp; &nbsp; &nbsp;
-          <h1 class="panel-title">Skills</h1>
-          <div class="software-tag-container">
-            <!-- Skills tags will be dynamically inserted here -->
-          </div>
+          <section class="skill-group" aria-labelledby="software-heading">
+            <h1 class="panel-title" id="software-heading">Software Knowledge</h1>
+            <div class="software-tag-container" data-skill-list="software">
+              <!-- Software tags will be dynamically inserted here -->
+            </div>
+          </section>
+          <section class="skill-group" aria-labelledby="skills-heading">
+            <h1 class="panel-title" id="skills-heading">Skills</h1>
+            <div class="software-tag-container" data-skill-list="skills">
+              <!-- Skills tags will be dynamically inserted here -->
+            </div>
+          </section>
         </div>
         <hr />
       </div>
@@ -97,7 +99,7 @@
       </div>
     </div>
     <script src="../JS/summary.js?v=1.3"></script>
-    <script src="../JS/skills.js?v=1.5"></script>
+    <script src="../JS/skills.js?v=1.6"></script>
     <script src="../JS/userinformation.js?v=1.9"></script>
     <script src="../JS/recommendations.js?v=1.2"></script>
     <script src="../JS/productions.js?v=1.6"></script>

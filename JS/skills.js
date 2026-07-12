@@ -1,6 +1,8 @@
 function addSkillsAndSoftware() {
-    const softwareContainer = document.querySelector('.skills-panel .software-tag-container:first-of-type');
-    const skillsContainer = document.querySelector('.skills-panel .software-tag-container:last-of-type');
+    const softwareContainer = document.querySelector('[data-skill-list="software"]');
+    const skillsContainer = document.querySelector('[data-skill-list="skills"]');
+
+    if (!softwareContainer || !skillsContainer) return;
 
     const fetchAndPopulate = async (url, container) => {
         try {
