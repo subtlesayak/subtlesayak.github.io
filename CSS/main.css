@@ -1,6 +1,6 @@
 /* main.css */
 @import url('projectsstyle.css?v=1.2');
-@import url('userinformationstyle.css');
+@import url('userinformationstyle.css?v=2.2');
 @import url('tagsstyle.css');
 @import url('statsstyle.css?v=1.1');
 @import url('b2t.css');
