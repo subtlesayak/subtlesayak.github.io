@@ -343,81 +343,51 @@ body.theme-light .horizontal-container {
   font-size: 15px;
 }
 
-body.eink-refreshing {
-  filter: grayscale(1) contrast(1.08);
-}
-
-body.eink-refreshing::after {
-  content: "";
-  position: fixed;
-  inset: 0;
-  z-index: 3000;
-  pointer-events: none;
-  background:
-    repeating-linear-gradient(0deg, rgba(20, 20, 20, 0.14) 0 1px, transparent 1px 4px),
-    linear-gradient(180deg, rgba(255, 255, 255, 0.78), rgba(0, 0, 0, 0.24), rgba(255, 255, 255, 0.58));
-  mix-blend-mode: saturation;
-  animation: eink-refresh 900ms steps(6, end);
-}
-
-@keyframes eink-refresh {
-  0% {
-    opacity: 0;
-    transform: translateY(-8%);
-  }
-  18% {
-    opacity: 1;
-  }
-  48% {
-    opacity: 0.82;
-    transform: translateY(0);
-  }
-  72% {
-    opacity: 0.48;
-  }
-  100% {
-    opacity: 0;
-    transform: translateY(8%);
-  }
-}
-
 body.eink-refreshing .eink-flash-target {
-  animation: eink-element-flash var(--eink-element-duration, 360ms) steps(2, end) var(--eink-element-delay, 0ms) both;
+  animation: eink-region-waveform var(--eink-element-duration, 640ms) steps(1, end) var(--eink-element-delay, 0ms) both;
+  backface-visibility: hidden;
   will-change: filter, opacity;
 }
 
-@keyframes eink-element-flash {
+@keyframes eink-region-waveform {
   0% {
-    filter: grayscale(1) contrast(1.6) brightness(1.28);
-    opacity: 0.92;
-  }
-  38% {
-    filter: grayscale(1) contrast(2.1) brightness(0.76);
-    opacity: 0.78;
-  }
-  62% {
-    filter: grayscale(1) contrast(1.85) brightness(1.42);
+    filter: none;
     opacity: 1;
   }
+  11% {
+    filter: grayscale(1) contrast(2.4) invert(1);
+    opacity: 1;
+  }
+  27% {
+    filter: grayscale(1) contrast(3.1) brightness(0.08);
+    opacity: 0.96;
+  }
+  44% {
+    filter: grayscale(1) contrast(2.8) invert(1) brightness(1.55);
+    opacity: 1;
+  }
+  62% {
+    filter: grayscale(1) contrast(2.2) brightness(0.58);
+    opacity: 0.94;
+  }
+  79% {
+    filter: grayscale(1) contrast(1.42) brightness(1.12);
+    opacity: 0.8;
+  }
+  91% {
+    filter: grayscale(1) contrast(1.08);
+    opacity: 0.95;
+  }
   100% {
-    filter: grayscale(1) contrast(1.08) brightness(1);
+    filter: none;
     opacity: 1;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  body.eink-refreshing {
-    filter: none;
-  }
-
   body.eink-refreshing .eink-flash-target {
     animation: none;
     filter: none;
     opacity: 1;
-  }
-
-  body.eink-refreshing::after {
-    animation: none;
-    opacity: 0;
   }
 }

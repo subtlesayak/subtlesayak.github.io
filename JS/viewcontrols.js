@@ -4,9 +4,16 @@
     const thumbnailIconSizes = [8, 9, 10, 11, 12, 13, 14, 15, 16, 18];
     const thumbnailInsets = [3, 3, 4, 4, 5, 6, 7, 8, 9, 10];
     const themeModes = ["auto", "dark", "light"];
-    const einkRefreshDuration = 960;
-    const einkNavigationDelay = 360;
-    const einkElementSelector = "body *:not(script):not(style):not(link):not(meta):not(title)";
+    const einkRefreshDuration = 1500;
+    const einkNavigationDelay = 1120;
+    const einkElementSelector = [
+        "h1", "h2", "h3", "h4", "h5", "h6", "p", "li", "blockquote", "figcaption", "dt", "dd", "strong", "small", "time",
+        ".software-tag", ".nav-button", ".social-icons a", ".article-date", ".article-author", ".content-label", ".stat", ".recommendation", ".production-media",
+        ".thumbnail", ".photo-card", ".photo-collection-cover", ".code-project-action", ".photo-action",
+        "img", "video", "iframe", "canvas", "svg", "button"
+    ].join(",");
+    const einkInteractiveSelector = "a[href], button, input, select, textarea, summary, [role=button], [tabindex]:not([tabindex='-1'])";
+    const einkMaxTargets = 180;
     const themeLabels = {
         auto: "Auto",
         dark: "Dark",
@@ -86,17 +93,51 @@
     function prepareEinkElementFlashes() {
         clearEinkElementFlashes();
 
-        document.querySelectorAll(einkElementSelector).forEach(element => {
-            const rect = element.getBoundingClientRect();
-            const isVisible = rect.width > 0 && rect.height > 0 && rect.bottom >= 0 && rect.top <= window.innerHeight;
-            if (!isVisible) return;
+        const viewportWidth = Math.max(window.innerWidth, 1);
+        const viewportHeight = Math.max(window.innerHeight, 1);
+        const candidates = Array.from(document.querySelectorAll(einkElementSelector)).filter(element => {
+            if (element.closest("[hidden], [aria-hidden='true']")) return false;
 
-            const delay = Math.round(Math.random() * 520);
-            const duration = Math.round(160 + Math.random() * 420);
+            const rect = element.getBoundingClientRect();
+            const style = window.getComputedStyle(element);
+            return rect.width > 0
+                && rect.height > 0
+                && rect.right >= 0
+                && rect.left <= viewportWidth
+                && rect.bottom >= 0
+                && rect.top <= viewportHeight
+                && style.display !== "none"
+                && style.visibility !== "hidden"
+                && style.opacity !== "0";
+        });
+
+        const candidateSet = new Set(candidates);
+        const targets = candidates.filter(element => {
+            let ancestor = element.parentElement;
+            while (ancestor && ancestor !== document.body) {
+                if (candidateSet.has(ancestor)) return false;
+                ancestor = ancestor.parentElement;
+            }
+            return true;
+        }).sort((first, second) => {
+            const firstRect = first.getBoundingClientRect();
+            const secondRect = second.getBoundingClientRect();
+            return firstRect.top - secondRect.top || firstRect.left - secondRect.left;
+        }).slice(0, einkMaxTargets);
+
+        targets.forEach((element, index) => {
+            const rect = element.getBoundingClientRect();
+            const centerY = rect.top + (rect.height / 2);
+            const verticalProgress = Math.min(1, Math.max(0, centerY / viewportHeight));
+            const delay = Math.round((verticalProgress * 480) + (Math.random() * 210) + ((index % 3) * 16));
+            const duration = Math.round(560 + (Math.random() * 160));
+
             element.style.setProperty("--eink-element-delay", `${delay}ms`);
             element.style.setProperty("--eink-element-duration", `${duration}ms`);
             element.classList.add("eink-flash-target");
         });
+
+        return targets.length;
     }
 
     function triggerEinkRefresh() {
@@ -104,10 +145,15 @@
 
         document.body.classList.remove("eink-refreshing");
         window.clearTimeout(einkRefreshTimer);
+        clearEinkElementFlashes();
+
         window.requestAnimationFrame(() => {
+            if (!prepareEinkElementFlashes()) return;
+
             document.body.classList.add("eink-refreshing");
             einkRefreshTimer = window.setTimeout(() => {
                 document.body.classList.remove("eink-refreshing");
+                clearEinkElementFlashes();
             }, einkRefreshDuration);
         });
     }
@@ -157,6 +203,22 @@
                 window.location.href = link.href;
             }, einkNavigationDelay);
         }, true);
+    }
+
+
+    function bindEinkInteractionRefresh() {
+        if (document.body.dataset.einkInteractionBound === "true") return;
+        document.body.dataset.einkInteractionBound = "true";
+
+        document.addEventListener("click", event => {
+            if (!(event.target instanceof Element) || !isEinkRefreshEnabled()) return;
+
+            const interactive = event.target.closest(einkInteractiveSelector);
+            if (!interactive || interactive.closest(".eink-button")) return;
+            if (interactive.matches("a[href]") && shouldRefreshBeforeNavigation(interactive)) return;
+
+            window.setTimeout(triggerEinkRefresh, 0);
+        });
     }
 
     function createThemeButton() {
@@ -245,7 +307,8 @@
         applyTheme(localStorage.getItem("portfolioThemeMode") || "auto");
         updateEinkButton();
         bindEinkNavigationRefresh();
-        triggerEinkRefresh();
+        bindEinkInteractionRefresh();
+        window.setTimeout(triggerEinkRefresh, 180);
     }
 
     window.PortfolioControls = {
