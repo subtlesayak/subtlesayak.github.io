@@ -6,9 +6,9 @@ current_phase: 4
 current_phase_name: Template Authoring & Publish Safety
 status: complete
 stopped_at: All v1 phases complete
-last_updated: "2026-07-12T20:10:13.5573345+05:30"
+last_updated: "2026-07-12T20:21:50.6136638+05:30"
 last_activity: 2026-07-12
-last_activity_desc: Completed quick task 260712-rx4: standardized About cards from Experience through Certificates
+last_activity_desc: Completed quick task 260712-s7h: compacted and aligned the Software Knowledge and Skills panel
 progress:
   total_phases: 4
   completed_phases: 4
@@ -31,7 +31,7 @@ See: .planning/PROJECT.md (updated 2026-06-30)
 Phase: 4 of 4 (Template Authoring & Publish Safety)
 Plan: Complete
 status: complete to discuss and plan
-Last activity: 2026-07-12 - Completed quick task 260712-rx4: standardized About cards from Experience through Certificates
+Last activity: 2026-07-12 - Completed quick task 260712-s7h: compacted and aligned the Software Knowledge and Skills panel
 
 Progress: [##########] 100%
 
@@ -101,6 +101,7 @@ Recent decisions affecting current work:
 | 260712-ke1 | Align card spacing, interaction states, theme contrast, and mobile profile spacing | 2026-07-12 | ed1a89e | [260712-ke1-match-spacing-across-articles-projects-a](./quick/260712-ke1-match-spacing-across-articles-projects-a/) |
 | 260712-kwv | Add scannable card metadata, selected-work ordering, and article author notes | 2026-07-12 | e3a5e0d | [260712-kwv-add-short-content-labels-to-cards-one-li](./quick/260712-kwv-add-short-content-labels-to-cards-one-li/) |
 | 260712-rx4 | Standardize About production cards from Experience through Certificates | 2026-07-12 | 3810a96 | [260712-rx4-standardize-about-production-cards-from-](./quick/260712-rx4-standardize-about-production-cards-from-/) |
+| 260712-s7h | Compact and align the Software Knowledge and Skills panel | 2026-07-12 | 47045cc | [260712-s7h-compact-and-align-the-software-knowledge](./quick/260712-s7h-compact-and-align-the-software-knowledge/) |
 
 ### Pending Todos
 
