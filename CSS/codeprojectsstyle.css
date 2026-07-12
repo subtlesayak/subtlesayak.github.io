@@ -15,6 +15,7 @@
 
 .code-projects-grid {
   display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 12px;
 }
 
@@ -202,6 +203,10 @@ body.theme-light .code-project-card:focus-within .code-project-action {
 @media (max-width: 700px) {
   .code-projects-panel {
     padding: 26px 14px 44px;
+  }
+
+  .code-projects-grid {
+    grid-template-columns: 1fr;
   }
 
   .code-projects-heading h1 {
