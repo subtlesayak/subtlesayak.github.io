@@ -1,0 +1,7 @@
+# Projects listed here appear first, in this order.
+# Every name must exactly match a folder already listed in projects.txt.
+Namma Metro App Case Study
+AyuRest Mental Health Companion App
+Branding and UIUX RED PRODUCTIONS
+Visual Design Diary
+Google Pay Homepage Redesign

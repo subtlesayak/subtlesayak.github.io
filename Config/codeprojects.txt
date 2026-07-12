@@ -1,6 +1,6 @@
 SayaQR
 ---
-Browser QR Code Generator
+Tool
 ---
 Privacy-first QR code generator that runs fully in the browser, with QR modes, export options, design controls, scannability checks, batch CSV mode, and offline PWA support.
 ---
@@ -12,7 +12,7 @@ TypeScript, Vite, PWA, QR Code
 ---
 OpenDash
 ---
-Android Companion App
+App
 ---
 Open-source Android companion for bike dash navigation, garage, expenses, wallpapers, and ride history.
 ---
@@ -24,7 +24,7 @@ Android, Kotlin, Navigation, Ride Tools
 ---
 AgeLapse Material
 ---
-Web Experiment
+Experiment
 ---
 AgeLapse automatically aligns face pictures and creates stabilized aging time-lapses for photo-a-day videos.
 ---
@@ -36,7 +36,7 @@ Web, Image Alignment, Time-lapse
 ---
 Portfolio Template
 ---
-Beginner Portfolio Template
+Template
 ---
 Reusable plain HTML, CSS, JavaScript, and text-file portfolio template based on this site's simple editing model.
 ---

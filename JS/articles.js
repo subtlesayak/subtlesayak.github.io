@@ -1,6 +1,6 @@
 (function () {
     const articlesContainer = document.getElementById("articles-container");
-    const articlesConfigPath = "Config/articles.txt?v=1.0";
+    const articlesConfigPath = "Config/articles.txt?v=1.1";
 
     function splitArticleSections(rawText) {
         const lines = rawText.replace(/\r\n/g, "\n").split("\n");
@@ -86,6 +86,15 @@
         return articles.some(article => article.folder === hash) ? hash : "";
     }
 
+    async function fetchOptionalText(path) {
+        try {
+            const response = await fetch(path);
+            return response.ok ? (await response.text()).trim() : "";
+        } catch (_error) {
+            return "";
+        }
+    }
+
     function renderArticleList(articles) {
         const fragment = document.createDocumentFragment();
         const grid = document.createElement("div");
@@ -95,6 +104,11 @@
             const link = document.createElement("a");
             link.className = "article-card";
             link.href = `#${slugFromFolder(article.folder)}`;
+
+            const label = document.createElement("span");
+            label.className = "content-label article-label";
+            label.textContent = "Article";
+            link.appendChild(label);
 
             const meta = document.createElement("span");
             meta.className = "article-date";
@@ -158,6 +172,17 @@
         blocks.forEach(block => body.appendChild(block));
         detail.appendChild(body);
 
+        if (article.authorNote) {
+            const note = document.createElement("aside");
+            note.className = "article-author-note";
+
+            const noteTitle = document.createElement("h2");
+            noteTitle.textContent = "Author note";
+            note.appendChild(noteTitle);
+            note.appendChild(createTextElement("p", article.authorNote));
+            detail.appendChild(note);
+        }
+
         const back = document.createElement("a");
         back.className = "article-back";
         back.href = "articles.html";
@@ -207,9 +232,11 @@
             if (!folders.length) throw new Error("No articles configured");
 
             const articles = await Promise.all(folders.map(async folder => {
-                const response = await fetch(`Articles/${encodeURIComponent(folder)}/article.txt?v=1.1`);
+                const basePath = `Articles/${encodeURIComponent(folder)}`;
+                const response = await fetch(`${basePath}/article.txt?v=1.2`);
                 if (!response.ok) throw new Error(`Could not load article: ${folder}`);
-                return { folder, ...parseArticle(await response.text()) };
+                const authorNote = await fetchOptionalText(`${basePath}/author-note.txt?v=1.0`);
+                return { folder, ...parseArticle(await response.text()), authorNote };
             }));
 
             renderArticles(articles);

@@ -1,7 +1,7 @@
-const CACHE_VERSION = "2.4";
+const CACHE_VERSION = "2.5";
 
 // Function to create a thumbnail with overlay icons
-function createThumbnail(src, alt, galleryPageUrl, hasMultipleImages, hasVideo, hasYouTube, hasSketchfab, isFeatured = false) {
+function createThumbnail(src, alt, label, context, galleryPageUrl, hasMultipleImages, hasVideo, hasYouTube, hasSketchfab, isFeatured = false) {
     const thumbnailLink = document.createElement("a");
     thumbnailLink.href = galleryPageUrl;
     thumbnailLink.classList.add("thumbnail-link");
@@ -17,6 +17,21 @@ function createThumbnail(src, alt, galleryPageUrl, hasMultipleImages, hasVideo, 
     const thumbnailTitle = document.createElement("div");
     thumbnailTitle.classList.add("thumbnail-title");
     thumbnailTitle.textContent = alt;
+
+    const thumbnailCopy = document.createElement("div");
+    thumbnailCopy.className = "thumbnail-copy";
+
+    const thumbnailLabel = document.createElement("span");
+    thumbnailLabel.className = "thumbnail-card-label content-label";
+    thumbnailLabel.textContent = label;
+
+    const thumbnailContext = document.createElement("p");
+    thumbnailContext.className = "thumbnail-context";
+    thumbnailContext.textContent = context;
+
+    thumbnailCopy.appendChild(thumbnailLabel);
+    thumbnailCopy.appendChild(thumbnailTitle);
+    thumbnailCopy.appendChild(thumbnailContext);
 
     let iconIndex = 0;
 
@@ -55,12 +70,12 @@ function createThumbnail(src, alt, galleryPageUrl, hasMultipleImages, hasVideo, 
     if (isFeatured) {
         const featuredMarker = document.createElement("span");
         featuredMarker.className = "featured-marker";
-        featuredMarker.textContent = "Featured";
+        featuredMarker.textContent = "Selected";
         thumbnailDiv.appendChild(featuredMarker);
     }
 
     thumbnailDiv.appendChild(thumbnailImg);
-    thumbnailDiv.appendChild(thumbnailTitle);
+    thumbnailDiv.appendChild(thumbnailCopy);
     thumbnailLink.appendChild(thumbnailDiv);
 
     return thumbnailLink;
@@ -86,11 +101,51 @@ function fetchText(path) {
     });
 }
 
+function fetchOptionalText(path) {
+    return fetch(`${path}?v=${CACHE_VERSION}`)
+        .then(response => response.ok ? response.text() : "")
+        .catch(() => "");
+}
+
 function parseLines(text) {
     return text
         .split("\n")
         .map(line => line.trim())
         .filter(line => line && !line.startsWith("#"));
+}
+
+function inferProjectLabel(categories) {
+    if (categories.includes("uiux")) return "Case Study";
+    if (categories.includes("branding")) return "Brand Study";
+    if (categories.includes("web")) return "Web Experiment";
+    if (categories.includes("visual-design")) return "Visual Study";
+    return "Project";
+}
+
+function createContextFallback(description) {
+    const clean = description
+        .replace(/https?:\/\/\S+/gi, "")
+        .replace(/View the full case study here:?/gi, "")
+        .replace(/\s+/g, " ")
+        .trim();
+    const firstSentence = clean.match(/^.*?[.!?](?:\s|$)/);
+    const context = (firstSentence ? firstSentence[0] : clean).trim();
+    return context.length > 140 ? `${context.slice(0, 137).trimEnd()}...` : context;
+}
+
+function parseProjectCard(cardText, description, categories) {
+    const lines = parseLines(cardText);
+    return {
+        label: lines[0] || inferProjectLabel(categories),
+        context: lines.slice(1).join(" ") || createContextFallback(description)
+    };
+}
+
+function orderProjects(projectNames, selectedNames) {
+    const configured = new Set(projectNames);
+    const selected = selectedNames.filter((name, index) => configured.has(name) && selectedNames.indexOf(name) === index);
+    const selectedSet = new Set(selected);
+    return [...selected, ...projectNames.filter(name => !selectedSet.has(name))];
 }
 
 function createPortfolioEmptyState() {
@@ -120,14 +175,19 @@ function createPortfolioEmptyState() {
 function fetchProjectData(projectName) {
     const descriptionPath = `../Projects/${projectName}/description.txt`;
     const mediaPath = `../Projects/${projectName}/media.txt`;
+    const cardPath = `../Projects/${projectName}/card.txt`;
+    const categoriesPath = `../Projects/${projectName}/categories.txt`;
 
     return Promise.all([
         fetchText(descriptionPath),
-        fetchText(mediaPath)
+        fetchText(mediaPath),
+        fetchOptionalText(cardPath),
+        fetchOptionalText(categoriesPath)
     ])
-    .then(([descriptionText, mediaText]) => {
+    .then(([descriptionText, mediaText, cardText, categoriesText]) => {
         const [title, description, tags, thumbnailUrl, htmlFileName] = descriptionText.split("---").map(line => line.trim());
         const galleryPageUrl = descriptionPath.replace("description.txt", htmlFileName);
+        const card = parseProjectCard(cardText, description, parseLines(categoriesText));
 
         const mediaLines = parseLines(mediaText);
         const hasMultipleImages = mediaLines.filter(line => line.match(/\.(jpeg|jpg|gif|png)$/i)).length > 1;
@@ -140,8 +200,11 @@ function fetchProjectData(projectName) {
         const bannerImageUrl = bannerImageLine ? bannerImageLine.replace("*", "").trim() : null;
 
         return {
+            projectName,
             src: thumbnailUrl,
             alt: title,
+            label: card.label,
+            context: card.context,
             galleryPageUrl,
             hasMultipleImages,
             hasVideo,
@@ -166,25 +229,36 @@ function fetchProjects() {
         });
 }
 
-fetchProjects().then(projectNames => {
+function fetchSelectedWork() {
+    return fetchText("../Config/selected-work.txt")
+        .then(parseLines)
+        .catch(() => []);
+}
+
+Promise.all([fetchProjects(), fetchSelectedWork()]).then(([projectNames, selectedNames]) => {
     if (projectNames.length === 0) {
         thumbnailContainer.appendChild(createPortfolioEmptyState());
         return;
     }
 
     const fragment = document.createDocumentFragment();
+    const selectedProjects = selectedNames.filter((name, index) => projectNames.includes(name) && selectedNames.indexOf(name) === index);
+    const orderedProjectNames = orderProjects(projectNames, selectedProjects);
+    const selectedSet = new Set(selectedProjects);
 
-    Promise.all(projectNames.map(fetchProjectData)).then(projectResults => {
+    Promise.all(orderedProjectNames.map(fetchProjectData)).then(projectResults => {
         projectResults.filter(Boolean).forEach((project, index) => {
             const thumbnail = createThumbnail(
                 project.src,
                 project.alt,
+                project.label,
+                project.context,
                 project.galleryPageUrl,
                 project.hasMultipleImages,
                 project.hasVideo,
                 project.hasYouTube,
                 project.hasSketchfab,
-                index < 3
+                selectedSet.size ? selectedSet.has(project.projectName) : index < 3
             );
             fragment.appendChild(thumbnail);
         });

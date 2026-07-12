@@ -98,6 +98,13 @@ function checkProjects() {
     const base = path.join("Projects", folder);
     ["description.txt", "media.txt", "stats.txt"].forEach(file => requireFile(path.join(base, file)));
 
+    const cardPath = path.join(base, "card.txt");
+    if (exists(cardPath)) {
+      const cardLines = lines(cardPath);
+      if (cardLines.length < 2) errors.push(`${normalizeRel(cardPath)} must have a short label on line 1 and one-line context on line 2`);
+      if ((cardLines.slice(1).join(" ")).length > 160) warnings.push(`${normalizeRel(cardPath)} context is longer than 160 characters`);
+    }
+
     const descriptionPath = path.join(base, "description.txt");
     if (exists(descriptionPath)) {
       const parts = read(descriptionPath).split("---").map(part => part.trim());
@@ -111,6 +118,19 @@ function checkProjects() {
         if (hasAssetExtension(line) || line.includes(" // ")) checkLocalAsset(line, mediaPath, base);
       });
     }
+  });
+}
+
+function checkSelectedWork() {
+  const selectedPath = "Config/selected-work.txt";
+  if (!exists(selectedPath) || !exists("Config/projects.txt")) return;
+
+  const configured = new Set(lines("Config/projects.txt"));
+  const seen = new Set();
+  lines(selectedPath).forEach(folder => {
+    if (!configured.has(folder)) errors.push(`${normalizeRel(selectedPath)} references a project not in Config/projects.txt: ${folder}`);
+    if (seen.has(folder)) errors.push(`${normalizeRel(selectedPath)} contains a duplicate project: ${folder}`);
+    seen.add(folder);
   });
 }
 
@@ -200,6 +220,7 @@ function checkConfig() {
 
 checkConfig();
 checkProjects();
+checkSelectedWork();
 checkPhotography();
 checkCodeProjects();
 checkArticles();

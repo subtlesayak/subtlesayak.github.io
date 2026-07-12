@@ -1,6 +1,6 @@
 (function () {
     const container = document.getElementById("code-projects-container");
-    const configPath = "Config/codeprojects.txt?v=1.1";
+    const configPath = "Config/codeprojects.txt?v=1.2";
 
     function parseProjects(rawText) {
         return rawText
@@ -47,7 +47,7 @@
         card.className = "code-project-card";
 
         const kind = document.createElement("span");
-        kind.className = "code-project-kind";
+        kind.className = "code-project-kind content-label";
         kind.textContent = project.kind;
         card.appendChild(kind);
 

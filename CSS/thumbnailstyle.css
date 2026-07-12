@@ -48,25 +48,47 @@
   pointer-events: none;
 }
 
-.thumbnail-title {
+.thumbnail-copy {
   position: absolute;
   left: var(--thumbnail-inset, 10px);
   right: var(--thumbnail-inset, 10px);
   bottom: var(--thumbnail-inset, 10px);
   z-index: 2;
+  display: grid;
+  gap: max(2px, calc(var(--thumbnail-inset, 10px) * 0.35));
+  opacity: 0;
+  text-align: left;
+  pointer-events: none;
+  transition: opacity 180ms ease;
+}
+
+.thumbnail-title {
   color: rgb(225, 225, 225);
   font-family: 'Poppins', sans-serif;
   font-size: var(--thumbnail-title-size, 18px);
   font-weight: 600;
   line-height: 1.2;
-  opacity: 0;
-  transition: opacity 180ms ease;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
   word-break: break-word;
-  text-align: center;
+  text-align: left;
+}
+
+.thumbnail-card-label {
+  color: #edb049;
+  font-size: max(7px, calc(var(--thumbnail-title-size, 18px) * 0.58));
+}
+
+.thumbnail-context {
+  margin: 0;
+  overflow: hidden;
+  color: rgba(255, 255, 255, 0.82);
+  font-size: max(7px, calc(var(--thumbnail-title-size, 18px) * 0.7));
+  line-height: 1.25;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .thumbnail-link:hover .thumbnail,
@@ -81,18 +103,18 @@
 .thumbnail-link:hover .thumbnail::before,
 .thumbnail-link:focus-visible .thumbnail::before,
 .thumbnail-link:focus-within .thumbnail::before,
-.thumbnail-link:hover .thumbnail-title,
-.thumbnail-link:focus-visible .thumbnail-title,
-.thumbnail-link:focus-within .thumbnail-title,
+.thumbnail-link:hover .thumbnail-copy,
+.thumbnail-link:focus-visible .thumbnail-copy,
+.thumbnail-link:focus-within .thumbnail-copy,
 .thumbnail-link:hover .overlay-icon,
 .thumbnail-link:focus-visible .overlay-icon,
 .thumbnail-link:focus-within .overlay-icon,
 #thumbnail-container > a:hover .thumbnail::before,
 #thumbnail-container > a:focus-visible .thumbnail::before,
 #thumbnail-container > a:focus-within .thumbnail::before,
-#thumbnail-container > a:hover .thumbnail-title,
-#thumbnail-container > a:focus-visible .thumbnail-title,
-#thumbnail-container > a:focus-within .thumbnail-title,
+#thumbnail-container > a:hover .thumbnail-copy,
+#thumbnail-container > a:focus-visible .thumbnail-copy,
+#thumbnail-container > a:focus-within .thumbnail-copy,
 #thumbnail-container > a:hover .overlay-icon,
 #thumbnail-container > a:focus-visible .overlay-icon,
 #thumbnail-container > a:focus-within .overlay-icon {
@@ -179,15 +201,23 @@
     overflow: hidden;
   }
 
-  .thumbnail-title {
+  .thumbnail-copy {
     left: 5px;
     right: 5px;
     bottom: 5px;
     padding: 5px;
     border-radius: 3px;
     background-color: rgba(0, 0, 0, 0.7);
-    font-size: 14px;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.75);
+  }
+
+  .thumbnail-title {
+    font-size: 14px;
+  }
+
+  .thumbnail-card-label,
+  .thumbnail-context {
+    font-size: 10px;
   }
 
   .overlay-icon {

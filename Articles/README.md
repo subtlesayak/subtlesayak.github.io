@@ -5,6 +5,9 @@ Add each article as its own folder inside `Articles/`.
 Required file:
 - `article.txt`
 
+Optional file:
+- `author-note.txt` - a short note shown after the article body
+
 Format for `article.txt`:
 
 ```txt

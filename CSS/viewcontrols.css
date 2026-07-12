@@ -14,6 +14,15 @@
   outline-offset: 3px;
 }
 
+.content-label {
+  display: block;
+  width: fit-content;
+  color: var(--accent);
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
 .view-controls {
   position: fixed;
   right: 20px;
@@ -87,6 +96,10 @@
 
 :where(.article-card, .code-project-card, .photo-collection-card, .photo-card, .thumbnail):is(:hover, :focus-visible, :focus-within) {
   border-color: var(--accent-line) !important;
+}
+
+:where(.article-card, .code-project-card, .photo-collection-card):is(:hover, :focus-visible, :focus-within) .content-label {
+  color: #8a520e !important;
 }
 
 :where(.nav-button, .social-icons a, .view-control-button, .resize-button, .theme-button, .project-back-button, .back-to-top-button, .photo-nav-button, .photo-action, .code-project-action, .article-back, .photography-collection-back, .link-button):is(:hover, :focus-visible) {

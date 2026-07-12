@@ -1,4 +1,4 @@
-const PHOTOGRAPHY_CACHE_VERSION = "2.0";
+const PHOTOGRAPHY_CACHE_VERSION = "2.1";
 const PHOTOGRAPHY_COLLECTIONS_PATH = "../Projects/Photography/collections.txt";
 const PHOTOGRAPHY_ROOT_ID = ".";
 const PHOTOGRAPHY_BASE_PATH = "../Projects/Photography/";
@@ -164,6 +164,10 @@ function createCollectionCard(collection) {
     const body = document.createElement("div");
     body.className = "photo-collection-body";
 
+    const label = document.createElement("span");
+    label.className = "content-label photo-collection-label";
+    label.textContent = "Photography";
+
     const meta = document.createElement("span");
     meta.className = "photo-collection-meta";
     meta.textContent = [collection.entry.date, collection.entry.location].filter(Boolean).join(" | ") || `${collection.photos.length} photos`;
@@ -174,6 +178,7 @@ function createCollectionCard(collection) {
     const description = document.createElement("p");
     description.textContent = collection.entry.context || `${collection.photos.length} photos`;
 
+    body.appendChild(label);
     body.appendChild(meta);
     body.appendChild(title);
     body.appendChild(description);
