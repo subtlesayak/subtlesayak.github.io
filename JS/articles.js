@@ -159,12 +159,6 @@
 
         if (meta.children.length) detail.appendChild(meta);
 
-        if (article.summary) {
-            const summary = document.createElement("p");
-            summary.className = "article-summary";
-            summary.textContent = article.summary;
-            detail.appendChild(summary);
-        }
 
         const body = document.createElement("div");
         body.className = "article-body";
@@ -175,7 +169,7 @@
         const back = document.createElement("a");
         back.className = "article-back";
         back.href = "articles.html";
-        back.textContent = "Back to all posts";
+        back.textContent = "<- Back to all posts";
         detail.appendChild(back);
 
         articlesContainer.replaceChildren(detail);
