@@ -418,25 +418,58 @@ body.theme-light .photo-caption {
 
 .photography-collections {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-  gap: 10px;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 12px;
   align-items: stretch;
 }
 
 .photo-collection-card {
+  position: relative;
   display: grid;
   grid-template-rows: auto 1fr;
+  min-height: 0;
   overflow: hidden;
-  min-height: 260px;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 8px;
-  background: #101010;
-  color: inherit;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.035);
+  color: #d7d7d7;
   text-decoration: none;
+  transition: border-color 160ms ease, background 160ms ease, color 160ms ease, box-shadow 160ms ease;
+}
+
+.photo-collection-card::after {
+  content: "";
+  position: absolute;
+  right: 24px;
+  bottom: 24px;
+  width: 34px;
+  height: 34px;
+  box-sizing: border-box;
+  border: 3px solid rgba(237, 176, 73, 0.18);
+  border-radius: 50%;
+  opacity: 0.9;
+  transform: rotate(-10deg);
+  transition: border-color 160ms ease, transform 160ms ease;
+}
+
+.photo-collection-card:hover,
+.photo-collection-card:focus-visible {
+  border-color: rgba(255, 255, 255, 0.18);
+  background: #f7f7f8;
+  box-shadow: 0 18px 44px rgba(0, 0, 0, 0.18);
+  color: #171717;
+  outline: none;
+}
+
+.photo-collection-card:hover::after,
+.photo-collection-card:focus-visible::after {
+  border-color: rgba(237, 176, 73, 0.32);
+  transform: rotate(-10deg) scale(1.04);
 }
 
 .photo-collection-cover {
   aspect-ratio: 4 / 3;
+  overflow: hidden;
   background: #171717;
 }
 
@@ -449,10 +482,12 @@ body.theme-light .photo-caption {
 }
 
 .photo-collection-body {
+  position: relative;
+  z-index: 1;
   display: flex;
   flex-direction: column;
   gap: 8px;
-  padding: 13px;
+  padding: 18px 62px 18px 18px;
 }
 
 .photo-collection-meta,
@@ -460,27 +495,35 @@ body.theme-light .photo-caption {
   color: #a9a9a9;
   font-size: 12px;
   line-height: 1.4;
+  transition: color 160ms ease;
 }
 
 .photo-collection-card h2 {
-  color: #f2f2f2;
-  font-size: 17px;
-  font-weight: 500;
-  line-height: 1.25;
+  color: inherit;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 1.28;
+  transition: color 160ms ease;
 }
 
 .photo-collection-card p {
-  color: #a9a9a9;
+  color: #b8b8b8;
   font-size: 13px;
-  line-height: 1.5;
+  line-height: 1.55;
+  transition: color 160ms ease;
 }
 
-.photo-collection-card:hover,
-.photo-collection-card:focus-visible {
-  border-color: rgba(237, 176, 73, 0.42);
-  outline: none;
+.photo-collection-card:hover h2,
+.photo-collection-card:focus-visible h2 {
+  color: var(--accent, #edb049);
 }
 
+.photo-collection-card:hover .photo-collection-meta,
+.photo-collection-card:focus-visible .photo-collection-meta,
+.photo-collection-card:hover p,
+.photo-collection-card:focus-visible p {
+  color: #676c75;
+}
 .photography-collection-view {
   display: grid;
   gap: 14px;
@@ -528,10 +571,13 @@ body.theme-light .photo-caption {
   transform: translateY(-1px);
 }
 
-body.theme-light .photo-collection-card,
+body.theme-light .photo-collection-card {
+  background: rgba(255, 255, 255, 0.64);
+  border-color: var(--line, rgba(0, 0, 0, 0.12));
+}
+
 body.theme-light .photo-collection-cover {
   background: var(--surface-raised, #ffffff);
-  border-color: var(--line, rgba(0, 0, 0, 0.12));
 }
 
 body.theme-light .photo-collection-card h2,
@@ -552,7 +598,21 @@ body.theme-light .photography-collection-back {
 
 body.theme-light .photo-collection-card:hover,
 body.theme-light .photo-collection-card:focus-visible {
-  border-color: rgba(164, 99, 18, 0.38);
+  border-color: var(--line);
+  background: #f7f7f8;
+  box-shadow: 0 18px 44px rgba(0, 0, 0, 0.08);
+}
+
+body.theme-light .photo-collection-card:hover h2,
+body.theme-light .photo-collection-card:focus-visible h2 {
+  color: var(--accent, #a46312) !important;
+}
+
+body.theme-light .photo-collection-card:hover .photo-collection-meta,
+body.theme-light .photo-collection-card:focus-visible .photo-collection-meta,
+body.theme-light .photo-collection-card:hover p,
+body.theme-light .photo-collection-card:focus-visible p {
+  color: #676c75 !important;
 }
 
 @media (max-width: 700px) {
@@ -563,6 +623,18 @@ body.theme-light .photo-collection-card:focus-visible {
 
   .photo-collection-card {
     min-height: 0;
+    border-radius: 10px;
+  }
+
+  .photo-collection-card::after {
+    right: 18px;
+    bottom: 18px;
+    width: 30px;
+    height: 30px;
+  }
+
+  .photo-collection-body {
+    padding: 16px 56px 16px 16px;
   }
 
   .photography-entry-intro h1 {
