@@ -4,7 +4,13 @@ function createProductionCard(title, company, time, thumbnail, description) {
 
     const img = document.createElement("img");
     img.src = thumbnail;
-    img.alt = title;
+    img.alt = `${company} logo`;
+    img.loading = "lazy";
+    img.decoding = "async";
+
+    const mediaDiv = document.createElement("div");
+    mediaDiv.classList.add("production-media");
+    mediaDiv.appendChild(img);
 
     const detailsDiv = document.createElement("div");
     detailsDiv.classList.add("production-details");
@@ -12,13 +18,13 @@ function createProductionCard(title, company, time, thumbnail, description) {
     const titleElem = document.createElement("h2");
     titleElem.textContent = title;
 
-    const companyElem = document.createElement("p");
+    const companyElem = document.createElement("strong");
     companyElem.textContent = company;
-    companyElem.style.fontWeight = "bold";
+    companyElem.classList.add("production-company");
 
     const timeElem = document.createElement("p");
     timeElem.textContent = time;
-    timeElem.style.fontStyle = "italic";
+    timeElem.classList.add("production-time");
 
     detailsDiv.appendChild(titleElem);
     detailsDiv.appendChild(companyElem);
@@ -35,7 +41,7 @@ function createProductionCard(title, company, time, thumbnail, description) {
     contentContainer.appendChild(detailsDiv);
     contentContainer.appendChild(descDiv);
 
-    card.appendChild(img);
+    card.appendChild(mediaDiv);
     card.appendChild(contentContainer);
 
     return card;
@@ -72,7 +78,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
 
     try {
-        const response = await fetch('../Config/productions.txt?v=1.5');
+        const response = await fetch('../Config/productions.txt?v=1.6');
         if (!response.ok) {
             throw new Error(`Network response was not ok: ${response.statusText}`);
         }
