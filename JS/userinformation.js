@@ -1,6 +1,6 @@
 
 function ensureGlobalNavigation(container) {
-    if (!container || container.querySelector('.navigation-buttons')) return;
+    if (!container) return;
 
     const isProjectPage = window.location.pathname.includes('/Projects/');
     const prefix = isProjectPage ? '../../' : '';
@@ -14,8 +14,14 @@ function ensureGlobalNavigation(container) {
         ['about.html', 'About']
     ];
 
-    const navigation = document.createElement('div');
-    navigation.className = 'navigation-buttons';
+    let navigation = container.querySelector('.navigation-buttons');
+    if (!navigation) {
+        navigation = document.createElement('div');
+        navigation.className = 'navigation-buttons';
+        container.appendChild(navigation);
+    }
+
+    navigation.textContent = '';
 
     links.forEach(([href, label]) => {
         const link = document.createElement('a');
@@ -25,8 +31,6 @@ function ensureGlobalNavigation(container) {
         if (href === activeHref) link.classList.add('active');
         navigation.appendChild(link);
     });
-
-    container.appendChild(navigation);
 }
 function addUserInformation() {
     let basePath = '';

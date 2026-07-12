@@ -200,3 +200,34 @@
     left: 25px;
   }
 }
+
+.featured-marker {
+  position: absolute;
+  top: var(--thumbnail-inset, 10px);
+  right: var(--thumbnail-inset, 10px);
+  z-index: 2;
+  max-width: calc(100% - 20px);
+  overflow: hidden;
+  padding: 2px 6px;
+  border-radius: 999px;
+  background: rgba(237, 176, 73, 0.92);
+  color: #101010;
+  font-size: clamp(8px, 0.66rem, 11px);
+  font-weight: 600;
+  line-height: 1.2;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+body.theme-light .featured-marker {
+  background: rgba(164, 99, 18, 0.92);
+  color: #ffffff;
+}
+
+@media screen and (min-width: 375px) and (max-width: 667px) {
+  .featured-marker {
+    top: 5px;
+    right: 5px;
+  }
+}

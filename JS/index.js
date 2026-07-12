@@ -1,7 +1,7 @@
-const CACHE_VERSION = "2.3";
+const CACHE_VERSION = "2.4";
 
 // Function to create a thumbnail with overlay icons
-function createThumbnail(src, alt, galleryPageUrl, hasMultipleImages, hasVideo, hasYouTube, hasSketchfab) {
+function createThumbnail(src, alt, galleryPageUrl, hasMultipleImages, hasVideo, hasYouTube, hasSketchfab, isFeatured = false) {
     const thumbnailLink = document.createElement("a");
     thumbnailLink.href = galleryPageUrl;
     thumbnailLink.classList.add("thumbnail-link");
@@ -50,6 +50,13 @@ function createThumbnail(src, alt, galleryPageUrl, hasMultipleImages, hasVideo, 
         sketchfabIcon.style.left = `${10 + iconIndex * 30}px`;
         thumbnailDiv.appendChild(sketchfabIcon);
         iconIndex++;
+    }
+
+    if (isFeatured) {
+        const featuredMarker = document.createElement("span");
+        featuredMarker.className = "featured-marker";
+        featuredMarker.textContent = "Featured";
+        thumbnailDiv.appendChild(featuredMarker);
     }
 
     thumbnailDiv.appendChild(thumbnailImg);
@@ -168,7 +175,7 @@ fetchProjects().then(projectNames => {
     const fragment = document.createDocumentFragment();
 
     Promise.all(projectNames.map(fetchProjectData)).then(projectResults => {
-        projectResults.filter(Boolean).forEach(project => {
+        projectResults.filter(Boolean).forEach((project, index) => {
             const thumbnail = createThumbnail(
                 project.src,
                 project.alt,
@@ -176,7 +183,8 @@ fetchProjects().then(projectNames => {
                 project.hasMultipleImages,
                 project.hasVideo,
                 project.hasYouTube,
-                project.hasSketchfab
+                project.hasSketchfab,
+                index < 3
             );
             fragment.appendChild(thumbnail);
         });

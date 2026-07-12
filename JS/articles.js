@@ -88,7 +88,7 @@
 
     function renderArticleList(articles) {
         const fragment = document.createDocumentFragment();
-const grid = document.createElement("div");
+        const grid = document.createElement("div");
         grid.className = "articles-grid";
 
         articles.forEach(article => {
@@ -167,6 +167,21 @@ const grid = document.createElement("div");
         articlesContainer.replaceChildren(detail);
     }
 
+    function renderArticlesEmptyState() {
+        const emptyState = document.createElement("div");
+        emptyState.className = "portfolio-empty";
+
+        const heading = document.createElement("h1");
+        heading.textContent = "Writing coming soon";
+
+        const body = document.createElement("p");
+        body.textContent = "Draft article folders can live in Articles/ and be listed in Config/articles.txt when they are ready to publish.";
+
+        emptyState.appendChild(heading);
+        emptyState.appendChild(body);
+        articlesContainer.replaceChildren(emptyState);
+    }
+
     function renderArticles(articles) {
         const activeFolder = getActiveFolder(articles);
         const activeArticle = articles.find(article => article.folder === activeFolder);
@@ -201,7 +216,7 @@ const grid = document.createElement("div");
             window.addEventListener("hashchange", () => renderArticles(articles));
         } catch (error) {
             console.error("Error loading articles:", error);
-            articlesContainer.innerHTML = '<div class="portfolio-empty"><h1>Articles</h1><p>Add article folders in Articles/ and list them in Config/articles.txt.</p></div>';
+            renderArticlesEmptyState();
         }
     }
 

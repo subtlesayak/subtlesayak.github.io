@@ -79,12 +79,27 @@
 
     function renderProjects(projects) {
         const fragment = document.createDocumentFragment();
-const grid = document.createElement("div");
+        const grid = document.createElement("div");
         grid.className = "code-projects-grid";
         projects.forEach(project => grid.appendChild(createProjectCard(project)));
         fragment.appendChild(grid);
 
         container.replaceChildren(fragment);
+    }
+
+    function renderProjectsEmptyState() {
+        const emptyState = document.createElement("div");
+        emptyState.className = "portfolio-empty";
+
+        const heading = document.createElement("h1");
+        heading.textContent = "Projects coming soon";
+
+        const body = document.createElement("p");
+        body.textContent = "Add public links in Config/codeprojects.txt to show tools, experiments, repositories, and live demos here.";
+
+        emptyState.appendChild(heading);
+        emptyState.appendChild(body);
+        container.replaceChildren(emptyState);
     }
 
     async function loadProjects() {
@@ -98,7 +113,7 @@ const grid = document.createElement("div");
             renderProjects(projects);
         } catch (error) {
             console.error("Error loading code projects:", error);
-            container.innerHTML = '<div class="portfolio-empty"><h1>Projects</h1><p>Add public project links in Config/codeprojects.txt.</p></div>';
+            renderProjectsEmptyState();
         }
     }
 

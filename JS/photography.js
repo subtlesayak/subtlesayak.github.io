@@ -1,4 +1,4 @@
-const PHOTOGRAPHY_CACHE_VERSION = "1.9";
+const PHOTOGRAPHY_CACHE_VERSION = "2.0";
 const PHOTOGRAPHY_COLLECTIONS_PATH = "../Projects/Photography/collections.txt";
 const PHOTOGRAPHY_ROOT_ID = ".";
 const PHOTOGRAPHY_BASE_PATH = "../Projects/Photography/";
@@ -128,14 +128,14 @@ function showPhotographyEmptyState(container) {
     emptyState.className = "portfolio-empty";
 
     const heading = document.createElement("h1");
-    heading.textContent = "Photography";
+    heading.textContent = "Photography collections coming soon";
 
     const body = document.createElement("p");
-    body.textContent = "Add collections to Projects/Photography/collections.txt to show photos here.";
+    body.textContent = "Add collection folders under Projects/Photography and list them in collections.txt to publish galleries here.";
 
     emptyState.appendChild(heading);
     emptyState.appendChild(body);
-    container.appendChild(emptyState);
+    container.replaceChildren(emptyState);
 }
 
 function createCollectionCard(collection) {

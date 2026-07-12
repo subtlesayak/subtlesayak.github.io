@@ -25,7 +25,7 @@
     <link rel="stylesheet" href="../CSS/indexstyle.css?v=1.8" />
     <link rel="stylesheet" href="../CSS/userinformationstyle.css?v=2.3" />
     <link rel="stylesheet" href="../CSS/viewcontrols.css?v=1.5" />
-    <link rel="stylesheet" href="../CSS/siteextras.css?v=1.0" />
+    <link rel="stylesheet" href="../CSS/siteextras.css?v=1.1" />
     <link rel="stylesheet" href="../CSS/articlesstyle.css?v=1.5" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&display=swap" />
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet" />
@@ -55,20 +55,13 @@
             </div>
         </div>
     </div>
-    <script src="../JS/userinformation.js?v=1.8"></script>
+    <script src="../JS/userinformation.js?v=1.9"></script>
     <script src="../JS/viewcontrols.js?v=1.5"></script>
-    <script src="../JS/articles.js?v=1.4"></script>
-    <script src="../JS/siteinfo.js?v=1.0"></script>
+    <script src="../JS/articles.js?v=1.5"></script>
+    <script src="../JS/siteinfo.js?v=1.1"></script>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             if (window.PortfolioControls) window.PortfolioControls.initViewControls({ showResize: false });
-            const currentPath = window.location.pathname.split('/').pop();
-            const navButtons = document.querySelectorAll('.nav-button');
-            navButtons.forEach(button => {
-                if (button.getAttribute('href') === currentPath) {
-                    button.classList.add('active');
-                }
-            });
         });
     </script>
 </body>

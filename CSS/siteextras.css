@@ -108,3 +108,22 @@ body.theme-light .sitemap-section {
     padding: 14px;
   }
 }
+
+.section-updated {
+  width: 100%;
+  margin: 0 0 12px;
+  color: var(--muted, #a9a9a9);
+  font-size: 12px;
+  line-height: 1.4;
+  text-align: left;
+}
+
+.articles-panel > .section-updated,
+.code-projects-panel > .section-updated,
+.photography-shell > .section-updated {
+  margin-bottom: 14px;
+}
+
+body.photography-project-mode .section-updated {
+  display: none;
+}
