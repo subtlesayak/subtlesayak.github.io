@@ -27,13 +27,13 @@
 
 .user-name-link:hover,
 .user-name-link:focus-visible {
-  color: #edb049;
+  color: var(--accent, #edb049);
   outline: none;
 }
 
 .user-info-panel h1 {
   max-width: 100%;
-  color: #edb049;
+  color: var(--accent, #edb049);
   font-family: 'Poppins', sans-serif;
   font-size: clamp(32px, 5vw, 48px);
   font-weight: 400;
@@ -42,7 +42,7 @@
 }
 
 .user-info-panel h2 {
-  color: #a9a9a9;
+  color: var(--muted, #a9a9a9);
   font-family: 'Poppins', sans-serif;
   font-size: 14px;
   font-weight: 500;
@@ -51,7 +51,7 @@
 
 .user-intro {
   max-width: 460px;
-  color: #d8d8d8;
+  color: var(--text, #d8d8d8);
   font-family: 'Poppins', sans-serif;
   font-size: 14px;
   font-weight: 400;
@@ -61,10 +61,10 @@
 .profile-pic {
   width: 112px;
   height: 112px;
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  border: 1px solid var(--line, rgba(255, 255, 255, 0.12));
   border-radius: 50%;
   object-fit: cover;
-  background: #202020;
+  background: var(--surface-raised, #202020);
 }
 
 .social-icons {
@@ -82,7 +82,7 @@
   align-items: center;
   justify-content: center;
   border-radius: 8px;
-  color: #a9a9a9 !important;
+  color: var(--muted, #a9a9a9) !important;
   font-size: 20px;
   text-decoration: none;
   transition: color 180ms ease, background-color 180ms ease;
@@ -104,7 +104,7 @@
 .social-icons a:hover,
 .social-icons a:focus-visible {
   background: rgba(237, 176, 73, 0.1);
-  color: #edb049 !important;
+  color: var(--accent, #edb049) !important;
   outline: none;
 }
 
@@ -113,11 +113,11 @@
   align-items: center;
   justify-content: center;
   gap: 6px;
-  color: #a9a9a9;
+  color: var(--muted, #a9a9a9);
 }
 
 .material-symbols-outlined {
-  color: #a9a9a9 !important;
+  color: var(--muted, #a9a9a9) !important;
   font-size: 18px;
 }
 
@@ -127,12 +127,12 @@
 
 @media (max-width: 700px) {
   .user-info-panel {
-    gap: 7px;
+    gap: 5px;
   }
 
   .profile-pic {
-    width: 96px;
-    height: 96px;
+    width: 92px;
+    height: 92px;
   }
 
   .user-info-panel h1 {
@@ -145,7 +145,7 @@
   }
 
   .social-icons {
-    gap: 12px;
+    gap: 10px;
   }
 }
 

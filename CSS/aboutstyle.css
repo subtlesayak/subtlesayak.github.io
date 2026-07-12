@@ -1,4 +1,14 @@
 /* Basic reset for margin and padding */
+:root {
+    --bg: #101010;
+    --surface: #171717;
+    --surface-raised: #202020;
+    --line: rgba(255, 255, 255, 0.1);
+    --text: #f2f2f2;
+    --muted: #a9a9a9;
+    --accent: #edb049;
+    --accent-line: rgba(237, 176, 73, 0.48);
+}
 html,
 body {
     margin: 0;
@@ -24,8 +34,8 @@ html {
 
 body {
     font-family: 'Poppins', sans-serif;
-    background-color: #121212;
-    color: #d7d7d7;
+    background-color: var(--bg);
+    color: var(--text);
     display: flex;
     flex-direction: column;
     overflow-y: scroll;
@@ -35,7 +45,7 @@ body {
 h1 {
     font-size: 20px;
     margin: 0 0 5px;
-    color: white;
+    color: var(--text);
     -webkit-user-select: none;
     user-select: none;
     font-weight: 400;
@@ -45,7 +55,7 @@ h1 {
 h2 {
     font-size: 16px;
     margin: 0;
-    color: grey;
+    color: var(--muted);
     font-family: 'Poppins', sans-serif;
     font-weight: 400;
     -webkit-user-select: none;
@@ -59,8 +69,8 @@ h2 {
     gap: 16px;
     width: 100%;
     padding: 32px 20px 0;
-    background: #101010;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    background: var(--bg);
+    border-bottom: 1px solid var(--line);
 }
 
 .navigation-buttons {
@@ -80,7 +90,7 @@ h2 {
     border-bottom: 0;
     border-radius: 8px 8px 0 0;
     background: transparent;
-    color: #a9a9a9;
+    color: var(--muted);
     font-family: 'Poppins', sans-serif;
     font-size: 13px;
     font-weight: 500;
@@ -91,9 +101,9 @@ h2 {
 .nav-button.active,
 .nav-button:hover,
 .nav-button:focus-visible {
-    background: #171717;
-    border-color: rgba(255, 255, 255, 0.08);
-    color: #edb049;
+    background: var(--surface);
+    border-color: var(--line);
+    color: var(--accent);
     outline: none;
 }
 
@@ -111,7 +121,7 @@ hr {
     flex-direction: column;
     align-items: center;
     padding: 20px;
-    background-color: #151515;
+    background-color: var(--surface);
     width: 100%;
     gap: 10px;
     border-radius: 0;
@@ -125,14 +135,14 @@ hr {
 .panel-title {
     font-size: 24px;
     margin-bottom: 10px;
-    color: #d7d7d7;
+    color: var(--text);
     text-align: left;
 }
 
 p {
     font-size: 16px;
     line-height: 1.4;
-    color: grey;
+    color: var(--muted);
 }
 
 .summary-panel p {
@@ -162,9 +172,9 @@ body.no-recommendations .recommendations-spacer {
     }
 
     .top-container {
-        gap: 14px;
-        padding: 24px 14px 0;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        gap: 10px;
+        padding: 18px 14px 0;
+        border-bottom: 1px solid var(--line);
     }
 
     .navigation-buttons {

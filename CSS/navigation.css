@@ -1,8 +1,8 @@
 .nav-button {
-  background-color: #121212;
+  background-color: var(--bg, #101010);
   border: none;
   border-radius: 0.1em;
-  color: white;
+  color: var(--text, #f2f2f2);
   font-size: 24px;
   padding: 10px;
   cursor: pointer;
@@ -14,7 +14,8 @@
   transition: opacity 0.3s;
 }
 
-.nav-button:hover {
+.nav-button:hover,
+.nav-button:focus-visible {
   opacity: 1;
 }
 
@@ -54,8 +55,8 @@
   height: 44px;
   border: 0;
   border-radius: 0.1em;
-  background-color: #121212;
-  color: white;
+  background-color: var(--bg, #101010);
+  color: var(--text, #f2f2f2);
   font-size: 22px;
   cursor: pointer;
   opacity: 0.5;
@@ -65,6 +66,6 @@
 .project-back-button:hover,
 .project-back-button:focus-visible {
   opacity: 1;
-  color: #edb049;
+  color: var(--accent, #edb049);
   outline: none;
 }
