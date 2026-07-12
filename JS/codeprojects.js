@@ -79,15 +79,7 @@
 
     function renderProjects(projects) {
         const fragment = document.createDocumentFragment();
-
-        const header = document.createElement("div");
-        header.className = "code-projects-heading";
-        const title = document.createElement("h1");
-        title.textContent = "Projects";
-        header.appendChild(title);
-        fragment.appendChild(header);
-
-        const grid = document.createElement("div");
+const grid = document.createElement("div");
         grid.className = "code-projects-grid";
         projects.forEach(project => grid.appendChild(createProjectCard(project)));
         fragment.appendChild(grid);

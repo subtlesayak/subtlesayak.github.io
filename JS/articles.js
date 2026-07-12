@@ -88,15 +88,7 @@
 
     function renderArticleList(articles) {
         const fragment = document.createDocumentFragment();
-        const header = document.createElement("div");
-        header.className = "articles-heading";
-
-        const title = document.createElement("h1");
-        title.textContent = "Articles";
-        header.appendChild(title);
-        fragment.appendChild(header);
-
-        const grid = document.createElement("div");
+const grid = document.createElement("div");
         grid.className = "articles-grid";
 
         articles.forEach(article => {
