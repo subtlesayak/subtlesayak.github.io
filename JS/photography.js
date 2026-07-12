@@ -268,14 +268,15 @@ function preloadPhoto(collectionId, fileName) {
     image.src = getImagePath(collectionId, fileName);
 }
 
-function createPhotoNavButton(label, iconClass, className, onClick) {
+function createPhotoNavButton(label, iconName, className, onClick) {
     const button = document.createElement("button");
     button.type = "button";
     button.className = className;
     button.setAttribute("aria-label", label);
 
-    const icon = document.createElement("i");
-    icon.className = iconClass;
+    const icon = document.createElement("span");
+    icon.className = "material-symbols-outlined";
+    icon.textContent = iconName;
     button.appendChild(icon);
     button.addEventListener("click", onClick);
     return button;
@@ -352,9 +353,9 @@ function renderPhotoDetail(container, collection, selectedIndex, metadataByFile)
         window.location.href = photoUrl(collection.id, fileNameToOpen);
     };
 
-    mediaPanel.appendChild(createPhotoNavButton("Previous photo", "fa fa-chevron-left", "photo-nav-button photo-nav-prev", () => goToPhoto(previousPhoto)));
-    mediaPanel.appendChild(createPhotoNavButton("Next photo", "fa fa-chevron-right", "photo-nav-button photo-nav-next", () => goToPhoto(nextPhoto)));
-    mediaPanel.appendChild(createPhotoNavButton("Back to collection", "fa fa-arrow-left", "photo-nav-button photo-nav-back", () => {
+    mediaPanel.appendChild(createPhotoNavButton("Previous photo", "chevron_left", "photo-nav-button photo-nav-prev", () => goToPhoto(previousPhoto)));
+    mediaPanel.appendChild(createPhotoNavButton("Next photo", "chevron_right", "photo-nav-button photo-nav-next", () => goToPhoto(nextPhoto)));
+    mediaPanel.appendChild(createPhotoNavButton("Back to collection", "arrow_back", "photo-nav-button photo-nav-back", () => {
         window.location.href = collectionUrl(collection.id);
     }));
 

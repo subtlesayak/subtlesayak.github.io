@@ -1,0 +1,22 @@
+{
+  "sourceProject": "https://www.behance.net/gallery/194923697/Experimental-Y2K-Web-Design-Format",
+  "retrievedAt": "2026-07-12T22:59:52.041Z",
+  "imageCount": 2,
+  "totalBytes": 1022570,
+  "images": [
+    {
+      "file": "image-001.webp",
+      "source": "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/16b21b194923697.660454b6465bc.png",
+      "bytes": 785516,
+      "contentType": "image/webp",
+      "sha256": "a55e87d57ff3b6ce000e9320dc8d35c51ef7c5fb9d61b2d0a5d153bd241df065"
+    },
+    {
+      "file": "image-002.webp",
+      "source": "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/457a0f194923697.660454b645649.png",
+      "bytes": 237054,
+      "contentType": "image/webp",
+      "sha256": "c223813e1e14a1b0335f6713911f9e27e792cb27ab9579979dc4ff005514b12b"
+    }
+  ]
+}

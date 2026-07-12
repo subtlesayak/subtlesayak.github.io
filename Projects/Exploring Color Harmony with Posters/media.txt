@@ -1,2 +1,9 @@
-https://mir-s3-cdn-cf.behance.net/project_modules/1400/5c4aca194889185.6603e7a47939f.png*
-Project cover from Behance. Open the full case study from the link in the project description.
+assets/image-001.webp*
+
+assets/image-002.webp
+
+assets/image-003.webp
+
+assets/image-004.webp
+
+assets/image-005.webp

@@ -1,0 +1,99 @@
+{
+  "sourceProject": "https://www.behance.net/gallery/194883711/Google-Pay-Homepage-Redesign",
+  "retrievedAt": "2026-07-12T22:59:54.384Z",
+  "imageCount": 13,
+  "totalBytes": 688870,
+  "images": [
+    {
+      "file": "image-001.webp",
+      "source": "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/80548b194883711.6603d3433eb12.png",
+      "bytes": 34550,
+      "contentType": "image/webp",
+      "sha256": "79497c37b6b47907e8abf56b1fcdf6b1c655065bb955ad07dd08cc07dc1b018f"
+    },
+    {
+      "file": "image-002.webp",
+      "source": "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/cc68c3194883711.6603d343346a8.png",
+      "bytes": 57402,
+      "contentType": "image/webp",
+      "sha256": "6051e7d7d7a17036ab28466bd2a7f89e09d69cdb8f96482546d9a723c388e093"
+    },
+    {
+      "file": "image-003.webp",
+      "source": "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/6b2a74194883711.6603d3433c74e.png",
+      "bytes": 19188,
+      "contentType": "image/webp",
+      "sha256": "731ece8d15d36abe94ebe7bdab37a816e9331ebd278345b0518e08525d65e24e"
+    },
+    {
+      "file": "image-004.webp",
+      "source": "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/e1f4be194883711.6603d34336681.png",
+      "bytes": 33346,
+      "contentType": "image/webp",
+      "sha256": "39ce702c16126b2ac85d42f941e8ca6003eeaa017c07fcaf8d964f630d52083f"
+    },
+    {
+      "file": "image-005.webp",
+      "source": "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/879a6f194883711.6603d34338933.png",
+      "bytes": 130650,
+      "contentType": "image/webp",
+      "sha256": "002f217f3af4d6e50f771a3363a86034994fd207cba095b65b03ceee38f470e1"
+    },
+    {
+      "file": "image-006.webp",
+      "source": "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/389d3a194883711.6603d34335680.png",
+      "bytes": 38502,
+      "contentType": "image/webp",
+      "sha256": "2cad917cf147da162b8b9a95a706cb44684667405999d0d19b996534e7a40cd7"
+    },
+    {
+      "file": "image-007.webp",
+      "source": "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/0d8334194883711.6603d3433faf4.png",
+      "bytes": 82088,
+      "contentType": "image/webp",
+      "sha256": "a95952e5e999d43572597e78d96ceb08b5d5a4a71c872050b81e491412852576"
+    },
+    {
+      "file": "image-008.webp",
+      "source": "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/f61985194883711.6603d343398dd.png",
+      "bytes": 42216,
+      "contentType": "image/webp",
+      "sha256": "30ee4f4ac45c25e2a4d5b5ffe6d955ad505f52038d64eefc85e59c0baa594561"
+    },
+    {
+      "file": "image-009.webp",
+      "source": "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/9ff5dc194883711.6603d34337929.png",
+      "bytes": 71552,
+      "contentType": "image/webp",
+      "sha256": "3b73708b9a7627aa08f85763a76396b308923ebeee4f0f959fa60205dbbc6599"
+    },
+    {
+      "file": "image-010.webp",
+      "source": "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/1d44c6194883711.6603d3433d983.png",
+      "bytes": 20466,
+      "contentType": "image/webp",
+      "sha256": "03558757a95e558cedb3263a919383318c395931cb58e3c6c01ac9e23ab0f9f7"
+    },
+    {
+      "file": "image-011.webp",
+      "source": "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/100a13194883711.66112ade6d43a.png",
+      "bytes": 35840,
+      "contentType": "image/webp",
+      "sha256": "08fa56b0764d39eea91134aad41ea28692ee07dccafa1bc625a2207e41b5cd49"
+    },
+    {
+      "file": "image-012.webp",
+      "source": "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/47d1b3194883711.6603d3433a90a.png",
+      "bytes": 64366,
+      "contentType": "image/webp",
+      "sha256": "49cae4d8c56ff11c619e2d11150a5bbad6f5c5a2a03533079a03866e9ccd4a81"
+    },
+    {
+      "file": "image-013.webp",
+      "source": "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/028c20194883711.6603d3433ba4b.png",
+      "bytes": 58704,
+      "contentType": "image/webp",
+      "sha256": "92a53b5e0a9db25e575000f45ea43a51dce0f4c0ee81f074bddefa75e8c5a784"
+    }
+  ]
+}

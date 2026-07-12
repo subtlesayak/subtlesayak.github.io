@@ -1,0 +1,190 @@
+{
+  "sourceProject": "https://www.behance.net/gallery/194922225/Namma-Metro-App-Case-Study",
+  "retrievedAt": "2026-07-12T22:59:56.023Z",
+  "imageCount": 26,
+  "totalBytes": 1973372,
+  "images": [
+    {
+      "file": "image-001.webp",
+      "source": "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/a3161f194922225.66044fb1a10e2.png",
+      "bytes": 49610,
+      "contentType": "image/webp",
+      "sha256": "605f9231f40b8db509bb22af42b89d3c7d781c1dded5b5ef2fd9146e1337fbb9"
+    },
+    {
+      "file": "image-002.webp",
+      "source": "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/b549ea194922225.66044fb1afe42.png",
+      "bytes": 67366,
+      "contentType": "image/webp",
+      "sha256": "c985de13d2d05bae087143d1f9fc87188c01138792fa8a89597b4b1af1c9f51c"
+    },
+    {
+      "file": "image-003.webp",
+      "source": "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/e77573194922225.66044fb19d2a8.png",
+      "bytes": 90298,
+      "contentType": "image/webp",
+      "sha256": "480a3d6fac18de1ce86de5c0aa607155201934286a405756cccd3a78d18e9626"
+    },
+    {
+      "file": "image-004.webp",
+      "source": "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/de04d8194922225.66044fb1a8ee9.png",
+      "bytes": 36138,
+      "contentType": "image/webp",
+      "sha256": "fd39e47fb79489158af0066b8596551c3de62f751e29c5939b403c65cee9105d"
+    },
+    {
+      "file": "image-005.webp",
+      "source": "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/844072194922225.66044fb19f1a1.png",
+      "bytes": 37596,
+      "contentType": "image/webp",
+      "sha256": "7b03a417bb94c8a165ab0d816a7a67e9eda033c125c27ae03ebb217a71d28719"
+    },
+    {
+      "file": "image-006.webp",
+      "source": "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/76027f194922225.66154441d098e.png",
+      "bytes": 90870,
+      "contentType": "image/webp",
+      "sha256": "421c63886ba94d4ad658ffd207c186e7f52cefef1438910194894f0fbe21dc7f"
+    },
+    {
+      "file": "image-007.webp",
+      "source": "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/9db602194922225.6635b33ca2439.png",
+      "bytes": 44602,
+      "contentType": "image/webp",
+      "sha256": "a18717555a159ce061312ce334b14209b53aba8ecdbedd920e6ff752661cdcd6"
+    },
+    {
+      "file": "image-008.webp",
+      "source": "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/e74fa4194922225.66044fb1a57e2.png",
+      "bytes": 50408,
+      "contentType": "image/webp",
+      "sha256": "51259f0018b9e45095e61ab99d4be60ef538663c58c085ead1f8f7054f88e4ca"
+    },
+    {
+      "file": "image-009.webp",
+      "source": "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/6bcb4b194922225.66044fb19b43e.png",
+      "bytes": 95836,
+      "contentType": "image/webp",
+      "sha256": "9df51f8a4eff7e61d852bac942e0f1715aa87909738baa8d85fca9cb5c4e792c"
+    },
+    {
+      "file": "image-010.webp",
+      "source": "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/b4238f194922225.66044fb1a3633.png",
+      "bytes": 112326,
+      "contentType": "image/webp",
+      "sha256": "935401bc0cb57f248dd7278d88f7340122b3727252e8ef4a5d86451b0c572dea"
+    },
+    {
+      "file": "image-011.webp",
+      "source": "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/203676194922225.66044fb1af00f.png",
+      "bytes": 62292,
+      "contentType": "image/webp",
+      "sha256": "3cc1d64f91273f4e53fcab11c8730dc70eb0d617dc4f0cf1a9a0c60d7e2b53dd"
+    },
+    {
+      "file": "image-012.webp",
+      "source": "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/586895194922225.66044fb1aaf5d.png",
+      "bytes": 56984,
+      "contentType": "image/webp",
+      "sha256": "847612a2e52f5450d541afe2c86bafc4a1d0b0629092cdfdc7deb2e123a1e8d1"
+    },
+    {
+      "file": "image-013.webp",
+      "source": "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/9ee6ac194922225.66044fb1ac3a0.png",
+      "bytes": 67824,
+      "contentType": "image/webp",
+      "sha256": "7c47e5d05e303b08a7f248e6ac0cd206659dfb6222a004949c09a437dd102feb"
+    },
+    {
+      "file": "image-014.webp",
+      "source": "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/b4d0b4194922225.66044fb19c4b5.png",
+      "bytes": 65474,
+      "contentType": "image/webp",
+      "sha256": "3860e768f12311b17d043bc6a0ce422bab72759fb775788f2b67eece140757f9"
+    },
+    {
+      "file": "image-015.webp",
+      "source": "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/d73f30194922225.66044fb1a65b2.png",
+      "bytes": 251520,
+      "contentType": "image/webp",
+      "sha256": "5b23d66d642e4b57f16373df49541a2fc3e291eb016fe67de2581f82135291bd"
+    },
+    {
+      "file": "image-016.webp",
+      "source": "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/aa79e5194922225.66154441d11a6.png",
+      "bytes": 73468,
+      "contentType": "image/webp",
+      "sha256": "67a2fc20485407894d9f98c7888fcae86a0639de5dc632fa81bc4cc2109138b5"
+    },
+    {
+      "file": "image-017.webp",
+      "source": "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/3b600c194922225.66044fb19e0fd.png",
+      "bytes": 43580,
+      "contentType": "image/webp",
+      "sha256": "670f66fdfbadce0bfc7549894f11e82bdb69a3189ff7895333e42403f0aa4d91"
+    },
+    {
+      "file": "image-018.webp",
+      "source": "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/d695c5194922225.66044fb1a9cc5.png",
+      "bytes": 80064,
+      "contentType": "image/webp",
+      "sha256": "59a15f4a35dd72aea66a1be11a8690e473f2d96ab8e40d6b57ff403fad05b70b"
+    },
+    {
+      "file": "image-019.webp",
+      "source": "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/33577f194922225.66044fb1b0edb.png",
+      "bytes": 129796,
+      "contentType": "image/webp",
+      "sha256": "d1599af9c6517b7efcdab2c265547e1d07e8855dc82d9a312fe584b1aa239b64"
+    },
+    {
+      "file": "image-020.webp",
+      "source": "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/32062c194922225.66044fb1ad476.png",
+      "bytes": 109212,
+      "contentType": "image/webp",
+      "sha256": "b5e16367498e783eabfb9b065484cf01cc677aa91b1f5305db489295ac17261e"
+    },
+    {
+      "file": "image-021.webp",
+      "source": "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/dfedcb194922225.66044fb1a21ef.png",
+      "bytes": 90316,
+      "contentType": "image/webp",
+      "sha256": "89aebf755c5df880e01a706b758bacb2ebc2bb7ad046bfc8db7c34a3f7f6d59a"
+    },
+    {
+      "file": "image-022.webp",
+      "source": "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/3f23b3194922225.66044fb19ffbb.png",
+      "bytes": 23516,
+      "contentType": "image/webp",
+      "sha256": "85188e2057a53092d0cd05c104f35263a1b4048ce2ca4ae0adef58e20e46c76d"
+    },
+    {
+      "file": "image-023.webp",
+      "source": "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/e24bb7194922225.66044fb19a61f.png",
+      "bytes": 38996,
+      "contentType": "image/webp",
+      "sha256": "cf2e0e11a62929d015a9afa8fa06e5a4ed1956baba0d5f87f022ed33ad7121d6"
+    },
+    {
+      "file": "image-024.webp",
+      "source": "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/0f17b7194922225.66044fb1b26eb.png",
+      "bytes": 45726,
+      "contentType": "image/webp",
+      "sha256": "f6fe2db77ca2ff959fb9b51c76e8ffe1fa5f572ae8a21ed925518b54f36f9824"
+    },
+    {
+      "file": "image-025.webp",
+      "source": "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/fcfcf5194922225.66044fb1ae25f.png",
+      "bytes": 123076,
+      "contentType": "image/webp",
+      "sha256": "a4c9b0ea580d2e1df500e332947b832afa6cc72ea9b6efba4d9f7e49a7498ab3"
+    },
+    {
+      "file": "image-026.webp",
+      "source": "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/f32e0e194922225.66044fb1a7363.png",
+      "bytes": 36478,
+      "contentType": "image/webp",
+      "sha256": "ff061de498be046be25104c3c59352dee822f09be6267b7acd57418683f92a63"
+    }
+  ]
+}

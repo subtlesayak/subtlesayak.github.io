@@ -4,6 +4,6 @@ Branding and UI/UX - RED PRODUCTIONS is a selected UI/UX and visual design proje
 ---
 Branding, Adobe Illustrator, Figma, Framer
 ---
-https://mir-s3-cdn-cf.behance.net/project_modules/1400/8ca169213828487.674da7876608a.png
+Projects/Branding and UIUX RED PRODUCTIONS/assets/image-001.webp
 ---
 branding-red-productions.html

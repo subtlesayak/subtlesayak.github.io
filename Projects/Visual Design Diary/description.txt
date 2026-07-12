@@ -4,6 +4,6 @@ Visual Design Diary is a selected UI/UX and visual design project from my Behanc
 ---
 Interaction Design, Figma, Adobe Photoshop
 ---
-https://mir-s3-cdn-cf.behance.net/project_modules/1400/9c0aec226344969.682cda999e7d5.png
+Projects/Visual Design Diary/assets/image-001.webp
 ---
 visual-design-diary.html

@@ -1,22 +1,44 @@
 .nav-button {
-  background-color: var(--bg, #101010);
-  border: none;
-  border-radius: 0.1em;
+  background-color: var(--surface-raised, #202020);
+  border: 1px solid var(--line, rgba(255, 255, 255, 0.14));
+  border-radius: 50%;
   color: var(--text, #f2f2f2);
+  width: 48px;
+  height: 48px;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   font-size: 24px;
-  padding: 10px;
   cursor: pointer;
   position: fixed;
   top: 50%;
   transform: translateY(-50%);
   z-index: 1000;
-  opacity: 0.5;
-  transition: opacity 0.3s;
+  opacity: 0.88;
+  box-sizing: border-box;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.28), 0 1px 2px rgba(0, 0, 0, 0.24);
+  overflow: hidden;
+  transition: opacity 180ms ease, color 180ms ease, background-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
 }
 
 .nav-button:hover,
 .nav-button:focus-visible {
   opacity: 1;
+  color: var(--accent, #edb049);
+  background-color: rgba(237, 176, 73, 0.12);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.32), 0 2px 4px rgba(0, 0, 0, 0.22);
+  transform: translateY(-50%) scale(1.05);
+}
+
+.nav-button:focus-visible {
+  outline: 2px solid var(--accent, #edb049);
+  outline-offset: 3px;
+}
+
+.nav-button:active {
+  transform: translateY(-50%) scale(0.96);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.28);
 }
 
 #prev-project {
@@ -30,9 +52,10 @@
 /* Responsive Design for Navigation Buttons */
 @media (max-width: 600px) {
   .nav-button {
-      font-size: 18px; /* Smaller font size for mobile */
-      padding: 8px; /* Smaller padding for mobile */
-      opacity: 0.5;
+      width: 44px;
+      height: 44px;
+      font-size: 22px;
+      opacity: 0.9;
   }
 
   #prev-project {
@@ -51,21 +74,43 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 44px;
-  height: 44px;
-  border: 0;
-  border-radius: 0.1em;
-  background-color: var(--bg, #101010);
+  width: 48px;
+  height: 48px;
+  border: 1px solid var(--line, rgba(255, 255, 255, 0.14));
+  border-radius: 50%;
+  background-color: var(--surface-raised, #202020);
   color: var(--text, #f2f2f2);
-  font-size: 22px;
+  font-size: 24px;
   cursor: pointer;
-  opacity: 0.5;
-  transition: opacity 180ms ease, color 180ms ease, background-color 180ms ease;
+  opacity: 0.88;
+  box-sizing: border-box;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.28), 0 1px 2px rgba(0, 0, 0, 0.24);
+  overflow: hidden;
+  transition: opacity 180ms ease, color 180ms ease, background-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
+}
+
+.nav-button .material-symbols-outlined,
+.project-back-button .material-symbols-outlined {
+  font-size: 24px;
+  line-height: 1;
+  pointer-events: none;
 }
 
 .project-back-button:hover,
 .project-back-button:focus-visible {
   opacity: 1;
   color: var(--accent, #edb049);
-  outline: none;
+  background-color: rgba(237, 176, 73, 0.12);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.32), 0 2px 4px rgba(0, 0, 0, 0.22);
+  transform: scale(1.05);
+}
+
+.project-back-button:focus-visible {
+  outline: 2px solid var(--accent, #edb049);
+  outline-offset: 3px;
+}
+
+.project-back-button:active {
+  transform: scale(0.96);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.28);
 }

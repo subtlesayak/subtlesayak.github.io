@@ -1,0 +1,78 @@
+{
+  "sourceProject": "https://www.behance.net/gallery/226344969/Visual-Design-Diary",
+  "retrievedAt": "2026-07-12T22:59:59.336Z",
+  "imageCount": 10,
+  "totalBytes": 1234404,
+  "images": [
+    {
+      "file": "image-001.webp",
+      "source": "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/9c0aec226344969.682cda999e7d5.png",
+      "bytes": 22900,
+      "contentType": "image/webp",
+      "sha256": "cccee1b9e4ba68c600698f1280432ebb5d7dccd4f59c8ea1f6f38ea9153be416"
+    },
+    {
+      "file": "image-002.webp",
+      "source": "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/6be311226344969.682cda999e156.png",
+      "bytes": 105678,
+      "contentType": "image/webp",
+      "sha256": "b328db81791cbdc37d8de7022003359da3bba564bc71318b5c13abe04a109f3e"
+    },
+    {
+      "file": "image-003.webp",
+      "source": "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/1b87b1226344969.682cda999f99e.png",
+      "bytes": 94246,
+      "contentType": "image/webp",
+      "sha256": "4198c618114b9a699e2aadf2cb4c11d13314a5fb06cb1c6448df9863d85562b6"
+    },
+    {
+      "file": "image-004.webp",
+      "source": "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/e851d9226344969.682cda999eeb7.png",
+      "bytes": 274740,
+      "contentType": "image/webp",
+      "sha256": "aaf568d5c63f519858488d7cfc218419f5523f79db6869562199a41d501ba5ec"
+    },
+    {
+      "file": "image-005.webp",
+      "source": "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/4a61d8226344969.682cda999f33e.png",
+      "bytes": 110924,
+      "contentType": "image/webp",
+      "sha256": "c0da7c64f03ff15c81bfc9caa717ae9dabc00a8e1b13071366835ed68a2278ce"
+    },
+    {
+      "file": "image-006.webp",
+      "source": "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/bdb7f9226344969.682cda999bffb.png",
+      "bytes": 132478,
+      "contentType": "image/webp",
+      "sha256": "cf574883fc5b330e72443b0c10f6cd46e322ac59f06f87d400255d69f41194a4"
+    },
+    {
+      "file": "image-007.webp",
+      "source": "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/6febf4226344969.682cda999c9ab.png",
+      "bytes": 309068,
+      "contentType": "image/webp",
+      "sha256": "588def4a2b4823684aee00d1b81b45e613fd9b16b92361c73d22e11a7f07c848"
+    },
+    {
+      "file": "image-008.webp",
+      "source": "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/fb8d2c226344969.682cda999d0b9.png",
+      "bytes": 89838,
+      "contentType": "image/webp",
+      "sha256": "7f0fbfb5ee1505e5fb57a1c3037b4b946f4dad1fc5f4813295d0f727a15c287d"
+    },
+    {
+      "file": "image-009.webp",
+      "source": "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/2e0dc3226344969.682cda999d91e.png",
+      "bytes": 88994,
+      "contentType": "image/webp",
+      "sha256": "bb4deed7108fce68de6a444b1e4f002668f984b52e97817d139ce5f564501c04"
+    },
+    {
+      "file": "image-010.webp",
+      "source": "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/fc4f3d226344969.682cda999bad9.png",
+      "bytes": 5538,
+      "contentType": "image/webp",
+      "sha256": "8a090f7b7f50c8cf6d6788a46e0a598c2f996ae1e1114763e0c65f307f1ddde6"
+    }
+  ]
+}

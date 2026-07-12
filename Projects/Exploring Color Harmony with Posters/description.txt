@@ -4,6 +4,6 @@ Exploring Color Harmony with Posters is a selected UI/UX and visual design proje
 ---
 Graphic Design, Interaction Design, Illustration, Figma, Adobe Illustrator
 ---
-https://mir-s3-cdn-cf.behance.net/project_modules/1400/5c4aca194889185.6603e7a47939f.png
+Projects/Exploring Color Harmony with Posters/assets/image-001.webp
 ---
 exploring-color-harmony-with-posters.html

@@ -1,0 +1,15 @@
+{
+  "sourceProject": "https://www.behance.net/gallery/226351535/University-Website-Analysis-Mock-Redesign",
+  "retrievedAt": "2026-07-12T22:59:57.225Z",
+  "imageCount": 1,
+  "totalBytes": 768026,
+  "images": [
+    {
+      "file": "image-001.webp",
+      "source": "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/42f214226351535.682cf73b71524.png",
+      "bytes": 768026,
+      "contentType": "image/webp",
+      "sha256": "6d06fc1894c0973a0ba9fd4f6d9f681581c7612e483407035dd2f4c865f0b55e"
+    }
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "sourceProject": "https://www.behance.net/gallery/194889185/Exploring-Color-Harmony-with-Posters",
+  "retrievedAt": "2026-07-12T22:59:53.212Z",
+  "imageCount": 5,
+  "totalBytes": 323424,
+  "images": [
+    {
+      "file": "image-001.webp",
+      "source": "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/5c4aca194889185.6603e7a47939f.png",
+      "bytes": 93430,
+      "contentType": "image/webp",
+      "sha256": "9a9af472b896d04a90b5399cdc65c698a5fd4428ab453179a0d989d4dab35f36"
+    },
+    {
+      "file": "image-002.webp",
+      "source": "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/70dd24194889185.6603e7a47a5ab.png",
+      "bytes": 73430,
+      "contentType": "image/webp",
+      "sha256": "5f2c61e44089da047ab9b5b830c9e1a8d3defcfc3f2205a1b9d0e320c6e8d5e8"
+    },
+    {
+      "file": "image-003.webp",
+      "source": "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/36582a194889185.6603e9bca6e26.png",
+      "bytes": 81644,
+      "contentType": "image/webp",
+      "sha256": "fa603ea644c19fc66c1f86eacc4c27a27c8465a5d76d6c23e640e68a03061e4b"
+    },
+    {
+      "file": "image-004.webp",
+      "source": "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/8baf78194889185.6603e7a47b433.png",
+      "bytes": 69302,
+      "contentType": "image/webp",
+      "sha256": "b485b694ce547130d44bc1f532885d208a517321ff11bf8dd06eb8e8960e78fd"
+    },
+    {
+      "file": "image-005.webp",
+      "source": "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/8e9cf1194889185.6603e7a4772ee.png",
+      "bytes": 5618,
+      "contentType": "image/webp",
+      "sha256": "3a1427eb22b6da030f1290f0c424deb05b78b4d103990b2f91fc4ff429a3c303"
+    }
+  ]
+}

@@ -1,5 +1,6 @@
 const fs = require("fs");
 const path = require("path");
+const crypto = require("crypto");
 
 const root = process.cwd();
 const errors = [];
@@ -89,6 +90,66 @@ function checkLocalAsset(reference, context, baseDir = "") {
 function hasAssetExtension(value) {
   return /\.(jpg|jpeg|png|gif|webp|avif|svg|mp4|mov|pdf)$/i.test(cleanReference(value));
 }
+function checkAssetManifest(base) {
+  const assetsDir = path.join(base, "assets");
+  const manifestPath = path.join(assetsDir, "source-manifest.json");
+  if (!exists(manifestPath)) return;
+
+  let manifest;
+  try {
+    manifest = JSON.parse(read(manifestPath));
+  } catch (error) {
+    errors.push(`${normalizeRel(manifestPath)} is not valid JSON: ${error.message}`);
+    return;
+  }
+
+  if (!Array.isArray(manifest.images)) {
+    errors.push(`${normalizeRel(manifestPath)} must contain an images array`);
+    return;
+  }
+
+  const listedFiles = new Set();
+  let totalBytes = 0;
+
+  manifest.images.forEach((image, index) => {
+    const label = `${normalizeRel(manifestPath)} image ${index + 1}`;
+    if (!image || typeof image.file !== "string" || image.file !== path.basename(image.file)) {
+      errors.push(`${label} has an invalid file name`);
+      return;
+    }
+
+    if (listedFiles.has(image.file)) errors.push(`${normalizeRel(manifestPath)} lists ${image.file} more than once`);
+    listedFiles.add(image.file);
+
+    const assetPath = path.join(assetsDir, image.file);
+    if (!exists(assetPath)) {
+      errors.push(`${label} is missing ${normalizeRel(assetPath)}`);
+      return;
+    }
+
+    const buffer = fs.readFileSync(path.join(root, assetPath));
+    const digest = crypto.createHash("sha256").update(buffer).digest("hex");
+    totalBytes += buffer.length;
+
+    if (image.bytes !== buffer.length) errors.push(`${label} byte count does not match the local file`);
+    if (image.sha256 !== digest) errors.push(`${label} checksum does not match the local file`);
+    if (!/^image\//i.test(image.contentType || "")) errors.push(`${label} has an invalid content type`);
+  });
+
+  if (manifest.imageCount !== manifest.images.length) {
+    errors.push(`${normalizeRel(manifestPath)} imageCount does not match its images array`);
+  }
+  if (manifest.totalBytes !== totalBytes) {
+    errors.push(`${normalizeRel(manifestPath)} totalBytes does not match its local files`);
+  }
+
+  const actualFiles = fs.readdirSync(path.join(root, assetsDir))
+    .filter(file => /\.(?:avif|gif|jpe?g|png|webp)$/i.test(file));
+  actualFiles.forEach(file => {
+    if (!listedFiles.has(file)) errors.push(`${normalizeRel(assetsDir)} contains an image missing from its source manifest: ${file}`);
+  });
+}
+
 
 function checkProjects() {
   requireFile("Config/projects.txt");
@@ -117,6 +178,7 @@ function checkProjects() {
       lines(mediaPath).forEach(line => {
         if (hasAssetExtension(line) || line.includes(" // ")) checkLocalAsset(line, mediaPath, base);
       });
+    checkAssetManifest(base);
     }
   });
 }

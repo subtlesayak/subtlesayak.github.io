@@ -4,6 +4,6 @@ AyuRest | Mental Health Companion App is a selected UI/UX and visual design proj
 ---
 Interaction Design, Figma, FigJam
 ---
-https://mir-s3-cdn-cf.behance.net/project_modules/1400/581243226347039.682ce29bdce86.png
+Projects/AyuRest Mental Health Companion App/assets/image-001.webp
 ---
 ayurest-mental-health-companion-app.html

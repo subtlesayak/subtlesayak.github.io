@@ -4,6 +4,6 @@ University Website Analysis | Mock Redesign is a selected UI/UX and visual desig
 ---
 Interaction Design, Figma
 ---
-https://mir-s3-cdn-cf.behance.net/projects/max_808/016ecb226351535.Y3JvcCwyNzYxLDIxNjAsNTQwLDA.png
+Projects/University Website Analysis Mock Redesign/assets/image-001.webp
 ---
 university-website-analysis-mock-redesign.html

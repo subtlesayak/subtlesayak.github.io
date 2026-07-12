@@ -4,6 +4,6 @@ Google Pay Homepage Redesign is a selected UI/UX and visual design project from 
 ---
 Interaction Design, Figma
 ---
-https://mir-s3-cdn-cf.behance.net/project_modules/1400/80548b194883711.6603d3433eb12.png
+Projects/Google Pay Homepage Redesign/assets/image-001.webp
 ---
 google-pay-homepage-redesign.html

@@ -1,4 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
+    const imagePathPattern = /\.(?:avif|gif|jpe?g|png|webp)(?:[?#].*)?$/i;
+    const mediaPathPattern = /\.(?:avif|gif|jpe?g|mview|mp4|png|webm|webp)(?:[?#].*)?\*?$/i;
+
     let projects = [];
 
     const fetchProjects = async () => {
@@ -81,7 +84,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 let urls = [lines[i]];
 
                 // Check if the next line is a description
-                if (i + 1 < lines.length && !lines[i + 1].match(/\.(jpeg|jpg|gif|png|mp4|webm|mview)$/) && !lines[i + 1].includes('youtube.com') && !lines[i + 1].includes('sketchfab.com') && !lines[i + 1].includes(' // ')) {
+                if (i + 1 < lines.length && !mediaPathPattern.test(lines[i + 1]) && !lines[i + 1].includes('youtube.com') && !lines[i + 1].includes('sketchfab.com') && !lines[i + 1].includes(' // ')) {
                     description = lines[i + 1];
                     i += 1;
                 }
@@ -101,7 +104,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     urls = [`${urls[0]}.mview`];
                 }
 
-                const mediaElement = createMediaElement(urls, description);
+                const mediaElement = createMediaElement(urls, description, fragment.childElementCount === 0);
                 if (mediaElement) fragment.appendChild(mediaElement);
                 i += 1;
             }
@@ -126,11 +129,11 @@ document.addEventListener('DOMContentLoaded', () => {
         return mediaElement;
     };
 
-    const createMediaElement = (urls, description) => {
+    const createMediaElement = (urls, description, isPriority = false) => {
         let mediaElement;
 
-        if (urls[0].match(/\.(jpeg|jpg|gif|png)$/) != null) {
-            mediaElement = createImageElement(urls);
+        if (imagePathPattern.test(urls[0])) {
+            mediaElement = createImageElement(urls, isPriority);
         } else if (urls[0].match(/\.(mp4|webm)$/) != null) {
             mediaElement = createVideoElement(urls[0]);
         } else if (urls[0].includes('youtube.com')) {
@@ -151,7 +154,7 @@ document.addEventListener('DOMContentLoaded', () => {
         return mediaElement;
     };
 
-    const createImageElement = (urls) => {
+    const createImageElement = (urls, isPriority) => {
         const mediaElement = document.createElement('div');
         mediaElement.className = 'media-item';
 
@@ -162,6 +165,9 @@ document.addEventListener('DOMContentLoaded', () => {
         imgElement1.src = urls[0];
         imgElement1.className = 'image-1';
         imgElement1.alt = 'Primary image';
+        imgElement1.loading = isPriority ? 'eager' : 'lazy';
+        imgElement1.decoding = 'async';
+        if (isPriority) imgElement1.fetchPriority = 'high';
         imgContainer.appendChild(imgElement1);
 
         if (urls[1]) {
@@ -169,6 +175,8 @@ document.addEventListener('DOMContentLoaded', () => {
             imgElement2.src = urls[1];
             imgElement2.className = 'image-2';
             imgElement2.alt = 'Secondary image';
+            imgElement2.loading = isPriority ? 'eager' : 'lazy';
+            imgElement2.decoding = 'async';
             imgContainer.appendChild(imgElement2);
 
             const sliderContainer = document.createElement('div');
@@ -366,8 +374,9 @@ document.addEventListener('DOMContentLoaded', () => {
         button.setAttribute('aria-label', 'Back to portfolio');
         button.title = 'Back to portfolio';
 
-        const icon = document.createElement('i');
-        icon.className = 'fa fa-arrow-left';
+        const icon = document.createElement('span');
+        icon.className = 'material-symbols-outlined';
+        icon.textContent = 'arrow_back';
         icon.setAttribute('aria-hidden', 'true');
         button.appendChild(icon);
         button.addEventListener('click', goBackToPortfolio);

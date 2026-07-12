@@ -4,6 +4,6 @@ Namma Metro App Case Study is a selected UI/UX and visual design project from my
 ---
 Interaction Design, Figma, Adobe Illustrator
 ---
-https://mir-s3-cdn-cf.behance.net/project_modules/1400/a3161f194922225.66044fb1a10e2.png
+Projects/Namma Metro App Case Study/assets/image-001.webp
 ---
 namma-metro-app-case-study.html

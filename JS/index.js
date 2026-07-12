@@ -190,7 +190,7 @@ function fetchProjectData(projectName) {
         const card = parseProjectCard(cardText, description, parseLines(categoriesText));
 
         const mediaLines = parseLines(mediaText);
-        const hasMultipleImages = mediaLines.filter(line => line.match(/\.(jpeg|jpg|gif|png)$/i)).length > 1;
+        const hasMultipleImages = mediaLines.filter(line => line.match(/\.(?:avif|gif|jpe?g|png|webp)\*?$/i)).length > 1;
         const hasVideo = mediaLines.some(line => line.match(/\.(mp4)$/i));
         const hasYouTube = mediaLines.some(line => line.includes("youtube.com"));
         const hasSketchfab = mediaLines.some(line => line.includes("sketchfab.com"));
