@@ -408,12 +408,20 @@ document.addEventListener('DOMContentLoaded', () => {
     const backToTopButton = document.getElementById('back-to-top');
 
     const mediaContainer = document.querySelector('.media-container');
-    mediaContainer.addEventListener('scroll', () => {
-        backToTopButton.style.display = mediaContainer.scrollTop > 1000 ? 'block' : 'none';
-    });
+    const pageContainer = document.querySelector('.container');
+    const mobileLayout = window.matchMedia('(max-width: 600px)');
+
+    const getScrollContainer = () => mobileLayout.matches ? pageContainer : mediaContainer;
+    const updateBackToTopVisibility = () => {
+        backToTopButton.style.display = getScrollContainer().scrollTop > 1000 ? 'inline-flex' : 'none';
+    };
+
+    mediaContainer.addEventListener('scroll', updateBackToTopVisibility);
+    pageContainer.addEventListener('scroll', updateBackToTopVisibility);
+    mobileLayout.addEventListener('change', updateBackToTopVisibility);
 
     backToTopButton.addEventListener('click', () => {
-        mediaContainer.scrollTo({ top: 0, behavior: 'smooth' });
+        getScrollContainer().scrollTo({ top: 0, behavior: 'smooth' });
     });
 
     // Keyboard navigation

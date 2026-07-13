@@ -285,16 +285,12 @@ body.theme-light .photo-action-secondary {
 }
 body.theme-light .project-back-button,
 body.theme-light #prev-project,
-body.theme-light #next-project {
+body.theme-light #next-project,
+body.theme-light .back-to-top-button {
   background: rgba(255, 255, 255, 0.64);
   border-color: rgba(255, 255, 255, 0.86);
   color: #171717;
   box-shadow: 0 8px 24px rgba(23, 23, 23, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.92);
-}
-
-body.theme-light .back-to-top-button {
-  background: #ffffff;
-  color: #171717;
 }
 
 body.theme-light .project-back-button:hover,
@@ -302,7 +298,9 @@ body.theme-light .project-back-button:focus-visible,
 body.theme-light #prev-project:hover,
 body.theme-light #next-project:hover,
 body.theme-light #prev-project:focus-visible,
-body.theme-light #next-project:focus-visible {
+body.theme-light #next-project:focus-visible,
+body.theme-light .back-to-top-button:hover,
+body.theme-light .back-to-top-button:focus-visible {
   color: var(--accent);
   background: rgba(255, 246, 229, 0.76);
   border-color: rgba(164, 99, 18, 0.48);
