@@ -6,9 +6,9 @@ current_phase: 4
 current_phase_name: Template Authoring & Publish Safety
 status: complete
 stopped_at: All v1 phases complete
-last_updated: "2026-07-13T05:29:40.4563792+05:30"
+last_updated: "2026-07-13T05:57:44.7820793+05:30"
 last_activity: 2026-07-13
-last_activity_desc: Completed quick task 260713-7bs: added glass detail navigation and removed the project profile panel
+last_activity_desc: Completed quick task 260713-84o: replaced bright dark-theme card hovers with a light-glass treatment
 progress:
   total_phases: 4
   completed_phases: 4
@@ -31,7 +31,7 @@ See: .planning/PROJECT.md (updated 2026-06-30)
 Phase: 4 of 4 (Template Authoring & Publish Safety)
 Plan: Complete
 status: complete to discuss and plan
-Last activity: 2026-07-13 - Completed quick task 260713-7bs: added glass detail navigation and removed the project profile panel
+Last activity: 2026-07-13 - Completed quick task 260713-84o: replaced bright dark-theme card hovers with a light-glass treatment
 
 Progress: [##########] 100%
 
@@ -104,6 +104,7 @@ Recent decisions affecting current work:
 | 260712-s7h | Compact and align the Software Knowledge and Skills panel | 2026-07-12 | 47045cc | [260712-s7h-compact-and-align-the-software-knowledge](./quick/260712-s7h-compact-and-align-the-software-knowledge/) |
 | 260712-t52 | Replace the e-ink overlay with staggered region waveforms on load, navigation, and clicks | 2026-07-12 | b9dfeef | [260712-t52-replace-the-e-ink-overlay-with-staggered](./quick/260712-t52-replace-the-e-ink-overlay-with-staggered/) |
 | 260713-7bs | Add glass detail navigation and remove the project profile panel | 2026-07-13 | 7a41867 | [260713-7bs-glass-navigation-controls](./quick/260713-7bs-glass-navigation-controls/) |
+| 260713-84o | Replace bright dark-theme card hovers with a light-glass treatment | 2026-07-13 | a9697ec | [260713-84o-glass-card-hover](./quick/260713-84o-glass-card-hover/) |
 
 ### Pending Todos
 
