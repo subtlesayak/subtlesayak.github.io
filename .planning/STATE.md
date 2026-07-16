@@ -6,7 +6,7 @@ current_phase: 4
 current_phase_name: Template Authoring & Publish Safety
 status: complete
 stopped_at: All v1 phases complete
-last_updated: "2026-07-16T14:29:33.327Z"
+last_updated: "2026-07-16T15:31:43.617Z"
 last_activity: 2026-07-13
 last_activity_desc: "Completed quick task 260713-8zs: matched back-to-top glass navigation and reduced detail-control blur to 8 px"
 progress:
@@ -106,6 +106,7 @@ Recent decisions affecting current work:
 | 260713-84o | Replace bright dark-theme card hovers with a light-glass treatment | 2026-07-13 | a9697ec | [260713-84o-glass-card-hover](./quick/260713-84o-glass-card-hover/) |
 | 260713-8zs | Match the back-to-top button to detail navigation controls and halve navigation blur to 8px | 2026-07-13 | af034a3 | [260713-8zs-match-the-back-to-top-button-to-detail-n](./quick/260713-8zs-match-the-back-to-top-button-to-detail-n/) |
 | 29 | Build a mobile-first GitHub Pages admin dashboard for uploading and publishing portfolio projects | 2026-07-16 | f5e43a3 | — |
+| 30 | Expand the portfolio publisher into a complete CMS including resume replacement and version history | 2026-07-16 | 12e9937 | — |
 
 ### Pending Todos
 
