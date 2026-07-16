@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#0a0a0a">
+  <title>Portfolio Publisher</title>
+  <link rel="icon" href="../Resources/favicon/pilfav.png" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="admin.css?v=1.0">
+</head>
+<body>
+  <svg class="icon-library" aria-hidden="true">
+    <symbol id="icon-folder" viewBox="0 0 24 24"><path d="M3.5 6.5h6l2 2h9v10.5a1.5 1.5 0 0 1-1.5 1.5H5A1.5 1.5 0 0 1 3.5 19V6.5Z"/><path d="M3.5 8.5V5A1.5 1.5 0 0 1 5 3.5h4l2 2h8A1.5 1.5 0 0 1 20.5 7v1.5"/></symbol>
+    <symbol id="icon-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+    <symbol id="icon-rocket" viewBox="0 0 24 24"><path d="M14.5 5.5c2.2-2.2 5.7-2 5.7-2s.2 3.5-2 5.7l-5.7 5.7-4-4 6-5.4Z"/><path d="m9.2 9.8-3.7.4-2 2 5 1.5M14.2 14.8l-.4 3.7-2 2-1.5-5M7.2 16.8c-1.1 1.1-3.4 1.4-3.4 1.4s.3-2.3 1.4-3.4"/><circle cx="16" cy="7.7" r="1.4"/></symbol>
+    <symbol id="icon-settings" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.9l.1.1-2.8 2.8-.1-.1a1.7 1.7 0 0 0-1.9-.3 1.7 1.7 0 0 0-1 1.6v.2h-4V21a1.7 1.7 0 0 0-1-1.6 1.7 1.7 0 0 0-1.9.3l-.1.1L4.2 17l.1-.1a1.7 1.7 0 0 0 .3-1.9A1.7 1.7 0 0 0 3 14H2.8v-4H3a1.7 1.7 0 0 0 1.6-1 1.7 1.7 0 0 0-.3-1.9L4.2 7 7 4.2l.1.1a1.7 1.7 0 0 0 1.9.3A1.7 1.7 0 0 0 10 3V2.8h4V3a1.7 1.7 0 0 0 1 1.6 1.7 1.7 0 0 0 1.9-.3l.1-.1L19.8 7l-.1.1a1.7 1.7 0 0 0-.3 1.9 1.7 1.7 0 0 0 1.6 1h.2v4H21a1.7 1.7 0 0 0-1.6 1Z"/></symbol>
+    <symbol id="icon-image" viewBox="0 0 24 24"><rect x="3" y="3.5" width="18" height="17" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m4 17 5-5 3.5 3.5 2.5-2.5 5 5"/></symbol>
+    <symbol id="icon-check" viewBox="0 0 24 24"><path d="m5 12.5 4.2 4.2L19.5 6.5"/></symbol>
+    <symbol id="icon-github" viewBox="0 0 24 24"><path d="M12 2.8a9.4 9.4 0 0 0-3 18.3c.5.1.7-.2.7-.5v-1.8c-2.8.6-3.4-1.2-3.4-1.2-.5-1.2-1.1-1.5-1.1-1.5-.9-.6.1-.6.1-.6 1 0 1.6 1 1.6 1 .9 1.6 2.4 1.1 2.9.9.1-.7.4-1.1.7-1.3-2.3-.3-4.7-1.1-4.7-5a3.9 3.9 0 0 1 1-2.7c-.1-.3-.4-1.3.1-2.7 0 0 .9-.3 2.8 1a9.7 9.7 0 0 1 5.1 0c2-1.3 2.8-1 2.8-1 .6 1.4.2 2.4.1 2.7a3.9 3.9 0 0 1 1 2.7c0 3.9-2.4 4.8-4.7 5 .4.3.7 1 .7 1.9v2.6c0 .3.2.6.7.5A9.4 9.4 0 0 0 12 2.8Z"/></symbol>
+    <symbol id="icon-eye" viewBox="0 0 24 24"><path d="M2.8 12s3.4-6 9.2-6 9.2 6 9.2 6-3.4 6-9.2 6-9.2-6-9.2-6Z"/><circle cx="12" cy="12" r="2.8"/></symbol>
+    <symbol id="icon-lock" viewBox="0 0 24 24"><rect x="4.5" y="10" width="15" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></symbol>
+    <symbol id="icon-log-out" viewBox="0 0 24 24"><path d="M10 4H5.5A1.5 1.5 0 0 0 4 5.5v13A1.5 1.5 0 0 0 5.5 20H10M14.5 8l4 4-4 4M18.5 12H9"/></symbol>
+    <symbol id="icon-external" viewBox="0 0 24 24"><path d="M13 5h6v6M19 5l-8 8"/><path d="M18 14v4a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h4"/></symbol>
+    <symbol id="icon-grip" viewBox="0 0 24 24"><circle cx="8" cy="7" r="1"/><circle cx="16" cy="7" r="1"/><circle cx="8" cy="12" r="1"/><circle cx="16" cy="12" r="1"/><circle cx="8" cy="17" r="1"/><circle cx="16" cy="17" r="1"/></symbol>
+    <symbol id="icon-trash" viewBox="0 0 24 24"><path d="M4 7h16M9 7V4h6v3M7 7l1 13h8l1-13M10 11v5M14 11v5"/></symbol>
+  </svg>
+
+  <section class="connect-screen" id="connect-screen" aria-labelledby="connect-title">
+    <div class="connect-card">
+      <div class="brand-mark" aria-hidden="true">P</div>
+      <h1 id="connect-title">Publish from anywhere.</h1>
+      <p>Connect the portfolio repository once, then create and deploy projects directly from this device.</p>
+      <form id="connect-form" class="connect-form">
+        <label>Repository <input id="repository" name="repository" value="subtlesayak/subtlesayak.github.io" autocomplete="off" required></label>
+        <label>Publishing branch <input id="branch" name="branch" value="main" autocomplete="off" required></label>
+        <label>Fine-grained GitHub token <input id="token" name="token" type="password" autocomplete="off" placeholder="github_pat_…" required></label>
+        <label class="check-row"><input id="remember-token" type="checkbox"> <span>Remember on this private device</span></label>
+        <button class="button button-primary" type="submit"><svg><use href="#icon-github"></use></svg> Connect repository</button>
+      </form>
+      <div class="security-note"><svg><use href="#icon-lock"></use></svg><span>Use a fine-grained token limited to this repository with <strong>Contents: read and write</strong>. The token is sent only to GitHub.</span></div>
+      <p class="form-message" id="connect-message" role="status"></p>
+    </div>
+  </section>
+
+  <div class="app-shell" id="app-shell" hidden>
+    <aside class="sidebar">
+      <a class="sidebar-brand" href="../index.html" aria-label="Open portfolio"><span class="brand-mark">P</span><span>Pilgrim Studio</span></a>
+      <nav aria-label="Publisher navigation">
+        <button class="nav-item is-active" type="button"><svg><use href="#icon-plus"></use></svg><span>New project</span></button>
+        <a class="nav-item" id="github-projects-link" target="_blank" rel="noopener noreferrer"><svg><use href="#icon-folder"></use></svg><span>Projects</span></a>
+        <a class="nav-item" id="actions-link" target="_blank" rel="noopener noreferrer"><svg><use href="#icon-rocket"></use></svg><span>Publishing</span></a>
+        <button class="nav-item" id="open-settings" type="button"><svg><use href="#icon-settings"></use></svg><span>Settings</span></button>
+      </nav>
+      <div class="repo-status">
+        <div><svg><use href="#icon-github"></use></svg><span>Repository</span></div>
+        <strong id="repo-name"></strong>
+        <span id="repo-branch"></span>
+        <span class="connected-dot">Connected</span>
+      </div>
+    </aside>
+
+    <main>
+      <header class="topbar">
+        <div class="mobile-brand"><span class="brand-mark">P</span><strong>New project</strong></div>
+        <div class="crumbs"><span>Repository</span><strong id="top-repo"></strong><span>Branch</span><strong id="top-branch"></strong><span class="synced">Up to date</span></div>
+        <a class="button button-quiet" id="view-github" target="_blank" rel="noopener noreferrer">View on GitHub <svg><use href="#icon-external"></use></svg></a>
+      </header>
+
+      <div class="stepper" aria-label="Project creation progress"><span class="is-current">1 <small>Details</small></span><i></i><span>2 <small>Images</small></span><i></i><span>3 <small>Publish</small></span></div>
+
+      <form id="project-form" class="editor-layout">
+        <section class="editor-pane">
+          <div class="section-heading"><div><h1>Create project</h1><p>Add the essentials, arrange your work, then preview the live entry.</p></div><span id="draft-state">Draft saved locally</span></div>
+
+          <div class="field-grid">
+            <label class="field field-wide">Project title <span>*</span><input id="project-title" maxlength="100" required placeholder="Project name"></label>
+            <label class="field">Category <span>*</span><select id="category" required><option value="uiux">UI/UX</option><option value="branding">Branding</option><option value="web">Web</option><option value="visual-design">Visual Design</option><option value="photography">Photography</option><option value="other">Other Work</option></select></label>
+            <label class="field">Year <input id="year" inputmode="numeric" maxlength="4"></label>
+            <label class="field field-wide">Short description <span>*</span><textarea id="description" maxlength="360" rows="4" required placeholder="What is the project, why does it exist, and what was your role?"></textarea><small><span id="description-count">0</span>/360</small></label>
+            <label class="field field-wide">Tools and tags <input id="tags" placeholder="Figma, Illustrator, Framer"></label>
+            <label class="field">Role <input id="role" placeholder="Designer"></label>
+            <label class="field">Card label <input id="card-label" placeholder="Case Study"></label>
+          </div>
+
+          <div class="media-section">
+            <div class="field-label">Cover image <span>*</span></div>
+            <label class="cover-drop" id="cover-drop">
+              <input id="cover-input" type="file" accept="image/jpeg,image/png,image/webp,image/avif" hidden>
+              <img id="cover-preview" alt="" hidden>
+              <span class="upload-copy"><svg><use href="#icon-image"></use></svg><strong>Choose cover image</strong><small>JPG, PNG, WebP or AVIF · converted to WebP</small></span>
+              <span class="replace-copy">Replace image</span>
+            </label>
+          </div>
+
+          <div class="media-section">
+            <div class="gallery-heading"><div><span class="field-label">Gallery</span><small id="gallery-count">0/12 images</small></div><label class="button button-small"><input id="gallery-input" type="file" accept="image/jpeg,image/png,image/webp,image/avif" multiple hidden><svg><use href="#icon-plus"></use></svg> Add images</label></div>
+            <div class="gallery-list" id="gallery-list"></div>
+            <p class="media-help">Drag to reorder. The cover is automatically the first project image.</p>
+          </div>
+
+          <details class="optional-fields">
+            <summary>More publishing options</summary>
+            <div class="field-grid">
+              <label class="field field-wide">External media URLs <textarea id="media-urls" rows="3" placeholder="One YouTube, Sketchfab, .mp4 or image URL per line"></textarea></label>
+              <label class="check-row"><input id="selected-work" type="checkbox"> <span>Feature in selected work</span></label>
+            </div>
+          </details>
+        </section>
+
+        <aside class="preview-pane">
+          <div class="preview-title"><span><svg><use href="#icon-eye"></use></svg> Live preview</span><button id="open-preview" type="button">Expand</button></div>
+          <article class="project-preview">
+            <div class="preview-sitebar"><span>Pilgrim Studio</span><i></i><i></i><i></i></div>
+            <div class="preview-cover" id="live-cover"><span>Add a cover image</span></div>
+            <div class="preview-copy"><h2 id="live-title">Untitled project</h2><p class="preview-meta"><span id="live-category">UI/UX</span> · <span id="live-year"></span></p><p id="live-description">Your project description will appear here.</p><div id="live-tags" class="preview-tags"></div></div>
+          </article>
+          <div class="save-state"><svg><use href="#icon-check"></use></svg><div><strong>Local draft ready</strong><span>Your edits stay on this device until published.</span></div></div>
+        </aside>
+
+        <footer class="actionbar">
+          <button class="button button-quiet" id="save-draft" type="button">Save draft</button>
+          <button class="button button-primary" id="publish-button" type="submit"><svg><use href="#icon-rocket"></use></svg><span class="desktop-action">Publish project</span><span class="mobile-action">Preview &amp; publish</span></button>
+        </footer>
+      </form>
+    </main>
+  </div>
+
+  <dialog id="settings-dialog">
+    <form method="dialog" class="dialog-card">
+      <div class="dialog-heading"><h2>Repository settings</h2><button value="cancel" aria-label="Close">×</button></div>
+      <p id="settings-repo"></p>
+      <button class="button button-danger" id="disconnect-button" type="button"><svg><use href="#icon-log-out"></use></svg> Disconnect this device</button>
+    </form>
+  </dialog>
+
+  <dialog id="publish-dialog">
+    <div class="dialog-card publish-dialog">
+      <div class="publish-icon"><svg><use href="#icon-rocket"></use></svg></div>
+      <h2 id="publish-title">Publishing project</h2>
+      <p id="publish-detail">Preparing your portfolio files…</p>
+      <div class="progress-track"><span id="publish-progress"></span></div>
+      <ol id="publish-steps"><li>Validate content</li><li>Prepare media</li><li>Create Git commit</li><li>Trigger GitHub Pages</li></ol>
+      <div class="publish-result" id="publish-result" hidden>
+        <a class="button button-primary" id="open-live-project" target="_blank" rel="noopener noreferrer">Open project <svg><use href="#icon-external"></use></svg></a>
+        <button class="button button-quiet" id="publish-done" type="button">Create another</button>
+      </div>
+    </div>
+  </dialog>
+
+  <script type="module" src="app.js?v=1.0"></script>
+</body>
+</html>
