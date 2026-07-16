@@ -47,7 +47,7 @@ export class GitHubPublisher {
   async getText(path, fallback = null) {
     try {
       const data = await this.request(`/repos/${this.repository}/contents/${encodePath(path)}?ref=${encodeURIComponent(this.branch)}`);
-      if (Array.isArray(data) || !data.content) throw new Error(`Expected a text file at ${path}.`);
+      if (Array.isArray(data) || typeof data.content !== "string") throw new Error(`Expected a text file at ${path}.`);
       return decodeBase64Utf8(data.content.replace(/\n/g, ""));
     } catch (error) {
       if (error.status === 404 && fallback !== null) return fallback;
