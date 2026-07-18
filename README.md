@@ -1,48 +1,124 @@
-# Subtle Sayak Portfolio
+<div align="center">
+  <a href="https://subtlesayak.github.io/">
+    <img src="Resources/profile/sayak-profile.jpg" width="112" height="112" alt="Portrait of Subtle Sayak">
+  </a>
 
-[View the live portfolio](https://subtlesayak.github.io/) | [Use the reusable template](https://github.com/subtlesayak/portfolio-template) | [Original inspiration](https://github.com/artofpilgrim/portfolio-template)
+  <h1>Subtle Sayak Portfolio</h1>
 
-A static portfolio for Subtle Sayak, a UI/UX and visual designer based in Bengaluru. The site presents design case studies, photography collections, articles, public software projects, and professional experience without a framework or build step.
+  <p><strong>UI/UX design, visual systems, photography, writing, and useful software.</strong></p>
+  <p>A calm, plain-file portfolio built to be explored by visitors and edited by beginners.</p>
 
-The implementation stays deliberately simple: plain HTML, CSS, JavaScript, folders, and editable text files. GitHub Pages serves the repository directly.
+  <p>
+    <a href="https://subtlesayak.github.io/"><img src="https://img.shields.io/badge/Live_portfolio-Open-a76b00?style=for-the-badge&logo=githubpages&logoColor=ffffff&labelColor=171717" alt="Open the live portfolio"></a>
+    <a href="https://github.com/subtlesayak/portfolio-template"><img src="https://img.shields.io/badge/Reusable_template-View-4d4d4d?style=for-the-badge&logo=github&logoColor=ffffff&labelColor=171717" alt="View the reusable portfolio template"></a>
+  </p>
 
-## Browse The Site
+  <p>
+    <img src="https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=html5&logoColor=white" alt="HTML5">
+    <img src="https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=css3&logoColor=white" alt="CSS3">
+    <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=171717" alt="JavaScript">
+    <img src="https://img.shields.io/badge/GitHub_Pages-222222?style=flat-square&logo=githubpages&logoColor=white" alt="Hosted on GitHub Pages">
+    <img src="https://img.shields.io/badge/Build_step-None-2f855a?style=flat-square" alt="No build step">
+  </p>
 
-- **Portfolio** - selected UI/UX, branding, visual-design, and product work.
-- **Photography** - event and collection galleries with individual photo views and available EXIF details.
-- **Articles** - long-form notes and process writing rendered from text files.
-- **Projects** - public tools and apps with user-facing and GitHub links.
-- **About** - summary, software knowledge, skills, experience, education, projects, and activities.
+  <p>
+    <a href="https://github.com/subtlesayak/subtlesayak.github.io/commits/main"><img src="https://img.shields.io/github/last-commit/subtlesayak/subtlesayak.github.io?style=flat-square&label=Updated&color=a76b00" alt="Date of the latest repository update"></a>
+    <a href="https://github.com/subtlesayak/subtlesayak.github.io"><img src="https://img.shields.io/github/repo-size/subtlesayak/subtlesayak.github.io?style=flat-square&label=Public%20site&color=171717" alt="Public repository size"></a>
+    <a href="LICENSE"><img src="https://img.shields.io/github/license/subtlesayak/subtlesayak.github.io?style=flat-square&color=edb049" alt="MIT license"></a>
+  </p>
+</div>
 
-## Current Experience
+---
 
-- Responsive project and photography grids with ten thumbnail-size steps.
-- Auto, dark, and light themes stored in the browser.
-- Optional region-based e-ink refresh effect.
-- Circular glass navigation for detail pages, including previous, next, back, and back-to-top controls.
-- Adjacent-image preloading in photography detail views.
-- Locally hosted project media instead of a runtime dependency on Behance's image CDN.
-- Search and generative-engine discovery files: `robots.txt`, `sitemap.xml`, and `llms.txt`.
-- Static content validation before publishing.
+## About
 
-## Technology
+This repository powers the personal portfolio of **Subtle Sayak**, a UI/UX and visual designer based in Bengaluru, India. It brings design case studies, photography collections, articles, public software projects, and professional experience into one intentionally simple website.
 
-- HTML5
-- CSS3
-- Plain browser JavaScript
-- Text-file and folder-based content
-- GitHub Pages
+The site uses plain HTML, CSS, JavaScript, folders, and editable text files. There is no framework, database, package installation, or production build command. GitHub Pages serves the repository directly.
 
-There is no package installation, database, server application, bundler, or production build command.
+> The design stays out of the way so the work can remain the focus.
 
-## Repository Map
+## Explore
+
+| Page | What you will find |
+| --- | --- |
+| [Portfolio](https://subtlesayak.github.io/) | Selected UI/UX, branding, visual design, and product case studies. |
+| [Photography](https://subtlesayak.github.io/photography.html) | Event and collection galleries, individual photo views, and available EXIF details. |
+| [Articles](https://subtlesayak.github.io/articles.html) | Long-form notes, experiments, and process writing rendered from text files. |
+| [Projects](https://subtlesayak.github.io/projects.html) | Public tools and apps with user-facing links and source repositories. |
+| [About](https://subtlesayak.github.io/about.html) | Profile, skills, experience, education, university projects, and activities. |
+
+## Highlights
+
+- **Responsive work grids** with ten thumbnail-size steps, from dense overview to close inspection.
+- **Auto, dark, and light themes** remembered locally by the browser.
+- **Optional e-ink refresh mode** with region-based element rendering.
+- **Focused detail views** with glass navigation for back, previous, next, and back-to-top actions.
+- **Fast photography browsing** through adjacent-image preloading and viewport-fit presentation.
+- **Local project media** with no runtime dependency on Behance's image CDN.
+- **Search-friendly metadata** through `robots.txt`, `sitemap.xml`, and `llms.txt`.
+- **Content validation** for common file, path, and formatting mistakes before publishing.
+
+## How It Works
+
+```text
+Editable text files + content folders
+                  |
+       Browser-side HTML, CSS, and JS
+                  |
+              GitHub Pages
+```
+
+Most portfolio updates are content edits. The browser loads the configuration and project files at runtime, then builds the appropriate page without a CMS or compilation step.
+
+## Edit Your Content
+
+| Change | Edit |
+| --- | --- |
+| Name, role, location, intro, social links, resume | `Config/userinformation.txt` |
+| About summary | `Config/summary.txt` |
+| Software and skills | `Config/software.txt` and `Config/skills.txt` |
+| Experience and education | `Config/productions.txt` |
+| Portfolio project order | `Config/projects.txt` |
+| Selected-work priority | `Config/selected-work.txt` |
+| Public software projects | `Config/codeprojects.txt` |
+| Article order | `Config/articles.txt` |
+| Quiet last-updated line | `Config/site.txt` |
+| Project case studies | `Projects/<Project Name>/` |
+| Photography collections | `Projects/Photography/` |
+| Articles | `Articles/<Article Name>/article.txt` |
+
+Read the complete [authoring guide](AUTHORING.md) for file formats, examples, and the content workflow. Copy a starter folder from `Templates/` when adding a project, photography collection, or article.
+
+## Quick Start
+
+The pages fetch local text files, so opening `index.html` directly may not work in every browser. Start a small local server from the repository root:
+
+```bash
+python -m http.server 8000
+```
+
+Open [http://localhost:8000](http://localhost:8000), then validate the content before publishing:
+
+```bash
+node tools/validate-content.js
+```
+
+A successful check prints:
+
+```text
+Content validation passed.
+```
+
+<details>
+<summary><strong>Repository map</strong></summary>
 
 ```text
 Articles/                 One folder per article
-Config/                   Profile, ordering, labels, About content, and site settings
+Config/                   Profile, ordering, labels, About content, and settings
 CSS/                      Shared and page-specific styling
-JS/                       Browser-side content loaders and interactions
-Projects/                 Portfolio project folders and photography collections
+JS/                       Content loaders and browser interactions
+Projects/                 Portfolio projects and photography collections
 Resources/                Profile, favicon, resume, and shared public assets
 Templates/                Starter folders for projects, photography, and articles
 tools/                    Content validator and Behance media importer
@@ -54,54 +130,10 @@ about.html                About
 sitemap.html              Human-readable sitemap
 ```
 
-## Editing Content
+</details>
 
-Most content changes do not require touching CSS or JavaScript.
-
-| Content | File or folder |
-| --- | --- |
-| Name, role, location, intro, social links, resume | `Config/userinformation.txt` |
-| About summary | `Config/summary.txt` |
-| Software and skills | `Config/software.txt`, `Config/skills.txt` |
-| Experience and education | `Config/productions.txt` |
-| Portfolio project order | `Config/projects.txt` |
-| Selected-work priority | `Config/selected-work.txt` |
-| Public software projects | `Config/codeprojects.txt` |
-| Article order | `Config/articles.txt` |
-| Quiet last-updated line | `Config/site.txt` |
-| Project case studies | `Projects/<Project Name>/` |
-| Photography | `Projects/Photography/` |
-| Articles | `Articles/<Article Name>/article.txt` |
-
-See [AUTHORING.md](AUTHORING.md) for the file formats and complete authoring workflow. The starter folders under `Templates/` can be copied when adding new work.
-
-## Preview Locally
-
-The pages load text files with `fetch()`, so opening `index.html` directly may not work in every browser. Run a small local server from the repository root:
-
-```bash
-python -m http.server 8000
-```
-
-Then open [http://localhost:8000](http://localhost:8000).
-
-## Validate Before Publishing
-
-With Node.js installed, run:
-
-```bash
-node tools/validate-content.js
-```
-
-The validator checks required configuration, project metadata formats, local media paths, article files, photography collections, and common missing-file mistakes.
-
-Successful output:
-
-```text
-Content validation passed.
-```
-
-## Local Project Media
+<details>
+<summary><strong>Local project media workflow</strong></summary>
 
 Project galleries use files inside each project's `assets/` folder. Imported folders include `assets/source-manifest.json` with the original public URLs, byte counts, and SHA-256 checksums.
 
@@ -111,40 +143,45 @@ Preview a Behance import without changing files:
 node tools/import-behance-media.js --dry-run
 ```
 
-Remove `--dry-run` to download display-sized images and update the corresponding `description.txt` and `media.txt`. The importer only processes public `behance.net/gallery/` links already present in project descriptions.
+Remove `--dry-run` to download display-sized images and update the matching `description.txt` and `media.txt`. The importer processes only public `behance.net/gallery/` links already present in project descriptions.
 
 Run the content validator after importing or replacing media.
 
-## Publishing
+</details>
+
+<details>
+<summary><strong>Publishing checklist</strong></summary>
 
 The live site is deployed from the `main` branch of [`subtlesayak/subtlesayak.github.io`](https://github.com/subtlesayak/subtlesayak.github.io).
 
-1. Preview and validate changes locally.
-2. Review the exact files being committed.
-3. Push the public site files to `main`.
-4. Wait for GitHub Pages to finish deploying.
-5. Refresh the live URL after deployment propagation.
+1. Preview the website locally.
+2. Run `node tools/validate-content.js`.
+3. Review the exact files being committed.
+4. Push the public website files to `main`.
+5. Wait for GitHub Pages to deploy, then check the live URL.
+
+</details>
 
 ## Public And Private Boundary
 
-This repository is public and contains only files intended to support the website.
+This is a public repository and should contain only files intended to support the website.
 
-- The local publishing/admin workspace is intentionally excluded.
+- Local publishing and administration workspaces are intentionally excluded.
 - Internal planning and agent workflow files are intentionally excluded.
 - Environment files, credentials, private keys, editor state, dependencies, and test output are ignored.
-- The profile, portfolio media, social links, and downloadable resume are intentionally public because they are presented by the live site.
-- No API keys or authentication tokens are required by the public website.
+- Profile media, portfolio work, social links, and the downloadable resume are intentionally public because the live site presents them.
+- The public website requires no API keys or authentication tokens.
 
 Never commit private client work, passwords, API keys, access tokens, identity documents, invoices, or unapproved personal information.
 
-## Template
+## Make It Yours
 
-For a generic, beginner-editable version with placeholder content and detailed setup instructions, use [`subtlesayak/portfolio-template`](https://github.com/subtlesayak/portfolio-template).
+The generic [`subtlesayak/portfolio-template`](https://github.com/subtlesayak/portfolio-template) keeps the same beginner-editable structure with placeholder content and detailed setup instructions. Its sections are optional: photography, articles, projects, and About content can be renamed, removed, or adapted to suit another person's interests.
 
 ## Credits
 
-The site began from the plain-file approach in [`artofpilgrim/portfolio-template`](https://github.com/artofpilgrim/portfolio-template) and has been extended with photography collections, articles, public software projects, themes, responsive grid controls, e-ink refresh behavior, local media, discovery metadata, and content validation.
+The site began with the plain-file approach in [`artofpilgrim/portfolio-template`](https://github.com/artofpilgrim/portfolio-template). It now includes photography collections, articles, public software projects, themes, responsive grid controls, e-ink refresh behavior, local media, discovery metadata, and content validation.
 
 ## License
 
-See [LICENSE](LICENSE).
+Released under the [MIT License](LICENSE).
