@@ -1,0 +1,31 @@
+# Local publishing and agent workflows are intentionally private.
+admin/
+.planning/
+.agents/
+.codex/
+.claude/
+AGENTS.md
+
+# Local configuration and credentials.
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+
+# Editor, operating-system, and temporary files.
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.log
+*.tmp
+*.bak
+
+# Generated dependencies and test output.
+node_modules/
+coverage/
+playwright-report/
+test-results/
