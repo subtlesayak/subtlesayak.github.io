@@ -152,3 +152,25 @@ export function formatBytes(bytes) {
 export function escapeHtml(value) {
   return String(value ?? "").replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll('"', "&quot;").replaceAll("'", "&#039;");
 }
+
+const SITE_MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
+export function parseSiteUpdated(text) {
+  const line = String(text || "").split(/\r?\n/).find(value => /^Last updated:/i.test(value.trim())) || "";
+  const match = line.match(/^Last updated:\s*([A-Za-z]+)\s+(?:(\d{1,2}),?\s+)?(\d{4})\s*$/i);
+  if (!match) return "";
+  const month = SITE_MONTHS.findIndex(value => value.toLowerCase() === match[1].toLowerCase());
+  const day = Number(match[2] || 1), year = Number(match[3]);
+  const date = new Date(Date.UTC(year, month, day));
+  if (month < 0 || date.getUTCFullYear() !== year || date.getUTCMonth() !== month || date.getUTCDate() !== day) return "";
+  return `${year}-${String(month + 1).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
+}
+
+export function serializeSiteUpdated(value) {
+  const match = String(value || "").match(/^(\d{4})-(\d{2})-(\d{2})$/);
+  if (!match) return "";
+  const year = Number(match[1]), month = Number(match[2]) - 1, day = Number(match[3]);
+  const date = new Date(Date.UTC(year, month, day));
+  if (month < 0 || month > 11 || date.getUTCFullYear() !== year || date.getUTCMonth() !== month || date.getUTCDate() !== day) return "";
+  return `Last updated: ${SITE_MONTHS[month]} ${day}, ${year}\n`;
+}
