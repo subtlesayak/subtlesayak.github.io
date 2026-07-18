@@ -133,7 +133,7 @@ function friendlyError(error) { if (error?.status === 401) return "GitHub reject
 
 const restored = sessionStorage.getItem(STORAGE.session) || localStorage.getItem(STORAGE.token);
 const focusableDrawerSelector = 'button:not([disabled]), [href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])';
-const hasUnsavedChanges = () => Boolean(state.dirtyForm?.isConnected && state.dirtyForm.dataset.dirty === "true");
+const hasUnsavedChanges = () => Boolean((state.dirtyForm?.isConnected && state.dirtyForm.dataset.dirty === "true") || selectedWorkHasChanges());
 const setShellInert = inert => document.querySelectorAll(".cms-sidebar, .cms-main, .cms-bottom-nav").forEach(element => { if (inert) element.setAttribute("inert", ""); else element.removeAttribute("inert"); });
 
 sidebarHtml = () => `<aside class="cms-sidebar"><div class="cms-brand">${brandMark()}<span>Pilgrim Studio</span></div><nav class="cms-nav">${SECTIONS.map(([id, label, icon]) => `<button type="button" aria-label="${label}" aria-current="${state.section === id ? "page" : "false"}" data-section="${id}"><svg><use href="#${icon}"></use></svg><span>${label}</span></button>`).join("")}</nav><div class="cms-account"><span>Repository</span><strong title="${escapeHtml(state.repo.repository)}">${escapeHtml(state.repo.repository)}</strong><span>${escapeHtml(state.repo.branch)}</span></div></aside>`;
@@ -151,6 +151,61 @@ closeDrawer = () => { const drawer = $("editor-drawer"); if (!drawer?.classList.
 showBusy = (title, detail, progress = 8) => { const busy = $("cms-busy"); if (!busy) return; $("busy-title").textContent = title; $("busy-detail").textContent = detail; $("busy-detail").setAttribute("role", "status"); $("busy-progress").style.width = `${progress}%`; busy.setAttribute("role", "dialog"); busy.setAttribute("aria-modal", "true"); busy.setAttribute("aria-labelledby", "busy-title"); busy.setAttribute("aria-describedby", "busy-detail"); busy.classList.add("is-visible"); setShellInert(true); const card = busy.querySelector(".busy-card"); card.tabIndex = -1; requestAnimationFrame(() => card.focus()); };
 hideBusy = () => { $("cms-busy")?.classList.remove("is-visible"); setShellInert(Boolean($("editor-drawer")?.classList.contains("is-open"))); };
 
+function stagedSelectedWork() {
+  if (!Array.isArray(state.selectedWorkDraft)) state.selectedWorkDraft = cleanLines(state.data.selectedWork);
+  return state.selectedWorkDraft;
+}
+function selectedWorkHasChanges() {
+  const current = cleanLines(state.data.selectedWork), draft = stagedSelectedWork();
+  return current.length !== draft.length || current.some((id, index) => id !== draft[index]);
+}
+function stageSelectedProject(id) {
+  const draft = stagedSelectedWork();
+  state.selectedWorkDraft = draft.includes(id) ? draft.filter(item => item !== id) : [...draft, id];
+  drawProjectRows();
+}
+async function publishSelectedProjects() {
+  const draft = stagedSelectedWork();
+  if (!selectedWorkHasChanges()) return;
+  const names = state.projects.filter(project => draft.includes(project.id)).map(project => project.title);
+  const summary = names.length ? names.slice(0, 8).map(title => `• ${title}`).join("\n") + (names.length > 8 ? `\n• and ${names.length - 8} more` : "") : "No projects will be featured.";
+  if (!confirm(`Publish ${draft.length} selected ${draft.length === 1 ? "project" : "projects"} to the homepage?\n\n${summary}`)) return;
+  try {
+    await publish([{ path: CONTENT_PATHS.selectedWork, content: joinLines(draft) }], `Update selected work (${draft.length})`);
+    state.selectedWorkDraft = null;
+    await refresh("content");
+  } catch (error) {
+    toast(friendlyError(error), true);
+  }
+}
+drawProjectsContent = () => {
+  const surface = $("content-surface");
+  surface.innerHTML = `<div class="cms-toolbar"><input id="project-search" placeholder="Search projects…"><select id="project-filter"><option value="">All categories</option>${categoryOptions("")}</select></div><div class="selected-work-actions" id="selected-work-actions"></div><div class="content-list" id="project-list"></div>`;
+  $("project-search").addEventListener("input", drawProjectRows);
+  $("project-filter").addEventListener("change", drawProjectRows);
+  drawProjectRows();
+};
+drawProjectRows = () => {
+  const list = $("project-list");
+  if (!list) return;
+  const draft = stagedSelectedWork(), query = $("project-search").value.toLowerCase(), filter = $("project-filter").value;
+  const items = state.projects.filter(project => (!query || `${project.title} ${project.cardContext}`.toLowerCase().includes(query)) && (!filter || project.category === filter));
+  list.innerHTML = items.length ? items.map(project => {
+    const selected = draft.includes(project.id);
+    return `<div class="content-row ${selected ? "is-selected" : ""}" draggable="true" data-id="${escapeHtml(project.id)}"><span class="row-handle">⠿</span><div class="row-primary"><img src="${rawUrl(project.cover)}" alt=""><strong>${escapeHtml(project.title)}</strong></div><span>${escapeHtml(categoryLabel(project.category))}</span><span>${escapeHtml(project.year || "—")}</span><div class="row-actions"><button class="icon-button ${selected ? "is-selected" : ""}" data-feature="${escapeHtml(project.id)}" type="button" aria-pressed="${selected}" aria-label="${selected ? "Remove" : "Add"} ${escapeHtml(project.title)} ${selected ? "from" : "to"} selected work" title="${selected ? "Remove from" : "Add to"} selected work">★</button><button class="icon-button primary-action" data-edit="${escapeHtml(project.id)}" type="button" title="Edit"><svg><use href="#icon-edit"></use></svg></button></div></div>`;
+  }).join("") : `<div class="empty-list">No matching projects.</div>`;
+  const actions = $("selected-work-actions"), selectedCount = draft.length, changed = selectedWorkHasChanges();
+  actions.innerHTML = `<div class="selected-work-bar" role="status"><div class="selected-work-copy"><strong>${selectedCount} ${selectedCount === 1 ? "project" : "projects"} selected for the homepage</strong><span>${changed ? "Review the selection, then confirm to publish it immediately." : "Choose one or more projects with the star buttons."}</span></div><button class="button button-primary" id="publish-selected-work" type="button" ${changed ? "" : "disabled"}>Confirm &amp; publish</button></div>`;
+  list.querySelectorAll("[data-edit]").forEach(button => button.addEventListener("click", () => openProjectEditor(state.projects.find(item => item.id === button.dataset.edit))));
+  list.querySelectorAll("[data-feature]").forEach(button => button.addEventListener("click", () => stageSelectedProject(button.dataset.feature)));
+  $("publish-selected-work").addEventListener("click", publishSelectedProjects);
+  bindReorder(list, state.projects, CONTENT_PATHS.projects, "Reorder portfolio projects");
+};
+refresh = async (section = state.section) => {
+  state.selectedWorkDraft = null;
+  await loadAll();
+  renderSection(section);
+};
 document.addEventListener("keydown", event => {
   const drawer = $("editor-drawer");
   if (drawer?.classList.contains("is-open")) {

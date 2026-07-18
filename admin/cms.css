@@ -47,3 +47,16 @@
   .row-actions .icon-button:not(.primary-action) { display: grid; }
   .drawer-footer .danger-link { display: inline-flex; align-items: center; padding-inline: 8px; }
 }
+/* Overview alignment and selected-work publishing */
+.overview-sections .panel-head { padding-inline: 16px; }
+.selected-work-actions { margin-bottom: 12px; }
+.selected-work-bar { display: flex; align-items: center; justify-content: space-between; gap: 14px; padding: 12px 14px; border: 1px solid var(--line-soft); border-radius: 8px; background: var(--surface-2); }
+.selected-work-copy { min-width: 0; display: grid; gap: 2px; }
+.selected-work-copy strong { font-size: 13px; }
+.selected-work-copy span { color: var(--muted); font-size: 12px; line-height: 1.45; }
+.selected-work-bar .button { flex: 0 0 auto; }
+
+@media (max-width: 700px) {
+  .selected-work-bar { align-items: stretch; flex-direction: column; }
+  .selected-work-bar .button { width: 100%; }
+}
