@@ -1,5 +1,4 @@
-# Local publishing and agent workflows are intentionally private.
-admin/
+# Local agent workflows are intentionally private.
 .planning/
 .agents/
 .codex/
