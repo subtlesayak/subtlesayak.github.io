@@ -52,7 +52,7 @@
 .article-card:focus-visible {
   border-color: var(--accent-line, rgba(237, 176, 73, 0.48));
   background: rgba(255, 255, 255, 0.1);
-  box-shadow: 0 18px 44px rgba(0, 0, 0, 0.26), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  box-shadow: 0 18px 44px var(--shadow-accent-strong), inset 0 1px 0 rgba(255, 255, 255, 0.12);
   -webkit-backdrop-filter: blur(8px) saturate(120%);
   backdrop-filter: blur(8px) saturate(120%);
   color: var(--text, #f2f2f2);
@@ -268,7 +268,7 @@ body.theme-light .article-card:hover,
 body.theme-light .article-card:focus-visible {
   border-color: var(--line);
   background: #f7f7f8;
-  box-shadow: 0 18px 44px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 18px 44px var(--shadow-accent-soft);
 }
 
 body.theme-light .article-card p,

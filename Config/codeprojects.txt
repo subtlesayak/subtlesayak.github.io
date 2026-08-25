@@ -1,14 +1,14 @@
-SayaQR
+WardSen
 ---
-Tool
+Security Tool
 ---
-Privacy-first QR code generator that runs fully in the browser, with QR modes, export options, design controls, scannability checks, batch CSV mode, and offline PWA support.
+Local-first credential dispatch for teams: create short-lived secure links from password-manager vaults without a cloud plaintext backend.
 ---
-https://subtlesayak.github.io/SayaQR/
+
 ---
-https://github.com/subtlesayak/SayaQR
+https://github.com/subtlesayak/WardSen
 ---
-TypeScript, Vite, PWA, QR Code
+TypeScript, Tauri, Bitwarden, Local-first, Secure Sharing
 ---
 OpenDash
 ---
@@ -20,28 +20,76 @@ Open-source Android companion for bike dash navigation, garage, expenses, wallpa
 ---
 https://github.com/subtlesayak/open-dash
 ---
-Android, Kotlin, Navigation, Ride Tools
+Kotlin, Android, Jetpack Compose, MapLibre, Motorcycle
+---
+SayaQR
+---
+Tool
+---
+Privacy-first offline QR code generator built with TypeScript and Nayuki's QR Code generator library.
+---
+https://subtlesayak.github.io/SayaQR/
+---
+https://github.com/subtlesayak/SayaQR
+---
+TypeScript, Offline, Privacy, PWA, QR Code
+---
+TokenSave
+---
+Developer Tool
+---
+Cross-agent quota pacing and model routing for managing AI coding-agent usage.
+---
+
+---
+https://github.com/subtlesayak/TokenSave
+---
+JavaScript, AI Agents, Quota Pacing, Model Routing
+---
+nutriLog
+---
+Forked MCP Server
+---
+A remote MCP server for personal nutrition tracking: log meals, track macros, and review nutrition history through conversation.
+---
+https://nutrition-mcp.com
+---
+https://github.com/subtlesayak/nutriLog
+---
+MCP, Nutrition Tracking, Conversational Logging, Fork
+---
+WakeOnLan
+---
+Forked Android App
+---
+A Wake-on-LAN application for remotely waking compatible devices from Android.
+---
+
+---
+https://github.com/subtlesayak/WakeOnLan
+---
+Java, Android, Wake-on-LAN, Fork
 ---
 AgeLapse Material
 ---
-Experiment
+Forked Experiment
 ---
-AgeLapse automatically aligns face pictures and creates stabilized aging time-lapses for photo-a-day videos.
+Automatically aligns face pictures and creates stabilized aging time-lapses for photo-a-day videos.
 ---
 http://agelapse.com
 ---
 https://github.com/subtlesayak/agelapse-Material
 ---
-Web, Image Alignment, Time-lapse
+Web, Image Alignment, Time-lapse, Fork
 ---
 Portfolio Template
 ---
 Template
 ---
-Reusable plain HTML, CSS, JavaScript, and text-file portfolio template based on this site's simple editing model.
+A beginner-friendly, no-build portfolio template powered by plain HTML, CSS, JavaScript, folders, and editable text files.
 ---
 
 ---
 https://github.com/subtlesayak/portfolio-template
 ---
-HTML, CSS, JavaScript, GitHub Pages
+JavaScript, HTML, CSS, GitHub Pages, Static Site

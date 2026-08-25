@@ -7,6 +7,9 @@
   --muted: #a9a9a9;
   --accent: #edb049;
   --accent-line: rgba(237, 176, 73, 0.48);
+  --shadow-accent-soft: rgba(237, 176, 73, 0.1);
+  --shadow-accent: rgba(237, 176, 73, 0.16);
+  --shadow-accent-strong: rgba(237, 176, 73, 0.22);
 }
 
 :where(a, button, [tabindex]:not([tabindex="-1"])):focus-visible {
@@ -115,6 +118,9 @@ body.theme-light {
   --muted: #5f5a53;
   --accent: #a46312;
   --accent-line: rgba(164, 99, 18, 0.48);
+  --shadow-accent-soft: rgba(164, 99, 18, 0.1);
+  --shadow-accent: rgba(164, 99, 18, 0.14);
+  --shadow-accent-strong: rgba(164, 99, 18, 0.18);
   background: var(--bg);
   color: var(--text);
 }
@@ -290,7 +296,7 @@ body.theme-light .back-to-top-button {
   background: rgba(255, 255, 255, 0.64);
   border-color: rgba(255, 255, 255, 0.86);
   color: #171717;
-  box-shadow: 0 8px 24px rgba(23, 23, 23, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.92);
+  box-shadow: 0 8px 24px var(--shadow-accent), inset 0 1px 0 rgba(255, 255, 255, 0.92);
 }
 
 body.theme-light .project-back-button:hover,
@@ -323,7 +329,7 @@ body.theme-light .tooltip {
   background: #ffffff;
   color: var(--text);
   border: 1px solid var(--line);
-  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 8px 22px var(--shadow-accent-soft);
 }
 
 body.theme-light .tooltip::after {

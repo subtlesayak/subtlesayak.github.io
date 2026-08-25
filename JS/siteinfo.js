@@ -1,5 +1,5 @@
 (function () {
-    const SITE_INFO_PATH = "Config/site.txt?v=1.1";
+    const SITE_INFO_PATH = "Config/site.txt?v=1.2";
     const UPDATED_PAGE_NAMES = new Set(["index.html", "photography.html", "articles.html", "projects.html"]);
 
     function firstContentLine(text) {

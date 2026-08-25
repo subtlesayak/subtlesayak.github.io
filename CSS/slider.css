@@ -66,7 +66,7 @@
     background: #ffffff;
     cursor: grab;
     border-radius: 1em;
-    box-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0 4px var(--shadow-accent-strong);
     transition: background 0.3s;
     z-index: 4; /* Ensure thumb is on top */
   }
@@ -77,7 +77,7 @@
     background: #ffffff;
     cursor: pointer;
     border-radius: 1em;
-    box-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0 4px var(--shadow-accent-strong);
     transition: background 0.3s;
     z-index: 4; /* Ensure thumb is on top */
   }

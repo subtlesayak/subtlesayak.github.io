@@ -18,7 +18,7 @@
   opacity: 1;
   box-sizing: border-box;
   background-clip: padding-box;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.34), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 24px var(--shadow-accent), inset 0 1px 0 rgba(255, 255, 255, 0.2);
   -webkit-backdrop-filter: blur(8px) saturate(145%);
   backdrop-filter: blur(8px) saturate(145%);
   overflow: hidden;
@@ -31,7 +31,7 @@
   color: var(--accent, #edb049);
   background-color: rgba(24, 24, 24, 0.68);
   border-color: rgba(237, 176, 73, 0.36);
-  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.38), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  box-shadow: 0 10px 28px var(--shadow-accent-strong), inset 0 1px 0 rgba(255, 255, 255, 0.2);
   transform: translateY(-50%) scale(1.05);
 }
 
@@ -42,7 +42,7 @@
 
 .nav-button:active {
   transform: translateY(-50%) scale(0.96);
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.28);
+  box-shadow: 0 1px 4px var(--shadow-accent-strong);
 }
 
 #prev-project {
@@ -89,7 +89,7 @@
   opacity: 1;
   box-sizing: border-box;
   background-clip: padding-box;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.34), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 24px var(--shadow-accent), inset 0 1px 0 rgba(255, 255, 255, 0.2);
   -webkit-backdrop-filter: blur(8px) saturate(145%);
   backdrop-filter: blur(8px) saturate(145%);
   overflow: hidden;
@@ -109,7 +109,7 @@
   color: var(--accent, #edb049);
   background-color: rgba(24, 24, 24, 0.68);
   border-color: rgba(237, 176, 73, 0.36);
-  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.38), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  box-shadow: 0 10px 28px var(--shadow-accent-strong), inset 0 1px 0 rgba(255, 255, 255, 0.2);
   transform: scale(1.05);
 }
 
@@ -120,5 +120,5 @@
 
 .project-back-button:active {
   transform: scale(0.96);
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.28);
+  box-shadow: 0 1px 4px var(--shadow-accent-strong);
 }
