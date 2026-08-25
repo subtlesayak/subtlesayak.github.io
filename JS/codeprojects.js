@@ -85,6 +85,7 @@
         fragment.appendChild(grid);
 
         container.replaceChildren(fragment);
+        document.dispatchEvent(new Event("portfolio:list-rendered"));
     }
 
     function renderProjectsEmptyState() {
@@ -100,6 +101,7 @@
         emptyState.appendChild(heading);
         emptyState.appendChild(body);
         container.replaceChildren(emptyState);
+        document.dispatchEvent(new Event("portfolio:list-rendered"));
     }
 
     async function loadProjects() {

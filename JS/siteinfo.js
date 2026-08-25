@@ -1,6 +1,7 @@
 (function () {
     const SITE_INFO_PATH = "Config/site.txt?v=1.2";
     const UPDATED_PAGE_NAMES = new Set(["index.html", "photography.html", "articles.html", "projects.html"]);
+    let cachedSiteInfo = "";
 
     function firstContentLine(text) {
         return text
@@ -31,6 +32,7 @@
 
     function renderSectionUpdated(text) {
         const line = firstContentLine(text);
+        if (currentPageName() === "articles.html" && document.querySelector(".article-detail")) return;
         const target = line ? sectionMetaTarget() : null;
         if (!target || target.querySelector(".section-updated")) return;
         target.prepend(createSectionUpdatedLine(line));
@@ -55,12 +57,16 @@
         try {
             const response = await fetch(SITE_INFO_PATH);
             if (!response.ok) return;
-            renderSectionUpdated(await response.text());
+            cachedSiteInfo = await response.text();
+            renderSectionUpdated(cachedSiteInfo);
             renderSiteMeta();
         } catch (error) {
             console.error("Error loading site info:", error);
         }
     }
 
+    document.addEventListener("portfolio:list-rendered", function () {
+        if (cachedSiteInfo) renderSectionUpdated(cachedSiteInfo);
+    });
     document.addEventListener("DOMContentLoaded", loadSiteInfo);
 }());

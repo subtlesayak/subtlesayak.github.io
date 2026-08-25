@@ -130,6 +130,7 @@
 
         fragment.appendChild(grid);
         articlesContainer.replaceChildren(fragment);
+        document.dispatchEvent(new Event("portfolio:list-rendered"));
     }
 
     function getArticleAuthor() {
@@ -205,6 +206,7 @@
         emptyState.appendChild(heading);
         emptyState.appendChild(body);
         articlesContainer.replaceChildren(emptyState);
+        document.dispatchEvent(new Event("portfolio:list-rendered"));
     }
 
     function renderArticles(articles) {
