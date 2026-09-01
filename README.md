@@ -32,7 +32,7 @@
 
 ## About
 
-This repository powers the personal portfolio of **Subtle Sayak**, a UI/UX and visual designer based in Bengaluru, India. It brings design case studies, photography collections, articles, public software projects, and professional experience into one intentionally simple website.
+This repository powers the personal portfolio of **Subtle Sayak**, a UI/UX and visual designer based in Bengaluru, India. It brings client websites, design case studies, photography collections, articles, public software projects, and professional experience into one intentionally simple website.
 
 The site uses plain HTML, CSS, JavaScript, folders, and editable text files. There is no framework, database, package installation, or production build command. GitHub Pages serves the repository directly.
 
@@ -42,7 +42,7 @@ The site uses plain HTML, CSS, JavaScript, folders, and editable text files. The
 
 | Page | What you will find |
 | --- | --- |
-| [Portfolio](https://subtlesayak.github.io/) | Selected UI/UX, branding, visual design, and product case studies. |
+| [Portfolio](https://subtlesayak.github.io/) | Selected client websites plus UI/UX, branding, visual design, and product case studies. |
 | [Photography](https://subtlesayak.github.io/photography.html) | Event and collection galleries, individual photo views, and available EXIF details. |
 | [Articles](https://subtlesayak.github.io/articles.html) | Long-form notes, experiments, and process writing rendered from text files. |
 | [Projects](https://subtlesayak.github.io/projects.html) | Public tools and apps with user-facing links and source repositories. |
@@ -51,6 +51,7 @@ The site uses plain HTML, CSS, JavaScript, folders, and editable text files. The
 ## Highlights
 
 - **Responsive work grids** with ten thumbnail-size steps, from dense overview to close inspection.
+- **Dedicated client website showcase** kept separate from personal tools and open-source projects.
 - **Auto, dark, and light themes** remembered locally by the browser.
 - **Optional e-ink refresh mode** with region-based element rendering.
 - **Focused detail views** with glass navigation for back, previous, next, and back-to-top actions.
@@ -81,6 +82,7 @@ Most portfolio updates are content edits. The browser loads the configuration an
 | Experience and education | `Config/productions.txt` |
 | Portfolio project order | `Config/projects.txt` |
 | Selected-work priority | `Config/selected-work.txt` |
+| Client website cards | `Config/client-websites.txt` |
 | Public software projects | `Config/codeprojects.txt` |
 | Article order | `Config/articles.txt` |
 | Quiet last-updated line | `Config/site.txt` |

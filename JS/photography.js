@@ -195,7 +195,7 @@ function createInstagramCta() {
     link.href = PHOTOGRAPHY_INSTAGRAM_URL;
     link.target = "_blank";
     link.rel = "noopener noreferrer";
-    link.setAttribute("aria-label", `See more photography on Instagram ${PHOTOGRAPHY_INSTAGRAM_HANDLE}`);
+    link.setAttribute("aria-label", `Open People I Meet, a portrait series on Instagram ${PHOTOGRAPHY_INSTAGRAM_HANDLE}`);
 
     const icon = document.createElement("i");
     icon.className = "fa-brands fa-instagram photography-instagram-icon";
@@ -205,10 +205,10 @@ function createInstagramCta() {
     copy.className = "photography-instagram-copy";
 
     const title = document.createElement("strong");
-    title.textContent = "More photography on Instagram";
+    title.textContent = "People I Meet";
 
     const handle = document.createElement("span");
-    handle.textContent = `${PHOTOGRAPHY_INSTAGRAM_HANDLE} - ongoing work and behind the scenes`;
+    handle.textContent = `${PHOTOGRAPHY_INSTAGRAM_HANDLE} - portraits of people I meet along the way`;
 
     const arrow = document.createElement("i");
     arrow.className = "fa-solid fa-arrow-up-right-from-square photography-instagram-arrow";

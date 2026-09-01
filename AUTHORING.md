@@ -50,6 +50,28 @@ Tools: Figma, Photoshop
 
 Use category slugs, one per line. Category labels and order live in `Config/categories.txt`.
 
+## Client Websites
+
+Client websites appear in their own section above the Portfolio project grid. Edit `Config/client-websites.txt` to add, remove, rewrite, or reorder them.
+
+Each website uses six sections separated by `---`:
+
+```txt
+Website Name
+---
+Client Website
+---
+One-sentence description of the website and your contribution.
+---
+https://example.com/
+---
+
+---
+UI/UX, Responsive Web Design, Client Work
+```
+
+The sections are: name, short label, description, live website URL, optional source-code URL, and comma-separated tags. Leave the source-code section blank for private client work. Move a complete six-section block to change its position.
+
 ## Photography
 
 Photography is collection-based. The existing root collection lives in `Projects/Photography/`, and future collections can live in `Projects/Photography/Collections/`.

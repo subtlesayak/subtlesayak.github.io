@@ -232,29 +232,37 @@ function checkPhotography() {
 }
 
 
-function checkCodeProjects() {
-  const codeProjectsPath = "Config/codeprojects.txt";
-  requireFile(codeProjectsPath);
-  if (!exists(codeProjectsPath)) return;
+function checkLinkedProjectConfig(configPath, itemLabel, requireLiveUrl = false) {
+  requireFile(configPath);
+  if (!exists(configPath)) return;
 
-  const parts = read(codeProjectsPath)
+  const parts = read(configPath)
     .replace(/\r\n/g, "\n")
     .split(/\n---\n/)
     .map(part => part.trim());
 
   if (parts.length % 6 !== 0) {
-    errors.push(`${normalizeRel(codeProjectsPath)} must use 6 sections per project separated by ---`);
+    errors.push(`${normalizeRel(configPath)} must use 6 sections per ${itemLabel} separated by ---`);
     return;
   }
 
   for (let index = 0; index < parts.length; index += 6) {
-    const title = parts[index] || "Untitled project";
+    const title = parts[index] || `Untitled ${itemLabel}`;
     const liveUrl = parts[index + 3] || "";
     const sourceUrl = parts[index + 4] || "";
-    if (!liveUrl && !sourceUrl) errors.push(`${normalizeRel(codeProjectsPath)} project "${title}" needs a live URL or source URL`);
-    if (liveUrl && !/^https?:\/\//i.test(liveUrl)) errors.push(`${normalizeRel(codeProjectsPath)} project "${title}" has an invalid live URL`);
-    if (sourceUrl && !/^https?:\/\//i.test(sourceUrl)) errors.push(`${normalizeRel(codeProjectsPath)} project "${title}" has an invalid source URL`);
+    if (!liveUrl && !sourceUrl) errors.push(`${normalizeRel(configPath)} ${itemLabel} "${title}" needs a live URL or source URL`);
+    if (requireLiveUrl && !liveUrl) errors.push(`${normalizeRel(configPath)} ${itemLabel} "${title}" needs a live website URL`);
+    if (liveUrl && !/^https?:\/\//i.test(liveUrl)) errors.push(`${normalizeRel(configPath)} ${itemLabel} "${title}" has an invalid live URL`);
+    if (sourceUrl && !/^https?:\/\//i.test(sourceUrl)) errors.push(`${normalizeRel(configPath)} ${itemLabel} "${title}" has an invalid source URL`);
   }
+}
+
+function checkCodeProjects() {
+  checkLinkedProjectConfig("Config/codeprojects.txt", "project");
+}
+
+function checkClientWebsites() {
+  checkLinkedProjectConfig("Config/client-websites.txt", "client website", true);
 }
 function checkArticles() {
   if (!exists("Config/articles.txt")) return;
@@ -276,7 +284,8 @@ function checkConfig() {
     "Config/software.txt",
     "Config/skills.txt",
     "Config/site.txt",
-    "Config/codeprojects.txt"
+    "Config/codeprojects.txt",
+    "Config/client-websites.txt"
   ].forEach(requireFile);
 }
 
@@ -285,6 +294,7 @@ checkProjects();
 checkSelectedWork();
 checkPhotography();
 checkCodeProjects();
+checkClientWebsites();
 checkArticles();
 
 if (warnings.length) {

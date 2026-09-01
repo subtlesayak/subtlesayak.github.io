@@ -1,4 +1,4 @@
-const CACHE_VERSION = "2.5";
+const CACHE_VERSION = "2.6";
 
 // Function to create a thumbnail with overlay icons
 function createThumbnail(src, alt, label, context, galleryPageUrl, hasMultipleImages, hasVideo, hasYouTube, hasSketchfab, isFeatured = false) {
@@ -83,6 +83,8 @@ function createThumbnail(src, alt, label, context, galleryPageUrl, hasMultipleIm
 
 // Get the thumbnail container element
 const thumbnailContainer = document.getElementById("thumbnail-container");
+const clientWebsitesSection = document.querySelector(".client-websites-section");
+const clientWebsitesContainer = document.getElementById("client-websites-container");
 
 if (window.PortfolioControls) {
     window.PortfolioControls.initViewControls({
@@ -112,6 +114,94 @@ function parseLines(text) {
         .split("\n")
         .map(line => line.trim())
         .filter(line => line && !line.startsWith("#"));
+}
+
+function parseClientWebsites(text) {
+    const parts = text
+        .replace(/\r\n/g, "\n")
+        .split(/\n---\n/)
+        .map(part => part.trim());
+    const websites = [];
+
+    for (let index = 0; index < parts.length; index += 6) {
+        const title = parts[index] || "";
+        const liveUrl = parts[index + 3] || parts[index + 4] || "";
+        if (!title || !liveUrl) continue;
+
+        websites.push({
+            title,
+            kind: parts[index + 1] || "Client Website",
+            summary: parts[index + 2] || "",
+            liveUrl,
+            tags: parts[index + 5] || ""
+        });
+    }
+
+    return websites;
+}
+
+function createClientWebsiteCard(website) {
+    const card = document.createElement("article");
+    card.className = "code-project-card client-website-card";
+
+    const kind = document.createElement("span");
+    kind.className = "code-project-kind content-label";
+    kind.textContent = website.kind;
+
+    const title = document.createElement("h3");
+    title.className = "client-website-title";
+    title.textContent = website.title;
+
+    const summary = document.createElement("p");
+    summary.textContent = website.summary;
+
+    const tags = document.createElement("span");
+    tags.className = "code-project-tags";
+    tags.textContent = website.tags;
+
+    const actions = document.createElement("div");
+    actions.className = "code-project-actions";
+
+    const link = document.createElement("a");
+    link.className = "code-project-action";
+    link.href = website.liveUrl;
+    link.target = "_blank";
+    link.rel = "noopener noreferrer";
+    link.setAttribute("aria-label", `Visit the ${website.title} website`);
+
+    const icon = document.createElement("i");
+    icon.className = "fa-solid fa-arrow-up-right-from-square";
+    icon.setAttribute("aria-hidden", "true");
+
+    const actionText = document.createElement("span");
+    actionText.textContent = "Visit Site";
+
+    link.appendChild(icon);
+    link.appendChild(actionText);
+    actions.appendChild(link);
+    card.appendChild(kind);
+    card.appendChild(title);
+    if (website.summary) card.appendChild(summary);
+    if (website.tags) card.appendChild(tags);
+    card.appendChild(actions);
+    return card;
+}
+
+function loadClientWebsites() {
+    if (!clientWebsitesSection || !clientWebsitesContainer) return;
+
+    fetchText("../Config/client-websites.txt")
+        .then(parseClientWebsites)
+        .then(websites => {
+            if (!websites.length) return;
+
+            const fragment = document.createDocumentFragment();
+            websites.forEach(website => fragment.appendChild(createClientWebsiteCard(website)));
+            clientWebsitesContainer.replaceChildren(fragment);
+            clientWebsitesSection.hidden = false;
+            document.dispatchEvent(new Event("portfolio:list-rendered"));
+        })
+        .catch(error => console.error("Error loading client websites:", error));
 }
 
 function inferProjectLabel(categories) {
@@ -234,6 +324,8 @@ function fetchSelectedWork() {
         .then(parseLines)
         .catch(() => []);
 }
+
+loadClientWebsites();
 
 Promise.all([fetchProjects(), fetchSelectedWork()]).then(([projectNames, selectedNames]) => {
     if (projectNames.length === 0) {

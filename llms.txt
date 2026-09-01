@@ -1,18 +1,23 @@
 # Subtle Sayak
 
-> Subtle Sayak is a UI/UX designer and interaction design graduate based in Bengaluru, India. This portfolio presents UI/UX, branding, visual design, research, prototyping, data visualization, 3D, rendering, photography, and product storytelling work.
+> Subtle Sayak is a UI/UX designer and interaction design graduate based in Bengaluru, India. This portfolio presents client websites, UI/UX, branding, visual design, research, prototyping, data visualization, 3D, rendering, photography, and product storytelling work.
 
 Public profile context: UI/UX Designer and interaction design graduate based in Bengaluru, India, focused on user experience, interface design, visual systems, branding, prototyping, photography, and product storytelling.
 
-Last updated: July 2026.
+Last updated: August 2026.
 
 ## Main Pages
-- [Portfolio](https://subtlesayak.github.io/): Main project grid and category browsing.
-- [Photography](https://subtlesayak.github.io/photography.html): Photography collections and visual galleries.
+- [Portfolio](https://subtlesayak.github.io/): Client websites, selected case studies, and the main project grid.
+- [Photography](https://subtlesayak.github.io/photography.html): Photography collections, visual galleries, and the People I Meet portrait series.
 - [Articles](https://subtlesayak.github.io/articles.html): Articles, notes, and process writing.
 - [Projects](https://subtlesayak.github.io/projects.html): Public web projects, tools, and GitHub Pages apps.
 - [About](https://subtlesayak.github.io/about.html): Profile, skills, software, education, projects, certificates, and contact links.
 - [Sitemap](https://subtlesayak.github.io/sitemap.html): Human-readable site map.
+
+## Client Websites
+- [Red Studio Collective](https://redstudiocollective.com/): Service and booking website for a 2,800 sq ft creative studio, including sets, equipment, packages, featured work, and enquiries.
+- [Red Productions](https://www.redproductions.in/): Conversion-focused website for a Bengaluru production studio, covering positioning, services, portfolio, team, and project enquiries.
+- [More Than Red](https://www.morethanred.in/): Editorial portfolio website for wedding photography and films, with stories, films, testimonials, and enquiries.
 
 ## Public Projects
 - [SayaQR](https://subtlesayak.github.io/SayaQR/): Privacy-first browser QR code generator with multiple QR modes, export options, design controls, scannability checks, batch CSV mode, and offline PWA support. Source: https://github.com/subtlesayak/SayaQR.
@@ -41,6 +46,7 @@ Last updated: July 2026.
 - I Never Intended to Build an App Used Around the World (2026): How a small Royal Enfield Himalayan 450 dashboard experiment became OpenDash, an app used by riders around the world.
 
 ## Public Profile Links
+- [People I Meet](https://www.instagram.com/people.i.meet/): An ongoing black-and-white portrait series about people encountered along the way.
 - [GitHub](https://github.com/subtlesayak/): Code and public repositories.
 - [LinkedIn](https://www.linkedin.com/in/sayaksajith/): Professional profile.
 - [Behance](https://www.behance.net/sayaksajith): Visual and design work.

@@ -1,6 +1,6 @@
 (function () {
     const container = document.getElementById("sitemap-container");
-    const cacheVersion = "1.1";
+    const cacheVersion = "1.2";
 
     function parseLines(text) {
         return text
@@ -82,8 +82,8 @@
         }));
     }
 
-    async function getCodeProjectLinks() {
-        const parts = (await fetchText("Config/codeprojects.txt", ""))
+    async function getLinkedProjectLinks(configPath, fallbackHref) {
+        const parts = (await fetchText(configPath, ""))
             .replace(/\r\n/g, "\n")
             .split(/\n---\n/)
             .map(part => part.trim());
@@ -93,7 +93,7 @@
             links.push({
                 title: parts[index] || "Untitled Project",
                 meta: parts[index + 1] || "Project",
-                href: parts[index + 3] || parts[index + 4] || "projects.html"
+                href: parts[index + 3] || parts[index + 4] || fallbackHref
             });
         }
         return links;
@@ -140,7 +140,7 @@
         const title = document.createElement("h1");
         title.textContent = "Sitemap";
         const description = document.createElement("p");
-        description.textContent = "A simple index of the main pages, public projects, portfolio projects, photography collections, and articles.";
+        description.textContent = "A simple index of the main pages, client websites, public projects, portfolio projects, photography collections, and articles.";
         intro.appendChild(title);
         intro.appendChild(description);
         panel.appendChild(intro);
@@ -155,8 +155,12 @@
         ].forEach(([href, label]) => appendLink(mainPages.list, href, label));
         panel.appendChild(mainPages.section);
 
+        const clientWebsiteSection = createSection("Client Websites", "Selected websites designed and built for client teams.");
+        (await getLinkedProjectLinks("Config/client-websites.txt", "index.html")).forEach(website => appendLink(clientWebsiteSection.list, website.href, website.title, website.meta));
+        panel.appendChild(clientWebsiteSection.section);
+
         const codeProjectSection = createSection("Public Projects", "Loaded from Config/codeprojects.txt.");
-        (await getCodeProjectLinks()).forEach(project => appendLink(codeProjectSection.list, project.href, project.title, project.meta));
+        (await getLinkedProjectLinks("Config/codeprojects.txt", "projects.html")).forEach(project => appendLink(codeProjectSection.list, project.href, project.title, project.meta));
         panel.appendChild(codeProjectSection.section);
 
         const projectSection = createSection("Portfolio Projects", "Loaded from Config/projects.txt.");

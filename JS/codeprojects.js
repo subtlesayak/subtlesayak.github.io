@@ -1,6 +1,6 @@
 (function () {
     const container = document.getElementById("code-projects-container");
-    const configPath = "Config/codeprojects.txt?v=1.4";
+    const configPath = "Config/codeprojects.txt?v=1.5";
 
     function parseProjects(rawText) {
         return rawText
