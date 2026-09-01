@@ -1,6 +1,6 @@
 (function () {
     const container = document.getElementById("code-projects-container");
-    const configPath = "Config/codeprojects.txt?v=1.3";
+    const configPath = "Config/codeprojects.txt?v=1.4";
 
     function parseProjects(rawText) {
         return rawText
@@ -70,7 +70,8 @@
 
         const actions = document.createElement("div");
         actions.className = "code-project-actions";
-        appendAction(actions, project.liveUrl, "Open", "fa-solid fa-arrow-up-right-from-square");
+        const liveLabel = project.kind === "Client Website" ? "Visit Site" : "Open";
+        appendAction(actions, project.liveUrl, liveLabel, "fa-solid fa-arrow-up-right-from-square");
         if (project.sourceUrl !== project.liveUrl) appendAction(actions, project.sourceUrl, "GitHub", "fa-brands fa-github");
         card.appendChild(actions);
 

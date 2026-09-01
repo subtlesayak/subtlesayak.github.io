@@ -4,6 +4,8 @@ const PHOTOGRAPHY_ROOT_ID = ".";
 const PHOTOGRAPHY_BASE_PATH = "../Projects/Photography/";
 const PHOTOGRAPHY_COLLECTIONS_BASE_PATH = "../Projects/Photography/Collections/";
 const PHOTOGRAPHY_METADATA_PATH = "../Projects/Photography/metadata.json";
+const PHOTOGRAPHY_INSTAGRAM_URL = "https://www.instagram.com/people.i.meet/";
+const PHOTOGRAPHY_INSTAGRAM_HANDLE = "@people.i.meet";
 
 function parsePhotoLines(text) {
     return text
@@ -187,12 +189,46 @@ function createCollectionCard(collection) {
     return link;
 }
 
+function createInstagramCta() {
+    const link = document.createElement("a");
+    link.className = "photography-instagram-cta";
+    link.href = PHOTOGRAPHY_INSTAGRAM_URL;
+    link.target = "_blank";
+    link.rel = "noopener noreferrer";
+    link.setAttribute("aria-label", `See more photography on Instagram ${PHOTOGRAPHY_INSTAGRAM_HANDLE}`);
+
+    const icon = document.createElement("i");
+    icon.className = "fa-brands fa-instagram photography-instagram-icon";
+    icon.setAttribute("aria-hidden", "true");
+
+    const copy = document.createElement("span");
+    copy.className = "photography-instagram-copy";
+
+    const title = document.createElement("strong");
+    title.textContent = "More photography on Instagram";
+
+    const handle = document.createElement("span");
+    handle.textContent = `${PHOTOGRAPHY_INSTAGRAM_HANDLE} - ongoing work and behind the scenes`;
+
+    const arrow = document.createElement("i");
+    arrow.className = "fa-solid fa-arrow-up-right-from-square photography-instagram-arrow";
+    arrow.setAttribute("aria-hidden", "true");
+
+    copy.appendChild(title);
+    copy.appendChild(handle);
+    link.appendChild(icon);
+    link.appendChild(copy);
+    link.appendChild(arrow);
+    return link;
+}
+
 function renderCollectionList(container, collections) {
     document.body.classList.remove("photography-project-mode");
     container.className = "photography-collections";
 
     const fragment = document.createDocumentFragment();
     collections.forEach(collection => fragment.appendChild(createCollectionCard(collection)));
+    fragment.appendChild(createInstagramCta());
     container.replaceChildren(fragment);
 
     if (window.PortfolioControls) window.PortfolioControls.initViewControls({ showResize: false });

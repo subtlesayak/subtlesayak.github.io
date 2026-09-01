@@ -581,6 +581,73 @@ body.theme-light .photo-caption {
 .photo-collection-card:focus-visible p {
   color: var(--muted, #b8b8b8);
 }
+
+.photography-instagram-cta {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 14px;
+  min-height: 72px;
+  margin-top: 10px;
+  padding: 18px 4px 0;
+  border-top: 1px solid var(--line, rgba(255, 255, 255, 0.12));
+  color: var(--text, #d7d7d7);
+  text-decoration: none;
+}
+
+.photography-instagram-icon {
+  color: var(--muted, #a9a9a9);
+  font-size: 26px;
+  transition: color 160ms ease;
+}
+
+.photography-instagram-copy {
+  display: grid;
+  gap: 3px;
+  min-width: 0;
+}
+
+.photography-instagram-copy strong {
+  color: var(--text, #d7d7d7);
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.35;
+  transition: color 160ms ease;
+}
+
+.photography-instagram-copy span {
+  color: var(--muted, #a9a9a9);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.photography-instagram-arrow {
+  color: var(--muted, #a9a9a9);
+  font-size: 14px;
+  transition: color 160ms ease, transform 160ms ease;
+}
+
+.photography-instagram-cta:hover .photography-instagram-icon,
+.photography-instagram-cta:focus-visible .photography-instagram-icon,
+.photography-instagram-cta:hover .photography-instagram-copy strong,
+.photography-instagram-cta:focus-visible .photography-instagram-copy strong,
+.photography-instagram-cta:hover .photography-instagram-arrow,
+.photography-instagram-cta:focus-visible .photography-instagram-arrow {
+  color: var(--accent, #edb049);
+}
+
+.photography-instagram-cta:hover .photography-instagram-arrow,
+.photography-instagram-cta:focus-visible .photography-instagram-arrow {
+  transform: translate(2px, -2px);
+}
+
+.photography-instagram-cta:focus-visible {
+  border-radius: 4px;
+  outline: 2px solid var(--accent, #edb049);
+  outline-offset: 4px;
+}
+
 .photography-collection-view {
   display: grid;
   gap: 14px;
@@ -701,5 +768,16 @@ body.theme-light .photo-collection-card:focus-visible p {
 
   .photography-entry-intro h1 {
     font-size: 20px;
+  }
+
+  .photography-instagram-cta {
+    gap: 11px;
+    min-height: 68px;
+    margin-top: 6px;
+    padding-top: 16px;
+  }
+
+  .photography-instagram-icon {
+    font-size: 24px;
   }
 }

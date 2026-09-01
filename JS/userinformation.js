@@ -35,11 +35,11 @@ function ensureGlobalNavigation(container) {
 function addUserInformation() {
     let basePath = '';
     if (window.location.pathname.includes('/Projects/')) {
-        basePath = '../../Config/userinformation.txt?v=1.7';
+        basePath = '../../Config/userinformation.txt?v=1.8';
     } else if (window.location.pathname.includes('/HTML/')) {
-        basePath = '../Config/userinformation.txt?v=1.7';
+        basePath = '../Config/userinformation.txt?v=1.8';
     } else {
-        basePath = 'Config/userinformation.txt?v=1.7';
+        basePath = 'Config/userinformation.txt?v=1.8';
     }
 
     fetch(basePath)

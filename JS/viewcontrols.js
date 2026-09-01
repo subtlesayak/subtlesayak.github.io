@@ -9,7 +9,7 @@
     const einkElementSelector = [
         "h1", "h2", "h3", "h4", "h5", "h6", "p", "li", "blockquote", "figcaption", "dt", "dd", "strong", "small", "time",
         ".software-tag", ".nav-button", ".social-icons a", ".article-date", ".article-author", ".content-label", ".stat", ".recommendation", ".production-media",
-        ".thumbnail", ".photo-card", ".photo-collection-cover", ".code-project-action", ".photo-action",
+        ".thumbnail", ".photo-card", ".photo-collection-cover", ".photography-instagram-cta", ".code-project-action", ".photo-action",
         "img", "video", "iframe", "canvas", "svg", "button"
     ].join(",");
     const einkInteractiveSelector = "a[href], button, input, select, textarea, summary, [role=button], [tabindex]:not([tabindex='-1'])";
@@ -68,7 +68,7 @@
 
 
     function isEinkRefreshEnabled() {
-        return localStorage.getItem("portfolioEinkRefresh") !== "off";
+        return localStorage.getItem("portfolioEinkRefresh") === "on";
     }
 
     function updateEinkButton() {
