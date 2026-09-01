@@ -1,9 +1,9 @@
 import { PortfolioRepository, fileToBase64 } from "./cms-github.js";
-import { buildProjectFiles, prepareCover, prepareImage, categoryLabel, folderName } from "./project.js";
+import { buildProjectFiles, prepareCover, prepareImage, categoryLabel, folderName, slugify } from "./project.js";
 import {
   CONTENT_PATHS, cleanLines, joinLines, parseProject, serializeProject, parseProfile, serializeProfile,
   parseArticle, serializeArticle, parsePhotographyEntry, serializePhotographyEntry, formatBytes, escapeHtml,
-  parseSiteUpdated, serializeSiteUpdated
+  parseSiteUpdated, serializeSiteUpdated, parseProductions, serializeProductions
 } from "./contracts.js";
 
 const STORAGE = { token: "pilgrimAdminToken", session: "pilgrimAdminSessionToken", repository: "pilgrimAdminRepository", branch: "pilgrimAdminBranch" };
@@ -206,6 +206,145 @@ refresh = async (section = state.section) => {
   await loadAll();
   renderSection(section);
 };
+
+const PRODUCTION_ICON_TYPES = new Set(["image/png", "image/jpeg", "image/webp", "image/avif"]);
+const PRODUCTION_ICON_EXTENSIONS = { "image/png": "png", "image/jpeg": "jpg", "image/webp": "webp", "image/avif": "avif" };
+
+function productionRecordKey(item) {
+  return [item.title, item.company, item.time].map(value => String(value || "").trim()).join("\u0001");
+}
+
+function productionIconId(item) {
+  let hash = 2166136261;
+  for (const character of productionRecordKey(item)) {
+    hash ^= character.charCodeAt(0);
+    hash = Math.imul(hash, 16777619);
+  }
+  return (hash >>> 0).toString(36);
+}
+
+function productionIconPath(item, file) {
+  const institution = slugify(item.company || item.title || "institution");
+  return `Resources/work-experience/${institution}/logo-${productionIconId(item)}.${PRODUCTION_ICON_EXTENSIONS[file.type]}`;
+}
+
+function validateProductionIconFile(file) {
+  if (!PRODUCTION_ICON_TYPES.has(file.type)) throw new Error("Choose a PNG, JPG, WebP, or AVIF image.");
+  if (file.size > 4 * 1024 * 1024) throw new Error("Icon images must be 4 MB or smaller.");
+}
+
+function normalizeProductionIconSource(value) {
+  const source = String(value || "").trim();
+  if (/^https:\/\/[^\s]+$/i.test(source)) return source;
+  const localPath = source.replace(/^\/+/, "");
+  if (/^Resources\/[a-zA-Z0-9._/-]+$/.test(localPath) && !localPath.split("/").includes("..")) return localPath;
+  throw new Error("Use an HTTPS image URL, a Resources/ path, or upload an image.");
+}
+
+function serializedProductionText(value) {
+  const text = String(value || "").trim();
+  return text ? `${text}\n` : "";
+}
+
+function renderProductionIconCards(items) {
+  if (!items.length) return `<p class="production-icon-empty">Add an experience or education record below, then save it to create its icon control.</p>`;
+  return items.map((item, index) => {
+    const identity = item.company || item.title || `Record ${index + 1}`;
+    return `<article class="production-icon-card"><div class="production-icon-preview-wrap"><img class="production-icon-preview" data-production-icon-preview="${index}" src="${escapeHtml(assetUrl(item.thumbnail))}" alt="${escapeHtml(`${identity} icon`)}"></div><div class="production-icon-copy"><p class="production-icon-eyebrow">${escapeHtml(item.company || "Institution or company")}</p><h3>${escapeHtml(item.title || "Untitled record")}</h3><p class="production-icon-meta">${escapeHtml(item.time || "No date or location")}</p><label class="cms-field production-icon-source">Icon image URL or site path<input data-production-icon-source="${index}" type="text" inputmode="url" autocomplete="url" value="${escapeHtml(item.thumbnail)}" placeholder="https://… or Resources/…"></label><div class="production-icon-actions"><label class="button button-quiet production-icon-upload">Choose image<input data-production-icon-file="${index}" type="file" accept="image/png,image/jpeg,image/webp,image/avif" hidden></label><span class="production-icon-status" data-production-icon-status="${index}">${item.thumbnail ? "Current image" : "No image selected"}</span></div></div></article>`;
+  }).join("");
+}
+
+function releaseProductionIconPreviews() {
+  (state.productionIconPreviewUrls || []).forEach(url => URL.revokeObjectURL(url));
+  state.productionIconPreviewUrls = [];
+}
+
+function bindProductionIconControls(form) {
+  form.querySelectorAll("[data-production-icon-file]").forEach(input => input.addEventListener("change", event => {
+    const file = event.currentTarget.files?.[0];
+    if (!file) return;
+    try { validateProductionIconFile(file); }
+    catch (error) { event.stopPropagation(); event.currentTarget.value = ""; toast(error.message, true); return; }
+    const index = event.currentTarget.dataset.productionIconFile;
+    const preview = form.querySelector(`[data-production-icon-preview="${index}"]`);
+    if (preview) {
+      if (preview.dataset.objectUrl) URL.revokeObjectURL(preview.dataset.objectUrl);
+      const objectUrl = URL.createObjectURL(file);
+      preview.src = objectUrl;
+      preview.dataset.objectUrl = objectUrl;
+      state.productionIconPreviewUrls = [...(state.productionIconPreviewUrls || []), objectUrl];
+    }
+    const status = form.querySelector(`[data-production-icon-status="${index}"]`);
+    if (status) status.textContent = `${file.name} will publish with About`;
+  }));
+  form.querySelectorAll("[data-production-icon-source]").forEach(input => input.addEventListener("input", event => {
+    const index = event.currentTarget.dataset.productionIconSource;
+    const status = form.querySelector(`[data-production-icon-status="${index}"]`);
+    if (status) status.textContent = event.currentTarget.value.trim() ? "New image source will publish with About" : "Choose an image before publishing";
+  }));
+}
+
+async function collectProductionIconChanges(form, rawText) {
+  const currentItems = parseProductions(state.data.productions);
+  const nextItems = parseProductions(rawText);
+  const nextByKey = new Map(nextItems.map(item => [productionRecordKey(item), item]));
+  const files = [];
+  let changed = false;
+
+  for (const input of form.querySelectorAll("[data-production-icon-source]")) {
+    const index = Number(input.dataset.productionIconSource);
+    const current = currentItems[index];
+    if (!current) continue;
+    const file = form.querySelector(`[data-production-icon-file="${index}"]`)?.files?.[0];
+    const source = input.value.trim();
+    if (!file && source === current.thumbnail.trim()) continue;
+    const target = nextByKey.get(productionRecordKey(current));
+    if (!target) throw new Error(`Save the text changes for “${current.company || current.title}” before changing its icon.`);
+
+    if (file) {
+      validateProductionIconFile(file);
+      target.thumbnail = productionIconPath(target, file);
+      files.push({ path: target.thumbnail, content: await fileToBase64(file), encoding: "base64" });
+    } else {
+      target.thumbnail = normalizeProductionIconSource(source);
+    }
+    changed = true;
+  }
+
+  return { files, content: changed ? serializeProductions(nextItems) : serializedProductionText(rawText) };
+}
+
+renderAboutPage = () => {
+  releaseProductionIconPreviews();
+  const profile = parseProfile(state.data.profile), date = parseSiteUpdated(state.data.site), items = parseProductions(state.data.productions), content = $("cms-content");
+  content.innerHTML = `${heading("About", "Edit your profile, résumé, About page, and homepage curation in one place.")}<div class="settings-stack about-workspace"><section class="settings-section"><h2>Profile portrait</h2><p>This image is used across the portfolio and project pages.</p><div class="profile-asset"><img class="asset-preview" src="${assetUrl(profile.profilePath)}" alt="Current portrait"><div><strong>Current portrait</strong><p>${escapeHtml(profile.profilePath)}</p><label class="button button-quiet">Replace portrait<input id="portrait-file" type="file" accept="image/jpeg,image/png" hidden></label></div></div></section><section class="settings-section"><h2>Résumé</h2><p>Upload a newer PDF whenever it changes. Previous versions remain available in Git history.</p><div class="file-row"><span class="file-icon">PDF</span><div class="file-meta"><strong>${escapeHtml(profile.resumePath.split("/").pop() || "resume.pdf")}</strong><span id="resume-meta">Current published résumé</span></div><label class="button button-primary">Upload newer version<input id="resume-file" type="file" accept="application/pdf" hidden></label></div></section><p class="asset-upload-status" id="asset-upload-status" role="status"></p><form id="about-form"><section class="settings-section"><h2>Profile identity</h2><p>Name, role, location, introduction, and social/contact links.</p><div class="cms-form-grid"><label class="cms-field">Name<input name="name" value="${escapeHtml(profile.name)}"></label><label class="cms-field">Role<input name="role" value="${escapeHtml(profile.role)}"></label><label class="cms-field wide">Location<input name="location" value="${escapeHtml(profile.location)}"></label><label class="cms-field wide">Short introduction<textarea name="intro">${escapeHtml(profile.intro)}</textarea></label><label class="cms-field wide">Social links and email<textarea name="socials" rows="7">${escapeHtml(profile.socials)}</textarea></label></div></section><section class="settings-section homepage-controls"><div class="section-copy"><h2>Homepage curation</h2><p>Set the site event date and control the work visitors meet first.</p></div><label class="cms-field date-field">Site last updated<input name="siteUpdated" type="date" value="${escapeHtml(date)}"></label><div class="cms-form-grid"><label class="cms-field">Categories<textarea name="categories" rows="10">${escapeHtml(state.data.categories)}</textarea></label><label class="cms-field">Selected-work order<textarea name="selected" rows="10">${escapeHtml(state.data.selectedWork)}</textarea></label><label class="cms-field wide">Code projects<textarea name="codeProjects" rows="14">${escapeHtml(state.data.codeProjects)}</textarea></label></div></section><section class="settings-section"><h2>Summary and capabilities</h2><p>One item per line for skills and software.</p><div class="cms-form-grid"><label class="cms-field wide">Summary<textarea name="summary" rows="7">${escapeHtml(state.data.summary)}</textarea></label><label class="cms-field">Skills<textarea name="skills" rows="14">${escapeHtml(state.data.skills)}</textarea></label><label class="cms-field">Software<textarea name="software" rows="14">${escapeHtml(state.data.software)}</textarea></label></div></section><section class="settings-section"><h2>Recommendations</h2><p>Records are separated by --- and use name, optional avatar URL, position, date, and quote.</p><label class="cms-field"><textarea name="recommendations" rows="12">${escapeHtml(state.data.recommendations)}</textarea></label></section><section class="settings-section production-icon-section"><div class="section-copy"><h2>Institution &amp; company icons</h2><p>Give every experience, education, project, and certificate record its own image. Choose a file or paste an HTTPS image URL or an existing Resources/ path.</p></div><div class="production-icon-list">${renderProductionIconCards(items)}</div><p class="production-icon-help">PNG, JPG, WebP, or AVIF · 4 MB maximum · uploads are published together with your About changes.</p></section><section class="settings-section production-source-section"><h2>Experience, education, projects, and certificates</h2><p>Use the icon controls above for images. Open the advanced source only to add or edit the underlying record text.</p><details class="production-source"><summary>Advanced record text</summary><label class="cms-field"><textarea name="productions" rows="22">${escapeHtml(state.data.productions)}</textarea></label></details></section><div class="settings-savebar"><span class="settings-save-state" id="about-save-state">All changes saved</span><button class="button button-primary" id="about-save" type="submit" disabled>Save &amp; publish About</button></div></form></div>`;
+  const form = $("about-form");
+  bindAssetInput("portrait-file", repositoryPath(profile.profilePath), "Update profile portrait", ["image/jpeg", "image/png"]);
+  bindAssetInput("resume-file", repositoryPath(profile.resumePath), "Update résumé", ["application/pdf"], 20 * 1024 * 1024);
+  bindProductionIconControls(form);
+  bindDirtyForm(form, "about-save-state", "about-save");
+  state.repo.getBinary(repositoryPath(profile.resumePath), null).then(file => { if (file && $("resume-meta")) $("resume-meta").textContent = `${formatBytes(file.size)} · ${file.path}`; }).catch(() => {});
+  form.addEventListener("submit", event => saveAboutPage(event, profile));
+};
+
+saveAboutPage = async (event, profile) => {
+  event.preventDefault();
+  const form = event.currentTarget, button = $("about-save"), data = Object.fromEntries(new FormData(form)), site = serializeSiteUpdated(data.siteUpdated);
+  if (!site) return toast("Choose a valid site event date.", true);
+  button.disabled = true;
+  button.textContent = "Publishing…";
+  try {
+    const icons = await collectProductionIconChanges(form, data.productions);
+    const next = { ...profile, name: data.name, role: data.role, location: data.location, intro: data.intro, socials: data.socials };
+    await publish([{ path: CONTENT_PATHS.profile, content: serializeProfile(next) }, { path: CONTENT_PATHS.site, content: site }, { path: CONTENT_PATHS.categories, content: data.categories.trim() + "\n" }, { path: CONTENT_PATHS.selectedWork, content: data.selected.trim() + "\n" }, { path: CONTENT_PATHS.codeProjects, content: data.codeProjects.trim() + "\n" }, { path: CONTENT_PATHS.summary, content: data.summary.trim() + "\n" }, { path: CONTENT_PATHS.skills, content: joinLines(cleanLines(data.skills)) }, { path: CONTENT_PATHS.software, content: joinLines(cleanLines(data.software)) }, { path: CONTENT_PATHS.recommendations, content: data.recommendations.trim() + (data.recommendations.trim() ? "\n" : "") }, ...icons.files, { path: CONTENT_PATHS.productions, content: icons.content }], "Update About and homepage content");
+    await refresh("about");
+  } catch (error) {
+    toast(friendlyError(error), true);
+    button.disabled = false;
+    button.textContent = "Save & publish About";
+  }
+};
+
 document.addEventListener("keydown", event => {
   const drawer = $("editor-drawer");
   if (drawer?.classList.contains("is-open")) {
