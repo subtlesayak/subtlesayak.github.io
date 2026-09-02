@@ -1,4 +1,4 @@
-const CACHE_VERSION = "2.6";
+const CACHE_VERSION = "2.7";
 
 // Function to create a thumbnail with overlay icons
 function createThumbnail(src, alt, label, context, galleryPageUrl, hasMultipleImages, hasVideo, hasYouTube, hasSketchfab, isFeatured = false) {
@@ -88,7 +88,7 @@ const clientWebsitesContainer = document.getElementById("client-websites-contain
 
 if (window.PortfolioControls) {
     window.PortfolioControls.initViewControls({
-        thumbnailContainer,
+        thumbnailContainers: [clientWebsitesContainer, thumbnailContainer],
         storageKey: "portfolioThumbnailColumns"
     });
 }
@@ -125,7 +125,7 @@ function parseClientWebsites(text) {
 
     for (let index = 0; index < parts.length; index += 6) {
         const title = parts[index] || "";
-        const liveUrl = parts[index + 3] || parts[index + 4] || "";
+        const liveUrl = parts[index + 3] || "";
         if (!title || !liveUrl) continue;
 
         websites.push({
@@ -133,6 +133,7 @@ function parseClientWebsites(text) {
             kind: parts[index + 1] || "Client Website",
             summary: parts[index + 2] || "",
             liveUrl,
+            thumbnail: parts[index + 4] || "",
             tags: parts[index + 5] || ""
         });
     }
@@ -140,51 +141,29 @@ function parseClientWebsites(text) {
     return websites;
 }
 
-function createClientWebsiteCard(website) {
-    const card = document.createElement("article");
-    card.className = "code-project-card client-website-card";
+function createClientWebsiteThumbnail(website) {
+    const thumbnailLink = createThumbnail(
+        website.thumbnail,
+        website.title,
+        website.kind,
+        website.summary,
+        website.liveUrl,
+        false,
+        false,
+        false,
+        false
+    );
 
-    const kind = document.createElement("span");
-    kind.className = "code-project-kind content-label";
-    kind.textContent = website.kind;
+    thumbnailLink.target = "_blank";
+    thumbnailLink.rel = "noopener noreferrer";
+    thumbnailLink.setAttribute("aria-label", `Visit the ${website.title} website (opens in a new tab)`);
 
-    const title = document.createElement("h3");
-    title.className = "client-website-title";
-    title.textContent = website.title;
+    const externalIcon = document.createElement("i");
+    externalIcon.className = "fa-solid fa-arrow-up-right-from-square overlay-icon";
+    externalIcon.setAttribute("aria-hidden", "true");
+    thumbnailLink.querySelector(".thumbnail").appendChild(externalIcon);
 
-    const summary = document.createElement("p");
-    summary.textContent = website.summary;
-
-    const tags = document.createElement("span");
-    tags.className = "code-project-tags";
-    tags.textContent = website.tags;
-
-    const actions = document.createElement("div");
-    actions.className = "code-project-actions";
-
-    const link = document.createElement("a");
-    link.className = "code-project-action";
-    link.href = website.liveUrl;
-    link.target = "_blank";
-    link.rel = "noopener noreferrer";
-    link.setAttribute("aria-label", `Visit the ${website.title} website`);
-
-    const icon = document.createElement("i");
-    icon.className = "fa-solid fa-arrow-up-right-from-square";
-    icon.setAttribute("aria-hidden", "true");
-
-    const actionText = document.createElement("span");
-    actionText.textContent = "Visit Site";
-
-    link.appendChild(icon);
-    link.appendChild(actionText);
-    actions.appendChild(link);
-    card.appendChild(kind);
-    card.appendChild(title);
-    if (website.summary) card.appendChild(summary);
-    if (website.tags) card.appendChild(tags);
-    card.appendChild(actions);
-    return card;
+    return thumbnailLink;
 }
 
 function loadClientWebsites() {
@@ -196,7 +175,7 @@ function loadClientWebsites() {
             if (!websites.length) return;
 
             const fragment = document.createDocumentFragment();
-            websites.forEach(website => fragment.appendChild(createClientWebsiteCard(website)));
+            websites.forEach(website => fragment.appendChild(createClientWebsiteThumbnail(website)));
             clientWebsitesContainer.replaceChildren(fragment);
             clientWebsitesSection.hidden = false;
             document.dispatchEvent(new Event("portfolio:list-rendered"));

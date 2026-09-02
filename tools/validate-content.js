@@ -232,7 +232,9 @@ function checkPhotography() {
 }
 
 
-function checkLinkedProjectConfig(configPath, itemLabel, requireLiveUrl = false) {
+function checkLinkedProjectConfig(configPath, itemLabel, options = {}) {
+  const requireLiveUrl = options.requireLiveUrl === true;
+  const usesThumbnail = options.usesThumbnail === true;
   requireFile(configPath);
   if (!exists(configPath)) return;
 
@@ -249,11 +251,16 @@ function checkLinkedProjectConfig(configPath, itemLabel, requireLiveUrl = false)
   for (let index = 0; index < parts.length; index += 6) {
     const title = parts[index] || `Untitled ${itemLabel}`;
     const liveUrl = parts[index + 3] || "";
-    const sourceUrl = parts[index + 4] || "";
-    if (!liveUrl && !sourceUrl) errors.push(`${normalizeRel(configPath)} ${itemLabel} "${title}" needs a live URL or source URL`);
+    const secondaryReference = parts[index + 4] || "";
+    if (!liveUrl && !secondaryReference) errors.push(`${normalizeRel(configPath)} ${itemLabel} "${title}" needs a live URL or secondary reference`);
     if (requireLiveUrl && !liveUrl) errors.push(`${normalizeRel(configPath)} ${itemLabel} "${title}" needs a live website URL`);
     if (liveUrl && !/^https?:\/\//i.test(liveUrl)) errors.push(`${normalizeRel(configPath)} ${itemLabel} "${title}" has an invalid live URL`);
-    if (sourceUrl && !/^https?:\/\//i.test(sourceUrl)) errors.push(`${normalizeRel(configPath)} ${itemLabel} "${title}" has an invalid source URL`);
+    if (usesThumbnail) {
+      if (!secondaryReference) errors.push(`${normalizeRel(configPath)} ${itemLabel} "${title}" needs a thumbnail image`);
+      checkLocalAsset(secondaryReference, configPath);
+    } else if (secondaryReference && !/^https?:\/\//i.test(secondaryReference)) {
+      errors.push(`${normalizeRel(configPath)} ${itemLabel} "${title}" has an invalid source URL`);
+    }
   }
 }
 
@@ -262,7 +269,7 @@ function checkCodeProjects() {
 }
 
 function checkClientWebsites() {
-  checkLinkedProjectConfig("Config/client-websites.txt", "client website", true);
+  checkLinkedProjectConfig("Config/client-websites.txt", "client website", { requireLiveUrl: true, usesThumbnail: true });
 }
 function checkArticles() {
   if (!exists("Config/articles.txt")) return;

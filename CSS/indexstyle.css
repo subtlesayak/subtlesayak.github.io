@@ -112,9 +112,9 @@ h2 {
 }
 
 .client-websites-section {
-  width: min(1200px, 100%);
-  margin: 0 auto 16px;
-  padding: 8px 0 24px;
+  width: 100%;
+  margin: 0 0 16px;
+  padding: 8px 0 16px;
   border-bottom: 1px solid var(--line);
 }
 
@@ -139,24 +139,6 @@ h2 {
   font-size: 13px;
   line-height: 1.6;
   text-align: right;
-}
-
-.client-websites-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 12px;
-}
-
-.client-website-card {
-  min-height: 100%;
-  padding: 20px 62px 20px 20px;
-}
-
-.client-website-card::after {
-  right: 20px;
-  bottom: 20px;
-  width: 30px;
-  height: 30px;
 }
 
 .portfolio-empty {
@@ -238,10 +220,6 @@ h2 {
     text-align: left;
   }
 
-  .client-websites-grid {
-    grid-template-columns: 1fr;
-  }
-
   .portfolio-empty {
     min-height: 260px;
     padding: 30px 14px;
@@ -253,12 +231,6 @@ h2 {
 
   .portfolio-empty p {
     font-size: 14px;
-  }
-}
-
-@media (min-width: 701px) and (max-width: 980px) {
-  .client-websites-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 

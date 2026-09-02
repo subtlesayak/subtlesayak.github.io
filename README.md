@@ -82,7 +82,7 @@ Most portfolio updates are content edits. The browser loads the configuration an
 | Experience and education | `Config/productions.txt` |
 | Portfolio project order | `Config/projects.txt` |
 | Selected-work priority | `Config/selected-work.txt` |
-| Client website cards | `Config/client-websites.txt` |
+| Client website thumbnails | `Config/client-websites.txt` and `Resources/client-websites/` |
 | Public software projects | `Config/codeprojects.txt` |
 | Article order | `Config/articles.txt` |
 | Quiet last-updated line | `Config/site.txt` |

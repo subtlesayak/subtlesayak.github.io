@@ -241,9 +241,11 @@
 
     function initViewControls(options) {
         const config = options || {};
-        const thumbnailContainer = config.thumbnailContainer || null;
+        const thumbnailContainers = Array.isArray(config.thumbnailContainers)
+            ? config.thumbnailContainers.filter(Boolean)
+            : [config.thumbnailContainer].filter(Boolean);
         const storageKey = config.storageKey || "portfolioThumbnailColumns";
-        const showResize = config.showResize !== false && Boolean(thumbnailContainer);
+        const showResize = config.showResize !== false && thumbnailContainers.length > 0;
 
         const existingControls = document.querySelector(".view-controls");
         if (existingControls) existingControls.remove();
@@ -266,11 +268,13 @@
             let sizeIndex = thumbnailColumns.includes(savedColumns) ? thumbnailColumns.indexOf(savedColumns) : 4;
 
             const applyThumbnailColumns = () => {
-                thumbnailContainer.style.setProperty("--thumbnail-columns", String(thumbnailColumns[sizeIndex]));
-                thumbnailContainer.style.setProperty("--thumbnail-title-size", `${thumbnailTitleSizes[sizeIndex]}px`);
-                thumbnailContainer.style.setProperty("--thumbnail-icon-size", `${thumbnailIconSizes[sizeIndex]}px`);
-                thumbnailContainer.style.setProperty("--thumbnail-inset", `${thumbnailInsets[sizeIndex]}px`);
-                thumbnailContainer.dataset.thumbnailStep = String(sizeIndex);
+                thumbnailContainers.forEach(thumbnailContainer => {
+                    thumbnailContainer.style.setProperty("--thumbnail-columns", String(thumbnailColumns[sizeIndex]));
+                    thumbnailContainer.style.setProperty("--thumbnail-title-size", `${thumbnailTitleSizes[sizeIndex]}px`);
+                    thumbnailContainer.style.setProperty("--thumbnail-icon-size", `${thumbnailIconSizes[sizeIndex]}px`);
+                    thumbnailContainer.style.setProperty("--thumbnail-inset", `${thumbnailInsets[sizeIndex]}px`);
+                    thumbnailContainer.dataset.thumbnailStep = String(sizeIndex);
+                });
                 localStorage.setItem(storageKey, String(thumbnailColumns[sizeIndex]));
             };
 

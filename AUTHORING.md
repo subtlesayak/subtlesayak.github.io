@@ -65,12 +65,12 @@ One-sentence description of the website and your contribution.
 ---
 https://example.com/
 ---
-
+Resources/client-websites/example.webp
 ---
 UI/UX, Responsive Web Design, Client Work
 ```
 
-The sections are: name, short label, description, live website URL, optional source-code URL, and comma-separated tags. Leave the source-code section blank for private client work. Move a complete six-section block to change its position.
+The sections are: name, short label, description, live website URL, thumbnail image path, and comma-separated tags. Add an optimized preview image to `Resources/client-websites/`, then use its path in the fifth section. Move a complete six-section block to change its position.
 
 ## Photography
 

@@ -6,7 +6,7 @@ Service and booking website for a 2,800 sq ft creative studio, presenting its se
 ---
 https://redstudiocollective.com/
 ---
-
+Resources/client-websites/red-studio-collective.webp
 ---
 UI/UX, Responsive Web Design, Information Architecture, Client Work
 ---
@@ -18,7 +18,7 @@ Conversion-focused website for a Bengaluru production studio, organizing its pos
 ---
 https://www.redproductions.in/
 ---
-
+Resources/client-websites/red-productions.webp
 ---
 UI/UX, Responsive Web Design, Visual Systems, Client Work
 ---
@@ -30,6 +30,6 @@ Editorial portfolio website for wedding photography and films, featuring wedding
 ---
 https://www.morethanred.in/
 ---
-
+Resources/client-websites/more-than-red.webp
 ---
 UI/UX, Portfolio Design, Responsive Web Design, Client Work
