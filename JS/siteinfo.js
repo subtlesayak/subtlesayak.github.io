@@ -1,5 +1,5 @@
 (function () {
-    const SITE_INFO_PATH = "Config/site.txt?v=1.2";
+    const SITE_INFO_PATH = "Config/site.txt?v=1.3";
     const UPDATED_PAGE_NAMES = new Set(["index.html", "photography.html", "articles.html", "projects.html"]);
     let cachedSiteInfo = "";
 

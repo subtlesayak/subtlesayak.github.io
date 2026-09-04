@@ -1,3 +1,27 @@
+Open Resolve List
+---
+Web Directory
+---
+Searchable, evidence-backed directory of 500+ DaVinci Resolve plugins, Fusion tools, DCTLs, LUTs, scripts, templates, and learning resources, with compatibility filters and original creator links.
+---
+https://subtlesayak.github.io/open-resolve-list/
+---
+https://github.com/subtlesayak/open-resolve-list
+---
+DaVinci Resolve, Creative Tools, Search, Compatibility Research, Open Data
+---
+FastAid
+---
+Safety Prototype
+---
+Map-backed Android and web prototype for nearby aid discovery during roadside emergencies, keeping official emergency calling separate from controlled responder workflows.
+---
+
+---
+https://github.com/subtlesayak/FastAid
+---
+Android, Java, Material 3, Google Maps, Service Design
+---
 WardSen
 ---
 Security Tool
@@ -8,7 +32,7 @@ Local-first credential dispatch for teams: create short-lived secure links from 
 ---
 https://github.com/subtlesayak/WardSen
 ---
-TypeScript, Tauri, Bitwarden, Local-first, Secure Sharing
+TypeScript, Tauri, Bitwarden Send, Credential Management, Local-first
 ---
 OpenDash
 ---
@@ -45,6 +69,18 @@ Cross-agent quota pacing and model routing for managing AI coding-agent usage.
 https://github.com/subtlesayak/TokenSave
 ---
 JavaScript, AI Agents, Quota Pacing, Model Routing
+---
+dskcpy
+---
+Experimental Fork
+---
+Experimental scrcpy fork for streaming Windows desktops to Android with touch and audio over USB, Wi-Fi, direct IP, or private VPN connections; macOS hosting remains experimental.
+---
+
+---
+https://github.com/subtlesayak/dskcpy
+---
+C, Android, Desktop Streaming, scrcpy, Touch Controls
 ---
 nutriLog
 ---

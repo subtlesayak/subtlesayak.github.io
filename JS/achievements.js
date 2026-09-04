@@ -33,7 +33,7 @@
 
     async function loadAchievements() {
         try {
-            const response = await fetch("../Config/achievements.txt?v=1.0");
+            const response = await fetch("../Config/achievements.txt?v=1.1");
             if (!response.ok) throw new Error(`Request failed with status ${response.status}`);
 
             const achievements = parseAchievements(await response.text());

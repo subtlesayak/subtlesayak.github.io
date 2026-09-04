@@ -1,14 +1,2 @@
-Completed multidisciplinary Coursera certificates
-Completed Quantitative Methods from the University of Amsterdam, Fundamentals of Graphic Design from CALARTS, and Learning Experience Design from the University of Michigan.
----
-Designed and developed a backpack
-Designed and developed a backpack for designers and travelers.
----
-Won photography competitions
-Participated in and won several photography competitions.
----
-Volunteered with St. Broseph
-Contributed as a photographer and designer for St. Broseph.
----
-Photographed PetFed's annual event
-Volunteered as a photographer for PetFed's annual event.
+OpenDash (2026)
+Designed and launched the original OpenDash release, an independent open-source Android app that lets Royal Enfield Himalayan 450 and Guerrilla 450 riders personalize compatible dashboard displays with their own photos. Six product-demo Instagram reels generated 2.8M+ organic views; the leading reel recorded 1.96M views, reached 1.52M accounts, and received 67K likes, 47K shares, and 13K saves. Interest from riders across India, Brazil, Australia, Italy, Portugal, and Argentina led to an invitation to meet Royal Enfield representatives and fellow developers, where the project's execution and brand visibility were recognized.
