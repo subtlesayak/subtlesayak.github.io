@@ -1,7 +1,7 @@
 UI/UX Designer
 Red Productions Pvt Ltd
 Dec 2025 - Present | Bengaluru, Karnataka
-Resources/favicon/pilfav.png
+Resources/work-experience/red-productions-pvt-ltd/logo-g0v9bj.png
 - Collaborated with stakeholders and the founder to define a unified visual strategy for the company's new digital presence.
 - Designed a responsive website layout from the ground up, optimizing visual hierarchy and readability.
 - Developed a cohesive brand identity and a new logo, then translated the aesthetic into engaging graphics for social media platforms.
@@ -11,7 +11,7 @@ Resources/favicon/pilfav.png
 UI/UX Design Intern
 More Than Red Pvt Ltd
 Jun 2024 - Aug 2024 | Bengaluru, Karnataka
-Resources/favicon/pilfav.png
+Resources/work-experience/more-than-red-pvt-ltd/logo-j6dbr0.png
 - Collaborated with the company head and fellow creatives.
 - Redesigned the official website layout to increase emphasis and readability.
 - Designed a new logo and typeface for the corporate company in line with their vision.
@@ -21,7 +21,7 @@ Resources/favicon/pilfav.png
 Projects
 RV University
 Aug 2023 - Jun 2025 | Bengaluru, Karnataka
-Resources/favicon/pilfav.png
+https://rvu.edu.in/lp-assets/images/header_logo.svg
 Redesign of the Namma Metro Bangalore Metro App - 2024 (February)
 - Primary and secondary research, information architecture.
 - Ideations, wireframes, redesign, and prototype of the application.
@@ -39,7 +39,7 @@ Design of a Backpack (Working Model) - 2022
 Master of Design in Interactive Design (UI/UX)
 RV University
 Aug 2023 - Jul 2025 | Bengaluru, Karnataka
-Resources/favicon/pilfav.png
+https://rvu.edu.in/lp-assets/images/header_logo.svg
 Completed postgraduate study focused on interactive design and UI/UX.
 ---
 Bachelor of Design in Product Design
