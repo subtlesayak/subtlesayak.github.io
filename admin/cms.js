@@ -128,7 +128,17 @@ function hideBusy() { $("cms-busy")?.classList.remove("is-visible"); }
 function toast(message, error = false) { const item = $("cms-toast"); if (!item) { console[error ? "error" : "log"](message); return; } item.textContent = message; item.classList.toggle("is-error", error); item.classList.add("is-visible"); clearTimeout(toast.timer); toast.timer = setTimeout(() => item.classList.remove("is-visible"), 4200); }
 function repositoryPath(path) { return String(path || "").replace(/^\.\.\//, "").replace(/^\//, ""); }
 function rawUrl(path) { if (!path) return ""; if (/^https?:\/\//i.test(path)) return path; const clean = repositoryPath(path); return `https://raw.githubusercontent.com/${state.repo.repository}/${encodeURIComponent(state.repo.branch)}/${clean.split("/").map(encodeURIComponent).join("/")}`; }
-function assetUrl(path) { const url = rawUrl(path); return url ? `${url}${url.includes("?") ? "&" : "?"}v=${state.assetVersion}` : ""; }
+function versionedAssetUrl(url, version = state.assetVersion) {
+  if (!url) return "";
+  try {
+    const parsed = new URL(url, window.location.href);
+    parsed.searchParams.set("pilgrim_v", String(version));
+    return parsed.href;
+  } catch {
+    return url;
+  }
+}
+function assetUrl(path) { return versionedAssetUrl(rawUrl(path)); }
 function friendlyError(error) { if (error?.status === 401) return "GitHub rejected this token. Check that it is active and copied completely."; if (error?.status === 403) return "This token needs Contents: read and write permission for this repository."; if (error?.status === 404) return "The requested repository content was not found."; if (error?.status === 409 || error?.status === 422) return "The publishing branch changed. Refresh and try again."; return error?.message || "Something went wrong."; }
 
 const restored = sessionStorage.getItem(STORAGE.session) || localStorage.getItem(STORAGE.token);
@@ -203,6 +213,7 @@ drawProjectRows = () => {
 };
 refresh = async (section = state.section) => {
   state.selectedWorkDraft = null;
+  state.assetVersion = Date.now();
   await loadAll();
   renderSection(section);
 };
@@ -250,7 +261,8 @@ function renderProductionIconCards(items) {
   if (!items.length) return `<p class="production-icon-empty">Add an experience or education record below, then save it to create its icon control.</p>`;
   return items.map((item, index) => {
     const identity = item.company || item.title || `Record ${index + 1}`;
-    return `<article class="production-icon-card"><div class="production-icon-preview-wrap"><img class="production-icon-preview" data-production-icon-preview="${index}" src="${escapeHtml(assetUrl(item.thumbnail))}" alt="${escapeHtml(`${identity} icon`)}"></div><div class="production-icon-copy"><p class="production-icon-eyebrow">${escapeHtml(item.company || "Institution or company")}</p><h3>${escapeHtml(item.title || "Untitled record")}</h3><p class="production-icon-meta">${escapeHtml(item.time || "No date or location")}</p><label class="cms-field production-icon-source">Icon image URL or site path<input data-production-icon-source="${index}" type="text" inputmode="url" autocomplete="url" value="${escapeHtml(item.thumbnail)}" placeholder="https://… or Resources/…"></label><div class="production-icon-actions"><label class="button button-quiet production-icon-upload">Choose image<input data-production-icon-file="${index}" type="file" accept="image/png,image/jpeg,image/webp,image/avif" hidden></label><span class="production-icon-status" data-production-icon-status="${index}">${item.thumbnail ? "Current image" : "No image selected"}</span></div></div></article>`;
+    const inputId = `production-icon-source-${index}`;
+    return `<article class="production-icon-card"><div class="production-icon-preview-wrap"><img class="production-icon-preview" data-production-icon-preview="${index}" src="${escapeHtml(assetUrl(item.thumbnail))}" alt="${escapeHtml(`${identity} icon`)}"></div><div class="production-icon-copy"><p class="production-icon-eyebrow">${escapeHtml(item.company || "Institution or company")}</p><h3>${escapeHtml(item.title || "Untitled record")}</h3><p class="production-icon-meta">${escapeHtml(item.time || "No date or location")}</p><div class="cms-field production-icon-source"><label for="${inputId}">Icon image URL or site path</label><div class="production-icon-source-row"><input id="${inputId}" data-production-icon-source="${index}" type="text" inputmode="url" autocomplete="url" value="${escapeHtml(item.thumbnail)}" placeholder="https://… or Resources/…"><button class="icon-button production-icon-refresh" data-production-icon-refresh="${index}" type="button" aria-label="Refresh ${escapeHtml(identity)} icon preview" title="Refresh icon preview"><svg aria-hidden="true"><use href="#icon-refresh"></use></svg></button></div></div><div class="production-icon-actions"><label class="button button-quiet production-icon-upload">Choose image<input data-production-icon-file="${index}" type="file" accept="image/png,image/jpeg,image/webp,image/avif" hidden></label><span class="production-icon-status" data-production-icon-status="${index}" role="status" aria-live="polite">${item.thumbnail ? "Current image" : "No image selected"}</span></div></div></article>`;
   }).join("");
 }
 
@@ -279,8 +291,43 @@ function bindProductionIconControls(form) {
   }));
   form.querySelectorAll("[data-production-icon-source]").forEach(input => input.addEventListener("input", event => {
     const index = event.currentTarget.dataset.productionIconSource;
+    const fileInput = form.querySelector(`[data-production-icon-file="${index}"]`);
+    if (fileInput?.files?.length) fileInput.value = "";
     const status = form.querySelector(`[data-production-icon-status="${index}"]`);
-    if (status) status.textContent = event.currentTarget.value.trim() ? "New image source will publish with About" : "Choose an image before publishing";
+    if (status) status.textContent = event.currentTarget.value.trim() ? "Source changed. Refresh preview, then publish." : "Choose an image before publishing";
+  }));
+  form.querySelectorAll("[data-production-icon-refresh]").forEach(button => button.addEventListener("click", () => {
+    const index = button.dataset.productionIconRefresh;
+    const input = form.querySelector(`[data-production-icon-source="${index}"]`);
+    const preview = form.querySelector(`[data-production-icon-preview="${index}"]`);
+    const status = form.querySelector(`[data-production-icon-status="${index}"]`);
+    const fileInput = form.querySelector(`[data-production-icon-file="${index}"]`);
+    if (!input || !preview) return;
+
+    let source;
+    try { source = normalizeProductionIconSource(input.value); }
+    catch (error) { if (status) status.textContent = error.message; toast(error.message, true); input.focus(); return; }
+
+    if (fileInput?.files?.length) fileInput.value = "";
+    if (preview.dataset.objectUrl) {
+      URL.revokeObjectURL(preview.dataset.objectUrl);
+      delete preview.dataset.objectUrl;
+    }
+    state.assetVersion = Date.now();
+    button.disabled = true;
+    button.setAttribute("aria-busy", "true");
+    if (status) status.textContent = "Refreshing preview…";
+    preview.onload = () => {
+      button.disabled = false;
+      button.removeAttribute("aria-busy");
+      if (status) status.textContent = "Preview refreshed from this source.";
+    };
+    preview.onerror = () => {
+      button.disabled = false;
+      button.removeAttribute("aria-busy");
+      if (status) status.textContent = "Could not load this image source.";
+    };
+    preview.src = assetUrl(source);
   }));
 }
 

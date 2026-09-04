@@ -1,9 +1,23 @@
+const productionAssetVersion = Date.now();
+
+function versionProductionAsset(source) {
+    if (!source) return "";
+    try {
+        const url = new URL(source, window.location.href);
+        if (url.protocol !== "http:" && url.protocol !== "https:") return source;
+        url.searchParams.set("pilgrim_v", String(productionAssetVersion));
+        return url.href;
+    } catch {
+        return source;
+    }
+}
+
 function createProductionCard(title, company, time, thumbnail, description) {
     const card = document.createElement("div");
     card.classList.add("production-subpanel");
 
     const img = document.createElement("img");
-    img.src = thumbnail;
+    img.src = versionProductionAsset(thumbnail);
     img.alt = `${company} logo`;
     img.loading = "lazy";
     img.decoding = "async";
@@ -78,7 +92,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
 
     try {
-        const response = await fetch('../Config/productions.txt?v=1.6');
+        const response = await fetch(`../Config/productions.txt?pilgrim_v=${productionAssetVersion}`, { cache: "no-store" });
         if (!response.ok) {
             throw new Error(`Network response was not ok: ${response.statusText}`);
         }

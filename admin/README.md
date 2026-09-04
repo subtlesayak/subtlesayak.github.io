@@ -30,6 +30,15 @@ Each publish creates:
 
 All files and images are committed together. If any upload fails, the publishing branch is not changed.
 
+## About icons
+
+Each experience, education, project, or certificate record has its own icon control in **About**.
+
+- Paste an `https://` image URL or an existing `Resources/` path, then use the circular refresh button beside the field to preview that exact source.
+- Use **Choose image** to upload a PNG, JPG, WebP, or AVIF file up to 4 MB.
+- Previewing does not publish. Use **Save & publish About** after the preview is correct.
+- Published icons receive a fresh browser version on every About-page load, so replacing an image at the same path does not leave the old cached icon visible.
+
 ## Practical limits
 
 - Up to 12 uploaded gallery images per project.

@@ -72,7 +72,10 @@
 .production-icon-eyebrow { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .production-icon-copy h3 { margin: 2px 0 3px; color: var(--text); font-size: 14px; line-height: 1.3; }
 .production-icon-source { margin-top: 12px; }
+.production-icon-source-row { display: grid; grid-template-columns: minmax(0, 1fr) 40px; gap: 8px; align-items: center; }
 .production-icon-source input { min-width: 0; }
+.production-icon-refresh { width: 40px; height: 40px; }
+.production-icon-refresh[aria-busy="true"] svg { animation: production-icon-spin 700ms linear infinite; }
 .production-icon-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 9px; margin-top: 10px; }
 .production-icon-upload { min-height: 40px; }
 .production-icon-status { flex: 1 1 130px; }
@@ -81,6 +84,8 @@
 .production-source summary { color: var(--text); cursor: pointer; font-size: 13px; font-weight: 600; }
 .production-source[open] summary { margin-bottom: 13px; }
 .production-source textarea { font-family: ui-monospace, SFMono-Regular, Consolas, monospace; font-size: 12px; }
+
+@keyframes production-icon-spin { to { transform: rotate(360deg); } }
 
 @media (max-width: 700px) {
   .production-icon-list { grid-template-columns: 1fr; }

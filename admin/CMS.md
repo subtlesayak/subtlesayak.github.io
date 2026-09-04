@@ -7,7 +7,7 @@ The online admin at `/admin/` manages the portfolio directly through GitHub. Eve
 - **Projects:** create, edit, delete, reorder, feature in selected work, replace covers, append gallery images, and edit external media.
 - **Photography:** create, edit, delete, and reorder collections; upload compressed WebP images and thumbnails; edit context and captions.
 - **Articles:** create, edit, delete, and reorder article folders; edit summaries, bodies, dates, and author notes.
-- **About:** edit identity, social/contact links, summary, skills, software, recommendations, experience, education, projects, certificates, and activities.
+- **About:** edit identity, social/contact links, summary, skills, software, recommendations, experience, education, projects, certificates, and activities; upload per-record icons or preview icon URLs before publishing.
 - **Media & resume:** replace the profile portrait, favicon, and PDF résumé while retaining prior versions in Git history.
 - **Settings:** edit last-updated text, category definitions, and selected-work ordering.
 - **Publishing:** inspect recent commits and restore a previous complete portfolio state. Restore creates a new commit and never erases history.
