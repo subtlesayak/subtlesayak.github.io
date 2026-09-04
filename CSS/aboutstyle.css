@@ -149,6 +149,42 @@ p {
     text-align: justify;
 }
 
+.achievements-section {
+    margin: 30px 0 28px;
+}
+
+.achievements-list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0 24px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.achievement-item {
+    min-width: 0;
+    padding: 14px 0 16px;
+    border-top: 2px solid var(--accent-line);
+}
+
+.achievement-item h2 {
+    margin: 0 0 5px;
+    color: var(--text);
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.4;
+    text-align: left;
+}
+
+.achievement-item p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 14px;
+    line-height: 1.55;
+    text-align: left;
+}
+
 body.no-recommendations .recommendations-panel,
 body.no-recommendations .recommendations-title,
 body.no-recommendations .recommendations-separator,
@@ -203,6 +239,31 @@ body.no-recommendations .recommendations-spacer {
     .panel-title {
         font-size: 20px;
         text-align: center;
+    }
+
+    .achievements-section {
+        margin: 26px 0 24px;
+    }
+
+    .achievements-section .panel-title {
+        text-align: left;
+    }
+
+    .achievements-list {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+
+    .achievement-item {
+        padding: 12px 0 14px;
+    }
+
+    .achievement-item h2 {
+        font-size: 15px;
+    }
+
+    .achievement-item p {
+        font-size: 13px;
     }
 
     p {

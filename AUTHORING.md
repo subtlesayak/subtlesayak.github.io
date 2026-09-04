@@ -2,6 +2,20 @@
 
 This site is intentionally editable without a build step. Most content lives in folders and `.txt` files.
 
+## About and Key Achievements
+
+Edit the About introduction in `Config/summary.txt`. Edit `Config/achievements.txt` to add, remove, rewrite, or reorder the achievements shown beneath it.
+
+Each achievement is a title followed by its description. Separate achievements with `---` on its own line:
+
+```txt
+Achievement title
+One concise sentence explaining the result or significance.
+---
+Another achievement
+Another concise supporting sentence.
+```
+
 ## Projects
 
 To add a portfolio project:
@@ -71,6 +85,14 @@ UI/UX, Responsive Web Design, Client Work
 ```
 
 The sections are: name, short label, description, live website URL, thumbnail image path, and comma-separated tags. Add an optimized preview image to `Resources/client-websites/`, then use its path in the fifth section. Move a complete six-section block to change its position.
+
+### Portfolio Section Divider
+
+The prominent divider and the `Portfolio Works` heading between Client Websites and the remaining portfolio projects are intentionally editable without any tooling:
+
+- Change the visible `Portfolio Works` heading and its description in `index.html` by searching for `portfolio-work-heading`.
+- Change its color, line thickness, or spacing in `CSS/indexstyle.css` by editing `--portfolio-divider-color`, `--portfolio-divider-thickness`, and `--portfolio-divider-spacing` near the top of the file.
+- Increase the cache number on the `indexstyle.css` link in `index.html` after changing the divider CSS so returning visitors receive the update immediately.
 
 ## Photography
 

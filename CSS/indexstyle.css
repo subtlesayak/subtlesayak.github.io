@@ -13,6 +13,10 @@
   --muted: #a9a9a9;
   --accent: #edb049;
   --accent-line: rgba(237, 176, 73, 0.48);
+  /* Portfolio divider controls: edit these values to restyle the section break. */
+  --portfolio-divider-color: var(--accent);
+  --portfolio-divider-thickness: 2px;
+  --portfolio-divider-spacing: 24px;
 }
 
 html::-webkit-scrollbar {
@@ -113,9 +117,8 @@ h2 {
 
 .client-websites-section {
   width: 100%;
-  margin: 0 0 16px;
-  padding: 8px 0 16px;
-  border-bottom: 1px solid var(--line);
+  margin: 0;
+  padding: 8px 0 0;
 }
 
 .client-websites-heading {
@@ -139,6 +142,19 @@ h2 {
   font-size: 13px;
   line-height: 1.6;
   text-align: right;
+}
+
+.portfolio-section-divider {
+  width: 100%;
+  height: var(--portfolio-divider-thickness);
+  margin: var(--portfolio-divider-spacing) 0 16px;
+  border: 0;
+  background: var(--portfolio-divider-color);
+  box-shadow: 0 0 10px var(--accent-line);
+}
+
+.portfolio-works-section {
+  width: 100%;
 }
 
 .portfolio-empty {
@@ -201,8 +217,7 @@ h2 {
   }
 
   .client-websites-section {
-    margin-bottom: 12px;
-    padding: 4px 0 18px;
+    padding: 4px 0 0;
   }
 
   .client-websites-heading {
@@ -218,6 +233,10 @@ h2 {
     margin-top: 5px;
     font-size: 12px;
     text-align: left;
+  }
+
+  .portfolio-section-divider {
+    margin-top: 18px;
   }
 
   .portfolio-empty {

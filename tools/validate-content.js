@@ -288,6 +288,7 @@ function checkConfig() {
   [
     "Config/userinformation.txt",
     "Config/summary.txt",
+    "Config/achievements.txt",
     "Config/software.txt",
     "Config/skills.txt",
     "Config/site.txt",
@@ -296,7 +297,22 @@ function checkConfig() {
   ].forEach(requireFile);
 }
 
+function checkAchievements() {
+  const configPath = "Config/achievements.txt";
+  if (!exists(configPath)) return;
+
+  const achievements = read(configPath)
+    .replace(/\r\n/g, "\n")
+    .split(/\n---\n/)
+    .map(block => block.split("\n").map(line => line.trim()).filter(Boolean));
+
+  achievements.forEach((lines, index) => {
+    if (lines.length < 2) errors.push(`${normalizeRel(configPath)} achievement ${index + 1} needs a title and description`);
+  });
+}
+
 checkConfig();
+checkAchievements();
 checkProjects();
 checkSelectedWork();
 checkPhotography();

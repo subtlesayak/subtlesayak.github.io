@@ -78,11 +78,13 @@ Most portfolio updates are content edits. The browser loads the configuration an
 | --- | --- |
 | Name, role, location, intro, social links, resume | `Config/userinformation.txt` |
 | About summary | `Config/summary.txt` |
+| Key achievements | `Config/achievements.txt` |
 | Software and skills | `Config/software.txt` and `Config/skills.txt` |
 | Experience and education | `Config/productions.txt` |
 | Portfolio project order | `Config/projects.txt` |
 | Selected-work priority | `Config/selected-work.txt` |
 | Client website thumbnails | `Config/client-websites.txt` and `Resources/client-websites/` |
+| Client/portfolio divider and Portfolio Works heading | `index.html` and the divider variables in `CSS/indexstyle.css` |
 | Public software projects | `Config/codeprojects.txt` |
 | Article order | `Config/articles.txt` |
 | Quiet last-updated line | `Config/site.txt` |
