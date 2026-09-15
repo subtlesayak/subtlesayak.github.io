@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Subtle Resolve List Manager</title>
+  <link rel="stylesheet" href="resolve.css?v=1">
+</head>
+<body>
+  <main class="shell">
+    <header class="page-head"><div><p class="eyebrow">Subtle Resolve List</p><h1>Catalogue manager</h1><p>Review the live catalogue and publish source-data corrections to the Resolve List repository.</p></div><a class="quiet" href="./">Portfolio Publisher</a></header>
+    <section id="connect" class="panel"><h2>Connect the Resolve List repository</h2><p>Use a fine-grained token limited to <code>subtlesayak/subtle-resolve-list</code> with Contents read and write. The token stays in this browser and is sent directly to GitHub.</p><form id="connect-form"><label>Repository<input id="repository" value="subtlesayak/subtle-resolve-list" required></label><label>Branch<input id="branch" value="main" required></label><label>GitHub token<input id="token" type="password" placeholder="github_pat_…" required autocomplete="off"></label><label class="check"><input id="remember" type="checkbox"> Remember on this private device</label><button class="primary" type="submit">Connect</button></form><p id="connect-message" class="message" role="status"></p></section>
+    <section id="manager" hidden>
+      <header class="manager-head"><div><p class="eyebrow" id="repo-label"></p><h2>Resolve List workspace</h2><p id="freshness"></p></div><div class="actions"><button id="reload" class="quiet-button" type="button">Reload</button><a id="site-link" class="quiet-button" target="_blank" rel="noopener">Open live site ↗</a></div></header>
+      <div id="stats" class="stats"></div>
+      <section class="panel"><h2>Release and source links</h2><div class="links"><a id="releases-link" target="_blank" rel="noopener">GitHub releases ↗</a><a id="actions-link" target="_blank" rel="noopener">Publishing actions ↗</a><a id="source-link" target="_blank" rel="noopener">Repository source ↗</a></div><p class="help">The build workflow validates catalogue data and publishes the website. Source edits below are committed atomically; run the repository checks before publishing substantial changes.</p></section>
+      <section class="panel"><div class="section-head"><div><h2>Manage source data</h2><p>Edit the maintained source ledgers used to build the catalogue. Changes are committed to GitHub and then validated by the repository workflow.</p></div><button id="publish" class="primary" type="button">Publish source changes</button></div><label class="editor-label">GitHub repositories <textarea id="repositories" spellcheck="false"></textarea></label><label class="editor-label">External resources <textarea id="external" spellcheck="false"></textarea></label><label class="editor-label">Search tags JSON <textarea id="tags" spellcheck="false"></textarea></label><p id="save-message" class="message" role="status"></p></section>
+    </section>
+  </main>
+  <script type="module" src="resolve.js?v=1"></script>
+</body>
+</html>
