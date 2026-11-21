@@ -24,6 +24,8 @@ jobs:
       - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
         with:
           node-version: '22'
+      - name: Make Jekyll output writable
+        run: sudo chown -R "$(id -u):$(id -g)" _site
       - name: Configure production page analytics
         env:
           UMAMI_WEBSITE_ID: ${{ secrets.UMAMI_WEBSITE_ID }}
