@@ -2,3 +2,4 @@ User-agent: *
 Allow: /
 
 Sitemap: https://subtlesayak.github.io/sitemap.xml
+Sitemap: https://subtlesayak.github.io/open-resolve-list/sitemap.xml
