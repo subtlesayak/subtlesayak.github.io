@@ -1,9 +1,10 @@
-const PHOTOGRAPHY_CACHE_VERSION = "2.1";
+const PHOTOGRAPHY_CACHE_VERSION = "2.2";
 const PHOTOGRAPHY_COLLECTIONS_PATH = "../Projects/Photography/collections.txt";
 const PHOTOGRAPHY_ROOT_ID = ".";
 const PHOTOGRAPHY_BASE_PATH = "../Projects/Photography/";
 const PHOTOGRAPHY_COLLECTIONS_BASE_PATH = "../Projects/Photography/Collections/";
 const PHOTOGRAPHY_METADATA_PATH = "../Projects/Photography/metadata.json";
+const PHOTOGRAPHY_DISPLAY_PATH = "../Config/photo-display.json";
 const PHOTOGRAPHY_INSTAGRAM_URL = "https://www.instagram.com/people.i.meet/";
 const PHOTOGRAPHY_INSTAGRAM_HANDLE = "@people.i.meet";
 
@@ -298,10 +299,13 @@ function renderCollectionGallery(container, collection) {
     }
 }
 
-function preloadPhoto(collectionId, fileName) {
-    const image = new Image();
-    image.decoding = "async";
-    image.src = getImagePath(collectionId, fileName);
+async function fetchPhotoDisplays() {
+    try {
+        const response = await fetch(`${PHOTOGRAPHY_DISPLAY_PATH}?v=${PHOTOGRAPHY_CACHE_VERSION}`);
+        return response.ok ? await response.json() : {};
+    } catch {
+        return {};
+    }
 }
 
 function createPhotoNavButton(label, iconName, className, onClick) {
@@ -356,15 +360,13 @@ function createStat(label, value) {
     return stat;
 }
 
-function renderPhotoDetail(container, collection, selectedIndex, metadataByFile) {
+function renderPhotoDetail(container, collection, selectedIndex, metadataByFile, displays) {
     document.body.classList.add("photography-project-mode");
 
     const fileName = collection.photos[selectedIndex];
     const metadata = metadataByFile.get(fileName) || {};
     const previousPhoto = collection.photos[(selectedIndex - 1 + collection.photos.length) % collection.photos.length];
     const nextPhoto = collection.photos[(selectedIndex + 1) % collection.photos.length];
-    preloadPhoto(collection.id, previousPhoto);
-    preloadPhoto(collection.id, nextPhoto);
 
     const camera = [metadata.Make, metadata.Model].filter(Boolean).join(" ");
     const settings = [metadata.ExposureTime, formatFNumber(metadata.FNumber), metadata.ISO ? `ISO ${metadata.ISO}` : ""].filter(Boolean).join("  ");
@@ -381,7 +383,14 @@ function renderPhotoDetail(container, collection, selectedIndex, metadataByFile)
     mediaPanel.className = "photo-detail-media";
 
     const image = document.createElement("img");
-    image.src = getImagePath(collection.id, fileName);
+    const original = getImagePath(collection.id, fileName);
+    const display = displays[fileName];
+    if (display) {
+        image.width = display.width;
+        image.height = display.height;
+        image.addEventListener("error", () => { image.src = original; }, {once: true});
+    }
+    image.src = display?.url || original;
     image.alt = caption || `${collection.entry.title} ${selectedIndex + 1}`;
     mediaPanel.appendChild(image);
 
@@ -495,10 +504,12 @@ async function loadPhotography() {
         const selectedIndex = getSelectedPhotoIndex(collection.photos);
         if (selectedIndex !== -1) {
             if (window.PortfolioControls) window.PortfolioControls.initViewControls({ showResize: false });
-            const metadataByFile = collection.id === PHOTOGRAPHY_ROOT_ID ? await fetchPhotoMetadata() : new Map();
+            const [metadataByFile, displays] = collection.id === PHOTOGRAPHY_ROOT_ID
+                ? await Promise.all([fetchPhotoMetadata(), fetchPhotoDisplays()])
+                : [new Map(), {}];
             gallery.classList.remove("photography-grid");
             gallery.classList.add("photography-detail-shell");
-            renderPhotoDetail(gallery, collection, selectedIndex, metadataByFile);
+            renderPhotoDetail(gallery, collection, selectedIndex, metadataByFile, displays);
             return;
         }
 

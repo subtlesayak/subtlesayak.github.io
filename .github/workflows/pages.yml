@@ -26,6 +26,8 @@ jobs:
           node-version: '22'
       - name: Make Jekyll output writable
         run: sudo chown -R "$(id -u):$(id -g)" _site
+      - name: Build portfolio cards from the content files
+        run: node tools/build-project-cards.js _site
       - name: Configure production page analytics
         env:
           UMAMI_WEBSITE_ID: ${{ secrets.UMAMI_WEBSITE_ID }}

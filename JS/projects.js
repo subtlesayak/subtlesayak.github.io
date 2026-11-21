@@ -3,6 +3,29 @@ document.addEventListener('DOMContentLoaded', () => {
     const mediaPathPattern = /\.(?:avif|gif|jpe?g|mview|mp4|png|webm|webp)(?:[?#].*)?\*?$/i;
 
     let projects = [];
+    let imageLayouts = {};
+    const mediaLayouts = fetch('/Config/project-image-layouts.json?v=1')
+        .then(response => response.ok ? response.json() : {})
+        .then(data => data.media || {})
+        .catch(() => ({}));
+
+    function configureImage(img, url, priority) {
+        img.loading = priority ? 'eager' : 'lazy';
+        img.decoding = 'async';
+        if (priority) img.fetchPriority = 'high';
+        const imageURL = new URL(url, location.href);
+        const layout = imageURL.origin === location.origin && imageLayouts[decodeURIComponent(imageURL.pathname)];
+        if (layout) {
+            img.width = layout.width;
+            img.height = layout.height;
+            if (layout.small) {
+                img.sizes = '(max-width: 600px) 100vw, 80vw';
+                img.srcset = `${layout.small.url} ${layout.small.width}w, ${imageURL.href} ${layout.width}w`;
+            }
+        }
+        img.src = url;
+        return layout;
+    }
 
     const fetchProjects = async () => {
         try {
@@ -69,10 +92,12 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     const loadMedia = async () => {
+        const mediaContainer = document.getElementById('project-media');
         try {
-            const response = await fetch('media.txt?v=1.2');
+            const [response, layouts] = await Promise.all([fetch('media.txt?v=1.2'), mediaLayouts]);
+            if (!response.ok) throw new Error('Media list could not load');
+            imageLayouts = layouts;
             const text = await response.text();
-            const mediaContainer = document.getElementById('project-media');
             const lines = text.split('\n').map(line => line.trim()).filter(line => line && !line.startsWith('#'));
 
             const basePath = window.location.pathname.split('/').slice(0, -1).join('/') + '/';
@@ -112,6 +137,11 @@ document.addEventListener('DOMContentLoaded', () => {
             mediaContainer.appendChild(fragment);
         } catch (error) {
             console.error('Error loading project media:', error);
+            const notice = document.createElement('p');
+            notice.textContent = 'Project media could not load.';
+            mediaContainer.appendChild(notice);
+        } finally {
+            mediaContainer.dataset.ready = '';
         }
     };
 
@@ -162,21 +192,21 @@ document.addEventListener('DOMContentLoaded', () => {
         imgContainer.className = 'img-container';
 
         const imgElement1 = document.createElement('img');
-        imgElement1.src = urls[0];
         imgElement1.className = 'image-1';
         imgElement1.alt = 'Primary image';
-        imgElement1.loading = isPriority ? 'eager' : 'lazy';
-        imgElement1.decoding = 'async';
-        if (isPriority) imgElement1.fetchPriority = 'high';
+        const layout = configureImage(imgElement1, urls[0], isPriority);
+        if (layout) {
+            imgContainer.classList.add('sized-media');
+            imgContainer.style.setProperty('--media-ratio', layout.width / layout.height);
+            imgContainer.style.setProperty('--media-width', `${layout.width}px`);
+        }
         imgContainer.appendChild(imgElement1);
 
         if (urls[1]) {
             const imgElement2 = document.createElement('img');
-            imgElement2.src = urls[1];
             imgElement2.className = 'image-2';
             imgElement2.alt = 'Secondary image';
-            imgElement2.loading = isPriority ? 'eager' : 'lazy';
-            imgElement2.decoding = 'async';
+            configureImage(imgElement2, urls[1], isPriority);
             imgContainer.appendChild(imgElement2);
 
             const sliderContainer = document.createElement('div');

@@ -1,4 +1,4 @@
-/Resources/profile/sayak-profile.jpg
+/Resources/profile/sayak-profile.webp
 Subtle Sayak
 UI/UX Designer @ Red Productions
 Bengaluru, Karnataka, India

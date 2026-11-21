@@ -173,6 +173,17 @@ The sitemap page is `sitemap.html`; it reads the same project, photography, and 
 
 Profile, summary, skills, software, and work/education content live in `Config/*.txt` files.
 
+## Refreshing web images and cards
+
+After changing project thumbnails or adding photography, regenerate the display copies with Python and Pillow. Original media remains at its existing path.
+
+```bash
+python3 tools/prepare-web-images.py
+node tools/build-project-cards.js
+```
+
+The Pages build regenerates the card index from the authored text files. The local icon fonts are subsets of the existing families. Include any new glyphs in those subsets when you add icons. See [the icon font notices](Resources/fonts/NOTICE.md).
+
 ## Optional Validation
 
 Before publishing, run:

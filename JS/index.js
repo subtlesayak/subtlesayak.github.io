@@ -1,7 +1,7 @@
-const CACHE_VERSION = "2.7";
+const CACHE_VERSION = "3.0";
 
 // Function to create a thumbnail with overlay icons
-function createThumbnail(src, alt, label, context, galleryPageUrl, hasMultipleImages, hasVideo, hasYouTube, hasSketchfab, isFeatured = false) {
+function createThumbnail(src, alt, label, context, galleryPageUrl, hasMultipleImages, hasVideo, hasYouTube, hasSketchfab, isFeatured = false, isPriority = false) {
     const thumbnailLink = document.createElement("a");
     thumbnailLink.href = galleryPageUrl;
     thumbnailLink.classList.add("thumbnail-link");
@@ -11,6 +11,9 @@ function createThumbnail(src, alt, label, context, galleryPageUrl, hasMultipleIm
     thumbnailDiv.classList.add("thumbnail");
 
     const thumbnailImg = document.createElement("img");
+    thumbnailImg.loading = isPriority ? "eager" : "lazy";
+    thumbnailImg.decoding = "async";
+    if (isPriority) thumbnailImg.fetchPriority = "high";
     thumbnailImg.src = src;
     thumbnailImg.alt = alt;
 
@@ -93,55 +96,7 @@ if (window.PortfolioControls) {
     });
 }
 
-function fetchText(path) {
-    return fetch(`${path}?v=${CACHE_VERSION}`).then(response => {
-        if (!response.ok) {
-            throw new Error(`Unable to load ${path}`);
-        }
-
-        return response.text();
-    });
-}
-
-function fetchOptionalText(path) {
-    return fetch(`${path}?v=${CACHE_VERSION}`)
-        .then(response => response.ok ? response.text() : "")
-        .catch(() => "");
-}
-
-function parseLines(text) {
-    return text
-        .split("\n")
-        .map(line => line.trim())
-        .filter(line => line && !line.startsWith("#"));
-}
-
-function parseClientWebsites(text) {
-    const parts = text
-        .replace(/\r\n/g, "\n")
-        .split(/\n---\n/)
-        .map(part => part.trim());
-    const websites = [];
-
-    for (let index = 0; index < parts.length; index += 6) {
-        const title = parts[index] || "";
-        const liveUrl = parts[index + 3] || "";
-        if (!title || !liveUrl) continue;
-
-        websites.push({
-            title,
-            kind: parts[index + 1] || "Client Website",
-            summary: parts[index + 2] || "",
-            liveUrl,
-            thumbnail: parts[index + 4] || "",
-            tags: parts[index + 5] || ""
-        });
-    }
-
-    return websites;
-}
-
-function createClientWebsiteThumbnail(website) {
+function createClientWebsiteThumbnail(website, isPriority) {
     const thumbnailLink = createThumbnail(
         website.thumbnail,
         website.title,
@@ -151,7 +106,9 @@ function createClientWebsiteThumbnail(website) {
         false,
         false,
         false,
-        false
+        false,
+        false,
+        isPriority
     );
 
     thumbnailLink.target = "_blank";
@@ -164,57 +121,6 @@ function createClientWebsiteThumbnail(website) {
     thumbnailLink.querySelector(".thumbnail").appendChild(externalIcon);
 
     return thumbnailLink;
-}
-
-function loadClientWebsites() {
-    if (!clientWebsitesSection || !clientWebsitesContainer) return;
-
-    fetchText("../Config/client-websites.txt")
-        .then(parseClientWebsites)
-        .then(websites => {
-            if (!websites.length) return;
-
-            const fragment = document.createDocumentFragment();
-            websites.forEach(website => fragment.appendChild(createClientWebsiteThumbnail(website)));
-            clientWebsitesContainer.replaceChildren(fragment);
-            clientWebsitesSection.hidden = false;
-            document.dispatchEvent(new Event("portfolio:list-rendered"));
-        })
-        .catch(error => console.error("Error loading client websites:", error));
-}
-
-function inferProjectLabel(categories) {
-    if (categories.includes("uiux")) return "Case Study";
-    if (categories.includes("branding")) return "Brand Study";
-    if (categories.includes("web")) return "Web Experiment";
-    if (categories.includes("visual-design")) return "Visual Study";
-    return "Project";
-}
-
-function createContextFallback(description) {
-    const clean = description
-        .replace(/https?:\/\/\S+/gi, "")
-        .replace(/View the full case study here:?/gi, "")
-        .replace(/\s+/g, " ")
-        .trim();
-    const firstSentence = clean.match(/^.*?[.!?](?:\s|$)/);
-    const context = (firstSentence ? firstSentence[0] : clean).trim();
-    return context.length > 140 ? `${context.slice(0, 137).trimEnd()}...` : context;
-}
-
-function parseProjectCard(cardText, description, categories) {
-    const lines = parseLines(cardText);
-    return {
-        label: lines[0] || inferProjectLabel(categories),
-        context: lines.slice(1).join(" ") || createContextFallback(description)
-    };
-}
-
-function orderProjects(projectNames, selectedNames) {
-    const configured = new Set(projectNames);
-    const selected = selectedNames.filter((name, index) => configured.has(name) && selectedNames.indexOf(name) === index);
-    const selectedSet = new Set(selected);
-    return [...selected, ...projectNames.filter(name => !selectedSet.has(name))];
 }
 
 function createPortfolioEmptyState() {
@@ -240,100 +146,35 @@ function createPortfolioEmptyState() {
     return emptyState;
 }
 
-// Function to fetch and parse the description.txt file
-function fetchProjectData(projectName) {
-    const descriptionPath = `../Projects/${projectName}/description.txt`;
-    const mediaPath = `../Projects/${projectName}/media.txt`;
-    const cardPath = `../Projects/${projectName}/card.txt`;
-    const categoriesPath = `../Projects/${projectName}/categories.txt`;
-
-    return Promise.all([
-        fetchText(descriptionPath),
-        fetchText(mediaPath),
-        fetchOptionalText(cardPath),
-        fetchOptionalText(categoriesPath)
-    ])
-    .then(([descriptionText, mediaText, cardText, categoriesText]) => {
-        const [title, description, tags, thumbnailUrl, htmlFileName] = descriptionText.split("---").map(line => line.trim());
-        const galleryPageUrl = descriptionPath.replace("description.txt", htmlFileName);
-        const card = parseProjectCard(cardText, description, parseLines(categoriesText));
-
-        const mediaLines = parseLines(mediaText);
-        const hasMultipleImages = mediaLines.filter(line => line.match(/\.(?:avif|gif|jpe?g|png|webp)\*?$/i)).length > 1;
-        const hasVideo = mediaLines.some(line => line.match(/\.(mp4)$/i));
-        const hasYouTube = mediaLines.some(line => line.includes("youtube.com"));
-        const hasSketchfab = mediaLines.some(line => line.includes("sketchfab.com"));
-
-        // Find the banner image
-        const bannerImageLine = mediaLines.find(line => line.endsWith("*"));
-        const bannerImageUrl = bannerImageLine ? bannerImageLine.replace("*", "").trim() : null;
-
-        return {
-            projectName,
-            src: thumbnailUrl,
-            alt: title,
-            label: card.label,
-            context: card.context,
-            galleryPageUrl,
-            hasMultipleImages,
-            hasVideo,
-            hasYouTube,
-            hasSketchfab,
-            bannerImageUrl
-        };
-    })
-    .catch(error => {
-        console.error(`Error loading data for project: ${projectName}`, error);
-        return null;
-    });
-}
-
-// Function to fetch the projects.txt file
-function fetchProjects() {
-    return fetchText("../Config/projects.txt")
-        .then(parseLines)
-        .catch(error => {
-            console.error("Error loading projects:", error);
-            return [];
-        });
-}
-
-function fetchSelectedWork() {
-    return fetchText("../Config/selected-work.txt")
-        .then(parseLines)
-        .catch(() => []);
-}
-
-loadClientWebsites();
-
-Promise.all([fetchProjects(), fetchSelectedWork()]).then(([projectNames, selectedNames]) => {
-    if (projectNames.length === 0) {
+async function loadPortfolioCards() {
+    try {
+        const response = await fetch(`../Config/portfolio-cards.json?v=${CACHE_VERSION}`);
+        if (!response.ok) throw new Error("Could not load portfolio cards");
+        const {projects, websites} = await response.json();
+        if (clientWebsitesSection && clientWebsitesContainer && websites.length) {
+            clientWebsitesContainer.replaceChildren(...websites.map((website, index) =>
+                createClientWebsiteThumbnail(website, index === 0)));
+            clientWebsitesSection.hidden = false;
+        }
+        if (projects.length) {
+            const fragment = document.createDocumentFragment();
+            for (const [index, project] of projects.entries()) {
+                fragment.appendChild(createThumbnail(
+                    project.src, project.alt, project.label, project.context,
+                    project.galleryPageUrl, project.hasMultipleImages, project.hasVideo,
+                    project.hasYouTube, project.hasSketchfab, project.featured,
+                    !websites.length && index === 0
+                ));
+            }
+            thumbnailContainer.replaceChildren(fragment);
+        } else {
+            thumbnailContainer.appendChild(createPortfolioEmptyState());
+        }
+        document.dispatchEvent(new Event("portfolio:list-rendered"));
+    } catch (error) {
+        console.error("Error loading portfolio cards:", error);
         thumbnailContainer.appendChild(createPortfolioEmptyState());
-        return;
     }
+}
 
-    const fragment = document.createDocumentFragment();
-    const selectedProjects = selectedNames.filter((name, index) => projectNames.includes(name) && selectedNames.indexOf(name) === index);
-    const orderedProjectNames = orderProjects(projectNames, selectedProjects);
-    const selectedSet = new Set(selectedProjects);
-
-    Promise.all(orderedProjectNames.map(fetchProjectData)).then(projectResults => {
-        projectResults.filter(Boolean).forEach((project, index) => {
-            const thumbnail = createThumbnail(
-                project.src,
-                project.alt,
-                project.label,
-                project.context,
-                project.galleryPageUrl,
-                project.hasMultipleImages,
-                project.hasVideo,
-                project.hasYouTube,
-                project.hasSketchfab,
-                selectedSet.size ? selectedSet.has(project.projectName) : index < 3
-            );
-            fragment.appendChild(thumbnail);
-        });
-
-        thumbnailContainer.appendChild(fragment);
-    });
-});
+loadPortfolioCards();
